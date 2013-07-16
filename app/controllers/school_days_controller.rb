@@ -44,8 +44,12 @@ class SchoolDaysController < ApplicationController
 
     respond_to do |format|
       if @school_day.save
+        if @school_day.post_id.nil?
+          redirect_to 'potds/new'
+        else
         format.html { redirect_to @school_day, notice: 'School day was successfully created.' }
         format.json { render json: @school_day, status: :created, location: @school_day }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @school_day.errors, status: :unprocessable_entity }

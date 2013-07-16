@@ -12,7 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :ordinal %><br />
+    <%= f.label :week %><br />
+    <%= f.number_field :week %>
+  </div>
+  <div class="field">
+    <%= f.label :ordinal, "Day" %><br />
     <%= f.number_field :ordinal %>
   </div>
   <div class="field">
@@ -23,10 +27,12 @@
     <%= f.label :schedule %><br />
     <%= f.text_area :schedule %>
   </div>
-  <div class="field">
-    <%= f.label :week %><br />
-    <%= f.number_field :week %>
+
+   <div class="field">
+    <%= f.label :potd, "Programmer of the Day" %><br />
+    <%= f.collection_select(:potd_id, Potd.all, :id, :name, {:selected => @school_day.potd_id, :prompt => "Please select a Programmer of the Day"}, {:class => "span4"}) %>
   </div>
+ 
   <div class="actions">
     <%= f.submit %>
   </div>

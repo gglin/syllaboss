@@ -1,7 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Ordinal:</b>
+  <b>Week:</b>
+  <%= @school_day.week %>
+</p>
+
+<p>
+  <b>Day:</b>
   <%= @school_day.ordinal %>
 </p>
 
@@ -15,10 +20,7 @@
   <%= @school_day.paragraphize(@school_day.schedule).html_safe %>
 </p>
 
-<p>
-  <b>Week:</b>
-  <%= @school_day.week %>
-</p>
+
 
 
 <p>

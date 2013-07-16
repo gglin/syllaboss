@@ -1,11 +1,11 @@
 class SchoolDay < ActiveRecord::Base
   attr_accessible :calendar_date, :ordinal, :schedule, :week, :links, :potd_id
 
+  belongs_to :potd
+
   has_many :school_day_links
   has_many :links, :through => :school_day_links
   
-  belongs_to :potd
-
   validates_uniqueness_of :ordinal, :calendar_date
   validates :ordinal, :week, :calendar_date, :presence => true
 

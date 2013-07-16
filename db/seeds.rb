@@ -12,7 +12,8 @@ data_folder = File.expand_path('../data', __FILE__)
 
 SchoolDay.delete_all
 Potd.delete_all
-
+Link.delete_all
+SchoolDayLink.delete_all
 
 
 potd1 = Potd.new
@@ -20,22 +21,25 @@ potd1.name = "Alan Kay"
 potd1.wikipedia = "http://en.wikipedia.org/wiki/Alan_Kay"
 potd1.presentation_url = "www.sesamestreet.com"
 potd1.save
+puts "Saved potd1"
 
 potd2 = Potd.new
 potd2.name = "John McCarthy"
 potd2.wikipedia = "http://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)"
 potd2.presentation_url = "www.yahoo.com"
 potd2.save
+puts "Saved potd2"
 
 potd3 = Potd.new
 potd3.name = "Cookie Monster"
 potd3.wikipedia = "http://en.wikipedia.org/wiki/Cookie_Monster"
 potd3.presentation_url = "www.whatbadgerseat.com"
 potd3.save
+puts "Saved potd3"
 
 
 day5 = potd1.school_days.build(:ordinal=>5, :week=>1)
-day5.calendar_date = DateTime.now.to_date
+day5.calendar_date = (DateTime.now+1).to_date
 day5.schedule = 
 "9:00 - 10: Ruby & SQL Homework Review
 10 - 12: Final Work on Layouts (Go grab your lunch, we're eating in the school)
@@ -43,11 +47,11 @@ day5.schedule =
 1 - 2: Layout Discussion
 2 - 4: Ruby Lecture - 2 and POTD
 4 - 6: Feeling Friday and FAF "
-
 day5.save
+puts "Saved day5"
 
 day6 = potd2.school_days.build(:ordinal=>6, :week=>2)
-day6.calendar_date = DateTime.now.to_date
+day6.calendar_date = (DateTime.now+2).to_date
 day6.schedule = 
 "9:00 - 9:15: Blogs
 
@@ -69,11 +73,11 @@ day6.schedule =
 
 5 - 6: Student Profile Merge Take #2
 #day6 #plan"
-
 day6.save
+puts "Saved day6"
 
 day7 = potd1.school_days.build(:ordinal=>7, :week=>11)
-day7.calendar_date = DateTime.now.to_date
+day7.calendar_date = (DateTime.now+3).to_date
 day7.schedule = 
 "9:00 - 9:15: Blog Reviews
 9:15 - 11:40: HW Review, POTD
@@ -93,21 +97,23 @@ Whenever the layouts are done, we'll stop and discuss them. Whatever you don't f
 
 4 - 6: Student Layout / Group Work - The student Layouts must be standardized by tomorrow morning!
 #plan #day7"
-
 day7.save
+puts "Saved day7!"
 
 
 link1 = Link.new(:title => "Ruby docs")
 link1.link_url = "www.rubydocs.org"
 link1.description = "read this"
 link1.save
+puts "Saved link1"
 
 link2 = Link.new(:title => "Sharknado")
 link2.link_url = "www.sharknado.org"
 link2.description = "watch this"
 link2.save
+puts "Saved link2"
 
-day2 = SchoolDay.new(:ordinal => 11)
+day2 = SchoolDay.new(:ordinal => 11, :week => 18)
 day2.schedule = "9:00 - 9:15: POTD - The Shell
 
 9:15 - 9:30: Review Yesterday, Today's Plan
@@ -127,10 +133,10 @@ day2.schedule = "9:00 - 9:15: POTD - The Shell
 5:30 - 6:30: Merge profiles into master and review them
 
 #plan #day2 "
-day2.calendar_date = DateTime.now.to_date
+day2.calendar_date = (DateTime.now+4).to_date 
 day2.links.build(:link_url=>"ruby-doc.org", :title => "Ruby Docs", :description => "docs for ruby")
 day2.save
-
+puts "Saved day2!"
 
 # day11 = SchoolDay.create(:ordinal => 11)
 # day11.links.build(:title => "ruby docs")

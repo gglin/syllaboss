@@ -1,0 +1,29 @@
+<h1>Listing school_days</h1>
+
+<table>
+  <tr>
+    <th>Ordinal</th>
+    <th>Calendar date</th>
+    <th>Schedule</th>
+    <th>Week</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @school_days.each do |school_day| %>
+  <tr>
+    <td><%= school_day.ordinal %></td>
+    <td><%= school_day.calendar_date %></td>
+    <td><%= school_day.schedule %></td>
+    <td><%= school_day.week %></td>
+    <td><%= link_to 'Show', school_day %></td>
+    <td><%= link_to 'Edit', edit_school_day_path(school_day) %></td>
+    <td><%= link_to 'Destroy', school_day, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New School day', new_school_day_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ordinal: 1
+  calendar_date: 2013-07-16
+  schedule: MyText
+  week: 1
+
+two:
+  ordinal: 1
+  calendar_date: 2013-07-16
+  schedule: MyText
+  week: 1

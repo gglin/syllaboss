@@ -1,0 +1,22 @@
+school_days
+id    ordinal   semester_id  date            potd_id
+1     1              1         9/23/13          1
+1     1              2         9/23/14          1
+  
+
+potds
+id      name        wikipedia       presentation_url        
+1       Alan Kay    etc             etc
+
+
+links
+id      title         link_url          description              
+1        balsamiq     http://balsamiq.com     a wireframe tool  
+
+
+
+
+school_days_links
+school_day_id           link_id
+1                         1
+30                        1

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Ordinal:</b>
+  <%= @school_day.ordinal %>
+</p>
+
+<p>
+  <b>Calendar date:</b>
+  <%= @school_day.calendar_date %>
+</p>
+
+<p>
+  <b>Schedule:</b>
+  <%= @school_day.schedule %>
+</p>
+
+<p>
+  <b>Week:</b>
+  <%= @school_day.week %>
+</p>
+
+<p>
+  <b>Programmer of the Day:</b>
+  <a href="<%=@school_day.potd.presentation_link %>" target="_blank"> <%= @school_day.potd.name %></a><br>
+  <a href="<%=@school_day.potd.wikipedia_link %>" target="_blank">Wikipedia</a>
+</p>
+
+
+<%= link_to 'Edit', edit_school_day_path(@school_day) %> |
+<%= link_to 'Back', school_days_path %>

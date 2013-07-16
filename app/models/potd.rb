@@ -1,6 +1,7 @@
 class Potd < ActiveRecord::Base
-  has_many :school_days
   attr_accessible :name, :presentation_url, :wikipedia
+
+  has_many :school_days
 
   def presentation_link
    if presentation_url[0..3] != "http"

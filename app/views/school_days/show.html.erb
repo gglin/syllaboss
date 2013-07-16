@@ -20,11 +20,17 @@
   <%= @school_day.week %>
 </p>
 
+
 <p>
   <b>Programmer of the Day:</b>
-  <a href="<%=@school_day.potd.presentation_link %>" target="_blank"> <%= @school_day.potd.name %></a><br>
-  <a href="<%=@school_day.potd.wikipedia_link %>" target="_blank">Wikipedia</a>
+  <% if @school_day.potd %>
+    <a href="<%=@school_day.potd.presentation_link %>" target="_blank"> <%= @school_day.potd.name %></a><br>
+    <a href="<%=@school_day.potd.wikipedia_link %>" target="_blank">Wikipedia</a>
+  <% else %>
+    There is no programmer of the day.
+  <%end%> 
 </p>
+
 
 
 <%= link_to 'Edit', edit_school_day_path(@school_day) %> |

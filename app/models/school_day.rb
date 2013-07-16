@@ -1,8 +1,10 @@
 class SchoolDay < ActiveRecord::Base
-  belongs_to :potd
+  attr_accessible :calendar_date, :ordinal, :schedule, :week, :links
+
   has_many :school_day_links
   has_many :links, :through => :school_day_links
-  attr_accessible :calendar_date, :ordinal, :schedule, :week
+  
+  belongs_to :potd
 
 
 	def paragraphize(content)

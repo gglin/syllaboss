@@ -97,7 +97,43 @@ Whenever the layouts are done, we'll stop and discuss them. Whatever you don't f
 day7.save
 
 
+link1 = Link.new(:title => "Ruby docs")
+link1.link_url = "www.rubydocs.org"
+link1.description = "read this"
+link1.save
 
+link2 = Link.new(:title => "Sharknado")
+link2.link_url = "www.sharknado.org"
+link2.description = "watch this"
+link2.save
+
+day2 = SchoolDay.new(:ordinal => 11)
+day2.schedule = "9:00 - 9:15: POTD - The Shell
+
+9:15 - 9:30: Review Yesterday, Today's Plan
+
+9:30 - 10: Basic Git Workflow
+
+10 - 11: HTML Questions Review (Grover)
+
+11 - 12:30: Work on Profiles - Your goal is to have a team branch that contains all your individual profiles on the main flatiron-school repository.
+
+12:30 - 1:30: Lunch
+
+1:30 - 3:30: Environment Setup
+
+4:00 - 5:30: Work on Profiles - FINISH THEM - Get a version 1 done. No matter what.
+
+5:30 - 6:30: Merge profiles into master and review them
+
+#plan #day2 "
+day2.calendar_date = DateTime.now.to_date
+day2.links.build(:link_url=>"www.rubydocs.org", :description => "docs for ruby")
+day2.save
+
+
+# day11 = SchoolDay.create(:ordinal => 11)
+# day11.links.build(:title => "ruby docs")
 
 
 

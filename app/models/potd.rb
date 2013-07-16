@@ -19,4 +19,12 @@ class Potd < ActiveRecord::Base
    end
   end
 
+  def presentation_link
+   if presentation_url[0..3] != "http"
+      presentation_url.prepend("http://")
+   else
+      presentation_url
+   end
+  end
+
 end

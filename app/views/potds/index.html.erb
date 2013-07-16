@@ -1,0 +1,29 @@
+<h1>All Programmers of the Day</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Wikipedia</th>
+    <th>Presentation URL</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @potds.each do |potd| %>
+  <tr>
+    <td><%= link_to(potd.name, potd) %></td>
+    <td><%= link_to(potd.wikipedia, potd.wikipedia_link, :target => "_blank") %></td>
+    <td><%= link_to(potd.presentation_url, potd.presentation_link, :target => "_blank") %></td>
+  
+    <td><%= link_to 'Show', potd %></td>
+    <td><%= link_to 'Edit', edit_potd_path(potd) %></td>
+    <td><%= link_to 'Destroy', potd, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+<%= link_to 'New Programmer of the Day', new_potd_path %>

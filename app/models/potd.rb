@@ -3,6 +3,10 @@ class Potd < ActiveRecord::Base
 
   has_many :school_days
 
+  validates_uniqueness_of :name, :case_sensitive => false
+  validates :name, :presence => true
+
+
   def presentation_link
    if presentation_url[0..3] != "http"
       presentation_url.prepend("http://")

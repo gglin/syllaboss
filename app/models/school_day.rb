@@ -6,9 +6,14 @@ class SchoolDay < ActiveRecord::Base
   
   belongs_to :potd
 
+  validates_uniqueness_of :ordinal, :calendar_date
+  validates :ordinal, :week, :calendar_date, :presence => true
+
+
 	def paragraphize(content)
 		body = content.split("\n").collect{|paragraph| "<p>#{paragraph}</p>"}.join("\n")
 		body
 	end
 
 end
+

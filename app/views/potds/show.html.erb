@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @potd.name %>
+</p>
+
+<p>
+  <b>Wikipedia:</b>
+  <%=link_to @potd.wikipedia, @potd.wikipedia_link, :target => "_blank" %>
+</p>
+
+<p>
+  <b>Presentation Url:</b>
+  <%=link_to @potd.presentation_url, @potd.presentation_link, :target => "_blank" %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_potd_path(@potd) %> |
+<%= link_to 'Back', potds_path %>

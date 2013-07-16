@@ -12,7 +12,7 @@
 
 <p>
   <b>Schedule:</b>
-  <%= @school_day.schedule %>
+  <%= @school_day.paragraphize(@school_day.schedule).html_safe %>
 </p>
 
 <p>

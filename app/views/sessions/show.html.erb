@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Day number:</b>
+  <%= @session.day_number %>
+</p>
+
+<p>
+  <b>Day date:</b>
+  <%= @session.day_date %>
+</p>
+
+<p>
+  <b>Schedule:</b>
+  <%= @session.schedule %>
+</p>
+
+<p>
+  <b>Week:</b>
+  <%= @session.week %>
+</p>
+
+
+<%= link_to 'Edit', edit_session_path(@session) %> |
+<%= link_to 'Back', sessions_path %>

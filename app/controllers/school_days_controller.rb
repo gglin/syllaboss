@@ -41,7 +41,6 @@ class SchoolDaysController < ApplicationController
   # POST /school_days.json
   def create
     @school_day = SchoolDay.new(params[:school_day])
-    @school_day.save
     respond_to do |format|
       if @school_day.save
         # if @school_day.post_id.nil?

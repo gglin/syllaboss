@@ -134,7 +134,7 @@ day2.schedule = "9:00 - 9:15: POTD - The Shell
 
 #plan #day2 "
 day2.calendar_date = (DateTime.now+4).to_date 
- day2.links.build(:link_url=>"ruby-doc.org", :title => "Ruby Docs", :description => "docs for ruby")
+day2.links.build(:link_url=>"ruby-doc.org", :title => "Ruby Docs", :description => "docs for ruby")
 day2.save
 puts "Saved day2!"
 

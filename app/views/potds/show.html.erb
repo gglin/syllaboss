@@ -15,7 +15,20 @@
   <%=link_to @potd.presentation_url, @potd.presentation_link, :target => "_blank" %>
 </p>
 
-
+<p>
+<b>Days:</b>
+<% if @potd.school_day_ids.empty? %>
+  No Days Selected!
+<% else %>
+  <ul>
+  <% @potd.school_days.each do |school_day| %>
+    <li>
+      <%= link_to "Day #{school_day.ordinal} (#{school_day.calendar_date})", school_day_path(school_day) %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+</p>
 
 <%= link_to 'Edit', edit_potd_path(@potd) %> |
 <%= link_to 'Back', potds_path %>

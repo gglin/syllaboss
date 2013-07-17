@@ -1,5 +1,6 @@
 class Potd < ActiveRecord::Base
-  attr_accessible :name, :presentation_url, :wikipedia
+  attr_accessible :name, :presentation_url, :wikipedia  # these columns exist in db
+  attr_accessible :school_day_ids   # these columns do not exist in db - only for mass assign
 
   has_many :school_days
 

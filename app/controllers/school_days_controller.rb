@@ -25,7 +25,7 @@ class SchoolDaysController < ApplicationController
   # GET /school_days/new.json
   def new
     @school_day = SchoolDay.new
-
+    3.times.collect {link = @school_day.links.build}
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @school_day }
@@ -41,7 +41,7 @@ class SchoolDaysController < ApplicationController
   # POST /school_days.json
   def create
     @school_day = SchoolDay.new(params[:school_day])
-
+    @school_day.save
     respond_to do |format|
       if @school_day.save
         # if @school_day.post_id.nil?

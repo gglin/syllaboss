@@ -35,8 +35,8 @@
 <p>
   <b>Links for today:</b>
   <% if @school_day.links[0] %>
-    <% @school_day.links.each_with_index do |link, index|%>
-      <a href="<%=@school_day.links[index].http_link%>" target="_blank"> <%=@school_day.links[index].title %></a><br>
+    <% @school_day.links.each do |link|%>
+      <a href="<%=link.http_link if link%>" target="_blank"> <%=link.title if link%></a><br>
       <%end%>
   <% else %>
       There are no links today

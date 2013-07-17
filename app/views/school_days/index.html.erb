@@ -1,11 +1,11 @@
-<h1>Listing school_days</h1>
+<h1>All School Days</h1>
 
-<table>
+<table class="table">
   <tr>
-    <th>Ordinal</th>
-    <th>Calendar date</th>
-    <th>Schedule</th>
+    <th>Day</th>
     <th>Week</th>
+    <th>Date</th>
+    <th>Schedule</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,10 +13,10 @@
 
 <% @school_days.each do |school_day| %>
   <tr>
-    <td><%= school_day.ordinal %></td>
+    <td><h3><%= link_to school_day.ordinal, school_day %></h3></td>
+    <td><h4><%= school_day.week %></h4></td>
     <td><%= school_day.calendar_date %></td>
     <td><%= school_day.paragraphize(school_day.schedule).html_safe %></td>
-    <td><%= school_day.week %></td>
     <td><%= link_to 'Show', school_day %></td>
     <td><%= link_to 'Edit', edit_school_day_path(school_day) %></td>
     <td><%= link_to 'Destroy', school_day, method: :delete, data: { confirm: 'Are you sure?' } %></td>

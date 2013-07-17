@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+
+<p>
+  <h3>Day <%= @school_day.ordinal %></h3>
+</p>
+
+
 <p>
   <b>Week:</b>
   <%= @school_day.week %>
-</p>
-
-<p>
-  <b>Day:</b>
-  <%= @school_day.ordinal %>
 </p>
 
 <p>
@@ -34,7 +35,7 @@
 <p>
   <b>Links for today:</b>
   <% if @school_day.links[0] %>
-    <% @school_day.links.each.with_index do |link, index|%>
+    <% @school_day.links.each_with_index do |link, index|%>
       <a href="<%=@school_day.links[index].http_link%>" target="_blank"> <%=@school_day.links[index].title %></a><br>
       <%end%>
   <% else %>

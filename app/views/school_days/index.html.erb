@@ -9,6 +9,7 @@
     <th>Schedule</th>
     <th>Programmer of the Day</th>
     <th>Labs</th>
+    <th>Homeworks</th>
     <th>Links</th>
   </tr>
 
@@ -32,6 +33,11 @@
         <% end %>
 
      <%= link_to 'Lab Directory', labs_path %>
+    </td>
+    <td><% school_day.homeworks.each do |homework| %>
+     <%= link_to homework.title, edit_homework_path(homework), :target => "_blank"%>
+     <% end %>
+     <%= link_to 'Homework Directory', homeworks_path %>
     </td>
     <td><% school_day.links.each do |link| %>
      <%= link_to link.title, link.http_link(link.link_url), :target => "_blank"%>

@@ -8,6 +8,9 @@ class SchoolDay < ActiveRecord::Base
 
   has_many :school_day_todos
   has_many :todos, :through => :school_day_todos
+
+  has_many :school_day_labs
+  has_many :labs, :through => :school_day_labs
   
   # validates_uniqueness_of :ordinal, :calendar_date
   validates :ordinal, :week, :calendar_date, :presence => true

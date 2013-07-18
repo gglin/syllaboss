@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  school_day_id: 
+  lab_id: 1
+
+two:
+  school_day_id: 
+  lab_id: 1

@@ -1,0 +1,22 @@
+<h1>Listing labs</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Lab url</th>
+  </tr>
+
+<% @labs.each do |lab| %>
+  <tr>
+    <td><%=lab.name %></td>
+    <td><%=link_to lab.lab_url, lab.http_link(lab.lab_url), :target => "_blank" %></td>
+    <td><%= link_to 'Show', lab %></td>
+    <td><%= link_to 'Edit', edit_lab_path(lab) %></td>
+    <td><%= link_to 'Destroy', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Lab', new_lab_path %>

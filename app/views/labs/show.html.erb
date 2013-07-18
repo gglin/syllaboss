@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @lab.name %>
+</p>
+<p>
+  <b>Gist:</b>
+  <%=link_to @lab.lab_url, @lab.http_link(@lab.lab_url), :target => "_blank" %>
+</p>
+
+<%= link_to 'Edit', edit_lab_path(@lab) %> |
+<%= link_to 'Back', labs_path %>

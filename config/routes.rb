@@ -4,6 +4,7 @@ Pizza::Application.routes.draw do
   resources :links
   resources :todos
   resources :labs
+  resources :homeworks
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

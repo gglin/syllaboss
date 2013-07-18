@@ -7,7 +7,11 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 
-gem 'debugger'
+group :development do
+  gem "better_errors"
+  gem 'debugger'
+end
+
 
 
 # Gems used only for assets and not required

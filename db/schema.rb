@@ -11,20 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130718213514) do
-
-  create_table "homeworks", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "title"
-    t.text     "content"
-  end
-
-  create_table "labs", :force => true do |t|
-    t.string   "name"
-    t.string   "lab_url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+ActiveRecord::Schema.define(:version => 20130718212645) do
 
   create_table "attachments", :force => true do |t|
     t.string   "title"
@@ -37,6 +24,19 @@ ActiveRecord::Schema.define(:version => 20130718213514) do
 
   add_index "attachments", ["attachable_id", "attachable_type"], :name => "index_attachments_on_attachable_id_and_attachable_type"
 
+  create_table "homeworks", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "labs", :force => true do |t|
+    t.string   "name"
+    t.string   "lab_url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "lectures", :force => true do |t|
     t.integer  "creator"
@@ -73,6 +73,10 @@ ActiveRecord::Schema.define(:version => 20130718213514) do
   create_table "school_day_labs", :force => true do |t|
     t.integer  "school_day_id"
     t.integer  "lab_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "school_day_lectures", :force => true do |t|
     t.integer  "school_day_id"
     t.integer  "lecture_id"

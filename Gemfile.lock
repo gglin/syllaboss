@@ -35,13 +35,10 @@ GEM
     bootstrap-sass (2.2.2.0)
       sass (~> 3.2)
     builder (3.0.4)
-<<<<<<< HEAD
-=======
     carrierwave (0.9.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
->>>>>>> Try out polymorphic attachments
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -51,10 +48,10 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     columnize (0.3.6)
-    debugger (1.6.0)
+    debugger (1.6.1)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.1)
+      debugger-ruby_core_source (~> 1.2.3)
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.3)
     erubis (2.7.0)
@@ -128,10 +125,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
-<<<<<<< HEAD
-=======
   carrierwave
->>>>>>> Try out polymorphic attachments
   coffee-rails (~> 3.2.1)
   debugger
   flatui-rails

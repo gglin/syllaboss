@@ -1,0 +1,29 @@
+<h1>Listing lectures</h1>
+
+<table>
+  <tr>
+    <th>Creator</th>
+    <th>Title</th>
+    <th>Content</th>
+    <th>File upload</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @lectures.each do |lecture| %>
+  <tr>
+    <td><%= lecture.creator %></td>
+    <td><%= lecture.title %></td>
+    <td><%= lecture.content %></td>
+    <td><%= lecture.file_upload %></td>
+    <td><%= link_to 'Show', lecture %></td>
+    <td><%= link_to 'Edit', edit_lecture_path(lecture) %></td>
+    <td><%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Lecture', new_lecture_path %>

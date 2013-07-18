@@ -13,8 +13,8 @@
 <% @potds.each do |potd| %>
   <tr>
     <td><%= link_to(potd.name, potd) %></td>
-    <td><%= link_to(potd.wikipedia, potd.wikipedia_link, :target => "_blank") %></td>
-    <td><%= link_to(potd.presentation_url, potd.presentation_link, :target => "_blank") %></td>
+    <td><%= link_to(potd.wikipedia, potd.http_link(potd.wikipedia), :target => "_blank") %></td>
+    <td><%= link_to(potd.presentation_url, potd.http_link(potd.presentation_url), :target => "_blank") %></td>
   
     <td><%= link_to 'Show', potd %></td>
     <td><%= link_to 'Edit', edit_potd_path(potd) %></td>

@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(:version => 20130718213514) do
     t.string   "lab_url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+ActiveRecord::Schema.define(:version => 20130718134122) do
+
+  create_table "lectures", :force => true do |t|
+    t.integer  "creator"
+    t.string   "title"
+    t.text     "content"
+    t.string   "file_upload"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "links", :force => true do |t|
@@ -53,6 +62,9 @@ ActiveRecord::Schema.define(:version => 20130718213514) do
   create_table "school_day_labs", :force => true do |t|
     t.integer  "school_day_id"
     t.integer  "lab_id"
+  create_table "school_day_lectures", :force => true do |t|
+    t.integer  "school_day_id"
+    t.integer  "lecture_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

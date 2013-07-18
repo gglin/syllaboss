@@ -15,6 +15,8 @@ class SchoolDay < ActiveRecord::Base
   has_many :school_day_homeworks
   has_many :homeworks, :through => :school_day_homeworks
 
+  has_many :school_day_lectures
+  has_many :lectures, :through => :school_day_lectures
   
   # validates_uniqueness_of :ordinal, :calendar_date
   validates :ordinal, :week, :calendar_date, :presence => true

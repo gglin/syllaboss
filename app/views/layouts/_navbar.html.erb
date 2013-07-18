@@ -3,10 +3,10 @@
     <div class="navbar-container">
       <h1><a href="/" class="brand"> Syllaboss </a></h1>
       <ul class="nav all-stats">
-        <li><%= link_to "Days", "/" %></li>
+        <li><%= link_to "Days", school_days_path %></li>
         <li><%= link_to "Calendar",  "/" %></li>
-        <li><%= link_to "Materials",   "/" %></li>
-        <li><%= link_to "Programmers of the Day",  "/potds" %></li>
+        <li><%= link_to "Lectures",   lectures_path %></li>
+        <li><%= link_to "Programmers of the Day",  potds_path %></li>
       </ul>
        <ul class="nav all-stats pull-right">
         <%# if user_signed_in? %>

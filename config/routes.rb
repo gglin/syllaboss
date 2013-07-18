@@ -1,4 +1,7 @@
 Pizza::Application.routes.draw do
+  resources :lectures
+
+
   resources :school_days
   resources :potds
   resources :links

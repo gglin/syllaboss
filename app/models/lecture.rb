@@ -5,5 +5,7 @@ class Lecture < ActiveRecord::Base
   has_many :school_day_lectures
   has_many :school_days, :through => :school_day_lectures
 
+  has_many :attachments, as: :attachable
+
   # mount_uploader :file_upload, AttachmentUploader
 end

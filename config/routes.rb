@@ -1,13 +1,16 @@
 Pizza::Application.routes.draw do
-  resources :lectures
-
-
+  
   resources :school_days
+  
   resources :potds
   resources :links
   resources :todos
   resources :labs
   resources :homeworks
+  resources :lectures
+
+  resources :attachments
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

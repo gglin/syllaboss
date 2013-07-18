@@ -25,7 +25,18 @@ ActiveRecord::Schema.define(:version => 20130718213514) do
     t.string   "lab_url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-ActiveRecord::Schema.define(:version => 20130718134122) do
+
+  create_table "attachments", :force => true do |t|
+    t.string   "title"
+    t.string   "filename"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "attachments", ["attachable_id", "attachable_type"], :name => "index_attachments_on_attachable_id_and_attachable_type"
+
 
   create_table "lectures", :force => true do |t|
     t.integer  "creator"

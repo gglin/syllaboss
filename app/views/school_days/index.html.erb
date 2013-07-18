@@ -5,10 +5,11 @@
     <th>Day</th>
     <th>Week</th>
     <th>Date</th>
+
     <th>Schedule</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Programmer of the Day</th>
+    <th>Labs</th>
+    <th>Links</th>
   </tr>
 
 <% @school_days.each do |school_day| %>
@@ -16,10 +17,31 @@
     <td><h3><%= link_to school_day.ordinal, school_day %></h3></td>
     <td><h4><%= school_day.week %></h4></td>
     <td><%= school_day.calendar_date %></td>
+
     <td><%= school_day.paragraphize(school_day.schedule).html_safe %></td>
-    <td><%= link_to 'Show', school_day %></td>
-    <td><%= link_to 'Edit', edit_school_day_path(school_day) %></td>
-    <td><%= link_to 'Destroy', school_day, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>
+      <%  if school_day.potd %>
+     <%= link_to school_day.potd.name, edit_potd_path(school_day.potd), :target => "_blank" %>
+     <% end %>
+
+     <%= link_to 'POTD Directory', potds_path %>
+    </td>
+    <td>
+        <% school_day.labs.each do |lab| %>
+           <%= link_to lab.name, lab.http_link(lab.lab_url), :target => "_blank"%>
+        <% end %>
+
+     <%= link_to 'Lab Directory', labs_path %>
+    </td>
+    <td><% school_day.links.each do |link| %>
+     <%= link_to link.title, link.http_link(link.link_url), :target => "_blank"%>
+     <% end %>
+     <%= link_to 'Links Directory', links_path %>
+    </td>
+
+    <!-- <td><%= link_to 'Show', school_day %></td> -->
+    <!-- <td><%= link_to 'Edit', edit_school_day_path(school_day) %></td> -->
+    <!-- <td><%= link_to 'Destroy', school_day, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
   </tr>
 <% end %>
 </table>

@@ -10,39 +10,23 @@
       </ul>
     </div>
   <% end %>
+  <div class="field">
+    <%= f.label :ordinal, "Day" %><br />
+    <%= f.number_field :ordinal %>
+  </div>
 
   <div class="field">
     <%= f.label :week %><br />
     <%= f.number_field :week %>
   </div>
-  <div class="field">
-    <%= f.label :ordinal, "Day" %><br />
-    <%= f.number_field :ordinal %>
-  </div>
+
   <div class="field">
     <%= f.label :calendar_date %><br />
     <%= f.date_select :calendar_date %>
   </div>
-  <div class="field">
-    <%= f.label :schedule %><br />
-    <%= f.text_area :schedule %>
-  </div>
-
-   <div class="field">
-    <%= f.label :potd, "Programmer of the Day" %><br />
-    <%= f.collection_select(:potd_id, Potd.all, :id, :name, {:selected => @school_day.potd_id, :prompt => "Please select a Programmer of the Day"}, {:class => "span4"}) %>
-  </div>
  
- <%=f.fields_for :links do |builder|%>
-    <p>
-     <%= builder.label :title, "Link Title" %>
-     <%= builder.text_field :title %>
-      <%= builder.label :link_url, "Link Url" %>
-     <%= builder.text_field :link_url %>
-          <%= builder.label :description, "Link Description" %>
-     <%= builder.text_field :description %>
-    </p>
-  <%end%>
+
+
 
   <div class="actions">
     <%= f.submit %>

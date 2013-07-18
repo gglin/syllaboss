@@ -11,7 +11,7 @@
 <% @links.each do |link| %>
   <tr>
     <td><%=link.title %></td>
-    <td><%=link_to link.link_url,  link.http_link(link.link_url), :target => "_blank" %></td>
+    <td><%=link_to link.link_url, link.http_link(link.link_url), :target => "_blank" %></td>
     <td><%= link.description %>
     <td><%= link_to 'Show', link %></td>
     <td><%= link_to 'Edit', edit_link_path(link) %></td>

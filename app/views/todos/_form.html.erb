@@ -17,10 +17,14 @@
   </div>
 
    <div class="field">
-    <%= f.label :gist_url %><br />
-    <%= f.text_field :gist_url %>
+    <%= f.label :gist %><br />
+    <%= f.text_field :gist %>
   </div>
 
+   <div class="field">
+    <%= f.label :school_day, "Select Day(s) for this TODO:" %><br />
+    <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => @todo.school_day_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple"}) %>
+  </div>
 
   <div class="actions">
     <%= f.submit "#{@action} Submit" %>

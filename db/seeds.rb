@@ -14,6 +14,8 @@ SchoolDay.delete_all
 Potd.delete_all
 Link.delete_all
 SchoolDayLink.delete_all
+Todo.delete_all
+SchoolDayTodo.delete_all
 
 
 potd1 = Potd.new
@@ -137,6 +139,10 @@ day2.calendar_date = (DateTime.now+4).to_date
 day2.links.build(:link_url=>"ruby-doc.org", :title => "Ruby Docs", :description => "docs for ruby")
 day2.save
 puts "Saved day2!"
+
+day2.todos.build(:name => "TODO5", :gist => "gist@github.com/code-warmup")
+day2.save
+puts "Saved day2 again with TODO!"
 
 # day11 = SchoolDay.create(:ordinal => 11)
 # day11.links.build(:title => "ruby docs")

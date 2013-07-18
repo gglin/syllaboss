@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @todo.name %>
+</p>
+<p>
+  <b>Gist:</b>
+  <%=link_to @todo.gist, @todo.http_link(@todo.gist), :target => "_blank" %>
+</p>
+
+
+<%= link_to 'Edit', edit_todo_path(@todo) %> |
+<%= link_to 'Back', todos_path %>

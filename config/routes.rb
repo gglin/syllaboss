@@ -2,6 +2,7 @@ Pizza::Application.routes.draw do
   resources :school_days
   resources :potds
   resources :links
+  resources :todos
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

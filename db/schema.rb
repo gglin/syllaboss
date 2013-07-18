@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716174724) do
+ActiveRecord::Schema.define(:version => 20130718133028) do
 
   create_table "links", :force => true do |t|
     t.string   "title"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(:version => 20130716174724) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "school_day_todos", :force => true do |t|
+    t.integer  "todo_id"
+    t.integer  "school_day_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "school_days", :force => true do |t|
     t.integer  "ordinal"
     t.date     "calendar_date"
@@ -44,6 +51,13 @@ ActiveRecord::Schema.define(:version => 20130716174724) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "potd_id"
+  end
+
+  create_table "todos", :force => true do |t|
+    t.string   "name"
+    t.string   "gist"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

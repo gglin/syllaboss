@@ -12,12 +12,18 @@
 
 <p>
   <b>Content:</b>
-  <%= @lecture.content %>
+  <%= @lecture.paragraphize(@lecture.content).html_safe %>
 </p>
 
 <p>
-  <b>Attached File:</b>
-  <%= link_to "File", "#{@lecture.file_upload}" %>
+  <b>Attached Files:</b>
+  <ol>
+  <% @lecture.attachments.each do |attachment| %>
+    <li>
+      <%= link_to attachment.title, attachment.filename.to_s %>
+    </li>
+  <% end %>
+  </ol>
 </p>
 
 

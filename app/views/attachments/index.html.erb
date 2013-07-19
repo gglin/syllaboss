@@ -12,7 +12,7 @@
 <% @attachments.each do |attachment| %>
   <tr>
     <td><%= attachment.title %></td>
-    <td><%= attachment.filename %></td>
+    <td><%= link_to attachment.filename_short, attachment.filename.to_s %></td>
     <td><%= link_to 'Show', attachment %></td>
     <td><%= link_to 'Edit', edit_attachment_path(attachment) %></td>
     <td><%= link_to 'Destroy', attachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>

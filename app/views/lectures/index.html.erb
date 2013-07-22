@@ -21,7 +21,7 @@
     </td>    
     <td><%= lecture.creator %></td>
     <td><%= lecture.title %></td>
-    <td><%= lecture.paragraphize(lecture.content).html_safe %></td>
+    <td><%= simple_format lecture.content %></td>
     <td>
       <ol>
       <% lecture.attachments.each do |attachment| %>

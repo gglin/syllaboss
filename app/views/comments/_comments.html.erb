@@ -1,0 +1,10 @@
+<div id="comments">
+<h4>Comments</h4> 
+<% @comments.each do |comment| %>
+  <div class="comment well well-small">
+    <%= simple_format comment.content %> 
+    <%= time_ago_in_words(comment.created_at) %> ago |
+    <%= link_to 'Destroy', [@lecture, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+<% end %>
+</div>

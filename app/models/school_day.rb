@@ -1,5 +1,5 @@
 class SchoolDay < ActiveRecord::Base
-  attr_accessible :calendar_date, :ordinal, :schedule, :week, :links, :potd_id, :links_attributes
+  attr_accessible :calendar_date, :ordinal, :schedule, :week, :links, :potd_id, :links_attributes, :comment_ids
 
   belongs_to :potd
 
@@ -17,16 +17,13 @@ class SchoolDay < ActiveRecord::Base
 
   has_many :school_day_lectures
   has_many :lectures, :through => :school_day_lectures
+
+  has_many :comments, as: :commentable
   
   # validates_uniqueness_of :ordinal, :calendar_date
   validates :ordinal, :week, :calendar_date, :presence => true
 
   accepts_nested_attributes_for :links
 
-	def paragraphize(content)
-    return "" if content.nil?
-		body = content.split("\n").collect{|paragraph| "<p>#{paragraph}</p>"}.join("\n")
-		body
-	end
 end
 

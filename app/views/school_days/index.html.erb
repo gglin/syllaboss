@@ -19,7 +19,7 @@
     <td><h4><%= school_day.week %></h4></td>
     <td><%= school_day.calendar_date %></td>
 
-    <td><%= school_day.paragraphize(school_day.schedule).html_safe %></td>
+    <td><%= simple_format school_day.schedule %></td>
     <td>
       <% if school_day.potd %>
         <%= link_to school_day.potd.name, edit_potd_path(school_day.potd), :target => "_blank" %>

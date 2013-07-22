@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  attr_accessible :email, :role, :password, :password_confirmation, :password_digest
+  attr_accessible :email, :role, :password, :password_confirmation, :password_digest, :comment_ids
+
+  has_many :comments, as: :commentable
+
   validates :password, :presence => { :on => :create }
   validates_uniqueness_of :email, :message => "Sorry, that e-mail address already belongs to an existing account."
 

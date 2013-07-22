@@ -12,7 +12,7 @@
 
 <p>
   <b>Content:</b>
-  <%= @lecture.paragraphize(@lecture.content).html_safe %>
+  <%= simple_format @lecture.content %>
 </p>
 
 <p>
@@ -25,6 +25,10 @@
   <% end %>
   </ol>
 </p>
+
+
+<%= render "comments/comments" %>
+<%= render "comments/form" %>
 
 
 <%= link_to 'Edit', edit_lecture_path(@lecture) %> |

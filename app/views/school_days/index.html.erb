@@ -7,13 +7,13 @@
     <th>Date</th>
 
     <th>Schedule</th>
-    <th>Programmer of the Day</th>
-    <th>Labs</th>
-    <th>Homeworks</th>
-    <th>Links</th>
+    <th><%= link_to 'Programmer of the Day', potds_path %></th>
+    <th><%= link_to 'Labs', labs_path %></th>
+    <th><%= link_to 'Homeworks', homeworks_path %></th>
+    <th><%= link_to 'Links', links_path %></th>
   </tr>
 
-<% @school_days.each do |school_day| %>
+  <% @school_days.each do |school_day| %>
   <tr>
     <td><h3><%= link_to school_day.ordinal, school_day %></h3></td>
     <td><h4><%= school_day.week %></h4></td>
@@ -21,35 +21,31 @@
 
     <td><%= school_day.paragraphize(school_day.schedule).html_safe %></td>
     <td>
-      <%  if school_day.potd %>
-     <%= link_to school_day.potd.name, edit_potd_path(school_day.potd), :target => "_blank" %>
-     <% end %>
-
-     <%= link_to 'POTD Directory', potds_path %>
+      <% if school_day.potd %>
+        <%= link_to school_day.potd.name, edit_potd_path(school_day.potd), :target => "_blank" %>
+      <% end %>
     </td>
     <td>
-        <% school_day.labs.each do |lab| %>
-           <%= link_to lab.name, lab.http_link(lab.lab_url), :target => "_blank"%>
-        <% end %>
-
-     <%= link_to 'Lab Directory', labs_path %>
+      <% school_day.labs.each do |lab| %>
+       <%= link_to lab.name, lab.http_link(lab.lab_url), :target => "_blank"%>
+      <% end %>
     </td>
-    <td><% school_day.homeworks.each do |homework| %>
-     <%= link_to homework.title, edit_homework_path(homework), :target => "_blank"%>
-     <% end %>
-     <%= link_to 'Homework Directory', homeworks_path %>
+    <td>
+      <% school_day.homeworks.each do |homework| %>
+        <%= link_to homework.title, edit_homework_path(homework), :target => "_blank"%>
+      <% end %>
     </td>
-    <td><% school_day.links.each do |link| %>
-     <%= link_to link.title, link.http_link(link.link_url), :target => "_blank"%>
-     <% end %>
-     <%= link_to 'Links Directory', links_path %>
+    <td>
+      <% school_day.links.each do |link| %>
+        <%= link_to link.title, link.http_link(link.link_url), :target => "_blank"%>
+      <% end %>
     </td>
 
     <!-- <td><%= link_to 'Show', school_day %></td> -->
     <!-- <td><%= link_to 'Edit', edit_school_day_path(school_day) %></td> -->
     <!-- <td><%= link_to 'Destroy', school_day, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
   </tr>
-<% end %>
+  <% end %>
 </table>
 
 <br />

@@ -24,6 +24,11 @@
     <%= f.text_field :description %>
   </div>
 
+  <div class="field">
+    <%= f.label :school_day, "Select Day(s) for this Lecture:" %><br />
+    <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => @link.school_day_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple"}) %>
+  </div>
+
   <div class="actions">
     <%= f.submit "#{@action} Submit" %>
   </div>

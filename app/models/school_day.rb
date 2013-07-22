@@ -24,10 +24,9 @@ class SchoolDay < ActiveRecord::Base
   accepts_nested_attributes_for :links
 
 	def paragraphize(content)
+    return "" if content.nil?
 		body = content.split("\n").collect{|paragraph| "<p>#{paragraph}</p>"}.join("\n")
 		body
 	end
-
-
 end
 

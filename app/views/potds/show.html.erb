@@ -7,12 +7,12 @@
 
 <p>
   <b>Wikipedia:</b>
-  <%=link_to @potd.wikipedia, @potd.http_link(@wikipedia.wikipedia), :target => "_blank" %>
+  <%= link_to @potd.wikipedia, @potd.http_link(@potd.wikipedia), :target => "_blank" %>
 </p>
 
 <p>
   <b>Presentation Url:</b>
-  <%=link_to @potd.presentation_url, @potd.http_link(@potd.presentation_url), :target => "_blank" %>
+  <%= link_to @potd.presentation_url, @potd.http_link(@potd.presentation_url), :target => "_blank" %>
 </p>
 
 <p>

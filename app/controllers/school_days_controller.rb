@@ -1,6 +1,9 @@
 class SchoolDaysController < ApplicationController
   # GET /school_days
   # GET /school_days.json
+
+  before_filter :authorize, only: [:edit, :update]
+  
   def index
     @school_days = SchoolDay.all
 

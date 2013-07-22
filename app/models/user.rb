@@ -23,8 +23,8 @@ class User < ActiveRecord::Base
     true if self.role_name == :admin
   end
 
-  def owns?(school_day)
-    true if self.id == school_day.user_id
+  def owns?(material)
+    true if self.id == material.user_id
   end
 
   def self.admin
@@ -35,11 +35,11 @@ class User < ActiveRecord::Base
     User.user_roles.key(self.role)
   end
 
-  def can_edit?(school_day)
-    true if admin? || owns?(school_day)
+  def can_edit?(material)
+    true if admin? || owns?(material)
   end
 
-  def can_destroy?(school_day)
-    true if admin? || owns?(school_day)
+  def can_destroy?(material)
+    true if admin? || owns?(material)
   end
 end

@@ -4,10 +4,6 @@
 
     <div class="sidebar-inner">
 
-
-
-
-
       <!--- Sidebar navigation -->
       <!-- If the main navigation has sub navigation, then add the class "has_submenu" to "li" of main navigation. -->
       <ul class="navi">
@@ -18,7 +14,7 @@
 
         <li class="nred">
             <p>
-              <h3>Day <%= @school_day.ordinal %></h3>
+              <h3><%= link_to "Day #{@school_day.ordinal}", @school_day %></h3>
             </p>
 
             <p>
@@ -30,13 +26,17 @@
               <b>Calendar date:</b>
               <%= @school_day.calendar_date %>
             </p>
+
         </li>
+
+        <!-- Add in Schedule eventually when we make it a model -->
+
 
         <!-- Menu with sub menu -->
         <li class="has_submenu nlightblue current open">
           <a href="#">
             <!-- Menu name with icon -->
-            <i class="icon-th"></i> Lecture 
+            <i class="icon-th"></i> Lectures 
             <!-- Icon for dropdown -->
             <span class="pull-right"><i class="icon-angle-right"></i></span>
           </a>
@@ -44,18 +44,62 @@
           <ul>
             <% @school_day.lectures.each_with_index do |lecture, index| %>
             <li>
-              <%= link_to lecture.title, "#" %>
+              <%= link_to lecture.title, lecture_path(lecture) %>
             </li>
             <!-- <li class="active"><a href="widgets2.html">Widgets #2</a></li> -->
             <% end %>
           </ul>
         </li>
 
-        <li class="ngreen"><a href="charts.html"><i class="icon-bar-chart"></i> POTD</a></li>
-
-        <li class="norange"><a href="ui.html"><i class="icon-sitemap"></i> Lab</a></li>
-
         <li class="has_submenu nviolet">
+          <a href="#">
+            <!-- Menu name with icon -->
+            <i class="icon-th"></i> To-Dos 
+            <!-- Icon for dropdown -->
+            <span class="pull-right"><i class="icon-angle-right"></i></span>
+          </a>
+
+          <ul>
+            <% @school_day.todos.each_with_index do |todo, index| %>
+            <li>
+              <%= link_to todo.name, todo_path(todo) %>
+            </li>
+            <% end %>
+          </ul>
+        </li>
+
+        <li class="has_submenu nblue">
+          <a href="#">
+            <!-- Menu name with icon -->
+            <i class="icon-th"></i> POTD 
+            <!-- Icon for dropdown -->
+            <span class="pull-right"><i class="icon-angle-right"></i></span>
+          </a>
+          <ul>
+            <li class="norange">
+              <%= link_to @school_day.potd.name, potd_path(@school_day.potd) if @school_day.potd %>
+            </li>
+          </ul>
+        </li>
+
+        <li class="has_submenu nred">
+          <a href="#">
+            <!-- Menu name with icon -->
+            <i class="icon-th"></i> Labs 
+            <!-- Icon for dropdown -->
+            <span class="pull-right"><i class="icon-angle-right"></i></span>
+          </a>
+
+          <ul>
+            <% @school_day.labs.each_with_index do |lab, index| %>
+            <li>
+              <%= link_to lab.name, lab_path(lab) %>
+            </li>
+            <% end %>
+          </ul>
+        </li>
+
+<!--         <li class="has_submenu nviolet">
           <a href="#">
             <i class="icon-file-alt"></i> Pages #1
             <span class="pull-right"><i class="icon-angle-right"></i></span>
@@ -86,16 +130,30 @@
             <li><a href="media.html">Media</a></li>
             <li><a href="profile.html">Profile</a></li>
           </ul>
-        </li> 
+        </li>  -->
 
-        <li class="nred"><a href="forms.html"><i class="icon-list"></i> Homework</a></li>
+        <li class="has_submenu ngreen">
+          <a href="#">
+            <!-- Menu name with icon -->
+            <i class="icon-th"></i> Links 
+            <!-- Icon for dropdown -->
+            <span class="pull-right"><i class="icon-angle-right"></i></span>
+          </a>
 
-        <li class="nlightblue"><a href="tables.html"><i class="icon-table"></i> Tables</a></li>
+          <ul>
+            <% @school_day.links.each_with_index do |link, index| %>
+            <li>
+              <%= link_to link.title, link.http_link(link.link_url),target: "_blank" %>
+            </li>
+            <% end %>
+          </ul>
+        </li>
+
+
+        <!-- Homeworks are going to show up after 6pm that day -->
+        <li class="norange"><a href="#"><i class="icon-list"></i> Homework</a></li>
 
       </ul>
-
-
-
 
       <!-- Date -->
 

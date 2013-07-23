@@ -15,6 +15,17 @@
         <%# else %>
           <li><%# link_to "Register", register_path %></li>
           <li><%# link_to "Log In", login_path %></li> -->
+          
+                    <!-- Search form -->
+          <div class="sidebar-widget">
+            <form class="form-inline">
+              <div class="input-append row-fluid">
+                <input type="text" class="span8" placeholder="Search">
+                <button type="submit" class="btn btn-info">Search</button>
+              </div>
+            </form>
+          </div>
+
           <% if current_user %>
             <li><%= link_to current_user.email %></li>
             <li><%= link_to "Log Out", logout_path %></li>

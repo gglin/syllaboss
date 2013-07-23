@@ -14,6 +14,9 @@ class LecturesController < ApplicationController
   # GET /lectures/1.json
   def show
     @lecture = Lecture.find(params[:id])
+    @commentable = @lecture
+    @comments = @commentable.comments
+    @comment = Comment.new
 
     respond_to do |format|
       format.html # show.html.erb

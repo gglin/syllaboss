@@ -1,5 +1,17 @@
 Pizza::Application.routes.draw do
   
+  # get 'comments', to: 'comments#index'
+  # get 'comments/new', to: 'comments#new'
+  # post 'comments', to: 'comments#create'
+
+  get 'signup', to: 'users#new', as: 'signup'
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+
+  resources :users
+  resources :sessions
+
+
   resources :school_days
   
   resources :potds
@@ -7,7 +19,10 @@ Pizza::Application.routes.draw do
   resources :todos
   resources :labs
   resources :homeworks
-  resources :lectures
+  
+  resources :lectures do
+    resources :comments
+  end
 
   resources :attachments
 

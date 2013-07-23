@@ -6,4 +6,6 @@ module Formattable
       passed_url
     end
   end
+
+  
 end

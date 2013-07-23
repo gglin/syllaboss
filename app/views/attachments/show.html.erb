@@ -2,7 +2,7 @@
 
 <p>
   <b>File:</b>
-  <%= link_to @attachment.title, "#{@attachment.filename}" %>
+  <%= link_to @attachment.title, @attachment.filename.to_s %>
 </p>
 
 <%= link_to 'Edit', edit_attachment_path(@attachment) %> |

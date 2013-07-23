@@ -1,0 +1,11 @@
+<div id="comments">
+<h4>Comments</h4> 
+<% @comments.each do |comment| %>
+  <div class="comment well well-small">
+    <%= simple_format comment.content %>
+    posted by <%= comment.user.full_name if comment.user %>
+    <%= time_ago_in_words(comment.created_at) %> ago |
+    <%= link_to 'Delete', [@lecture, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+<% end %>
+</div>

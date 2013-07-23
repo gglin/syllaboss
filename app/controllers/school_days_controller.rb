@@ -1,6 +1,8 @@
 class SchoolDaysController < ApplicationController
   # GET /school_days
   # GET /school_days.json
+
+  
   def index
     @school_days = SchoolDay.all
 

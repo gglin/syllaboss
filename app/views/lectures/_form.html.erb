@@ -23,14 +23,17 @@
     <%= f.label :content %><br />
     <%= f.text_area :content %>
   </div>
+
   <div class="field">
-    <%= f.label :file_upload %><br />
-    <%= f.file_field :file_upload %>
+    <%= f.label :attachment, "Select Attachment(s) for this Lecture:" %><br /> <%= link_to "(Create New Attachment)", new_attachment_path, target: "_blank" %>
+    <%= f.collection_select(:attachment_ids, Attachment.order("title"), :id, :title, {:selected => @lecture.attachment_ids, :prompt => "Please Select Attachment(s)"}, {:class => "span4", multiple: "multiple"}) %>
   </div>
-    <div class="field">
+
+  <div class="field">
     <%= f.label :school_day, "Select Day(s) for this Lecture:" %><br />
     <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => @lecture.school_day_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple"}) %>
   </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

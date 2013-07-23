@@ -9,8 +9,8 @@
 
 <% @homeworks.each do |homework| %>
   <tr>
-    <td><%=homework.title %></td>
-    <td><%=homework.content%></td>
+    <td><%= homework.title %></td>
+    <td><%= homework.content %></td>
     <td><%= link_to 'Show', homework %></td>
     <td><%= link_to 'Edit', edit_homework_path(homework) %></td>
     <td><%= link_to 'Destroy', homework, method: :delete, data: { confirm: 'Are you sure?' } %></td>

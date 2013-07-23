@@ -1,44 +1,51 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-# require "#{Rails.root}/lib/library_parser.rb"
-
-data_folder = File.expand_path('../data', __FILE__)
 
 SchoolDay.delete_all
+
 Potd.delete_all
 Link.delete_all
 SchoolDayLink.delete_all
 Todo.delete_all
 SchoolDayTodo.delete_all
 
+Lecture.delete_all
+SchoolDayLecture.delete_all
+Lab.delete_all
+SchoolDayLab.delete_all
+Homework.delete_all
+SchoolDayHomework.delete_all
+
+Attachment.delete_all
+
+
+#########
+# POTDs #
+#########
 
 potd1 = Potd.new
 potd1.name = "Alan Kay"
 potd1.wikipedia = "http://en.wikipedia.org/wiki/Alan_Kay"
 potd1.presentation_url = "www.sesamestreet.com"
 potd1.save
-puts "Saved potd1"
+puts "Saved potd1" if potd1.persisted?
 
 potd2 = Potd.new
 potd2.name = "John McCarthy"
 potd2.wikipedia = "http://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)"
 potd2.presentation_url = "www.yahoo.com"
 potd2.save
-puts "Saved potd2"
+puts "Saved potd2" if potd2.persisted?
 
 potd3 = Potd.new
 potd3.name = "Cookie Monster"
 potd3.wikipedia = "http://en.wikipedia.org/wiki/Cookie_Monster"
 potd3.presentation_url = "www.whatbadgerseat.com"
 potd3.save
-puts "Saved potd3"
+puts "Saved potd3" if potd3.persisted?
 
+
+########
+# Days #
+########
 
 day5 = potd1.school_days.build(:ordinal=>5, :week=>1)
 day5.calendar_date = (DateTime.now+1).to_date
@@ -50,7 +57,9 @@ day5.schedule =
 2 - 4: Ruby Lecture - 2 and POTD
 4 - 6: Feeling Friday and FAF "
 day5.save
-puts "Saved day5"
+puts "Saved day5" if day5.persisted?
+
+
 
 day6 = potd2.school_days.build(:ordinal=>6, :week=>2)
 day6.calendar_date = (DateTime.now+2).to_date
@@ -76,7 +85,9 @@ day6.schedule =
 5 - 6: Student Profile Merge Take #2
 #day6 #plan"
 day6.save
-puts "Saved day6"
+puts "Saved day6" if day6.persisted?
+
+
 
 day7 = potd1.school_days.build(:ordinal=>7, :week=>11)
 day7.calendar_date = (DateTime.now+3).to_date
@@ -100,7 +111,14 @@ Whenever the layouts are done, we'll stop and discuss them. Whatever you don't f
 4 - 6: Student Layout / Group Work - The student Layouts must be standardized by tomorrow morning!
 #plan #day7"
 day7.save
-puts "Saved day7!"
+puts "Saved day7!" if day7.persisted?
+
+
+
+
+#########
+# Links #
+#########
 
 
 link1 = Link.new(:title => "Ruby docs")
@@ -138,11 +156,19 @@ day2.schedule = "9:00 - 9:15: POTD - The Shell
 day2.calendar_date = (DateTime.now+4).to_date 
 day2.links.build(:link_url=>"ruby-doc.org", :title => "Ruby Docs", :description => "docs for ruby")
 day2.save
-puts "Saved day2!"
+puts "Saved day2!" if day2.persisted?
+
+
 
 day2.todos.build(:name => "TODO5", :gist => "gist@github.com/code-warmup")
 day2.save
-puts "Saved day2 again with TODO!"
+puts "Saved day2 again with TODO!" if day2.persisted?
+
+
+
+
+
+
 
 # day11 = SchoolDay.create(:ordinal => 11)
 # day11.links.build(:title => "ruby docs")

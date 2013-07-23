@@ -1,11 +1,12 @@
 <h1>Listing lectures</h1>
 
-<table>
+<table class="table">
   <tr>
+    <th>Day</th>
     <th>Creator</th>
     <th>Title</th>
     <th>Content</th>
-    <th>File upload</th>
+    <th>Attachments</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,10 +14,23 @@
 
 <% @lectures.each do |lecture| %>
   <tr>
+    <td>
+      <h3>
+      <%= lecture.school_days.order("ordinal DESC").map{|i| i.ordinal} %>
+      </h3>
+    </td>    
     <td><%= lecture.creator %></td>
     <td><%= lecture.title %></td>
-    <td><%= lecture.content %></td>
-    <td><%= lecture.file_upload %></td>
+    <td><%= simple_format lecture.content %></td>
+    <td>
+      <ol>
+      <% lecture.attachments.each do |attachment| %>
+        <li>
+          <%= link_to attachment.title, attachment.filename.to_s %>
+        </li>
+      <% end %>
+      </ol>
+    </td>
     <td><%= link_to 'Show', lecture %></td>
     <td><%= link_to 'Edit', edit_lecture_path(lecture) %></td>
     <td><%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>

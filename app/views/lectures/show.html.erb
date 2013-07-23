@@ -12,13 +12,23 @@
 
 <p>
   <b>Content:</b>
-  <%= @lecture.content %>
+  <%= simple_format @lecture.content %>
 </p>
 
 <p>
-  <b>Attached File:</b>
-  <%= link_to "File", "#{@lecture.file_upload}" %>
+  <b>Attached Files:</b>
+  <ol>
+  <% @lecture.attachments.each do |attachment| %>
+    <li>
+      <%= link_to attachment.title, attachment.filename.to_s %>
+    </li>
+  <% end %>
+  </ol>
 </p>
+
+
+<%= render "comments/comments" %>
+<%= render "comments/form" %>
 
 
 <%= link_to 'Edit', edit_lecture_path(@lecture) %> |

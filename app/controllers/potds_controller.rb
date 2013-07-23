@@ -1,6 +1,8 @@
 class PotdsController < ApplicationController
   # GET /potds
   # GET /potds.json
+  before_filter :authorize, only: [:edit, :update]
+
   def index
     @potds = Potd.all
 

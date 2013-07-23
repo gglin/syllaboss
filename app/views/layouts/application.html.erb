@@ -23,9 +23,13 @@
   <%= render "layouts/navbar" %>
 
   <!-- Begin Content -->
-  <div class="container">
+  <div class="content">
 
-    <%= yield %>
+    <%= render "layouts/sidebar" %>
+    
+    <div class="mainbar">
+        <%= yield %>
+    </div>
 
   </div>
   <!-- End Content -->

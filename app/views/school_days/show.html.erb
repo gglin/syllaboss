@@ -1,50 +1,59 @@
-<p id="notice"><%= notice %></p>
+
+<div class="page-head">
+  <p>
+    <h3>Day <%= @school_day.ordinal %></h3>
+  </p>
 
 
-<p>
-  <h3>Day <%= @school_day.ordinal %></h3>
-</p>
+  <p>
+    <b>Week:</b>
+    <%= @school_day.week %>
+  </p>
+
+  <p>
+    <b>Calendar date:</b>
+    <%= @school_day.calendar_date %>
+  </p>
+</div>
+
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <p id="notice"><%= notice %></p>
 
 
-<p>
-  <b>Week:</b>
-  <%= @school_day.week %>
-</p>
-
-<p>
-  <b>Calendar date:</b>
-  <%= @school_day.calendar_date %>
-</p>
-
-<p>
-  <b>Schedule:</b>
-  <%= simple_format @school_day.schedule %>
-</p>
+      <p>
+        <b>Schedule:</b>
+        <%= simple_format @school_day.schedule %>
+      </p>
 
 
-<p>
-  <b>Programmer of the Day:</b>
-  <% if @school_day.potd %>
-    <a href="<%= @school_day.potd.http_link(@school_day.potd.presentation_url) %>" target="_blank"> <%= @school_day.potd.name %></a><br>
-    <a href="<%= @school_day.potd.http_link(@school_day.potd.wikipedia) %>" target="_blank">Wikipedia</a>
-  <% else %>
-    There is no programmer of the day.
-  <% end %> 
-</p>
+      <p>
+        <b>Programmer of the Day:</b>
+        <% if @school_day.potd %>
+          <a href="<%= @school_day.potd.http_link(@school_day.potd.presentation_url) %>" target="_blank"> <%= @school_day.potd.name %></a><br>
+          <a href="<%= @school_day.potd.http_link(@school_day.potd.wikipedia) %>" target="_blank">Wikipedia</a>
+        <% else %>
+          There is no programmer of the day.
+        <% end %> 
+      </p>
 
-<p>
-  <b>Links for today:</b>
-  <% if @school_day.links[0] %>
-    <% @school_day.links.each do |link|%>
-      <a href="<%= link.http_link(link.link_url) if link %>" target="_blank"> <%= link.title if link %></a><br>
-      <% end %>
-  <% else %>
-      There are no links today
-  <% end %> 
-</p>
-
-
+      <p>
+        <b>Links for today:</b>
+        <% if @school_day.links[0] %>
+          <% @school_day.links.each do |link|%>
+            <a href="<%= link.http_link(link.link_url) if link %>" target="_blank"> <%= link.title if link %></a><br>
+            <% end %>
+        <% else %>
+            There are no links today
+        <% end %> 
+      </p>
 
 
-<%= link_to 'Edit', edit_school_day_path(@school_day) %> |
-<%= link_to 'Back', school_days_path %>
+      <%= link_to 'Edit', edit_school_day_path(@school_day) %> |
+      <%= link_to 'Back', school_days_path %>
+    </div>
+  </div>
+</div>
+
+

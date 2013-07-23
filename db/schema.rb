@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130722211509) do
+=======
+ActiveRecord::Schema.define(:version => 20130722191742) do
+
+  create_table "abilities", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+>>>>>>> add in user permissions for school_day index
 
   create_table "attachments", :force => true do |t|
     t.string   "title"

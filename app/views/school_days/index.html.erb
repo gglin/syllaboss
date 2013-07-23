@@ -15,6 +15,7 @@
 
   <% @school_days.each do |school_day| %>
   <tr>
+    <% if can? :manage, SchoolDay || school_day.calendar_date <= Date.today+3 %>
     <td><h3><%= link_to school_day.ordinal, school_day %></h3></td>
     <td><h4><%= school_day.week %></h4></td>
     <td><%= school_day.calendar_date %></td>
@@ -40,7 +41,7 @@
         <%= link_to link.title, link.http_link(link.link_url), :target => "_blank"%>
       <% end %>
     </td>
-
+<% end %>
     <!-- <td><%= link_to 'Show', school_day %></td> -->
     <!-- <td><%= link_to 'Edit', edit_school_day_path(school_day) %></td> -->
     <!-- <td><%= link_to 'Destroy', school_day, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->

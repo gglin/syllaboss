@@ -1,22 +1,26 @@
 <div class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="navbar-container">
-      <h1><a href="/" class="brand"> Syllaboss </a></h1>
+      <h1><a href="<%= school_day_path(@school_day) %>" class="brand"> Syllaboss </a></h1>
+
       <ul class="nav all-stats">
-        <li><%= link_to "Days", school_days_path %></li>
-        <li><%= link_to "Calendar",  "/" %></li>
-        <li><%= link_to "Lectures",   lectures_path %></li>
-        <li><%= link_to "Programmers of the Day",  potds_path %></li>
+
+        <li class="dropdown">
+          <a id="drop1" href="<%= school_day_path(@school_day) %>" role="button" class="dropdown-toggle" data-toggle="dropdown">Browse <b class="caret"></b></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+            <li><a href="<%= school_days_path %>"><i class="icon-cogs"></i> Days</a></li>
+            <li><a href="<%= lectures_path %>"><i class="icon-off"></i> Lectures </a></li>
+            <li><a href="<%= potds_path %>"><i class="icon-user"></i> Programmers of the Day </a></li>
+          </ul>
+        </li>
+
+        <li><%= link_to "Discussions", "/" %></li>
+
       </ul>
-       <ul class="nav all-stats pull-right">
-        <%# if user_signed_in? %>
-         <!--  <li><%# link_to current_user.full_name, profiles_path(current_user.profile_name) %></li>
-          <li><%# link_to "Log Out", destroy_user_session_path, method: :delete %></li>
-        <%# else %>
-          <li><%# link_to "Register", register_path %></li>
-          <li><%# link_to "Log In", login_path %></li> -->
-          
-                    <!-- Search form -->
+
+      <ul class="nav all-stats pull-right">
+        <li>
+          <!-- Search form -->
           <div class="sidebar-widget">
             <form class="form-inline">
               <div class="input-append row-fluid">
@@ -25,15 +29,16 @@
               </div>
             </form>
           </div>
+          <!-- End Search form -->
+        </li>
 
-          <% if current_user %>
-            <li><%= link_to current_user.email %></li>
-            <li><%= link_to "Log Out", logout_path %></li>
-          <% else%>
-            <li><%= link_to "Sign Up", signup_path %></li>
-            <li><%= link_to "Log In", login_path %></li>
-          <% end %>
-        <%# end %>
+        <% if current_user %>
+          <li><%= link_to current_user.email %></li>
+          <li><%= link_to "Log Out", logout_path %></li>
+        <% else %>
+          <li><%= link_to "Sign Up", signup_path %></li>
+          <li><%= link_to "Log In", login_path %></li>
+        <% end %>
       </ul>       
     </div>
   </div>

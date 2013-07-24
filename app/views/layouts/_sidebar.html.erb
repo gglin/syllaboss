@@ -10,21 +10,15 @@
 
         <!-- Use the class nred, ngreen, nblue, nlightblue, nviolet or norange to add background color. You need to use this in <li> tag. -->
 
-        <!-- <li class="nred"><a href="index.html"><i class="icon-desktop"></i> Home</a></li> -->
-
-        <li class="nred">
+        <!-- <li>&nbsp;</li> -->
+        <li class="nred day-title">
             <p>
-              <h3><%= link_to "Day #{@school_day.ordinal}", @school_day %></h3>
+              <h2 class="less-padding"><%= link_to "Day #{@school_day.ordinal}", @school_day %></h2>
+              <h4 class="less-padding">Week <%= @school_day.week %></h4>
             </p>
 
             <p>
-              <b>Week:</b>
-              <%= @school_day.week %>
-            </p>
-
-            <p>
-              <b>Calendar date:</b>
-              <%= @school_day.calendar_date %>
+              <%= @school_day.calendar_date.strftime("%A %B %d, %Y") %>
             </p>
 
         </li>
@@ -33,7 +27,7 @@
 
 
         <!-- Menu with sub menu -->
-        <li class="has_submenu nlightblue current open">
+        <li class="has_submenu nlightblue">
           <a href="#">
             <!-- Menu name with icon -->
             <i class="icon-th"></i> Lectures 

@@ -1,11 +1,11 @@
-html body {
-  // background: white no-repeat center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 100%;
-}
+// html body {
+//   // background: white no-repeat center fixed;
+//   -webkit-background-size: cover;
+//   -moz-background-size: cover;
+//   -o-background-size: cover;
+//   background-size: cover;
+//   height: 100%;
+// }
 
 
 
@@ -13,42 +13,174 @@ h1.inline, h2.inline, h3.inline, h4.inline, h5.inline {
   display: inline-block;
 }
 
+h1.less-padding, h2.less-padding, h3.less-padding, h4.less-padding, h5.less-padding {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
 textarea {
   width: 60%;
 }
 
+/*******************/
+/* Fix Black Color */
+/*******************/
 
-// // Fix Black???
+body {
+  background-color: #eee;
+}
 
-// .sidebar .navi > li > a {
-//   background-color: #999;
-//   // color: #666;
-//   border-color: white;
-// }
 
-// .navbar-inverse .navbar-inner {
-//   background-color: #999;
-//   border-color: white;
-// }
+// Navbar
 
-// .sidebar .navi li ul li.active a {
-//   background-color: #999;
-//   border-color: white;
-// }
+.navbar-inverse .navbar-inner {
+  background-color: #eee;
+  border-color: #ddd;
+  color: #000;
+}
 
-// .sidebar .navi li ul li a {
-//   background-color: #999;
-//   border-color: white;
-// }
+.navbar a:hover {
+  background: #999;
+}
 
-// .sidebar .sidebar-widget {
-//   background-color: #999;
-//   border-color: white;
-// }
+.navbar-inverse .nav li.dropdown.open>.dropdown-toggle, 
+.navbar-inverse .nav li.dropdown.active>.dropdown-toggle, 
+.navbar-inverse .nav li.dropdown.open.active>.dropdown-toggle {
+  background-color: #52b9e9;
+  color: #fff !important;
+}
 
-// a {
-//   text-decoration: none;
-// }
+.navbar-inverse .nav a:hover {
+  background-color: #43c83c !important;
+  color: #fff !important;
+}
+
+
+// Sidebar
+
+.sidebar .day-title {
+  padding: 10px;
+}
+
+.sidebar {
+  background-color: #eee;
+  border-color: #ddd;
+  color: #000;
+}
+
+.sidebar .sidebar-inner {
+  background-color: #eee;
+  border-color: #ddd;
+  color: #000;
+}
+
+.sidebar .navi > li > a {
+  background-color: #eee;
+  // color: #666;
+  border-color: #ddd;
+  color: #000;
+}
+
+.sidebar .navi li ul li.active a {
+  background-color: #eee;
+  border-color: #ddd;
+  color: #000;
+}
+
+.sidebar .navi li ul li a {
+  background-color: #eee;
+  border-color: #ddd;
+  color: #000;
+}
+
+
+// Sidebar Hover
+
+.sidebar .navi > li > a:hover, .sidebar .navi > li.open > a {
+  background-color: #eee;
+  border-top: #aaa;
+  border-bottom: #aaa;
+  color: #fff;
+}
+
+
+.sidebar .navi li ul li a:hover {
+  background: #999;
+  border-bottom: 0px solid #222;
+}
+
+
+
+// Calendar Widget
+
+.sidebar .sidebar-widget {
+  background-color: #eee;
+  border-color: #ddd;
+  color: #000;
+}
+
+.sidebar .ui-datepicker {
+  background-color: #eee;
+}
+
+.sidebar .ui-datepicker-header {
+  background-color: #ccc;
+  color: #000;
+  border: none;
+}
+
+.sidebar .ui-state-default {
+  background-color: #ccc;
+  color: #000;
+}
+
+.sidebar .ui-state-hightlight, .sidebar .ui-state-active {
+  background-color: rgb(255, 255, 0);
+  color: #000;
+}
+
+
+// Notification Box
+.bred {
+  background: #52b9e9 !important;
+}
+
+.slide-box .slide-content {
+  background: #ddd;
+}
+
+.slide-content .nav-tabs {
+  border-bottom: 1px solid #ccc !important;
+  margin-bottom: 0px !important;
+}
+
+.slide-content .nav-tabs > li.active > a {
+  color: #ccc !important;
+  background: #1c1c1c !important;
+  margin-bottom: 1px !important;
+}
+
+.slide-content .nav-tabs > li > a {
+  color: #000 !important;
+  background: #ddd !important;
+  margin-bottom: 1px !important;
+}
+
+.slide-content .nav-tabs > li > a {
+  border: 1px solid #ccc !important;
+}
+
+.slide-data {
+  background: #aaa;
+}
+
+
+
+
+.totop {
+  background-color: #52b9e9;
+}
+
 
 /*******************/
 /* Navbar elements */
@@ -60,28 +192,20 @@ textarea {
 //   padding-top: 0px;
 // }
 
-// .navbar .brand {
-//   padding-bottom: 0px;
-//   padding-top: 0px;
-// }
+.navbar .brand {
+  padding-left: 40px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #52b9e9 !important;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
 
-// .navbar-footer {
-//   background: none;
-//   border: none;
-//   font-size: 12px;
-// }
-
-// .navbar-footer .navbar-inner {
-//   background: none;
-//   border: none;
-//   font-size: 12px;
-// }
-
-// .navbar-footer nav ul {
-//   background: none;
-//   border: none;
-//   font-size: 12px;
-// }
+.navbar .nav > li > a {
+  font-size: 16px !important;
+  color: #111 !important;
+  // font-weight: bold;
+}
 
 // /**************/
 // /* Containers */
@@ -107,130 +231,6 @@ textarea {
 //   min-height: 30vmin;
 //   max-height: 60vmin;
 //   /*max-height: 500px;*/
-// }
-
-
-// /******************/
-// /* Table elements */
-// /******************/
-// /*
-// table {
-//   table-layout: fixed;
-// }*/
-
-// th, td {
-//   padding: 3px 6px;
-// }
-
-
-// .td-link td a { 
-//   display: block; 
-//   width:  100%; 
-//   height: 100%; 
-// }
-
-// .table-striped tbody > tr:nth-child(odd) > td,
-// .table-striped tbody > tr:nth-child(odd) > th {
-//   background-color: #f9f9f9;
-//   background-color: rgba(249, 249, 249, 0.6);
-// }
-
-// /*.outer-table-wrapper {
-//   position: relative;
-//   padding: 2em 0 0 0;
-//   margin: 0 auto 0 auto;
-// }*/
-
-// .inner-table-wrapper {
-//   overflow: auto;
-//   min-height: 30vmin;
-//   max-height: 60vmin;
-// }
-
-// /***************/
-// /* Songs Table */
-// /***************/
-
-// table#songs,
-// table#songs_headings {
-//   width: 100%;
-//   td, tr {
-//     border-top: 0px solid gray;
-//   }
-// }
-
-// /* Numbering */
-// #songs          td:nth-child(1), 
-// #songs_headings th:nth-child(1) {
-//   width: 2%;
-// }
-
-// /* Artist */
-// #songs          td:nth-child(2), 
-// #songs_headings th:nth-child(2) {
-//   width: 22%;
-// }
-
-// /* Album */
-// #songs          td:nth-child(3),
-// #songs_headings th:nth-child(3) {
-//   width: 20%;
-// }
-
-// /* Song */
-// #songs          td:nth-child(4),
-// #songs_headings th:nth-child(4) {
-//   width: 30%;
-// }
-
-// /* Genre */
-// #songs          td:nth-child(5),
-// #songs_headings th:nth-child(5) {
-//   width: 12%;
-// }
-
-
-// /****************/
-// /* Albums Table */
-// /****************/
-
-// table#albums,
-// table#albums_headings {
-//   width: 100%;
-//   td, tr {
-//     border-top: 0px solid gray;
-//   }
-// }
-
-// /* Numbering */
-// #albums          td:nth-child(1), 
-// #albums_headings th:nth-child(1) {
-//   width: 2%;
-// }
-
-// /* Artist */
-// #albums          td:nth-child(2), 
-// #albums_headings th:nth-child(2) {
-//   width: 25%;
-// }
-
-// /* Album */
-// #albums          td:nth-child(3),
-// #albums_headings th:nth-child(3) {
-//   width: 30%;
-// }
-
-// /* Genre */
-// #albums          td:nth-child(4),
-// #albums_headings th:nth-child(4) {
-//   width: 12%;
-// }
-
-// /* # Songs */
-// #albums          td:nth-child(5),
-// #albums_headings th:nth-child(5) {
-//   width: 10%;
-//   text-align: center;
 // }
 
 

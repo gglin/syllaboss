@@ -1,22 +1,29 @@
-<h1>Listing Todos</h1>
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <p id="notice"><%= notice %></p>
+        <h1>Listing Todos</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Gist</th>
-  </tr>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Gist</th>
+          </tr>
 
-<% @todos.each do |todo| %>
-  <tr>
-    <td><%= todo.name %></td>
-    <td><%= link_to todo.gist, todo.http_link(todo.gist), :target => "_blank" %></td>
-    <td><%= link_to 'Show', todo %></td>
-    <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-    <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+        <% @todos.each do |todo| %>
+          <tr>
+            <td><%= todo.name %></td>
+            <td><%= link_to todo.gist, todo.http_link(todo.gist), :target => "_blank" %></td>
+            <td><%= link_to 'Show', todo %></td>
+            <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
+            <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+        </table>
 
-<br />
+        <br />
 
-<%= link_to 'New Todo', new_todo_path %>
+        <%= link_to 'New Todo', new_todo_path %>
+    </div>
+  </div>
+</div>

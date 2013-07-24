@@ -1,29 +1,36 @@
-<h1>All Programmers of the Day</h1>
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <p id="notice"><%= notice %></p>
+        <h1>All Programmers of the Day</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Wikipedia</th>
-    <th>Presentation URL</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Wikipedia</th>
+            <th>Presentation URL</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
 
-<% @potds.each do |potd| %>
-  <tr>
-    <td><%= link_to(potd.name, potd) %></td>
-    <td><%= link_to(potd.wikipedia, potd.http_link(potd.wikipedia), :target => "_blank") %></td>
-    <td><%= link_to(potd.presentation_url, potd.http_link(potd.presentation_url), :target => "_blank") %></td>
-  
-    <td><%= link_to 'Show', potd %></td>
-    <td><%= link_to 'Edit', edit_potd_path(potd) %></td>
-    <td><%= link_to 'Destroy', potd, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+        <% @potds.each do |potd| %>
+          <tr>
+            <td><%= link_to(potd.name, potd) %></td>
+            <td><%= link_to(potd.wikipedia, potd.http_link(potd.wikipedia), :target => "_blank") %></td>
+            <td><%= link_to(potd.presentation_url, potd.http_link(potd.presentation_url), :target => "_blank") %></td>
+          
+            <td><%= link_to 'Show', potd %></td>
+            <td><%= link_to 'Edit', edit_potd_path(potd) %></td>
+            <td><%= link_to 'Destroy', potd, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+        </table>
 
-<br />
+        <br />
 
 
-<%= link_to 'New Programmer of the Day', new_potd_path %>
+        <%= link_to 'New Programmer of the Day', new_potd_path %>
+    </div>
+  </div>
+</div>

@@ -1,43 +1,49 @@
-<h1>Listing lectures</h1>
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <h1>Listing lectures</h1>
 
-<table class="table">
-  <tr>
-    <th>Day</th>
-    <th>Creator</th>
-    <th>Title</th>
-    <th>Content</th>
-    <th>Attachments</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      <table class="table">
+        <tr>
+          <th>Day</th>
+          <th>Creator</th>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Attachments</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
 
-<% @lectures.each do |lecture| %>
-  <tr>
-    <td>
-      <h3>
-      <%= lecture.school_days.order("ordinal DESC").map{|i| i.ordinal} %>
-      </h3>
-    </td>    
-    <td><%= lecture.creator %></td>
-    <td><%= lecture.title %></td>
-    <td><%= simple_format lecture.content %></td>
-    <td>
-      <ol>
-      <% lecture.attachments.each do |attachment| %>
-        <li>
-          <%= link_to attachment.title, attachment.filename.to_s %>
-        </li>
+      <% @lectures.each do |lecture| %>
+        <tr>
+          <td>
+            <h3>
+            <%= lecture.school_days.order("ordinal DESC").map{|i| i.ordinal} %>
+            </h3>
+          </td>    
+          <td><%= lecture.creator %></td>
+          <td><%= lecture.title %></td>
+          <td><%= simple_format lecture.content %></td>
+          <td>
+            <ol>
+            <% lecture.attachments.each do |attachment| %>
+              <li>
+                <%= link_to attachment.title, attachment.filename.to_s %>
+              </li>
+            <% end %>
+            </ol>
+          </td>
+          <td><%= link_to 'Show', lecture %></td>
+          <td><%= link_to 'Edit', edit_lecture_path(lecture) %></td>
+          <td><%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
       <% end %>
-      </ol>
-    </td>
-    <td><%= link_to 'Show', lecture %></td>
-    <td><%= link_to 'Edit', edit_lecture_path(lecture) %></td>
-    <td><%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      </table>
 
-<br />
+      <br />
 
-<%= link_to 'New Lecture', new_lecture_path %>
+      <%= link_to 'New Lecture', new_lecture_path %>
+    </div>
+  </div>
+</div>

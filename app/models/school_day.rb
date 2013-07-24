@@ -25,5 +25,17 @@ class SchoolDay < ActiveRecord::Base
 
   accepts_nested_attributes_for :links
 
+  def schedulize
+    output = self.schedule.split("\n").delete_if(&:empty?)
+    output.collect do |row|
+      row = row.split(/:\s+/,2)
+      if row.size == 2
+        {:time => row[0], :stuff => row[1]}
+      else
+        {:time => "", :stuff => row[0]}
+      end
+    end
+  end
+
 end
 

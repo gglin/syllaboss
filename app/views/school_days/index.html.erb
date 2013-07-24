@@ -18,19 +18,11 @@
             <th><%= link_to 'Homeworks', homeworks_path %></th>
             <th><%= link_to 'Links', links_path %></th>
           </tr>
-
           <% @school_days.each do |school_day| %>
           <tr>
-        <!--     <%# if can? :manage, SchoolDay || school_day.calendar_date <= Date.today+3 %> -->
             <td><h3><%= link_to school_day.ordinal, school_day %></h3></td>
             <td><h4><%= school_day.week %></h4></td>
             <td><%= school_day.calendar_date %></td>
-
-  <% @school_days.each do |school_day| %>
-  <tr>
-    <td><h3><%= link_to school_day.ordinal, school_day %></h3></td>
-    <td><h4><%= school_day.week %></h4></td>
-    <td><%= school_day.calendar_date %></td>
             <td><%= simple_format school_day.schedule %></td>
             <td>
               <% if school_day.potd %>
@@ -57,7 +49,7 @@
             <!-- <td><%= link_to 'Destroy', school_day, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
           </tr>
           <% end %>
-        </table>
+          </table>
 
         <br />
 

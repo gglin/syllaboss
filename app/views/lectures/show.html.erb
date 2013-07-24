@@ -1,35 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <p id="notice"><%= notice %></p>
+        <p>
+          <h3><b>Title:</b>
+          <strong><%= @lecture.title %></strong></h3>
+        </p>
 
-<p>
-  <b>Creator:</b>
-  <%= @lecture.creator %>
-</p>
+        <p>
+          <b>Creator:</b>
+          <%= @lecture.creator %>
+        </p>        
 
-<p>
-  <b>Title:</b>
-  <%= @lecture.title %>
-</p>
+        <p>
+          <b>Content:</b>
+          <%= simple_format @lecture.content %>
+        </p>
 
-<p>
-  <b>Content:</b>
-  <%= simple_format @lecture.content %>
-</p>
-
-<p>
-  <b>Attached Files:</b>
-  <ol>
-  <% @lecture.attachments.each do |attachment| %>
-    <li>
-      <%= link_to attachment.title, attachment.filename.to_s %>
-    </li>
-  <% end %>
-  </ol>
-</p>
-
-
-<%= render "comments/comments" %>
-<%= render "comments/form" %>
+        <p>
+          <b>Attached Files:</b>
+          <ol>
+          <% @lecture.attachments.each do |attachment| %>
+            <li>
+              <%= link_to attachment.title, attachment.filename.to_s %>
+            </li>
+          <% end %>
+          </ol>
+        </p>
 
 
-<%= link_to 'Edit', edit_lecture_path(@lecture) %> |
-<%= link_to 'Back', lectures_path %>
+        <%= render "comments/comments" %>
+        <%= render "comments/form" %>
+
+
+        <%= link_to 'Edit', edit_lecture_path(@lecture) %> |
+        <%= link_to 'Back', lectures_path %>
+    </div>
+  </div>
+</div>

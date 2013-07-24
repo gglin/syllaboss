@@ -1,34 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @potd.name %>
-</p>
+      <p>
+        <h3><b>Name:</b>
+        <%= @potd.name %></h3>
+      </p>
 
-<p>
-  <b>Wikipedia:</b>
-  <%= link_to @potd.wikipedia, @potd.http_link(@potd.wikipedia), :target => "_blank" %>
-</p>
+      <p>
+        <b>Wikipedia:</b>
+        <%= link_to @potd.wikipedia, @potd.http_link(@potd.wikipedia), :target => "_blank" %>
+      </p>
 
-<p>
-  <b>Presentation Url:</b>
-  <%= link_to @potd.presentation_url, @potd.http_link(@potd.presentation_url), :target => "_blank" %>
-</p>
+      <p>
+        <b>Presentation Url:</b>
+        <%= link_to @potd.presentation_url, @potd.http_link(@potd.presentation_url), :target => "_blank" %>
+      </p>
 
-<p>
-<b>Days:</b>
-<% if @potd.school_day_ids.empty? %>
-  No Days Selected!
-<% else %>
-  <ul>
-  <% @potd.school_days.each do |school_day| %>
-    <li>
-      <%= link_to "Day #{school_day.ordinal} (#{school_day.calendar_date})", school_day_path(school_day) %>
-    </li>
-  <% end %>
-  </ul>
-<% end %>
-</p>
+      <p>
+      <b>Days:</b>
+      <% if @potd.school_day_ids.empty? %>
+        No Days Selected!
+      <% else %>
+        <ul>
+        <% @potd.school_days.each do |school_day| %>
+          <li>
+            <%= link_to "Day #{school_day.ordinal} (#{school_day.calendar_date})", school_day_path(school_day) %>
+          </li>
+        <% end %>
+        </ul>
+      <% end %>
+      </p>
 
-<%= link_to 'Edit', edit_potd_path(@potd) %> |
-<%= link_to 'Back', potds_path %>
+      <%= link_to 'Edit', edit_potd_path(@potd) %> |
+      <%= link_to 'Back', potds_path %>
+    </div>
+  </div>
+</div>

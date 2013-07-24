@@ -1,19 +1,38 @@
 
 <div class="page-head">
   <p>
-    <h3>Day <%= @school_day.ordinal %></h3>
+    <h3><%=@school_day.calendar_date.strftime("%A %B %d, %Y") %></h3>
   </p>
 
+  <ul class="breadcrumb">
+    <li><a href="#">Semester 002 </a> <span class="divider">/</span></li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+        Week <%= @school_day.week %>
+        <span class = "caret"></span>
+      </a><span class="divider">/</span>
+      <ul class="dropdown-menu" role="menu">
+        <% SchoolDay.all.each do |school_day| %>
+          <li><%= link_to "Week #{school_day.week}", '#'%></li>
+          <% end %>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+        Day <%= @school_day.ordinal %>
+        <span class = "caret"></span>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        <% SchoolDay.all.each do |school_day| %>
+          <li><%= link_to "Day #{school_day.ordinal}", school_day_path(school_day)%></li>
+          <% end %>
+      </ul>
+    </li>
 
-  <p>
-    <b>Week:</b>
-    <%= @school_day.week %>
-  </p>
+  </ul>
 
-  <p>
-    <b>Calendar date:</b>
-    <%= @school_day.calendar_date %>
-  </p>
+
+
 </div>
 
 <div class="matter">

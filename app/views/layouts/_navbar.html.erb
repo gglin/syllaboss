@@ -8,9 +8,13 @@
         <li class="dropdown">
           <a id="drop1" href="<%= school_day_path(@school_day) %>" role="button" class="dropdown-toggle" data-toggle="dropdown">Browse <b class="caret"></b></a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-            <li><a href="<%= school_days_path %>"><i class="icon-cogs"></i> Days</a></li>
-            <li><a href="<%= lectures_path %>"><i class="icon-off"></i> Lectures </a></li>
+            <li><a href="<%= school_days_path %>"><i class="icon-dashboard"></i> Days</a></li>
+            <li><a href="<%= lectures_path %>"><i class="icon-folder-open"></i> Lectures </a></li>
+            <li><a href="<%= todos_path %>"><i class="icon-pencil"></i> To-Dos </a></li>
             <li><a href="<%= potds_path %>"><i class="icon-user"></i> Programmers of the Day </a></li>
+            <li><a href="<%= labs_path %>"><i class="icon-laptop"></i> Labs </a></li>
+            <li><a href="<%= links_path %>"><i class="icon-link"></i> Links </a></li>
+            <li><a href="<%= homeworks_path %>"><i class="icon-book"></i> Homeworks </a></li>
           </ul>
         </li>
 
@@ -31,13 +35,22 @@
           </div>
           <!-- End Search form -->
         </li>
-
-        <% if current_user %>
-          <li><%= link_to current_user.email %></li>
-          <li><%= link_to "Log Out", logout_path %></li>
-        <% else %>
-          <li><%= link_to "Sign Up", signup_path %></li>
-          <li><%= link_to "Log In", login_path %></li>
+        <ul class="nav pull-right">
+          <% if current_user %>
+          <li class="dropdown pull-right">
+            <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <b class="caret"></b></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+              <li><a href="<%= lectures_path %>"><i class="icon-user"></i> Profile </a></li>
+              <li><a href="<%= lectures_path %>"><i class="icon-cogs"></i> Settings </a></li>
+              <li><a href="<%= logout_path %>"><i class="icon-off"></i> Log Out</a></li>
+            </ul>
+          </li>
+          <% else %>
+          <li class="nav pull-right">
+            <li><%= link_to "Sign Up", signup_path %></li>
+            <li><%= link_to "Log In", login_path %></li>
+          </li>
+        </ul>
         <% end %>
       </ul>       
     </div>

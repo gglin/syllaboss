@@ -145,7 +145,23 @@
 
 
         <!-- Homeworks are going to show up after 6pm that day -->
-        <li class="norange"><a href="#"><i class="icon-book"></i> Homework</a></li>
+        <!-- <li class="norange"><a href="#"><i class="icon-book"></i> Homework</a></li> -->
+        <li class="has_submenu norange">
+          <a href="#">
+            <!-- Menu name with icon -->
+            <i class="icon-book"></i> Homework 
+            <!-- Icon for dropdown -->
+            <span class="pull-right"><i class="icon-angle-right"></i></span>
+          </a>
+
+          <ul>
+            <% @school_day.homeworks.each_with_index do |homework, index| %>
+            <li>
+              <%= link_to homework.title, homework_path(homework) %>
+            </li>
+            <% end %>
+          </ul>
+        </li>
 
       </ul>
 

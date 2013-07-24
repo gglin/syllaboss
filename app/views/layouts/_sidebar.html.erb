@@ -13,12 +13,12 @@
         <!-- <li>&nbsp;</li> -->
         <li class="nred day-title">
             <p>
-              <h2 class="less-padding"><%= link_to "Day #{@school_day.ordinal}", @school_day %></h2>
-              <h4 class="less-padding">Week <%= @school_day.week %></h4>
+              <h2 class="less-padding"><%= link_to "Day #{@active_school_day.ordinal}", @active_school_day %></h2>
+              <h4 class="less-padding">Week <%= @active_school_day.week %></h4>
             </p>
 
             <p>
-              <%= @school_day.calendar_date.strftime("%A %B %d, %Y") %>
+              <%= @active_school_day.calendar_date.strftime("%A %B %d, %Y") %>
             </p>
 
         </li>
@@ -36,7 +36,7 @@
           </a>
 
           <ul>
-            <% @school_day.lectures.each_with_index do |lecture, index| %>
+            <% @active_school_day.lectures.each_with_index do |lecture, index| %>
             <li>
               <%= link_to lecture.title, lecture_path(lecture) %>
             </li>
@@ -54,7 +54,7 @@
           </a>
 
           <ul>
-            <% @school_day.todos.each_with_index do |todo, index| %>
+            <% @active_school_day.todos.each_with_index do |todo, index| %>
             <li>
               <%= link_to todo.name, todo_path(todo) %>
             </li>
@@ -71,7 +71,7 @@
           </a>
           <ul>
             <li class="norange">
-              <%= link_to @school_day.potd.name, potd_path(@school_day.potd) if @school_day.potd %>
+              <%= link_to @active_school_day.potd.name, potd_path(@active_school_day.potd) if @active_school_day.potd %>
             </li>
           </ul>
         </li>
@@ -85,7 +85,7 @@
           </a>
 
           <ul>
-            <% @school_day.labs.each_with_index do |lab, index| %>
+            <% @active_school_day.labs.each_with_index do |lab, index| %>
             <li>
               <%= link_to lab.name, lab_path(lab) %>
             </li>
@@ -135,7 +135,7 @@
           </a>
 
           <ul>
-            <% @school_day.links.each_with_index do |link, index| %>
+            <% @active_school_day.links.each_with_index do |link, index| %>
             <li>
               <%= link_to link.title, link.http_link(link.link_url),target: "_blank" %>
             </li>
@@ -155,7 +155,7 @@
           </a>
 
           <ul>
-            <% @school_day.homeworks.each_with_index do |homework, index| %>
+            <% @active_school_day.homeworks.each_with_index do |homework, index| %>
             <li>
               <%= link_to homework.title, homework_path(homework) %>
             </li>

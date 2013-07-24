@@ -1,12 +1,12 @@
 <div class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="navbar-container">
-      <h1><a href="<%= school_day_path(@school_day) %>" class="brand"> Syllaboss </a></h1>
+      <h1><a href="<%= school_day_path(@active_school_day) %>" class="brand"> Syllaboss </a></h1>
 
       <ul class="nav all-stats">
 
         <li class="dropdown">
-          <a id="drop1" href="<%= school_day_path(@school_day) %>" role="button" class="dropdown-toggle" data-toggle="dropdown">Browse <b class="caret"></b></a>
+          <a id="drop1" href="<%= school_day_path(@active_school_day) %>" role="button" class="dropdown-toggle" data-toggle="dropdown">Browse <b class="caret"></b></a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
             <li><a href="<%= school_days_path %>"><i class="icon-calendar"></i> Days</a></li>
             <li><a href="<%= lectures_path %>"><i class="icon-folder-open"></i> Lectures </a></li>

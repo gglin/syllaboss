@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 private
   
   def load_current_day
-    @school_day = SchoolDay.first
+    @active_school_day = SchoolDay.first
   end
 
   def current_user

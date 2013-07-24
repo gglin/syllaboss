@@ -252,18 +252,18 @@ body {
 // /* Hoverables     */
 // /******************/
 
-// .hoverable .btn {
+// .hoverable {
 //   position: relative;
 //   bottom: 3px;
 // }
 
-// .hoverable .admin {
-//   display: none;
-// }
+.hoverable .admin {
+  display: none;
+}
 
-// .hoverable:hover .admin {
-//   display: inline;
-// }
+.hoverable:hover .admin {
+  display: inline;
+}
 
 // .admin td {
 //   text-align: center;

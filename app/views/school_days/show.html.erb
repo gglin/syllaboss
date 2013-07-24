@@ -59,14 +59,16 @@
           <tbody>
             <%  @active_school_day.schedulize.each do |row| %>
             <tr>
+              
               <td><%= row.values[0] %></td>
-              <td><%= row.values[1] %></td>
+              <td><%= auto_link(row.values[1], :all, :target => "_blank") %></td>
             </tr>
             <% end %>
           </tbody>
         </table>
       </div>
 </div>
+
 
       <p>
         <b>Programmer of the Day:</b>

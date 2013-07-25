@@ -11,9 +11,19 @@
         <!-- Use the class nred, ngreen, nblue, nlightblue, nviolet or norange to add background color. You need to use this in <li> tag. -->
 
         <!-- <li>&nbsp;</li> -->
-        <li class="nred day-title">
+        <li class="nred day-title" style="background-color: rgb(220,220,220);">
             <p>
-              <h2 class="less-padding"><%= link_to "Day #{@active_school_day.ordinal}", @active_school_day %></h2>
+              <h2 class="less-padding inline"><%= link_to "Day #{@active_school_day.ordinal}", @active_school_day %></h2>
+              <% if @active_school_day.calendar_date == Date.today %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="badge badge-warning"><strong>Today</strong></span>
+              <% elsif @active_school_day.calendar_date < Date.today %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="badge badge"><strong><%= time_ago_in_words(@active_school_day.calendar_date) %> ago</strong></span>
+              <% else %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="badge badge"><strong><%= time_ago_in_words(@active_school_day.calendar_date) %> from now</strong></span>
+              <% end %>
               <h4 class="less-padding">Week <%= @active_school_day.week %></h4>
             </p>
 

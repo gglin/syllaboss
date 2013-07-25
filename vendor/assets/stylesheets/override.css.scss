@@ -10,7 +10,7 @@
 
 
 h1.inline, h2.inline, h3.inline, h4.inline, h5.inline {
-  display: inline-block;
+  display: inline;
 }
 
 h1.less-padding, h2.less-padding, h3.less-padding, h4.less-padding, h5.less-padding {
@@ -140,7 +140,7 @@ body {
 }
 
 .sidebar .ui-state-hightlight, .sidebar .ui-state-active {
-  background-color: rgb(255, 255, 0);
+  background-color: #f88529;
   color: #000;
 }
 

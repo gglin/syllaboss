@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+
+  include SchoolDaysHelper
+
   before_filter :load_current_day
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -10,7 +13,7 @@ class ApplicationController < ActionController::Base
 private
   
   def load_current_day
-    @active_school_day = SchoolDay.first
+    @active_school_day = closest_day_to_today
   end
 
   def current_user

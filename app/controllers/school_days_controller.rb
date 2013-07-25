@@ -1,18 +1,12 @@
 class SchoolDaysController < ApplicationController
+
+  include SchoolDaysHelper
+
   # GET /school_days
   # GET /school_days.json
-
-  
   def index
-    if params["date"]
-      date = Date.strptime(params["date"], "%m/%d/%Y")
-      school_day = SchoolDay.find_by_calendar_date(date)
-      if school_day.nil?
-        flash[:error] = "This date is not available."
-        redirect_to root_url
-      else
-        redirect_to school_day_path(school_day.id)
-      end
+    if params[:date]
+      redirect_date(params[:date])
     else
       @school_days = SchoolDay.all
 
@@ -35,7 +29,7 @@ class SchoolDaysController < ApplicationController
       end
     else
       flash.keep
-      @active_school_day = SchoolDay.last
+      @active_school_day = closest_day_to_today
       redirect_to school_day_path(@active_school_day.id)
     end
   end

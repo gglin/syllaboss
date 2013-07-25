@@ -1,6 +1,11 @@
 <div class="page-head">
   <p>
-    <h3><%=@active_school_day.calendar_date.strftime("%A %B %d, %Y") %></h3>
+    <h3 class="inline"><%=@active_school_day.calendar_date.strftime("%A %B %d, %Y") %></h3>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="admin-title pull-right">
+      <%= link_to 'Edit', edit_school_day_path(@active_school_day) %> |
+      <%= link_to 'Show All Days', school_days_path %>
+    </span>
   </p>
 
   <ul class="breadcrumb">
@@ -34,52 +39,115 @@
 
 <div class="matter">
   <div class="container-fluid">
+
     <div class="row-fluid">
 
       <%= render "layouts/messages" %>
 
-      <div class="widget wlightblue">
-        <div class="widget-head">
-          <div class="pull-left">Schedule</div>
-          <div class="widget-icons pull-right">
-            <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
-            <a href="#" class="wclose"><i class="icon-remove"></i></a>
+      <div class="span8 maxspan">
+
+        <div class="widget wlightblue mainwidget">
+          <div class="widget-head">
+            <div class="pull-left">Schedule</div>
+            <div class="widget-icons pull-right">
+              <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+              <a href="#" class="wclose"><i class="icon-remove"></i></a>
+            </div>
+            <div class="clearfix"></div>
           </div>
-          <div class="clearfix"></div>
+
+          <div class="widget-content">
+            <table class="table table-bordered time-in-column1">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Stuff</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%  @active_school_day.schedulize.each do |row| %>
+                <tr>
+                  
+                  <td><%= row.values[0] %></td>
+                  <td><%= auto_link(row.values[1], :all, :target => "_blank") %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <div class="widget-content">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Time</th>
-                <th>Stuff</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%  @active_school_day.schedulize.each do |row| %>
-              <tr>
-                
-                <td><%= row.values[0] %></td>
-                <td><%= auto_link(row.values[1], :all, :target => "_blank") %></td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
       </div>
 
+      <div class="span3">
 
-      <p>
-        <b>Programmer of the Day:</b>
-        <% if @active_school_day.potd %>
-          <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.presentation_url) %>" target="_blank"> <%= @active_school_day.potd.name %></a><br>
-          <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.wikipedia) %>" target="_blank">Wikipedia</a>
-        <% else %>
-          There is no programmer of the day.
-        <% end %> 
-      </p>
+        <div class="widget wlightblue hoverable">
+          <div class="widget-head">
+            <div class="pull-left">Programmer of the Day</div>
+            <div class="widget-icons pull-right">
+              <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+              <a href="#" class="wclose"><i class="icon-remove"></i></a>
+            </div>
+            <div class="clearfix"></div>
+          </div>
 
+          <div class="widget-content">
+            <div class="padd lowtop">
+              <% if @active_school_day.potd %>
+                <div>
+                  <h4 class="inline">
+                    <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.presentation_url) %>" target="_blank"> <%= @active_school_day.potd.name %></a>
+                  </h4>
+                  <div class="admin pull-right">
+                    <%= link_to "Show", potd_path(@active_school_day.potd) %>
+                    | <%= link_to "Show All", potds_path %>
+                  </div>
+                </div>
+                
+                <%= image_tag("http://placekitten.com/200/200") %>
+                <br>
+                
+                <p>
+                  Alan Curtis Kay (born May 17, 1940) is an American computer scientist. He has been elected a Fellow of the American Academy of Arts and 
+                </p>
+
+                <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.wikipedia) %>" target="_blank">Wikipedia</a>
+              <% else %>
+                There is no programmer of the day.
+              <% end %> 
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+
+
+    <div class="row-fluid">
+
+      <div class="span8 maxspan">
+
+        <div class="widget wlightblue">
+          <div class="widget-head">
+            <div class="pull-left">Resources</div>
+            <div class="widget-icons pull-right">
+              <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+              <a href="#" class="wclose"><i class="icon-remove"></i></a>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="widget-content">
+            <div class="padd lowtop">
+              Resources
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+
+    <div class="row-fluid">
       <p>
         <b>Links for today:</b>
         <% if @active_school_day.links[0] %>
@@ -92,9 +160,9 @@
       </p>
 
 
-      <%= link_to 'Edit', edit_school_day_path(@active_school_day) %> |
-      <%= link_to 'Back', school_days_path %>
+      
     </div>
+
   </div>
 </div>
 

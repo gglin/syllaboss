@@ -19,10 +19,10 @@
                 <span class="badge badge-warning"><strong>Today</strong></span>
               <% elsif @active_school_day.calendar_date < Date.today %>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="badge badge"><strong><%= time_ago_in_words(@active_school_day.calendar_date) %> ago</strong></span>
+                <span class="badge badge"><strong><%= distance_of_time_in_words(Date.today, @active_school_day.calendar_date) %> ago</strong></span>
               <% else %>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="badge badge"><strong><%= time_ago_in_words(@active_school_day.calendar_date) %> from now</strong></span>
+                <span class="badge badge"><strong><%= distance_of_time_in_words(Date.today, @active_school_day.calendar_date) %> from now</strong></span>
               <% end %>
               <h4 class="less-padding">Week <%= @active_school_day.week %></h4>
             </p>

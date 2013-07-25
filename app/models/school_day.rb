@@ -27,7 +27,7 @@ class SchoolDay < ActiveRecord::Base
 
   def schedulize
     return [{:time => "", :stuff => ""}] if schedule.nil?
-    output = self.schedule.split("\n").delete_if{|line| line.empty? || line == "\r" }.compact
+    output = self.schedule.split("\n").delete_if{|line| line.empty? || line == "\r" || line =~ /^\s+$/ }.compact
     output.collect do |row|
       row = row.split(/:\s+/,2)
       if row.size == 2

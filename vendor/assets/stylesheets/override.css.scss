@@ -22,6 +22,20 @@ textarea {
   width: 60%;
 }
 
+.maxspan {
+  max-width: 800px;
+}
+
+/* Numbering */
+.time-in-column1 td:nth-child(1), 
+.time-in-column1 th:nth-child(1) {
+  width: 100px;
+}
+
+.widget .lowtop {
+  padding-top: 3px;
+}
+
 /*******************/
 /* Fix Black Color */
 /*******************/
@@ -256,6 +270,10 @@ body {
 //   position: relative;
 //   bottom: 3px;
 // }
+
+.admin-title {
+  padding: 15px;
+}
 
 .hoverable .admin {
   display: none;

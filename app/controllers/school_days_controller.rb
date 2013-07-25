@@ -22,6 +22,9 @@ class SchoolDaysController < ApplicationController
   def show
     if params[:id]
       @active_school_day = SchoolDay.find(params[:id])
+      @commentable = @active_school_day
+      @comments = @commentable.comments
+      @comment = Comment.new
 
       respond_to do |format|
         format.html # show.html.erb

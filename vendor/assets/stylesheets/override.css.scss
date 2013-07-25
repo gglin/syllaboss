@@ -26,6 +26,14 @@ textarea {
   max-width: 800px;
 }
 
+.commentspan {
+  max-width: 1000px;
+}
+
+div.container-fluid {
+  // padding-right: 0px;
+}
+
 /* Numbering */
 .time-in-column1 td:nth-child(1), 
 .time-in-column1 th:nth-child(1) {
@@ -38,9 +46,10 @@ textarea {
 
 .widget .sub-widget .widget-head {
   background-color: #ddd;
+  font-size: 110%;
   color: black;
   border: none;
-  padding: 5px;
+  padding: 5px 20px;
 }
 
 /*******************/

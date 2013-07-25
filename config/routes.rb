@@ -18,6 +18,10 @@ Pizza::Application.routes.draw do
   resources :todos
   resources :labs
   resources :homeworks
+
+  resources :school_days do
+    resources :comments
+  end
   
   resources :lectures do
     resources :comments

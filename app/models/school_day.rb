@@ -38,5 +38,18 @@ class SchoolDay < ActiveRecord::Base
     end
   end
 
+  def read_schedule
+    schedulize.each do |item|
+      read_time(item[:time])
+      read_stuff(item[:stuff])
+    end
+  end
+
+  def read_time
+  end
+
+  def read_stuff
+  end
+  
 end
 

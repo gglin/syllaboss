@@ -9,7 +9,7 @@ class SchoolDaysController < ApplicationController
       redirect_date(params[:date])
     else
       @school_days = SchoolDay.all
-
+      
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @school_days }

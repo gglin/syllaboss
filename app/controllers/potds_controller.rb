@@ -4,14 +4,16 @@ class PotdsController < ApplicationController
   before_filter :authorize, only: [:edit, :update]
 
   def index
-    if params[:search].present?
-      @search = Potd.search do
-        fulltext params[:search]
-      end
-      @potds = @search.results
-    else
-      @potds = Potd.all
-    end
+    # if params[:search].present?
+    #   @search = Potd.search do
+    #     fulltext params[:search]
+    #   end
+    #   @potds = @search.results
+    # else
+    #   @potds = Potd.all
+    # end
+
+    @potds = Potd.all
 
     respond_to do |format|
       format.html # index.html.erb

@@ -2,14 +2,16 @@ class LabsController < ApplicationController
   # GET /labs
   # GET /labs.json
   def index
-    if params[:search].present?
-      @search = Lab.search do
-        fulltext params[:search]
-      end
-      @labs = @search.results
-    else
-      @labs = Lab.all
-    end
+    # if params[:search].present?
+    #   @search = Lab.search do
+    #     fulltext params[:search]
+    #   end
+    #   @labs = @search.results
+    # else
+    #   @labs = Lab.all
+    # end
+
+    @labs = Lab.all
 
     respond_to do |format|
       format.html # index.html.erb

@@ -9,6 +9,9 @@ Pizza::Application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
+  get 'search', to: 'searches#index'
+
+  resources :searches
   resources :users
   resources :sessions
 

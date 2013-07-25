@@ -4,10 +4,10 @@ class LecturesController < ApplicationController
   def index
     @lectures = Lecture.all
 
-    @search = Lecture.search do
-      fulltext params[:search]
-    end
-    @lectures = @search.results
+    # @search = Lecture.search do
+    #   fulltext params[:search]
+    # end
+    # @lectures = @search.results
 
     respond_to do |format|
       format.html # index.html.erb

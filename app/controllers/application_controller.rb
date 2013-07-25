@@ -15,12 +15,6 @@ class ApplicationController < ActionController::Base
   # end
   # @lectures = @search.results
 
-  
-  # Sunspot.search(SchoolDay, Lecture) do
-  #   fulltext params[:q]
-  #   paginate :per_page => 10
-  # end
-
 
 private
   

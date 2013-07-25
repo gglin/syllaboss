@@ -1,21 +1,9 @@
-<h1>Listing searches</h1>
+<div class="page-head">
+  <h1>Listing searches</h1>
+</div>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @searches.each do |search| %>
-  <tr>
-    <td><%= link_to 'Show', search %></td>
-    <td><%= link_to 'Edit', edit_search_path(search) %></td>
-    <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Search', new_search_path %>
+<ol>
+  <% @searches.each do |object| %>
+    <li><%="#{object.class}:"%><a href=<%= "#{object.class.to_s.downcase}s/#{object.id}" %>><%= object %></a> </li>
+   <% end %>
+</ol>

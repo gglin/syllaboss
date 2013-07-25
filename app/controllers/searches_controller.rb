@@ -2,8 +2,16 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
-    @searches = Search.all
 
+
+    @search = Sunspot.search(SchoolDay, Lecture, Lab, Todo, Homework, Potd, Link) do
+      fulltext params[:search]
+      #paginate :per_page => 10
+    end
+    debugger
+    @searches = @search.results
+
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @searches }
@@ -13,7 +21,8 @@ class SearchesController < ApplicationController
   # GET /searches/1
   # GET /searches/1.json
   def show
-    @search = Search.find(params[:id])
+
+    
 
     respond_to do |format|
       format.html # show.html.erb

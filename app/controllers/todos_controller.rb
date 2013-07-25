@@ -2,15 +2,17 @@ class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
   def index
-    if params[:search].present?
-      @search = Todo.search do
-        fulltext params[:search]
-      end
-      @todos = @search.results
-    else
-      @todos = Todo.all
-    end
+    # if params[:search].present?
+    #   @search = Todo.search do
+    #     fulltext params[:search]
+    #   end
+    #   @todos = @search.results
+    # else
+    #   @todos = Todo.all
+    # end
 
+    @todos = Todo.all
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @todos }

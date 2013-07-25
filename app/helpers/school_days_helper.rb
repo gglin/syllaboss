@@ -15,4 +15,8 @@ module SchoolDaysHelper
     SchoolDay.order("calendar_date DESC").where("calendar_date <= ?", Date.today).limit(1).first
   end
 
+  def placeholder_text
+    "IPhone adipisicing nesciunt, DIY single-origin coffee esse Schlitz ea you probably haven't heard of them trust fund et Brooklyn irure blog in. 90's put a bird on it meh tote bag sint nihil. Enim cred incididunt proident, keffiyeh reprehenderit small batch. Williamsburg aute pitchfork gentrify, street art tousled yr hashtag VHS selfies freegan. Blue bottle magna Portland, vinyl culpa selvage YOLO Bushwick nesciunt. Portland craft beer placeat Neutra, cupidatat mumblecore lomo banh mi quis. Polaroid tumblr thundercats, Austin Williamsburg Truffaut DIY Marfa quinoa whatever bespoke."
+  end
+
 end

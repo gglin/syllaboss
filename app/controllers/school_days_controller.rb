@@ -26,6 +26,11 @@ class SchoolDaysController < ApplicationController
       @comments = @commentable.comments
       @comment = Comment.new
 
+      ordinals_array = SchoolDay.all.collect {|x| x.ordinal}.sort
+      index_num = ordinals_array.index(@active_school_day.ordinal)
+      @previous_school_day = SchoolDay.find_by_ordinal(ordinals_array[index_num-1]) unless index_num==0
+      @next_school_day = SchoolDay.find_by_ordinal(ordinals_array[index_num+1])
+
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @active_school_day }

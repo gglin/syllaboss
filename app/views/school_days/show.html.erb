@@ -38,6 +38,10 @@
       </ul>
     </li>
   </ul>
+
+<%= link_to 'Previous Day', school_day_path(@previous_school_day) if @previous_school_day%>
+<%= link_to 'Next Day', school_day_path(@next_school_day) if @next_school_day%>
+
 </div>
 
 <div class="matter">
@@ -238,6 +242,7 @@
                   <div class="clearfix"></div>
                 </div>
 
+<<<<<<< HEAD
                 <div class="widget-content">
                   <div class="padd">
                     <ul>

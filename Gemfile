@@ -13,6 +13,7 @@ gem 'rinku', :require => 'rails_rinku'
 group :development do
   gem "better_errors"
   gem 'debugger'
+  gem 'sunspot_solr'
 end
 
 
@@ -31,8 +32,11 @@ end
 # gem 'flatui-rails'
 gem 'jquery-rails'
 
+# gem 'will_paginate', '> 3.0'
+
 
 gem 'carrierwave'
+gem 'sunspot_rails'
 
 
 # To use ActiveModel has_secure_password

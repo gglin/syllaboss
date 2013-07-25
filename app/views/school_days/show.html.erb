@@ -1,50 +1,101 @@
-<p id="notice"><%= notice %></p>
+<div class="page-head">
+  <p>
+    <h3><%=@active_school_day.calendar_date.strftime("%A %B %d, %Y") %></h3>
+  </p>
+
+  <ul class="breadcrumb">
+    <li><a href="#">Semester 002 </a> <span class="divider">/</span></li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+        Week <%= @active_school_day.week %>
+        <span class = "caret"></span>
+      </a><span class="divider">/</span>
+      <ul class="dropdown-menu" role="menu">
+        <% SchoolDay.all.each do |school_day| %>
+          <li><%= link_to "Week #{school_day.week}", '#'%></li>
+          <% end %>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+        Day <%= @active_school_day.ordinal %>
+        <span class = "caret"></span>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        <% SchoolDay.all.each do |school_day| %>
+          <li><%= link_to "Day #{school_day.ordinal}", school_day_path(school_day)%></li>
+          <% end %>
+      </ul>
+    </li>
+
+  </ul>
+
+</div>
+
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <p id="notice"><%= notice %></p>
+
+  <div class="widget wlightblue">
+      <div class="widget-head">
+        <div class="pull-left">Schedule</div>
+        <div class="widget-icons pull-right">
+          <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+          <a href="#" class="wclose"><i class="icon-remove"></i></a>
+        </div>
+        <div class="clearfix"></div>
+      </div>
 
 
-<p>
-  <h3>Day <%= @school_day.ordinal %></h3>
-</p>
+      <div class="widget-content">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Stuff</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%  @active_school_day.schedulize.each do |row| %>
+            <tr>
+              
+              <td><%= row.values[0] %></td>
+              <td><%= auto_link(row.values[1], :all, :target => "_blank") %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+</div>
 
 
-<p>
-  <b>Week:</b>
-  <%= @school_day.week %>
-</p>
+      <p>
+        <b>Programmer of the Day:</b>
+        <% if @active_school_day.potd %>
+          <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.presentation_url) %>" target="_blank"> <%= @active_school_day.potd.name %></a><br>
+          <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.wikipedia) %>" target="_blank">Wikipedia</a>
+        <% else %>
+          There is no programmer of the day.
+        <% end %> 
+      </p>
 
-<p>
-  <b>Calendar date:</b>
-  <%= @school_day.calendar_date %>
-</p>
-
-<p>
-  <b>Schedule:</b>
-  <%= simple_format @school_day.schedule %>
-</p>
-
-
-<p>
-  <b>Programmer of the Day:</b>
-  <% if @school_day.potd %>
-    <a href="<%= @school_day.potd.http_link(@school_day.potd.presentation_url) %>" target="_blank"> <%= @school_day.potd.name %></a><br>
-    <a href="<%= @school_day.potd.http_link(@school_day.potd.wikipedia) %>" target="_blank">Wikipedia</a>
-  <% else %>
-    There is no programmer of the day.
-  <% end %> 
-</p>
-
-<p>
-  <b>Links for today:</b>
-  <% if @school_day.links[0] %>
-    <% @school_day.links.each do |link|%>
-      <a href="<%= link.http_link(link.link_url) if link %>" target="_blank"> <%= link.title if link %></a><br>
-      <% end %>
-  <% else %>
-      There are no links today
-  <% end %> 
-</p>
+      <p>
+        <b>Links for today:</b>
+        <% if @active_school_day.links[0] %>
+          <% @active_school_day.links.each do |link|%>
+            <a href="<%= link.http_link(link.link_url) if link %>" target="_blank"> <%= link.title if link %></a><br>
+            <% end %>
+        <% else %>
+            There are no links today
+        <% end %> 
+      </p>
 
 
+      <%= link_to 'Edit', edit_school_day_path(@active_school_day) %> |
+      <%= link_to 'Back', school_days_path %>
+    </div>
+  </div>
+</div>
 
 
-<%= link_to 'Edit', edit_school_day_path(@school_day) %> |
-<%= link_to 'Back', school_days_path %>

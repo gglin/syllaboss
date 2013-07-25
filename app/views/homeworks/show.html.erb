@@ -1,13 +1,19 @@
-<p id="notice"><%= notice %></p>
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @homework.title %>
-</p>
-<p>
-  <b>Content:</b>
-  <%= @homework.content %>
-</p>
+      <p>
+        <h3><b>Title:</b>
+        <%= @homework.title %></h3>
+      </p>
+      <p>
+        <b>Content:</b>
+        <%= @homework.content %>
+      </p>
 
-<%= link_to 'Edit', edit_homework_path(@homework) %> |
-<%= link_to 'Back', homeworks_path %>
+      <%= link_to 'Edit', edit_homework_path(@homework) %> |
+      <%= link_to 'Back', homeworks_path %>
+    </div>
+  </div>
+</div>

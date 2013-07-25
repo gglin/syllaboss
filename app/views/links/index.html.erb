@@ -1,27 +1,37 @@
-<h1>Listing links</h1>
+<div class="page-head">
+  <h1>Listing links</h1>
+</div>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>URL</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <p id="notice"><%= notice %></p>
 
-<% @links.each do |link| %>
-  <tr>
-    <td><%= link.title %></td>
-    <td><%= link_to link.link_url, link.http_link(link.link_url), :target => "_blank" %></td>
-    <td><%= link.description %>
-    <td><%= link_to 'Show', link %></td>
-    <td><%= link_to 'Edit', edit_link_path(link) %></td>
-    <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr> 
-<% end %>
-</table>
+        <table>
+          <tr>
+            <th>Title</th>
+            <th>URL</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
 
-<br />
+        <% @links.each do |link| %>
+          <tr>
+            <td><%= link.title %></td>
+            <td><%= link_to link.link_url, link.http_link(link.link_url), :target => "_blank" %></td>
+            <td><%= link.description %>
+            <td><%= link_to 'Show', link %></td>
+            <td><%= link_to 'Edit', edit_link_path(link) %></td>
+            <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr> 
+        <% end %>
+        </table>
 
-<%= link_to 'New Link', new_link_path %>
+        <br />
+
+        <%= link_to 'New Link', new_link_path %>
+    </div>
+  </div>
+</div>

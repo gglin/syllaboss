@@ -15,11 +15,11 @@ class SchoolDaysController < ApplicationController
   # GET /school_days/1
   # GET /school_days/1.json
   def show
-    @school_day = SchoolDay.find(params[:id])
+    @active_school_day = SchoolDay.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @school_day }
+      format.json { render json: @active_school_day }
     end
   end
 

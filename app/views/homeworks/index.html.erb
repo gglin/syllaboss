@@ -1,23 +1,32 @@
-<h1>Listing Homeworks</h1>
+<div class="page-head">
+  <h1>Listing Homeworks</h1>
+</div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Content</th>
-    <th></th>
-  </tr>
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <p id="notice"><%= notice %></p>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Content</th>
+            <th></th>
+          </tr>
 
-<% @homeworks.each do |homework| %>
-  <tr>
-    <td><%= homework.title %></td>
-    <td><%= homework.content %></td>
-    <td><%= link_to 'Show', homework %></td>
-    <td><%= link_to 'Edit', edit_homework_path(homework) %></td>
-    <td><%= link_to 'Destroy', homework, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+        <% @homeworks.each do |homework| %>
+          <tr>
+            <td><%= homework.title %></td>
+            <td><%= homework.content %></td>
+            <td><%= link_to 'Show', homework %></td>
+            <td><%= link_to 'Edit', edit_homework_path(homework) %></td>
+            <td><%= link_to 'Destroy', homework, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+        </table>
 
-<br />
+        <br />
 
-<%= link_to 'New Homework', new_homework_path %>
+        <%= link_to 'New Homework', new_homework_path %>
+    </div>
+  </div>
+</div>

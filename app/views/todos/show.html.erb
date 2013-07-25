@@ -1,14 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @todo.name %>
-</p>
-<p>
-  <b>Gist:</b>
-  <%= link_to @todo.gist, @todo.http_link(@todo.gist), :target => "_blank" %>
-</p>
+      <p>
+        <h3><b>Name:</b>
+        <%= @todo.name %></h3>
+      </p>
+      <p>
+        <b>Gist:</b>
+        <%= link_to @todo.gist, @todo.http_link(@todo.gist), :target => "_blank" %>
+      </p>
 
 
-<%= link_to 'Edit', edit_todo_path(@todo) %> |
-<%= link_to 'Back', todos_path %>
+      <%= link_to 'Edit', edit_todo_path(@todo) %> |
+      <%= link_to 'Back', todos_path %>
+    </div>
+  </div>
+</div>

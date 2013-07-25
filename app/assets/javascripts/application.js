@@ -12,4 +12,28 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+// require_tree .
+//
+//= require bootstrap
+//= require jquery-ui-1.10.2.custom.min
+//= require fullcalendar.min
+//= require jquery.rateit.min
+//= require jquery.prettyPhoto
+
+// jQuery Flot
+// 
+//= require excanvas.min
+//= require jquery.flot
+//= require jquery.flot.resize
+//= require jquery.flot.pie
+//= require jquery.flot.stack
+
+// require jquery.gritter.min
+//= require sparklines
+//= require jquery.cleditor.min
+//= require bootstrap-datetimepicker.min
+//= require jquery.toggle.buttons
+//= require filter
+//= require custom
+//= require charts
+

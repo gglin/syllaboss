@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
     User.user_roles.key(self.role)
   end
 
+  def self.user_roles
+    USER_ROLES
+  end
+
   def can_edit?(material)
     true if admin? || owns?(material)
   end

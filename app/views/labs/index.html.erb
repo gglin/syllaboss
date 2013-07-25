@@ -1,22 +1,32 @@
-<h1>Listing labs</h1>
+<div class="page-head">
+  <h1>Listing labs</h1>
+</div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Lab url</th>
-  </tr>
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <p id="notice"><%= notice %></p>
 
-<% @labs.each do |lab| %>
-  <tr>
-    <td><%= lab.name %></td>
-    <td><%= link_to lab.lab_url, lab.http_link(lab.lab_url), :target => "_blank" %></td>
-    <td><%= link_to 'Show', lab %></td>
-    <td><%= link_to 'Edit', edit_lab_path(lab) %></td>
-    <td><%= link_to 'Destroy', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Lab url</th>
+          </tr>
 
-<br />
+        <% @labs.each do |lab| %>
+          <tr>
+            <td><%= lab.name %></td>
+            <td><%= link_to lab.lab_url, lab.http_link(lab.lab_url), :target => "_blank" %></td>
+            <td><%= link_to 'Show', lab %></td>
+            <td><%= link_to 'Edit', edit_lab_path(lab) %></td>
+            <td><%= link_to 'Destroy', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+        </table>
 
-<%= link_to 'New Lab', new_lab_path %>
+        <br />
+
+        <%= link_to 'New Lab', new_lab_path %>
+    </div>
+  </div>
+</div>

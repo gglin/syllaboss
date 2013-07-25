@@ -6,6 +6,8 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'cancan'
+gem 'rinku', :require => 'rails_rinku'
 
 
 group :development do
@@ -26,7 +28,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'flatui-rails'
+# gem 'flatui-rails'
 gem 'jquery-rails'
 
 

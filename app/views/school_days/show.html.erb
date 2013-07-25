@@ -35,39 +35,39 @@
 <div class="matter">
   <div class="container-fluid">
     <div class="row-fluid">
-      <p id="notice"><%= notice %></p>
 
-  <div class="widget wlightblue">
-      <div class="widget-head">
-        <div class="pull-left">Schedule</div>
-        <div class="widget-icons pull-right">
-          <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
-          <a href="#" class="wclose"><i class="icon-remove"></i></a>
+      <%= render "layouts/messages" %>
+
+      <div class="widget wlightblue">
+        <div class="widget-head">
+          <div class="pull-left">Schedule</div>
+          <div class="widget-icons pull-right">
+            <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+            <a href="#" class="wclose"><i class="icon-remove"></i></a>
+          </div>
+          <div class="clearfix"></div>
         </div>
-        <div class="clearfix"></div>
-      </div>
 
-
-      <div class="widget-content">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>Stuff</th>
-            </tr>
-          </thead>
-          <tbody>
-            <%  @active_school_day.schedulize.each do |row| %>
-            <tr>
-              
-              <td><%= row.values[0] %></td>
-              <td><%= auto_link(row.values[1], :all, :target => "_blank") %></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <div class="widget-content">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Stuff</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%  @active_school_day.schedulize.each do |row| %>
+              <tr>
+                
+                <td><%= row.values[0] %></td>
+                <td><%= auto_link(row.values[1], :all, :target => "_blank") %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
-</div>
 
 
       <p>

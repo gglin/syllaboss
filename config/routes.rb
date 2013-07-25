@@ -4,6 +4,7 @@ Pizza::Application.routes.draw do
   # get 'comments/new', to: 'comments#new'
   # post 'comments', to: 'comments#create'
 
+  #get 'show_results', to: 'schooldays#show_results'
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'

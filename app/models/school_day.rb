@@ -19,7 +19,11 @@ class SchoolDay < ActiveRecord::Base
   has_many :lectures, :through => :school_day_lectures
 
   has_many :comments, as: :commentable
-  
+
+  searchable do
+    text :schedule
+  end  
+
   # validates_uniqueness_of :ordinal, :calendar_date
   validates :ordinal, :week, :calendar_date, :presence => true
 

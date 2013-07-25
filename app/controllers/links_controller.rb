@@ -2,7 +2,14 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    if params[:search].present?
+      @search = Link.search do
+        fulltext params[:search]
+      end
+      @links = @search.results
+    else
+      @links = Link.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

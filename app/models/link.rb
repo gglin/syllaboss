@@ -7,6 +7,10 @@ class Link < ActiveRecord::Base
   has_many :school_days, :through => :school_day_links
   
   has_many :comments, as: :commentable
+
+  searchable do
+    text :link_url, :title, :description
+  end
 end
 
 

@@ -25,14 +25,25 @@
       <ul class="nav all-stats pull-right">
         <li>
           <!-- Search form -->
-          <div class="sidebar-widget">
+
+        <form class="form-inline">
+          <div class="input-append row-fluid">
+            <%= form_tag potds_path, :method => :get do %>
+              <%= text_field_tag :search, params[:search], :class => "span8", :placeholder =>"Search" %>
+              <%= submit_tag "Search", :title => nil, :class => "btn btn-info" %>
+            <% end %>
+          </div>
+        </form>
+
+          <!-- <div class="sidebar-widget">
             <form class="form-inline">
               <div class="input-append row-fluid">
                 <input type="text" class="span8" placeholder="Search">
+
                 <button type="submit" class="btn btn-info">Search</button>
               </div>
             </form>
-          </div>
+          </div> -->
           <!-- End Search form -->
         </li>
         <ul class="nav pull-right">

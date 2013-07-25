@@ -11,4 +11,8 @@ class Todo < ActiveRecord::Base
   def title
     name
   end
+
+  searchable do
+    text :name, :gist 
+  end
 end

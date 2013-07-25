@@ -2,7 +2,14 @@ class HomeworksController < ApplicationController
   # GET /homeworks
   # GET /homeworks.json
   def index
-    @homeworks = Homework.all
+    if params[:search].present?
+      @search = Homework.search do
+        fulltext params[:search]
+      end
+      @homeworks = @search.results
+    else
+      @homeworks = Homework.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

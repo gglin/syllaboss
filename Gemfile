@@ -36,7 +36,7 @@ gem 'jquery-rails'
 
 
 gem 'carrierwave'
-gem 'sunspot_rails'
+gem 'sunspot_rails', '~> 1.3.0'
 
 
 # To use ActiveModel has_secure_password

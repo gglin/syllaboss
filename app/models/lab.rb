@@ -11,4 +11,8 @@ class Lab < ActiveRecord::Base
   def title
     name
   end
+
+  searchable do
+    text :name, :lab_url  
+  end
 end

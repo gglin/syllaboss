@@ -11,7 +11,6 @@ Pizza::Application.routes.draw do
   resources :users
   resources :sessions
 
-
   resources :school_days
   
   resources :potds
@@ -76,7 +75,7 @@ Pizza::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => 'school_days#index'
+  root :to => 'school_days#show'
 
   # See how all your routes lay out with "rake routes"
 

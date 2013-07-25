@@ -4,22 +4,39 @@ class SchoolDaysController < ApplicationController
 
   
   def index
-    @school_days = SchoolDay.all
+    if params["date"]
+      date = Date.strptime(params["date"], "%m/%d/%Y")
+      school_day = SchoolDay.find_by_calendar_date(date)
+      if school_day.nil?
+        flash[:notice] = "This date is not available."
+        redirect_to root_url
+      else
+        redirect_to school_day_path(school_day.id)
+      end
+    else
+      @school_days = SchoolDay.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @school_days }
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @school_days }
+      end
     end
   end
 
   # GET /school_days/1
   # GET /school_days/1.json
   def show
-    @active_school_day = SchoolDay.find(params[:id])
+    if params[:id]
+      @active_school_day = SchoolDay.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @active_school_day }
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @active_school_day }
+      end
+    else
+      flash.keep
+      @active_school_day = SchoolDay.last
+      redirect_to school_day_path(@active_school_day.id)
     end
   end
 

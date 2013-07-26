@@ -80,6 +80,29 @@ div.container-fluid {
   z-index: 1000;
 }
 
+.form-inline .search-bar, .form-horizontal .search-bar {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.search-bar input {
+  position: relative;
+}
+
+.navbar .search-bar .btn {
+  margin-top: 0;
+}
+
+.search-bar .btn, .search-bar .btn-group {
+  margin-left: -5px;
+}
+
+.search-bar .btn {
+  vertical-align: top;
+}
+
 /*******************/
 /* Fix Black Color */
 /*******************/

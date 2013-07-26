@@ -8,7 +8,7 @@ class SearchesController < ApplicationController
       fulltext params[:search]
       #paginate :per_page => 10
     end
-    debugger
+    #debugger
     @searches = @search.results
 
     

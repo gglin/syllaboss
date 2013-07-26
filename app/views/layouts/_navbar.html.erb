@@ -25,7 +25,10 @@
       <ul class="nav all-stats pull-right">
         <li>
           <!-- Search form -->
-
+          <%= form_tag "/searches", :method => :get do %>
+            <%= text_field_tag :search, params[:search], :placeholder =>"Search" %>
+            <%= submit_tag "Search", :title => nil%>
+          <% end %>
 
           <!-- <div class="sidebar-widget">
             <form class="form-inline">

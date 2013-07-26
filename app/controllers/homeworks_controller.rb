@@ -14,6 +14,10 @@ class HomeworksController < ApplicationController
   # GET /homeworks/1.json
   def show
     @homework = Homework.find(params[:id])
+    @commentable = @homework
+    @comments = @commentable.comments
+    @comment = Comment.new
+    @active_school_day = most_recent_day_for_material(@homework)
 
     respond_to do |format|
       format.html # show.html.erb

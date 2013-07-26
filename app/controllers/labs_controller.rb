@@ -14,6 +14,10 @@ class LabsController < ApplicationController
   # GET /labs/1.json
   def show
     @lab = Lab.find(params[:id])
+    @commentable = @lab
+    @comments = @commentable.comments
+    @comment = Comment.new
+    @active_school_day = most_recent_day_for_material(@lab)
 
     respond_to do |format|
       format.html # show.html.erb

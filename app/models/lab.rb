@@ -7,4 +7,8 @@ class Lab < ActiveRecord::Base
   has_many :school_days, :through => :school_day_labs
 
   has_many :comments, as: :commentable
+
+  def title
+    name
+  end
 end

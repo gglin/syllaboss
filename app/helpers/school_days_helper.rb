@@ -1,5 +1,13 @@
 module SchoolDaysHelper
 
+  def most_recent_day_for_material(material)
+    if material.respond_to?("school_days")
+      material.school_days.order("calendar_date DESC").limit(1).first
+    else
+      material.school_day
+    end
+  end
+
   def redirect_date(datestring)
     date = Date.strptime(datestring, "%m/%d/%Y")
     school_day = SchoolDay.find_by_calendar_date(date)

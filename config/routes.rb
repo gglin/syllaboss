@@ -11,15 +11,27 @@ Pizza::Application.routes.draw do
   resources :users
   resources :sessions
 
-  resources :school_days
-  
-  resources :potds
-  resources :links
-  resources :todos
-  resources :labs
-  resources :homeworks
-
   resources :school_days do
+    resources :comments
+  end
+  
+  resources :potds do
+    resources :comments
+  end
+
+  resources :links do
+    resources :comments
+  end
+
+  resources :todos do
+    resources :comments
+  end
+
+  resources :labs do
+    resources :comments
+  end
+
+  resources :homeworks do
     resources :comments
   end
   

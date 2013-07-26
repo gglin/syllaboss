@@ -17,6 +17,7 @@ class LecturesController < ApplicationController
     @commentable = @lecture
     @comments = @commentable.comments
     @comment = Comment.new
+    @active_school_day = most_recent_day_for_material(@lecture)
 
     respond_to do |format|
       format.html # show.html.erb

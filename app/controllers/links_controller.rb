@@ -14,6 +14,10 @@ class LinksController < ApplicationController
   # GET /links/1.json
   def show
     @link = Link.find(params[:id])
+    @commentable = @link
+    @comments = @commentable.comments
+    @comment = Comment.new
+    @active_school_day = most_recent_day_for_material(@link)
 
     respond_to do |format|
       format.html # show.html.erb

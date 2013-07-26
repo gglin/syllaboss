@@ -18,6 +18,28 @@ h1.less-padding, h2.less-padding, h3.less-padding, h4.less-padding, h5.less-padd
   margin-bottom: 0px;
 }
 
+a {
+  text-decoration: underline;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+  -webkit-backface-visibility: hidden;
+}
+
+.brand:hover {
+  text-decoration: underline;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
+  -webkit-backface-visibility: hidden;
+}
+
+.matter a {
+  color: #1171a3;
+}
+
 textarea {
   width: 60%;
 }
@@ -52,6 +74,12 @@ div.container-fluid {
   padding: 5px 20px;
 }
 
+.sidebar-fixed-left {
+  position: fixed;
+  left: 0;
+  z-index: 1000;
+}
+
 /*******************/
 /* Fix Black Color */
 /*******************/
@@ -81,7 +109,7 @@ body {
 }
 
 .navbar-inverse .nav a:hover {
-  background-color: #43c83c !important;
+  background-color: #52b9e9 !important;
   color: #fff !important;
 }
 
@@ -126,6 +154,10 @@ body {
   background-color: #eee;
   border-color: #ddd;
   color: #000;
+
+  &:hover {
+    color: #fff;
+  }
 }
 
 
@@ -234,6 +266,11 @@ body {
   color: #52b9e9 !important;
   padding-bottom: 0px;
   padding-top: 0px;
+
+  &:hover {
+    color: #fff !important;
+    background-color: #000 !important;
+  }
 }
 
 .navbar .nav > li > a {
@@ -244,6 +281,27 @@ body {
 
 .breadcrumb {
   display: table-cell;
+}
+
+.navbar .nav ul {
+  // border-radius: 4px;
+  // left: 15px;
+  // list-style-type: none;
+  // margin-left: 0;
+  // opacity: 0;
+  // position: absolute;
+  // top: 0;
+  // width: 234px;
+  // z-index: -100;
+  // -webkit-transform: scale(1, 0.99);
+  // -webkit-transform-origin: 0 0;
+  // visibility: hidden;
+  // display: none\9;
+  -webkit-transition: 10s ease-out;
+  -moz-transition: 10s ease-out;
+  -o-transition: 10s ease-out;
+  transition: 10s ease-out;
+  -webkit-backface-visibility: hidden;
 }
 
 // .table th, .table td, .table tr { border: none !important; border-top: none !important; }

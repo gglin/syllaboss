@@ -1,26 +1,31 @@
 <div class="page-head">
-  <p>
-    <h3 class="inline"><%=@active_school_day.calendar_date.strftime("%A %B %d, %Y") %></h3>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="admin-title pull-right">
-      <%= link_to 'Edit', edit_school_day_path(@active_school_day) %> |
-      <%= link_to 'Show All Days', school_days_path %>
-    </span>
-  </p>
+  
+  <%= render "layouts/header_active_school_day" %>
 
   <ul class="breadcrumb">
-    <li><a href="#">Semester 002 </a> <span class="divider">/</span></li>
+    <li>
+
+      <a href="#">Semester 002 </a> 
+
+      <span class="divider">/</span>
+
+    </li>
+
     <li class="dropdown">
+      <%= link_to "Week #{@active_school_day.week}", "#" %>
       <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-        Week <%= @active_school_day.week %>
         <span class = "caret"></span>
-      </a><span class="divider">/</span>
+      </a>
+
+      <span class="divider">/</span>
+
       <ul class="dropdown-menu" role="menu">
         <% SchoolDay.all.each do |school_day| %>
-          <li><%= link_to "Week #{school_day.week}", '#'%></li>
-          <% end %>
+          <li><%= link_to "Week #{school_day.week}", '#' %></li>
+        <% end %>
       </ul>
     </li>
+
     <li class="dropdown">
       <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
         Day <%= @active_school_day.ordinal %>
@@ -28,13 +33,11 @@
       </a>
       <ul class="dropdown-menu" role="menu">
         <% SchoolDay.all.each do |school_day| %>
-          <li><%= link_to "Day #{school_day.ordinal}", school_day_path(school_day)%></li>
-          <% end %>
+          <li><%= link_to "Day #{school_day.ordinal}", school_day_path(school_day) %></li>
+        <% end %>
       </ul>
     </li>
-
   </ul>
-
 </div>
 
 <div class="matter">
@@ -122,7 +125,6 @@
       </div>
     </div>
 
-
     <div class="row-fluid">
 
       <div class="span9 maxspan">
@@ -136,8 +138,7 @@
             </div>
             <div class="clearfix"></div>
           </div>
-          
-          
+                 
           <div class="widget-content">
             <div class="padd">
             

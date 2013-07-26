@@ -7,4 +7,8 @@ class Todo < ActiveRecord::Base
   has_many :school_days, :through => :school_day_todos
 
   has_many :comments, as: :commentable
+
+  def title
+    name
+  end
 end

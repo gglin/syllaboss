@@ -1,3 +1,4 @@
+
 <div class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="navbar-container">
@@ -25,9 +26,9 @@
       <ul class="nav all-stats pull-right">
         <li>
           <!-- Search form -->
-          <%= form_tag "/searches", :method => :get do %>
+          <%= form_tag "/searches", :method => :get, class: "form-inline" do %>
             <%= text_field_tag :search, params[:search], :placeholder =>"Search" %>
-            <%= submit_tag "Search", :title => nil%>
+            <%= submit_tag "Search", :title => nil, class: "btn btn-info"%>
           <% end %>
 
           <!-- <div class="sidebar-widget">

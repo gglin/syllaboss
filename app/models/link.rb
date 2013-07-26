@@ -11,6 +11,10 @@ class Link < ActiveRecord::Base
   searchable do
     text :link_url, :title, :description
   end
+
+  def print_name
+  	title
+  end
 end
 
 

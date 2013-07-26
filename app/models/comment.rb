@@ -4,4 +4,11 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, polymorphic: true
   belongs_to :user
   
+  def print_name
+  	commentable_id
+  end
+
+  searchable do
+    text :commentable_type, :content  
+  end
 end

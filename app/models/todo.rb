@@ -13,6 +13,10 @@ class Todo < ActiveRecord::Base
   end
 
   searchable do
-    text :name, :gist 
+    text :name, :gist
+  end
+
+  def print_name
+  	name
   end
 end

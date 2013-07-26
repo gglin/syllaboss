@@ -21,8 +21,12 @@ class SchoolDay < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   searchable do
-    text :schedule
+    text :schedule, :links, :potd_id
   end  
+
+  def print_name
+    ordinal
+  end
 
   # validates_uniqueness_of :ordinal, :calendar_date
   validates :ordinal, :week, :calendar_date, :presence => true

@@ -11,4 +11,8 @@ class Homework < ActiveRecord::Base
   searchable do
     text :title, :content  
   end
+
+  def print_name
+  	title
+  end
 end

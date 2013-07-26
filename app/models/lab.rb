@@ -15,4 +15,8 @@ class Lab < ActiveRecord::Base
   searchable do
     text :name, :lab_url  
   end
+
+  def print_name
+  	name
+  end
 end

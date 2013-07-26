@@ -9,7 +9,11 @@ class Potd < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   searchable do
-    text :name, :wikipedia  
+    text :name, :wikipedia, :presentation_url
+  end
+
+  def print_name
+    name
   end
 
   validates_uniqueness_of :name, :case_sensitive => false

@@ -4,6 +4,13 @@
 
 <ol>
   <% @searches.each do |object| %>
-    <li><%="#{object.class}:"%><a href=<%= "#{object.class.to_s.downcase}s/#{object.id}" %>><%= object %></a> </li>
+    <li><%="#{object.class}:"%>
+    	<%# debugger %>
+    	<% if object.class == SchoolDay %>
+    		<a href=<%= "school_days/#{object.id}" %>><%= object.print_name %></a>
+    	<% else %>
+    		<a href=<%= "#{object.class.to_s.downcase}s/#{object.id}" %>><%= object.print_name %></a> 
+    	<% end %>
+    </li>
    <% end %>
 </ol>

@@ -4,7 +4,7 @@
 <% material_titles = material_title.pluralize %>
 
 <div class="row-fluid">
-  <div class="span9 maxspan">
+  <div class="span9 maxspan minspan">
     <span class="admin">
       <%= link_to 'Edit', self.send("edit_#{material_type}_path", material) %> |
     </span>
@@ -13,7 +13,7 @@
 </div>
 
 <div class="row-fluid">
-  <div class="span9 maxspan">
+  <div class="span9 maxspan minspan">
     <%= render "comments/comments" %>
     <%= render "comments/form" %>
   </div>

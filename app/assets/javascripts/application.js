@@ -59,7 +59,7 @@
 // require ../../../vendor/assets/javascripts/prettify
 // require ../../../vendor/assets/javascripts/applymultiselect
 
-//= require jquery-tablesorter
+//= require jquery.tablesorter
 
 //= require school_day_index
 

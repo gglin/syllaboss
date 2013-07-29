@@ -4,12 +4,12 @@
 }
 
 .tablesorter th {
-    background: rgb(230, 238, 238);
-    padding-right: 20px !important;
+  background: rgb(230, 238, 238);
+  padding-right: 20px !important;
 }
 
 .tablesorter tbody + tr.hoverable {
-    background: #efefef !important;
+  background: #efefef !important;
  }
 
 table.tablesorter th.not_sortable{
@@ -27,5 +27,8 @@ table#indexTable.tablesorter tbody tr:nth-child(2) {
   border:white !important;
 }*/
 
-  
+table.tablesorter th.not_sortable{
+  background-image:none !important;
+  cursor:auto !important;
+}
 

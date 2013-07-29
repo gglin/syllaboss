@@ -5,15 +5,17 @@
   <div class="container-fluid">
     <div class="row-fluid">
       <p id="notice"><%= notice %></p>
-        <table>
+        <table class="tablesorter" id="myTable">
+        <thead>
           <tr>
             <th>Name</th>
             <th>Wikipedia</th>
             <th>Presentation URL</th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th class="not_sortable" colspan="3">Options</th>
+
           </tr>
+        </thead>
+        <tbody>
 
         <% @potds.each do |potd| %>
           <tr>
@@ -26,7 +28,8 @@
             <td><%= link_to 'Destroy', potd, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
-        </table>
+      </tbody>
+    </table>
 
         <br />
 

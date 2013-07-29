@@ -6,13 +6,15 @@
   <div class="container-fluid">
     <div class="row-fluid">
       <p id="notice"><%= notice %></p>
-
-        <table>
+      <table class="tablesorter" id="myTable">
+        <thead>
           <tr>
             <th>Name</th>
             <th>Lab url</th>
+            <th class="not_sortable" colspan="3">Options</th>
           </tr>
-
+        </thead>
+        <tbody>
         <% @labs.each do |lab| %>
           <tr>
             <td><%= lab.name %></td>
@@ -22,7 +24,8 @@
             <td><%= link_to 'Destroy', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
-        </table>
+      </tbody>
+      </table>
 
         <br />
 

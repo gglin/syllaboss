@@ -61,10 +61,10 @@
             <table class="table table-bordered time-in-column1 tablesorter" id="myTable">
               <thead>
                 <tr>
-                  <th>Day</th>
+                  <th colspan="2">Day</th>
                   <th>Week</th>
                   <th>Date</th>
-                  <th>Schedule</th>
+                  <th class="not_sortable">Schedule</th>
                   <th><%= link_to 'POTD', potds_path %></th>
                   <th><%= link_to 'Labs', labs_path %></th>
                   <th><%= link_to 'Homeworks', homeworks_path %></th>
@@ -73,13 +73,12 @@
               </thead>
               <tbody>
                 <% @school_days.each do |school_day| %>
-                  <tr class="hoverable">
+                  <tr>
                     <td>
                       <h2><%= link_to school_day.ordinal, school_day %></h2>
-                      <span class="admin">
-                        <%= link_to 'Edit', edit_school_day_path(school_day) %>
+                    </td>
+                    <td><%= link_to 'Edit', edit_school_day_path(school_day) %>
                         <%= link_to 'Delete', school_day, method: :delete, data: { confirm: 'Are you sure?' } %>
-                      </span>
                     </td>
                     <td>
                       <h4><%= school_day.week %></h4>

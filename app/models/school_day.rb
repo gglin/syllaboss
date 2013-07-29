@@ -1,5 +1,6 @@
 class SchoolDay < ActiveRecord::Base
-  attr_accessible :calendar_date, :ordinal, :schedule, :week, :links, :potd_id, :links_attributes, :comment_ids
+  attr_accessible :calendar_date, :ordinal, :schedule, :week, :links, :links_attributes, :comment_ids
+  attr_accessible :potd_id, :link_ids, :lecture_ids, :todo_ids, :lab_ids, :homework_ids
 
   belongs_to :potd
 

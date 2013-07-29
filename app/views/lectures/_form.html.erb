@@ -40,7 +40,7 @@
   <div class="control-group">
     <%= f.label :school_day, "Select Day(s)", class: "control-label" %>
     <div class="controls">
-      <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => @lecture.school_day_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple"}) %>
+      <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => @lecture.school_day_ids, :prompt => "Please Select Day(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
     </div>
   </div>
   

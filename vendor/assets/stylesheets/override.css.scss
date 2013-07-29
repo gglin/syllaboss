@@ -126,11 +126,29 @@ textarea {
 }
 
 .widget .sub-widget .widget-head {
-  background-color: #ddd;
+  background-color: #fff !important;
+  border-bottom: 1px solid #ccc !important;
   font-size: 110%;
   color: #000;
   border: none;
   padding: 5px 20px;
+}
+
+.widget .sub-widget .widget-head i {
+  color: #888;
+}
+
+.widget .form-sub-widget .widget-head {
+  background-color: #fff !important;
+  border-bottom: 1px solid #ccc !important;
+  font-size: 18px;
+  color: #000;
+  border: none;
+  padding: 5px 20px;
+}
+
+.widget .form-sub-widget .widget-head i {
+  color: #000;
 }
 
 
@@ -472,10 +490,12 @@ body {
   padding: 15px;
 }
 
+.hoverable .show-on-hover, 
 .hoverable .admin {
   display: none;
 }
 
+.hoverable:hover .show-on-hover,
 .hoverable:hover .admin {
   display: inline;
 }

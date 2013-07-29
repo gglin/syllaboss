@@ -45,7 +45,7 @@
   <div class="container-fluid">
     <div class="row-fluid fit-content">
 
-      <div class="span11 minspan">
+    <!--   <div class="span11 minspan">
 
         <div class="widget wlightblue mainwidget">
           <div class="widget-head">
@@ -53,11 +53,11 @@
             <div class="widget-icons pull-right">
               <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
               <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
-            </div>
-            <div class="clearfix"></div>
-          </div>
+       <!-- </div>
+          <div class="clearfix"></div>
+        </div>  -->
 
-          <div class="widget-content">
+          <!-- <div class="widget-content"> -->
             <table class="table table-bordered time-in-column1 tablesorter" id="myTable">
               <thead>
                 <tr>
@@ -65,48 +65,57 @@
                   <th>Week</th>
                   <th>Date</th>
                   <th>Schedule</th>
-                  <th><%= link_to 'Programmer of the Day', potds_path %></th>
+                  <th><%= link_to 'POTD', potds_path %></th>
                   <th><%= link_to 'Labs', labs_path %></th>
                   <th><%= link_to 'Homeworks', homeworks_path %></th>
                   <th><%= link_to 'Links', links_path %></th>
                 </tr>
+              </thead>
+              <tbody>
                 <% @school_days.each do |school_day| %>
-        <tr class="hoverable">
-          <td>
-            <h2><%= link_to school_day.ordinal, school_day %></h2>
-                <span class="admin"><%= link_to 'Edit', edit_school_day_path(school_day) %>
-                <%= link_to 'Delete', school_day, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-          </td>
-          <td><h4><%= school_day.week %></h4></td>
-          <td><%= school_day.calendar_date %></td>
-
-          <td><%= simple_format(truncate school_day.schedule, length: 150) %></td>
-          <td>
-            <% if school_day.potd %>
-              <%= link_to school_day.potd.name, edit_potd_path(school_day.potd), :target => "_blank" %>
-            <% end %>
-          </td>
-          <td>
-            <% school_day.labs.each do |lab| %>
-             <%= link_to lab.name, lab.http_link(lab.lab_url), :target => "_blank"%>
-            <% end %>
-          </td>
-          <td>
-            <% school_day.homeworks.each do |homework| %>
-              <%= link_to homework.title, edit_homework_path(homework), :target => "_blank"%>
-            <% end %>
-          </td>
-          <td>
-            <% school_day.links.each do |link| %>
-              <%= link_to link.title, link.http_link(link.link_url), :target => "_blank"%>
-            <% end %>
-          </td>
-       
-        </tr>
-        <% end %>
-      </table>
+                  <tr class="hoverable">
+                    <td>
+                      <h2><%= link_to school_day.ordinal, school_day %></h2>
+                      <span class="admin">
+                        <%= link_to 'Edit', edit_school_day_path(school_day) %>
+                        <%= link_to 'Delete', school_day, method: :delete, data: { confirm: 'Are you sure?' } %>
+                      </span>
+                    </td>
+                    <td>
+                      <h4><%= school_day.week %></h4>
+                    </td>
+                    <td>
+                      <%= school_day.calendar_date %>
+                    </td>
+                    <td>
+                      <%= simple_format(truncate school_day.schedule, length: 150) %>
+                    </td>
+                    <td>
+                      <% if school_day.potd %>
+                        <%= link_to school_day.potd.name, edit_potd_path(school_day.potd), :target => "_blank" %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% school_day.labs.each do |lab| %>
+                       <%= link_to lab.name, lab.http_link(lab.lab_url), :target => "_blank"%>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% school_day.homeworks.each do |homework| %>
+                        <%= link_to homework.title, edit_homework_path(homework), :target => "_blank"%>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% school_day.links.each do |link| %>
+                        <%= link_to link.title, link.http_link(link.link_url), :target => "_blank"%>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
         
-    </div>
+    <!-- </div> -->
   </div>
 </div>
 

@@ -7,21 +7,24 @@
     <div class="row-fluid">
       <p id="notice"><%= notice %></p>
 
-        <table>
-          <tr>
-            <th>Name</th>
-            <th>Gist</th>
-          </tr>
-
-        <% @todos.each do |todo| %>
-          <tr>
-            <td><%= todo.name %></td>
-            <td><%= link_to todo.gist, todo.http_link(todo.gist), :target => "_blank" %></td>
-            <td><%= link_to 'Show', todo %></td>
-            <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-            <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
+        <table class="tablesorter" id="myTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Gist</th>
+            </tr>
+          </thead>
+        <tbody>
+          <% @todos.each do |todo| %>
+            <tr>
+              <td><%= todo.name %></td>
+              <td><%= link_to todo.gist, todo.http_link(todo.gist), :target => "_blank" %></td>
+              <td><%= link_to 'Show', todo %></td>
+              <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
+              <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
         </table>
 
         <br />

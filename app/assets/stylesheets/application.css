@@ -21,11 +21,10 @@
  *= require jquery.gritter
  *= require jquery.cleditor
  *= require bootstrap-toggle-buttons
- *
  *= require style
  *= require widgets
  *= require bootstrap-responsive
- * 
  *= require override
- *= require jquery-tablesorter/theme.bootstrap
+ *= require ../../../vendor/assets/stylesheets/blue/style
+ *= require school_day_index
  */

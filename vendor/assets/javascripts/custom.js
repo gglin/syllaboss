@@ -259,36 +259,36 @@ $(document).ready(function(){
 
 /* jQuery Notification (Gritter) */
 
-$(document).ready(function(){
+// $(document).ready(function(){
 
-  /* Auto notification */
+//   /* Auto notification */
 
-  setTimeout(function() {
+//   setTimeout(function() {
 
-            var unique_id = $.gritter.add({
-                // (string | mandatory) the heading of the notification
-                title: 'Howdy! User',
-                // (string | mandatory) the text inside the notification
-                text: 'Today you got some messages and new members. Please check it out!',
-                // (string | optional) the image to display on the left
-                image: './img/user-big.jpg',
-                // (bool | optional) if you want it to fade out on its own or just sit there
-                sticky: false,
-                // (int | optional) the time you want it to be alive for before fading out
-                time: '',
-                // (string | optional) the class name you want to apply to that specific message
-                class_name: 'gritter-custom'
-            });
+//             var unique_id = $.gritter.add({
+//                 // (string | mandatory) the heading of the notification
+//                 title: 'Howdy! User',
+//                 // (string | mandatory) the text inside the notification
+//                 text: 'Today you got some messages and new members. Please check it out!',
+//                 // (string | optional) the image to display on the left
+//                 image: './img/user-big.jpg',
+//                 // (bool | optional) if you want it to fade out on its own or just sit there
+//                 sticky: false,
+//                 // (int | optional) the time you want it to be alive for before fading out
+//                 time: '',
+//                 // (string | optional) the class name you want to apply to that specific message
+//                 class_name: 'gritter-custom'
+//             });
 
-            // You can have it return a unique id, this can be used to manually remove it later using
-            setTimeout(function () {
-                $.gritter.remove(unique_id, {
-                    fade: true,
-                    speed: 'slow'
-                });
-            }, 10000);
+//             // You can have it return a unique id, this can be used to manually remove it later using
+//             setTimeout(function () {
+//                 $.gritter.remove(unique_id, {
+//                     fade: true,
+//                     speed: 'slow'
+//                 });
+//             }, 10000);
 
-  }, 4000);
+//   }, 4000);
 
   
   /* On click notification. Refer ui.html file */
@@ -372,7 +372,7 @@ $(document).ready(function(){
     });
 
 
-});
+//});
 
 
 /* Date picker */
@@ -447,10 +447,10 @@ $('.success-toggle-button').toggleButtons({
 
 /* CL Editor */
 
-$(".cleditor").cleditor({
-    width: "auto",
-    height: "auto"
-});
+// $(".cleditor").cleditor({
+//     width: "auto",
+//     height: "auto"
+// });
 
 /* Modal fix */
 

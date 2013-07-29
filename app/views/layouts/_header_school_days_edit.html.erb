@@ -1,0 +1,52 @@
+<div class="page-head">
+  
+  <%= render "layouts/header_active_school_day" %>
+
+  <ul class="breadcrumb">
+    <li>
+
+      <a href="#">Semester 002 </a> 
+
+      <span class="divider">/</span>
+
+    </li>
+
+    <li class="dropdown">
+      <%= link_to "Week #{active_school_day.week}", "#" %>
+      <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+        <i class = "caret"></i>
+      </a>
+
+      <span class="divider">/</span>
+
+      <ul class="dropdown-menu" role="menu">
+        <% SchoolDay.all.each do |school_day| %>
+          <li><%= link_to "Week #{school_day.week}", '#' %></li>
+        <% end %>
+        <li><%= link_to "Show All Weeks", '#' %></li>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+        Day <%= active_school_day.ordinal %>
+        <i class = "caret"></i>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        <% SchoolDay.all.each do |school_day| %>
+          <li><%= link_to "Day #{school_day.ordinal}", edit_school_day_path(school_day) %></li>
+        <% end %>
+        <li><%= link_to "Show All Days", school_days_path %></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul class="breadcrumb">
+    
+    <%= link_to '<i class="icon-caret-left"></i> Prev Day'.html_safe, edit_school_day_path(previous_school_day) if previous_school_day %>
+    &nbsp;
+    <%= link_to 'Next Day <i class="icon-caret-right"></i>'.html_safe, edit_school_day_path(next_school_day) if next_school_day %>
+    
+  </ul>
+
+</div>

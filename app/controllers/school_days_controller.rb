@@ -55,6 +55,8 @@ class SchoolDaysController < ApplicationController
   # GET /school_days/1/edit
   def edit
     @school_day = SchoolDay.find(params[:id])
+    @active_school_day = @school_day
+    load_prev_and_next_day
   end
 
   # POST /school_days

@@ -10,30 +10,31 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :ordinal, "Day" %><br />
+  <div class="control-group">
+    <%= f.label :ordinal, "Day" %>
     <%= f.number_field :ordinal %>
   </div>
 
-  <div class="field">
-    <%= f.label :week %><br />
+  <div class="control-group">
+    <%= f.label :week %>
     <%= f.number_field :week %>
   </div>
 
-  <div class="field">
-    <%= f.label :calendar_date %><br />
+  <div class="control-group">
+    <%= f.label :calendar_date %>
     <%= f.date_select :calendar_date %>
   </div><br><br>
 
  
-  <div class="field">
+  <div class="control-group">
     <em>Please format your schedule with start & end times separated by a dash <br> Example:  <code>9:45 - 11:30: Ruby Lecture 3 </code><br><br></em>
-    <%= f.label :schedule %><br />
+    <%= f.label :schedule %>
     <%= f.text_area :schedule %>
   </div>
  
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions inline">
+    <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
+    <%= link_to "Cancel", :back, class: "btn btn-inverse cancel"  %> 
 <% end %>

@@ -1,14 +1,15 @@
 <% material_type   = material.class.to_s.downcase %>
 <% material_types  = material_type.pluralize %>
-<% material_title  = material_type.capitalize %>
+<% material_title  = material_capitalize(material_type) %>
 <% material_titles = material_title.pluralize %>
 
-<div class="row-fluid">
+<div class="row-fluid fit-content">
   <div class="span9 maxspan minspan">
     <span class="admin">
       <%= link_to 'Edit', self.send("edit_#{material_type}_path", material) %> |
     </span>
     <%= link_to "Show All #{material_titles}", self.send("#{material_types}_path") %>
+    <br><br><br>
   </div>
 </div>
 

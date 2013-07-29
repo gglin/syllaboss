@@ -23,4 +23,12 @@ module SchoolDaysHelper
     SchoolDay.order("calendar_date DESC").where("calendar_date <= ?", Date.today).limit(1).first
   end
 
+  def load_prev_and_next_day
+    ordinals_array = SchoolDay.all.collect {|x| x.ordinal}.sort
+    index_num = ordinals_array.index(@active_school_day.ordinal)
+    
+    @previous_school_day = SchoolDay.find_by_ordinal(ordinals_array[index_num-1]) unless index_num==0
+    @next_school_day = SchoolDay.find_by_ordinal(ordinals_array[index_num+1])
+  end
+
 end

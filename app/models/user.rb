@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   }
 
   def print_name
-    @username
+    username
   end
 
 

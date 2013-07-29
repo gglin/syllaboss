@@ -2,6 +2,8 @@ class SchoolDaysController < ApplicationController
 
   include SchoolDaysHelper
 
+  skip_before_filter :load_current_day, :only => :show
+
   # GET /school_days
   # GET /school_days.json
   def index
@@ -22,14 +24,11 @@ class SchoolDaysController < ApplicationController
   def show
     if params[:id]
       @active_school_day = SchoolDay.find(params[:id])
+      load_prev_and_next_day
+
       @commentable = @active_school_day
       @comments = @commentable.comments
       @comment = Comment.new
-
-      ordinals_array = SchoolDay.all.collect {|x| x.ordinal}.sort
-      index_num = ordinals_array.index(@active_school_day.ordinal)
-      @previous_school_day = SchoolDay.find_by_ordinal(ordinals_array[index_num-1]) unless index_num==0
-      @next_school_day = SchoolDay.find_by_ordinal(ordinals_array[index_num+1])
 
       respond_to do |format|
         format.html # show.html.erb

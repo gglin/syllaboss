@@ -14,7 +14,7 @@
     <li class="dropdown">
       <%= link_to "Week #{@active_school_day.week}", "#" %>
       <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-        <span class = "caret"></span>
+        <i class = "caret"></i>
       </a>
 
       <span class="divider">/</span>
@@ -23,24 +23,31 @@
         <% SchoolDay.all.each do |school_day| %>
           <li><%= link_to "Week #{school_day.week}", '#' %></li>
         <% end %>
+        <li><%= link_to "Show All Weeks", '#' %></li>
       </ul>
     </li>
 
     <li class="dropdown">
       <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
         Day <%= @active_school_day.ordinal %>
-        <span class = "caret"></span>
+        <i class = "caret"></i>
       </a>
       <ul class="dropdown-menu" role="menu">
         <% SchoolDay.all.each do |school_day| %>
           <li><%= link_to "Day #{school_day.ordinal}", school_day_path(school_day) %></li>
         <% end %>
+        <li><%= link_to "Show All Days", school_days_path %></li>
       </ul>
     </li>
   </ul>
 
-<%= link_to 'Previous Day', school_day_path(@previous_school_day) if @previous_school_day%>
-<%= link_to 'Next Day', school_day_path(@next_school_day) if @next_school_day%>
+  <ul class="breadcrumb">
+    
+    <%= link_to '<i class="icon-caret-left"></i> Prev Day'.html_safe, school_day_path(@previous_school_day) if @previous_school_day %>
+    &nbsp;
+    <%= link_to 'Next Day <i class="icon-caret-right"></i>'.html_safe, school_day_path(@next_school_day) if @next_school_day %>
+    
+  </ul>
 
 </div>
 
@@ -49,7 +56,11 @@
 
     <%= render "layouts/messages" %>
 
-    <div class="row-fluid">
+    <!-- Active: <%# @active_school_day.ordinal %>
+    Prev: <%# @previous_school_day.ordinal if @previous_school_day %>
+    Next: <%# @next_school_day.ordinal if @next_school_day %> -->
+
+    <div class="row-fluid fit-content">
 
       <div class="span9 maxspan minspan">
 
@@ -57,7 +68,7 @@
           <div class="widget-head">
             <div class="pull-left">Schedule</div>
             <div class="widget-icons pull-right">
-              <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+              <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
               <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
             </div>
             <div class="clearfix"></div>
@@ -76,7 +87,7 @@
                 <tr>
                   
                   <td><%= row.values[0] %></td>
-                  <td><%= auto_link(row.values[1], :all, :target => "_blank") %></td>
+                  <td><%= auto_link(simple_format(row.values[1]), :all, :target => "_blank") %></td>
                 </tr>
                 <% end %>
               </tbody>
@@ -106,10 +117,7 @@
                 <h4 class="inline">
                   <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.presentation_url) %>" target="_blank"> <%= @active_school_day.potd.name %></a>
                 </h4>
-                <div class="admin pull-right">
-                  <%= link_to "Show", potd_path(@active_school_day.potd) %>
-                  | <%= link_to "Show All", potds_path %>
-                </div>
+                
               </div>
               
               <%= image_tag("http://placekitten.com/200/200") %>
@@ -119,7 +127,11 @@
                 Alan Curtis Kay (born May 17, 1940) is an American computer scientist. He has been elected a Fellow of the American Academy of Arts and 
               </p>
 
-              <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.wikipedia) %>" target="_blank">Wikipedia</a>
+              <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.wikipedia) %>" target="_blank">Wikipedia</a> 
+              <div class="admin pull-right">
+                <%= link_to "Show", potd_path(@active_school_day.potd) %>
+                | <%= link_to "Show All", potds_path %>
+              </div>
 
             </div>
           </div>
@@ -129,7 +141,7 @@
     </div>
     <% end %> 
 
-    <div class="row-fluid">
+    <div class="row-fluid fit-content">
 
       <div class="span9 maxspan minspan">
 

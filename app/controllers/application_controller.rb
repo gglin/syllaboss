@@ -20,6 +20,8 @@ private
   
   def load_current_day
     @active_school_day = closest_day_to_today
+
+    load_prev_and_next_day
   end
 
   def current_user

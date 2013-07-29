@@ -12,14 +12,10 @@ class Potd < ActiveRecord::Base
     text :name, :wikipedia, :presentation_url
   end
 
-  def print_name
-    name
-  end
-
   validates_uniqueness_of :name, :case_sensitive => false
   validates :name, :presence => true
 
-  def title
+  def print_name
     name
   end
 end

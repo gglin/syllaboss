@@ -8,10 +8,6 @@ class Todo < ActiveRecord::Base
 
   has_many :comments, as: :commentable
 
-  def title
-    name
-  end
-
   searchable do
     text :name, :gist
   end

@@ -1,6 +1,6 @@
 <% material_type   = material.class.to_s.downcase %>
 <% material_types  = material_type.pluralize %>
-<% material_title  = material_type.capitalize %>
+<% material_title  = material_capitalize(material_type) %>
 <% material_titles = material_title.pluralize %>
 
 <div class="page-head">
@@ -51,18 +51,18 @@
     <% if @active_school_day.respond_to?(material_types) %>
       <li class="dropdown">
         <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-          <%= material_title %>: <%= material.title %>
+          <%= material_title %>: <%= material.print_name %>
           <span class = "caret"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
           <% @active_school_day.send(material_types).each do |material| %>
-            <li><%= link_to "#{material_title}: #{material.title}", self.send("#{material_type}_path", material) %></li>
+            <li><%= link_to "#{material_title}: #{material.print_name}", self.send("#{material_type}_path", material) %></li>
           <% end %>
           <li><%= link_to "Show All #{material_titles}", self.send("#{material_types}_path") %></li>
         </ul>
       </li>
     <% else %>
-      <%= material_title %>: <%= material.title %>
+      <%= material_title %>: <%= material.print_name %>
     <% end %>
   </ul>
 </div>

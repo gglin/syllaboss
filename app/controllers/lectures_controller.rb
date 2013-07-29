@@ -19,10 +19,13 @@ class LecturesController < ApplicationController
   # GET /lectures/1.json
   def show
     @lecture = Lecture.find(params[:id])
+
     @commentable = @lecture
     @comments = @commentable.comments
     @comment = Comment.new
+
     @active_school_day = most_recent_day_for_material(@lecture)
+    load_prev_and_next_day
 
     respond_to do |format|
       format.html # show.html.erb

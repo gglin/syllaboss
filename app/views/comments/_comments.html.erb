@@ -2,10 +2,13 @@
 <h4><%= pluralize(@comments.size, "Comment") %></h4> 
 <% @comments.each do |comment| %>
   <div class="comment well well-small hoverable">
-    <%= simple_format comment.content %>
-    posted by <%= comment.user.full_name if comment.user %>
-    <%= time_ago_in_words(comment.created_at) %> ago 
+    <%= auto_link(simple_format(comment.content), :all, :target => "_blank") %>
+    <em style="color: #aaa;">
+      posted by <%= comment.user.full_name if comment.user %>
+      <%= time_ago_in_words(comment.created_at) %> ago 
+    </em>
     <span class="admin">
+      &nbsp; <%= link_to 'Edit', "#" %>
       | <%= link_to 'Delete', [@commentable, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
     </span>
   </div>

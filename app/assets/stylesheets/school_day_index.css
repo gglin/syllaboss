@@ -1,0 +1,27 @@
+#indexTable {
+  width: 90% !important;
+}
+
+  .tablesorter th {
+    background: rgb(230, 238, 238);
+    padding-right: 20px !important;
+  }
+
+  .tablesorter tbody + tr.hoverable {
+    background: #efefef !important;
+  }
+
+  table.tablesorter th.not_sortable{
+  background-image:none !important;
+  cursor:auto !important;
+}
+
+table#indexTable.tablesorter tbody tr:nth-child(2) {
+  background-color:blue;
+}
+/*.tablesorter{
+  border:white !important;
+}
+#indexTable{
+  border:white !important;
+}*/

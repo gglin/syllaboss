@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
     :student => 10
   }
 
+  def print_name
+    username
+  end
+
 
   def set_as_admin 
     self.role = USER_ROLES[:admin]

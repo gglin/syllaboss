@@ -392,9 +392,19 @@ $(document).ready(function(){
   });
 
 
+  function pickDate(dateText, inst) {
+    console.log(dateText);
+    window.location = '/school_days?date=' + dateText;
+  }
+
   $(function() {
-    $( "#todaydate" ).datepicker();
+    $( "#todaydate" ).datepicker({
+      beforeShowDay: $.datepicker.noWeekends,
+      onSelect: pickDate,
+      // gotoCurrent: true
+    });
   });
+
 
 
 

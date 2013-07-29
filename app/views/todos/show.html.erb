@@ -1,20 +1,44 @@
+<%= render partial: "layouts/header_materials_show", locals: {material: @todo} %>
+
 <div class="matter">
   <div class="container-fluid">
-    <div class="row-fluid">
-      <p id="notice"><%= notice %></p>
 
-      <p>
-        <h3><b>Name:</b>
-        <%= @todo.name %></h3>
-      </p>
-      <p>
-        <b>Gist:</b>
-        <%= link_to @todo.gist, @todo.http_link(@todo.gist), :target => "_blank" %>
-      </p>
+    <%= render "layouts/messages" %>
+    
+    <div class="row-fluid fit-content">
 
+      <div class="span9 maxspan minspan">
+        <div class="widget wlightblue mainwidget">
+          <div class="widget-head">
+            <div class="pull-left">To-Do</div>
+            <div class="widget-icons pull-right">
+              <span class="admin"><a href="<%= edit_todo_path %>"><i class="icon-wrench"></i></a></span>
+              <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+              <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
+            </div>
+            <div class="clearfix"></div>
+          </div>
 
-      <%= link_to 'Edit', edit_todo_path(@todo) %> |
-      <%= link_to 'Back', todos_path %>
+          <div class="widget-content">
+            <div class="padd lowtop">
+
+              <p>
+                <h3><%= @todo.print_name %></h3>
+              </p>
+
+              <p>
+                <b>Gist:</b>
+                <%= link_to @todo.gist, @todo.http_link(@todo.gist), :target => "_blank" %>
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+    
+    <%= render partial: "layouts/footer_materials_show", locals: {material: @todo} %>
+
   </div>
 </div>

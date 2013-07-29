@@ -2,6 +2,14 @@ class HomeworksController < ApplicationController
   # GET /homeworks
   # GET /homeworks.json
   def index
+    # if params[:search].present?
+    #   @search = Homework.search do
+    #     fulltext params[:search]
+    #   end
+    #   @homeworks = @search.results
+    # else
+    #   @homeworks = Homework.all
+    # end
     @homeworks = Homework.all
 
     respond_to do |format|
@@ -14,6 +22,13 @@ class HomeworksController < ApplicationController
   # GET /homeworks/1.json
   def show
     @homework = Homework.find(params[:id])
+
+    @commentable = @homework
+    @comments = @commentable.comments
+    @comment = Comment.new
+
+    @active_school_day = most_recent_day_for_material(@homework)
+    load_prev_and_next_day
 
     respond_to do |format|
       format.html # show.html.erb

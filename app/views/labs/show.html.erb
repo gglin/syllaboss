@@ -1,19 +1,40 @@
+<%= render partial: "layouts/header_materials_show", locals: {material: @lab} %>
+
 <div class="matter">
   <div class="container-fluid">
-    <div class="row-fluid">
-      <p id="notice"><%= notice %></p>
 
-      <p>
-        <h3><b>Name:</b>
-        <%= @lab.name %></h3>
-      </p>
-      <p>
-        <b>Gist:</b>
-        <%=link_to @lab.lab_url, @lab.http_link(@lab.lab_url), :target => "_blank" %>
-      </p>
+    <%= render "layouts/messages" %>
+    
+    <div class="row-fluid fit-content">
 
-      <%= link_to 'Edit', edit_lab_path(@lab) %> |
-      <%= link_to 'Back', labs_path %>
+      <div class="span9 maxspan minspan">
+        <div class="widget wlightblue mainwidget">
+          <div class="widget-head">
+            <div class="pull-left">Lab</div>
+            <div class="widget-icons pull-right">
+              <span class="admin"><a href="<%= edit_lab_path %>"><i class="icon-wrench"></i></a></span>
+              <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+              <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="widget-content">
+            <div class="padd lowtop">
+              <p>
+                <h2><%= @lab.print_name %></h2>
+              </p>
+              <p>
+                <%= @lab.lab_url %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+    
+    <%= render partial: "layouts/footer_materials_show", locals: {material: @lab} %>
+
   </div>
 </div>

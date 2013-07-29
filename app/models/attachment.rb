@@ -6,6 +6,14 @@ class Attachment < ActiveRecord::Base
 
   mount_uploader :filename, FileUploader
 
+  searchable do
+    text :attachable_type, :filename, :title  
+  end
+
+  def print_name
+  	title
+  end
+
   def filename_short
     filename.to_s.split("/").last
   end

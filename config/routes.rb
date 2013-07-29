@@ -4,21 +4,40 @@ Pizza::Application.routes.draw do
   # get 'comments/new', to: 'comments#new'
   # post 'comments', to: 'comments#create'
 
+  #get 'show_results', to: 'schooldays#show_results'
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
+  get 'search', to: 'searches#index'
+
+  resources :searches
   resources :users
   resources :sessions
 
-
-  resources :school_days
+  resources :school_days do
+    resources :comments
+  end
   
-  resources :potds
-  resources :links
-  resources :todos
-  resources :labs
-  resources :homeworks
+  resources :potds do
+    resources :comments
+  end
+
+  resources :links do
+    resources :comments
+  end
+
+  resources :todos do
+    resources :comments
+  end
+
+  resources :labs do
+    resources :comments
+  end
+
+  resources :homeworks do
+    resources :comments
+  end
   
   resources :lectures do
     resources :comments
@@ -76,7 +95,7 @@ Pizza::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => 'school_days#index'
+  root :to => 'school_days#show'
 
   # See how all your routes lay out with "rake routes"
 

@@ -4,6 +4,15 @@ class PotdsController < ApplicationController
   before_filter :authorize, only: [:edit, :update]
 
   def index
+    # if params[:search].present?
+    #   @search = Potd.search do
+    #     fulltext params[:search]
+    #   end
+    #   @potds = @search.results
+    # else
+    #   @potds = Potd.all
+    # end
+
     @potds = Potd.all
 
     respond_to do |format|
@@ -16,6 +25,13 @@ class PotdsController < ApplicationController
   # GET /potds/1.json
   def show
     @potd = Potd.find(params[:id])
+
+    @commentable = @potd
+    @comments = @commentable.comments
+    @comment = Comment.new
+
+    @active_school_day = most_recent_day_for_material(@potd)
+    load_prev_and_next_day
 
     respond_to do |format|
       format.html # show.html.erb

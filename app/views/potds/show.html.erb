@@ -1,40 +1,61 @@
+<%= render partial: "layouts/header_materials_show", locals: {material: @potd} %>
+
 <div class="matter">
   <div class="container-fluid">
-    <div class="row-fluid">
-      <p id="notice"><%= notice %></p>
 
-      <p>
-        <h3><b>Name:</b>
-        <%= @potd.name %></h3>
-      </p>
+    <%= render "layouts/messages" %>
+    
+    <div class="row-fluid fit-content">
 
-      <p>
-        <b>Wikipedia:</b>
-        <%= link_to @potd.wikipedia, @potd.http_link(@potd.wikipedia), :target => "_blank" %>
-      </p>
+      <div class="span9 maxspan minspan">
+        <div class="widget wlightblue mainwidget">
+          <div class="widget-head">
+            <div class="pull-left">Programmer of the Day</div>
+            <div class="widget-icons pull-right">
+              <span class="admin"><a href="<%= edit_potd_path %>"><i class="icon-wrench"></i></a></span>
+              <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+              <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
+            </div>
+            <div class="clearfix"></div>
+          </div>
 
-      <p>
-        <b>Presentation Url:</b>
-        <%= link_to @potd.presentation_url, @potd.http_link(@potd.presentation_url), :target => "_blank" %>
-      </p>
+          <div class="widget-content">
+            <div class="padd lowtop">
 
-      <p>
-      <b>Days:</b>
-      <% if @potd.school_day_ids.empty? %>
-        No Days Selected!
-      <% else %>
-        <ul>
-        <% @potd.school_days.each do |school_day| %>
-          <li>
-            <%= link_to "Day #{school_day.ordinal} (#{school_day.calendar_date})", school_day_path(school_day) %>
-          </li>
-        <% end %>
-        </ul>
-      <% end %>
-      </p>
+              <p>
+                <h3><%= link_to @potd.name , @potd.http_link(@potd.presentation_url), :target => "_blank" %></h3>
+              </p>
 
-      <%= link_to 'Edit', edit_potd_path(@potd) %> |
-      <%= link_to 'Back', potds_path %>
+              <%= image_tag("http://placekitten.com/200/200") %>
+              <br>
+
+              <p>
+                <%= link_to "Wikipedia", @potd.http_link(@potd.wikipedia), :target => "_blank" %>
+              </p>
+
+              <p>
+                <b>Days:</b>
+                <% if @potd.school_day_ids.empty? %>
+                  No Days Selected!
+                <% else %>
+                  <ul>
+                  <% @potd.school_days.each do |school_day| %>
+                    <li>
+                      <%= link_to "Day #{school_day.ordinal} (#{school_day.calendar_date})", school_day_path(school_day) %>
+                    </li>
+                  <% end %>
+                  </ul>
+                <% end %>
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+    
+    <%= render partial: "layouts/footer_materials_show", locals: {material: @potd} %>
+
   </div>
 </div>

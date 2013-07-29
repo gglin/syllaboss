@@ -10,5 +10,13 @@ class Lecture < ActiveRecord::Base
   has_many :attachments, as: :attachable
   has_many :comments, as: :commentable
 
+  searchable do
+    text :title, :content, :creator, :file_upload  
+  end
+
+  def print_name
+    title
+  end
+
   accepts_nested_attributes_for :comments, allow_destroy: true
 end

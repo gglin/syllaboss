@@ -2,6 +2,15 @@ class LabsController < ApplicationController
   # GET /labs
   # GET /labs.json
   def index
+    # if params[:search].present?
+    #   @search = Lab.search do
+    #     fulltext params[:search]
+    #   end
+    #   @labs = @search.results
+    # else
+    #   @labs = Lab.all
+    # end
+
     @labs = Lab.all
 
     respond_to do |format|
@@ -14,6 +23,13 @@ class LabsController < ApplicationController
   # GET /labs/1.json
   def show
     @lab = Lab.find(params[:id])
+
+    @commentable = @lab
+    @comments = @commentable.comments
+    @comment = Comment.new
+
+    @active_school_day = most_recent_day_for_material(@lab)
+    load_prev_and_next_day
 
     respond_to do |format|
       format.html # show.html.erb

@@ -7,4 +7,12 @@ class Homework < ActiveRecord::Base
   has_many :school_days, :through => :school_day_homeworks
 
   has_many :comments, as: :commentable
+
+  searchable do
+    text :title, :content  
+  end
+
+  def print_name
+  	title
+  end
 end

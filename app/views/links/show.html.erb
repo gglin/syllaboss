@@ -1,17 +1,48 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: "layouts/header_materials_show", locals: {material: @link} %>
 
+<div class="matter">
+  <div class="container-fluid">
 
-<p>
-  <b>Title:</b>
-  <%= @link.title %>
-</p>
-<p>
-  <b>Link:</b>
-  <%=link_to @link.link_url, @link.http_link(@link.link_url), :target => "_blank" %>
-</p>
-<p>
-  <b>Description:</b>
-  <%= @link.description %>
-</p>
-<%= link_to 'Edit', edit_link_path(@link) %> |
-<%= link_to 'Back', links_path %>
+    <%= render "layouts/messages" %>
+    
+    <div class="row-fluid fit-content">
+
+      <div class="span9 maxspan minspan">
+        <div class="widget wlightblue mainwidget">
+          <div class="widget-head">
+            <div class="pull-left">Link</div>
+            <div class="widget-icons pull-right">
+              <span class="admin"><a href="<%= edit_link_path %>"><i class="icon-wrench"></i></a></span>
+              <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+              <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="widget-content">
+            <div class="padd lowtop">
+
+              <p>
+                <h2><%= @link.print_name %></h2>
+              </p>
+
+              <p>
+                <%=link_to @link.link_url, @link.http_link(@link.link_url), :target => "_blank" %>
+              </p>
+
+              <p>
+                <b>Description:</b>
+                <%= @link.description %>
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+    <%= render partial: "layouts/footer_materials_show", locals: {material: @link} %>
+
+  </div>
+</div>

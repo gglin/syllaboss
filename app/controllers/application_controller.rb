@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+
+  include SchoolDaysHelper
+
   before_filter :load_current_day
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -7,10 +10,18 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
+  # @search = Lecture.search do
+  #   fulltext params[:lectures_controller][:search]
+  # end
+  # @lectures = @search.results
+
+
 private
   
   def load_current_day
-    @active_school_day = SchoolDay.first
+    @active_school_day = closest_day_to_today
+
+    load_prev_and_next_day
   end
 
   def current_user

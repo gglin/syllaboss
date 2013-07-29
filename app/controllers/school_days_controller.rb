@@ -1,25 +1,43 @@
 class SchoolDaysController < ApplicationController
+
+  include SchoolDaysHelper
+
+  skip_before_filter :load_current_day, :only => :show
+
   # GET /school_days
   # GET /school_days.json
-
-  
   def index
-    @school_days = SchoolDay.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @school_days }
+    if params[:date]
+      redirect_date(params[:date])
+    else
+      @school_days = SchoolDay.all
+      
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @school_days }
+      end
     end
   end
 
   # GET /school_days/1
   # GET /school_days/1.json
   def show
-    @active_school_day = SchoolDay.find(params[:id])
+    if params[:id]
+      @active_school_day = SchoolDay.find(params[:id])
+      load_prev_and_next_day
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @active_school_day }
+      @commentable = @active_school_day
+      @comments = @commentable.comments
+      @comment = Comment.new
+
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @active_school_day }
+      end
+    else
+      flash.keep
+      @active_school_day = closest_day_to_today
+      redirect_to school_day_path(@active_school_day.id)
     end
   end
 

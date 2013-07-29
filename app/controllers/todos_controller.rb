@@ -2,8 +2,17 @@ class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
   def index
-    @todos = Todo.all
+    # if params[:search].present?
+    #   @search = Todo.search do
+    #     fulltext params[:search]
+    #   end
+    #   @todos = @search.results
+    # else
+    #   @todos = Todo.all
+    # end
 
+    @todos = Todo.all
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @todos }
@@ -14,6 +23,13 @@ class TodosController < ApplicationController
   # GET /todos/1.json
   def show
     @todo = Todo.find(params[:id])
+
+    @commentable = @todo
+    @comments = @commentable.comments
+    @comment = Comment.new
+
+    @active_school_day = most_recent_day_for_material(@todo)
+    load_prev_and_next_day
 
     respond_to do |format|
       format.html # show.html.erb

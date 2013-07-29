@@ -51,6 +51,9 @@ class LabsController < ApplicationController
   # GET /labs/1/edit
   def edit
     @lab = Lab.find(params[:id])
+
+    @active_school_day = most_recent_day_for_material(@lab)
+    load_prev_and_next_day
   end
 
   # POST /labs

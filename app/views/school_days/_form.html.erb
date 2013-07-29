@@ -1,4 +1,4 @@
-<%= form_for(@school_day) do |f| %>
+<%= form_for @school_day, :html => {class: "form-horizontal"} do |f| %>
   <% if @school_day.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@school_day.errors.count, "error") %> prohibited this school_day from being saved:</h2>
@@ -10,30 +10,146 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :ordinal, "Day" %><br />
-    <%= f.number_field :ordinal %>
+
+  <%= field_set_tag do %>
+  <div class="control-group">
+    <%= f.label :ordinal, "Day", class: "control-label" %>
+    <div class="controls">
+      <%= f.number_field :ordinal %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :week %><br />
-    <%= f.number_field :week %>
+  <div class="control-group">
+    <%= f.label :week, class: "control-label" %>
+    <div class="controls">
+      <%= f.number_field :week %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :calendar_date %><br />
-    <%= f.date_select :calendar_date %>
-  </div><br><br>
-
+  <div class="control-group">
+    <%= f.label :calendar_date, "Calendar Date", class: "control-label" %>
+    <div class="controls">
+      <%= f.date_select :calendar_date %>
+    </div>
+  </div>
+  <% end %>
  
-  <div class="field">
-    <em>Please format your schedule with start & end times separated by a dash <br> Example:  <code>9:45 - 11:30: Ruby Lecture 3 </code><br><br></em>
-    <%= f.label :schedule %><br />
-    <%= f.text_area :schedule %>
-  </div>
- 
 
-  <div class="actions">
-    <%= f.submit %>
+  <!-- Sub-widget -->
+  <div class="widget form-sub-widget hoverable">
+    <div class="widget-head">
+      <div class="pull-left">Schedule</div>
+      <div class="widget-icons pull-right">
+        <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="widget-content">
+      <div class="padd">
+        <ul>
+          <%= field_set_tag "" do %>
+          <div class="">
+            <em>Please format your schedule with start & end times separated by a dash <br> Example:  <code>9:45 - 11:30: Ruby Lecture 3 </code></em>
+            <br><br>
+            <%= f.label :schedule, class: "control-label" %>
+            <div class="controls">
+              <%= f.text_area :schedule, rows: 15 %>
+            </div>
+          </div>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
+  <!-- End Sub-widget -->
+
+
+  <!-- Sub-widget -->
+  <div class="widget form-sub-widget hoverable">
+    <div class="widget-head">
+      <div class="pull-left">Resources</div>
+      <div class="widget-icons pull-right">
+        <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="widget-content">
+      <div class="padd">
+        <ul>
+          <%= field_set_tag "" do %>
+
+            <!-- SeLectures -->
+            <div class="control-group">
+              <%= f.label :lecture, "Select Lecture(s)", class: "control-label" %>
+              <div class="controls">
+                <%= f.collection_select(:lecture_ids, Lecture.all, :id, :print_name, {:selected => @school_day.lecture_ids, :prompt => "Please Select Lecture(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
+                <span><%= link_to "Create New", new_lecture_path, class: "btn btn-primary cancel" %></span>
+              </div>
+            </div>
+
+            <!-- To-Dos -->
+            <div class="control-group">
+              <%= f.label :todo, "Select To-Do(s)", class: "control-label" %>
+              <div class="controls">
+                <%= f.collection_select(:todo_ids, Todo.all, :id, :print_name, {:selected => @school_day.todo_ids, :prompt => "Please Select To-Do(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
+                <span><%= link_to "Create New", new_todo_path, class: "btn btn-primary cancel" %></span>
+              </div>
+            </div>
+
+            <!-- POTD -->
+            <div class="control-group">
+              <%= f.label :potd, "Select POTD", class: "control-label" %>
+              <div class="controls">
+                <%= f.collection_select(:potd_id, Potd.all, :id, :print_name, {:selected => @school_day.potd_id, :prompt => "Please Select POTD"}, {:class => "span4"}) %>
+                <span><%= link_to "Create New", new_potd_path, class: "btn btn-primary cancel" %></span>
+              </div>
+            </div>
+
+            <!-- Labs -->
+            <div class="control-group">
+              <%= f.label :lab, "Select Lab(s)", class: "control-label" %>
+              <div class="controls">
+                <%= f.collection_select(:lab_ids, Lab.all, :id, :print_name, {:selected => @school_day.lab_ids, :prompt => "Please Select Lab(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
+                <span><%= link_to "Create New", new_lab_path, class: "btn btn-primary cancel" %></span>
+              </div>
+            </div>
+
+            <!-- Links -->
+            <div class="control-group">
+              <%= f.label :link, "Select Link(s)", class: "control-label" %>
+              <div class="controls">
+                <%= f.collection_select(:link_ids, Link.all, :id, :print_name, {:selected => @school_day.link_ids, :prompt => "Please Select Link(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
+                <span><%= link_to "Create New", new_link_path, class: "btn btn-primary cancel" %></span>
+              </div>
+            </div>
+
+            <!-- Homeworks -->
+            <div class="control-group">
+              <%= f.label :homework, "Select Homework(s)", class: "control-label" %>
+              <div class="controls">
+                <%= f.collection_select(:homework_ids, Homework.all, :id, :print_name, {:selected => @school_day.homework_ids, :prompt => "Please Select Homework(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
+                <span><%= link_to "Create New", new_homework_path, class: "btn btn-primary cancel" %></span>
+              </div>
+            </div>
+
+          <% end %>               
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Sub-widget -->
+
+  <br>
+
+  <div class="actions inline">
+    <%= f.submit "Submit", class: "btn btn-info" %>
+  </div>
+    <% if @school_day.persisted? %>
+      <%= link_to "Cancel", @school_day, class: "btn btn-inverse cancel" %> 
+    <% else %>
+      <%= link_to "Cancel", "/", class: "btn btn-inverse cancel" %> 
+    <% end %>
+
 <% end %>

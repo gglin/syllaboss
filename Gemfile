@@ -8,12 +8,12 @@ gem 'rails', '3.2.13'
 gem 'sqlite3'
 gem 'cancan'
 gem 'rinku', :require => 'rails_rinku'
-
+gem 'sunspot_solr'
 
 group :development do
   gem "better_errors"
-  gem 'debugger'
-  gem 'sunspot_solr'
+  gem 'debugger'  
+  gem 'binding_of_caller'
 end
 
 

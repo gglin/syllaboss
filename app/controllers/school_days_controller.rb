@@ -2,7 +2,7 @@ class SchoolDaysController < ApplicationController
 
   include SchoolDaysHelper
 
-  skip_before_filter :load_current_day, :only => :show
+  skip_before_filter :load_current_day, :only => [:show, :edit]
 
   # GET /school_days
   # GET /school_days.json
@@ -55,6 +55,9 @@ class SchoolDaysController < ApplicationController
   # GET /school_days/1/edit
   def edit
     @school_day = SchoolDay.find(params[:id])
+    
+    @active_school_day = @school_day
+    load_prev_and_next_day
   end
 
   # POST /school_days

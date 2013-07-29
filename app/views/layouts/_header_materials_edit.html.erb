@@ -1,0 +1,68 @@
+<% material_type   = material.class.to_s.downcase %>
+<% material_types  = material_type.pluralize %>
+<% material_title  = material_capitalize(material_type) %>
+<% material_titles = material_title.pluralize %>
+
+<div class="page-head">
+
+  <%= render "layouts/header_active_school_day" %>
+
+  <ul class="breadcrumb">
+    <li>
+
+      <a href="#">Semester 002 </a> 
+
+      <span class="divider">/</span>
+
+    </li>
+
+    <li class="dropdown">
+      <%= link_to "Week #{@active_school_day.week}", "#" %>
+      <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+        <span class = "caret"></span>
+      </a>
+
+      <span class="divider">/</span>
+
+      <ul class="dropdown-menu" role="menu">
+        <% SchoolDay.all.each do |school_day| %>
+          <li><%= link_to "Week #{school_day.week}", '#' %></li>
+        <% end %>
+        <li><%= link_to "Show All Weeks", '#' %></li>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <%= link_to "Day #{@active_school_day.ordinal}", @active_school_day %>
+      <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+        <span class = "caret"></span>
+      </a>
+
+      <span class="divider">/</span>
+
+      <ul class="dropdown-menu" role="menu">
+        <% SchoolDay.all.each do |school_day| %>
+          <li><%= link_to "Day #{school_day.ordinal}", school_day_path(school_day) %></li>
+        <% end %>
+        <li><%= link_to "Show All Days", school_days_path %></li>
+      </ul>
+    </li>
+    
+    <% if @active_school_day.respond_to?(material_types) %>
+      <li class="dropdown">
+        <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+          <%= material_title %>: <%= material.print_name %>
+          <span class = "caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <% @active_school_day.send(material_types).each do |material| %>
+            <li><%= link_to "#{material_title}: #{material.print_name}", self.send("edit_#{material_type}_path", material) %></li>
+          <% end %>
+          <li><%= link_to "Show All #{material_titles}", self.send("#{material_types}_path") %></li>
+        </ul>
+      </li>
+    <% else %>
+      <%= material_title %>: <%= material.print_name %>
+    <% end %>
+  </ul>
+</div>

@@ -55,6 +55,9 @@ class PotdsController < ApplicationController
   def edit
     @potd = Potd.find(params[:id])
     @action = "Update"
+
+    @active_school_day = most_recent_day_for_material(@potd)
+    load_prev_and_next_day
   end
 
   # POST /potds

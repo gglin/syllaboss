@@ -51,6 +51,9 @@ class TodosController < ApplicationController
   # GET /todos/1/edit
   def edit
     @todo = Todo.find(params[:id])
+
+    @active_school_day = most_recent_day_for_material(@todo)
+    load_prev_and_next_day
   end
 
   # POST /todos

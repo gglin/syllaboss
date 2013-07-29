@@ -50,6 +50,9 @@ class LinksController < ApplicationController
   # GET /links/1/edit
   def edit
     @link = Link.find(params[:id])
+
+    @active_school_day = most_recent_day_for_material(@link)
+    load_prev_and_next_day
   end
 
   # POST /links

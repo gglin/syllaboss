@@ -129,7 +129,7 @@
         <ul>
           <% @active_school_day.links.each_with_index do |link, index| %>
           <li>
-            <%= link_to link.print_name, link.http_link(link.link_url),target: "_blank" %>
+            <a href="<%= link.http_link(link.link_url) %>" target="_blank"><%= link.print_name %></a>
           </li>
           <% end %>
         </ul>

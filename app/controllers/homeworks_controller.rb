@@ -50,6 +50,9 @@ class HomeworksController < ApplicationController
   # GET /homeworks/1/edit
   def edit
     @homework = Homework.find(params[:id])
+
+    @active_school_day = most_recent_day_for_material(@homework)
+    load_prev_and_next_day
   end
 
   # POST /homeworks

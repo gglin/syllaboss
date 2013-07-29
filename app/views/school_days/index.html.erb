@@ -64,7 +64,13 @@
                   <th colspan="2">Day</th>
                   <th>Week</th>
                   <th>Date</th>
-                  <th class="not_sortable">Schedule</th>
+                  <script>
+                    function test() {
+                      alert("ASDF");
+                     event.preventDefault();
+                    }
+                  </script>
+                  <th class="not_sortable" onclick="test();">Schedule</th>
                   <th><%= link_to 'POTD', potds_path %></th>
                   <th><%= link_to 'Labs', labs_path %></th>
                   <th><%= link_to 'Homeworks', homeworks_path %></th>

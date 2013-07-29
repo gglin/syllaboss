@@ -15,14 +15,11 @@
 table.tablesorter th.not_sortable{
   background-image:none !important;
   cursor:auto !important;
-}
 
-table#indexTable.tablesorter tbody tr:nth-child(2) {
-  background-color:blue;
-}
 /*.tablesorter{
   border:white !important;
 }
+<<<<<<< HEAD
 #indexTable{
   border:white !important;
 }*/
@@ -31,4 +28,3 @@ table.tablesorter th.not_sortable{
   background-image:none !important;
   cursor:auto !important;
 }
-

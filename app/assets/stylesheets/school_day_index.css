@@ -1,17 +1,18 @@
+
 #indexTable {
   width: 90% !important;
 }
 
-  .tablesorter th {
+.tablesorter th {
     background: rgb(230, 238, 238);
     padding-right: 20px !important;
-  }
+}
 
-  .tablesorter tbody + tr.hoverable {
+.tablesorter tbody + tr.hoverable {
     background: #efefef !important;
-  }
+ }
 
-  table.tablesorter th.not_sortable{
+table.tablesorter th.not_sortable{
   background-image:none !important;
   cursor:auto !important;
 }
@@ -25,3 +26,6 @@ table#indexTable.tablesorter tbody tr:nth-child(2) {
 #indexTable{
   border:white !important;
 }*/
+
+  
+

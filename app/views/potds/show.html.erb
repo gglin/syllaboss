@@ -23,33 +23,29 @@
             <div class="padd lowtop">
 
               <p>
-                <h3><b>Name:</b>
-                <%= @potd.name %></h3>
+                <h3><%= link_to @potd.name , @potd.http_link(@potd.presentation_url), :target => "_blank" %></h3>
+              </p>
+
+              <%= image_tag("http://placekitten.com/200/200") %>
+              <br>
+
+              <p>
+                <%= link_to "Wikipedia", @potd.http_link(@potd.wikipedia), :target => "_blank" %>
               </p>
 
               <p>
-                <b>Wikipedia:</b>
-                <%= link_to @potd.wikipedia, @potd.http_link(@potd.wikipedia), :target => "_blank" %>
-              </p>
-
-              <p>
-                <b>Presentation Url:</b>
-                <%= link_to @potd.presentation_url, @potd.http_link(@potd.presentation_url), :target => "_blank" %>
-              </p>
-
-              <p>
-              <b>Days:</b>
-              <% if @potd.school_day_ids.empty? %>
-                No Days Selected!
-              <% else %>
-                <ul>
-                <% @potd.school_days.each do |school_day| %>
-                  <li>
-                    <%= link_to "Day #{school_day.ordinal} (#{school_day.calendar_date})", school_day_path(school_day) %>
-                  </li>
+                <b>Days:</b>
+                <% if @potd.school_day_ids.empty? %>
+                  No Days Selected!
+                <% else %>
+                  <ul>
+                  <% @potd.school_days.each do |school_day| %>
+                    <li>
+                      <%= link_to "Day #{school_day.ordinal} (#{school_day.calendar_date})", school_day_path(school_day) %>
+                    </li>
+                  <% end %>
+                  </ul>
                 <% end %>
-                </ul>
-              <% end %>
               </p>
 
             </div>

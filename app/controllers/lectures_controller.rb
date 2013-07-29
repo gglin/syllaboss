@@ -47,6 +47,9 @@ class LecturesController < ApplicationController
   # GET /lectures/1/edit
   def edit
     @lecture = Lecture.find(params[:id])
+    
+    @active_school_day = most_recent_day_for_material(@lecture)
+    load_prev_and_next_day
   end
 
   # POST /lectures

@@ -1,4 +1,4 @@
-<%= form_for(@link) do |f| %>
+<%= form_for @link, :html => {class: "form-horizontal"} do |f| %>
   <% if @link.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
@@ -11,25 +11,38 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+  <div class="control-group">
+    <%= f.label :title, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :title %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :link_url %><br />
-    <%= f.text_field :link_url %>
+  <div class="control-group">
+    <%= f.label :link_url, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :link_url %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+  <div class="control-group">
+    <%= f.label :description, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :description %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :school_day, "Select Day(s) for this Lecture:" %><br />
-    <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => @link.school_day_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple"}) %>
+  <div class="control-group">
+    <%= f.label :school_day, "Select Day(s)", class: "control-label" %>
+    <div class="controls">
+      <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => @link.school_day_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple"}) %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "#{@action} Submit" %>
+  <div class="actions inline">
+    <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
+    <% if @link.persisted? %>
+      <%= link_to "Cancel", @link, class: "btn btn-inverse cancel" %> 
+    <% else %>
+      <%= link_to "Cancel", "/", class: "btn btn-inverse cancel" %> 
+    <% end %>
 <% end %>

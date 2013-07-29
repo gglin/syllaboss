@@ -31,14 +31,14 @@
   </div>
 
   <div class="control-group">
-    <%= f.label :attachment, "Attachment(s):" %> <%= link_to "Create New", new_attachment_path, target: "_blank", class: "btn btn-info new-material control-label" %>
+    <%= f.label :attachment, "Attachment(s)" %> <%= link_to "Create New", new_attachment_path, target: "_blank", class: "btn btn-info new-material control-label" %>
     <div class="controls">
       <%= f.collection_select(:attachment_ids, Attachment.order("title"), :id, :title, {:selected => @lecture.attachment_ids, :prompt => "Please Select Attachment(s)"}, {:class => "span4", multiple: "multiple"}) %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :school_day, "Select Day(s) :", class: "control-label" %>
+    <%= f.label :school_day, "Select Day(s)", class: "control-label" %>
     <div class="controls">
       <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => @lecture.school_day_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple"}) %>
     </div>
@@ -47,5 +47,9 @@
   <div class="actions inline">
     <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
-    <%= link_to "Cancel", :back, class: "btn btn-inverse cancel"  %> 
+    <% if @lecture.persisted? %>
+      <%= link_to "Cancel", @lecture, class: "btn btn-inverse cancel" %> 
+    <% else %>
+      <%= link_to "Cancel", "/", class: "btn btn-inverse cancel" %> 
+    <% end %>
 <% end %>

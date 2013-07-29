@@ -1,6 +1,36 @@
-<h1>Editing homework</h1>
+<%= render partial: "layouts/header_materials_edit", locals: {active_school_day: @school_day, previous_school_day: @previous_school_day, next_school_day: @next_school_day, material: @homework} %>
 
-<%= render 'form' %>
+<div class="matter">
+  <div class="container-fluid">
 
-<%= link_to 'Show', @homework %> |
-<%= link_to 'Back', homeworks_path %>
+    <%= render "layouts/messages" %>
+    
+    <div class="row-fluid fit-content">
+
+      <div class="span9 maxspan minspan">
+        <div class="widget wlightblue mainwidget">
+          <div class="widget-head">
+            <div class="pull-left">Editing Homework</div>
+            <div class="widget-icons pull-right">
+              <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+              <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="widget-content">
+            <div class="padd lowtop">
+
+              <%= render 'form' %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+

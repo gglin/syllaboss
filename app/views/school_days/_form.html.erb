@@ -1,4 +1,4 @@
-<%= form_for(@school_day) do |f| %>
+<%= form_for @school_day, :html => {class: "form-horizontal"} do |f| %>
   <% if @school_day.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@school_day.errors.count, "error") %> prohibited this school_day from being saved:</h2>
@@ -10,31 +10,45 @@
       </ul>
     </div>
   <% end %>
+
   <div class="control-group">
-    <%= f.label :ordinal, "Day" %>
-    <%= f.number_field :ordinal %>
+    <%= f.label :ordinal, "Day", class: "control-label" %>
+    <div class="controls">
+      <%= f.number_field :ordinal %>
+    </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :week %>
-    <%= f.number_field :week %>
+    <%= f.label :week, class: "control-label" %>
+    <div class="controls">
+      <%= f.number_field :week %>
+    </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :calendar_date %>
-    <%= f.date_select :calendar_date %>
-  </div><br><br>
-
- 
-  <div class="control-group">
-    <em>Please format your schedule with start & end times separated by a dash <br> Example:  <code>9:45 - 11:30: Ruby Lecture 3 </code><br><br></em>
-    <%= f.label :schedule %>
-    <%= f.text_area :schedule %>
+    <%= f.label :calendar_date, "Calendar Date", class: "control-label" %>
+    <div class="controls">
+      <%= f.date_select :calendar_date %>
+    </div>
   </div>
- 
+
+  <hr>
+  <div class="">
+    <em>Please format your schedule with start & end times separated by a dash <br> Example:  <code>9:45 - 11:30: Ruby Lecture 3 </code></em>
+    <br><br>
+    <%= f.label :schedule, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_area :schedule, rows: 15 %>
+    </div>
+  </div>
+  <br>
 
   <div class="actions inline">
     <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
-    <%= link_to "Cancel", :back, class: "btn btn-inverse cancel"  %> 
+    <% if @school_day.persisted? %>
+      <%= link_to "Cancel", @school_day, class: "btn btn-inverse cancel" %> 
+    <% else %>
+      <%= link_to "Cancel", "/", class: "btn btn-inverse cancel" %> 
+    <% end %>
 <% end %>

@@ -56,7 +56,7 @@
         </a>
         <ul class="dropdown-menu" role="menu">
           <% @active_school_day.send(material_types).each do |material| %>
-            <li><%= link_to "#{material_title}: #{material.print_name}", self.send("#{material_type}_path", material) %></li>
+            <li><%= link_to "#{material_title}: #{material.print_name}", self.send("edit_#{material_type}_path", material) %></li>
           <% end %>
           <li><%= link_to "Show All #{material_titles}", self.send("#{material_types}_path") %></li>
         </ul>

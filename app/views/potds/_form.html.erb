@@ -1,4 +1,4 @@
-<%= form_for(@potd) do |f| %>
+<%= form_for @potd, :html => {class: "form-horizontal"}  do |f| %>
   <% if @potd.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@potd.errors.count, "error") %> prohibited this potd from being saved:</h2>
@@ -11,27 +11,40 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :name %>
+    </div>
   </div>
-   <div class="field">
-    <%= f.label :wikipedia %><br />
-    <%= f.text_field :wikipedia %>
+   <div class="control-group">
+    <%= f.label :wikipedia, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :wikipedia %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :presentation_url %><br />
-    <%= f.text_field :presentation_url %>
+  <div class="control-group">
+    <%= f.label :presentation_url, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :presentation_url %>
+    </div>
   </div>
 
  
-   <div class="field">
-    <%= f.label :school_day, "Select Day(s) for this Programmer:" %><br />
-    <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => @potd.school_day_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple"}) %>
+   <div class="control-group">
+    <%= f.label :school_day, "Select Day(s)", class: "control-label" %>
+    <div class="controls">
+      <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => @potd.school_day_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple"}) %>
+    </div>
   </div>
 
 
-  <div class="actions">
-    <%= f.submit "#{@action} Programmer of the Day" %>
+  <div class="actions inline">
+    <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
+    <% if @potd.persisted? %>
+      <%= link_to "Cancel", @potd, class: "btn btn-inverse cancel" %> 
+    <% else %>
+      <%= link_to "Cancel", "/", class: "btn btn-inverse cancel" %> 
+    <% end %>
 <% end %>

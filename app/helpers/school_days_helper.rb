@@ -20,7 +20,10 @@ module SchoolDaysHelper
   end
 
   def closest_day_to_today
-    SchoolDay.order("calendar_date DESC").where("calendar_date <= ?", Date.today).limit(1).first
+    closest_day = SchoolDay.order("calendar_date DESC").where("calendar_date <= ?", Date.today).limit(1).first
+    if closest_day.nil?
+      closest_day = SchoolDay.order("calendar_date DESC").where("calendar_date >= ?", Date.today).limit(1).first
+    end
   end
 
   def load_prev_and_next_day

@@ -1,27 +1,76 @@
-<div class="page-head">
-  <h1>All School Days</h1>
-</div>
 
+<div class="page-head">
+  <h3 class="inline">All School Days</h3>
+ <span class="btn btn-warning pull-right admin-title"><%= link_to 'New School day', new_school_day_path %></span>
+  <ul class="breadcrumb" >
+    <li>
+
+      <a href="#">Semester 002 </a> 
+
+      <span class="divider">/</span>
+
+    </li>
+
+    <li class="dropdown">
+      <%= link_to "Week #{@active_school_day.week}", "#" %>
+      <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+        <i class = "caret"></i>
+      </a>
+
+      <span class="divider">/</span>
+
+      <ul class="dropdown-menu" role="menu">
+        <% SchoolDay.all.each do |school_day| %>
+          <li><%= link_to "Week #{school_day.week}", '#' %></li>
+        <% end %>
+        <li><%= link_to "Show All Weeks", '#' %></li>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+        Day <%= @active_school_day.ordinal %>
+        <i class = "caret"></i>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        <% SchoolDay.all.each do |school_day| %>
+          <li><%= link_to "Day #{school_day.ordinal}", school_day_path(school_day) %></li>
+        <% end %>
+        <li><%= link_to "Show All Days", school_days_path %></li>
+      </ul>
+    </li>
+  </ul>
+</div>
 <div class="matter">
   <div class="container-fluid">
-    <div class="row-fluid">
+    <div class="row-fluid fit-content">
 
-      <%= render "layouts/messages" %>
+      <div class="span11 minspan">
 
-      <table class="table">
-        <tr>
-          <th>Day</th>
-          <th>Week</th>
-          <th>Date</th>
+        <div class="widget wlightblue mainwidget">
+          <div class="widget-head">
+            <div class="pull-left"></div>
+            <div class="widget-icons pull-right">
+              <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
+              <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
+            </div>
+            <div class="clearfix"></div>
+          </div>
 
-          <th>Schedule</th>
-          <th><%= link_to 'Programmer of the Day', potds_path %></th>
-          <th><%= link_to 'Labs', labs_path %></th>
-          <th><%= link_to 'Homeworks', homeworks_path %></th>
-          <th><%= link_to 'Links', links_path %></th>
-        </tr>
-
-        <% @school_days.each do |school_day| %>
+          <div class="widget-content">
+            <table class="table table-bordered time-in-column1 tablesorter" id="myTable">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>Week</th>
+                  <th>Date</th>
+                  <th>Schedule</th>
+                  <th><%= link_to 'Programmer of the Day', potds_path %></th>
+                  <th><%= link_to 'Labs', labs_path %></th>
+                  <th><%= link_to 'Homeworks', homeworks_path %></th>
+                  <th><%= link_to 'Links', links_path %></th>
+                </tr>
+                <% @school_days.each do |school_day| %>
         <tr class="hoverable">
           <td>
             <h2><%= link_to school_day.ordinal, school_day %></h2>
@@ -62,5 +111,4 @@
 </div>
 
 <br />
-
-<%= link_to 'New School day', new_school_day_path %>
+              

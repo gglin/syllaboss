@@ -12,8 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-//=
+
 //= require bootstrap
 //= require jquery-ui-1.10.2.custom.min
 //= require fullcalendar.min
@@ -36,6 +35,7 @@
 //= require filter
 //= require custom
 //= require charts
+
 //
 //
 // require ../../../vendor/assets/javascripts/bootstrap/bootstrap-transition
@@ -56,4 +56,7 @@
 // require ../../../vendor/assets/javascripts/bootstrap-multiselect
 // require ../../../vendor/assets/javascripts/prettify
 // require ../../../vendor/assets/javascripts/applymultiselect
+
+//= require jquery-tablesorter
+//= require_tree .
 

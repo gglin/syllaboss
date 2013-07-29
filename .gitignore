@@ -20,4 +20,4 @@
 /public/uploads/attachment/*
 
 # Ignore all Sunspot Solr data files
-solr/data
+solr/

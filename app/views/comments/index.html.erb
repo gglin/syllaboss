@@ -25,12 +25,15 @@
               <div class="chat-content hoverable">
                 <div class = "chat-meta">
                   <%= comment.user == current_user ? "Me" : comment.user.full_name %>
+
+                  <% comment_parent = comment.commentable_type.classify.constantize.find(comment.commentable_id) %>
+
+                  <% comment_parent_type = comment.commentable_type.underscore %>
                   
                   <% if comment.user.admin? %>
                     &nbsp; <span class="badge badge-instructor">Instructor</span>
                   <% end %>
 
-                  
                   <span class="admin inline pull-right">
                     | <%= link_to 'Edit', "#" %>
                     | <%= link_to 'Delete', [@commentable, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -40,28 +43,66 @@
                   </span>                  
                 </div>
 
-               <!--  This is the actual comment -->
+                <!--  This is the actual comment -->
                 <%= auto_link(simple_format(re_truncate(comment.content, length:500, separator: ' ')), :all, :target => "_blank") %>
+                <!-- End comment -->
 
-                <% case comment.commentable_type %>
-                <% when "SchoolDay" then label_type = "label" %>
-                <% when "Lecture" then label_type = "label-info" %>
-                <% when "Homework" then label_type = "label-success" %>
-                <% when "Potd" then label_type = "label-primary" %>
-                <% when "Todo" then label_type = "label-success" %>
-                <% when "Link" then label_type = "label-info" %>
-                <% when "Lab" then label_type = "label-success" %>
-                <% else %>
-                <% label_type = "" %>
-                <% end %>
-                <% comment_parent = comment.commentable_type.classify.constantize.find(comment.commentable_id) %>
-                <% comment_parent_type = comment.commentable_type.underscore %>
-                <span class="label <%= label_type %> pull-right inline">
-                  <strong> 
-                    <%= link_to "#{material_capitalize(comment_parent_type)}: #{comment_parent.print_name}", self.send("#{comment_parent_type}_path", comment_parent) %>
-                  </strong>
-                </span>
-                <div class="clearfix"></div>
+                <div class="row-fluid">
+                  <div class="span10">
+                    
+                    <div class="widget comment-widget">
+                      <div class="widget-head">
+                        <span class="response-button widget-icons">
+                          <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
+                        </span>
+                        <div class="clearfix"></div>
+                      </div>
+
+                      <div class="widget-content" style="display: none;">
+                        
+                        <%= form_for [comment_parent, @new_comment] do |f| %>
+                          
+                          <% if current_user %>
+                            <div class="field">
+                              <%= f.hidden_field :user_id, :value => current_user.id %>
+                            </div>
+                          <% end %>
+
+                          <div class="field">
+                            <%= f.text_area :content, :placeholder => "Leave a comment", rows: 5, value: "@#{comment.user.full_name}  ", class: "commentspan" %>
+                          </div>
+
+                          
+                          <div class="actions">
+                            <%= f.submit "Reply", class: "btn btn-info" %>
+                          </div>
+                        <% end %>
+
+                      </div>
+                    </div>
+                  </div>
+              
+                <div class="span2">
+                  <% case comment.commentable_type %>
+                  <% when "SchoolDay" then label_type = "label" %>
+                  <% when "Lecture" then label_type = "label-info" %>
+                  <% when "Homework" then label_type = "label-success" %>
+                  <% when "Potd" then label_type = "label-primary" %>
+                  <% when "Todo" then label_type = "label-success" %>
+                  <% when "Link" then label_type = "label-info" %>
+                  <% when "Lab" then label_type = "label-success" %>
+                  <% else %>
+                  <% label_type = "" %>
+                  <% end %>
+                  
+                  <span class="label <%= label_type %> pull-right inline">
+                    <strong> 
+                      <%= link_to "#{material_capitalize(comment_parent_type)}: #{comment_parent.print_name}", self.send("#{comment_parent_type}_path", comment_parent) %>
+                    </strong>
+                  </span>
+                  <div class="clearfix"></div>
+                </div>
+
               </div>
             <% end %>
             </div>

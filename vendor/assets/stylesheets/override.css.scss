@@ -41,14 +41,16 @@ h1.less-padding, h2.less-padding, h3.less-padding, h4.less-padding, h5.less-padd
 
 .chats .by-admin .avatar img{
   // border: 3px solid #FF6600;
-
 }
 
 .badge-instructor{
   background-color: #fbd850;
   color: #000;
   font-size: 12px;
+}
 
+.response-button {
+  font-size: 12px;
 }
 
 /*********/
@@ -186,6 +188,18 @@ textarea {
   color: #000;
 }
 
+.comment-widget {
+  margin-bottom: 0px;
+}
+
+.comment-widget .widget-head {
+  background-color: none !important;
+  border: none !important;
+  font-size: 12px !important;
+  color: #000 !important;
+  border: 0 0 !important;
+  padding: 0 0 !important;
+}
 
 
 /**************/

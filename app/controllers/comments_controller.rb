@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
-  before_filter :load_commentable
+
+  before_filter :load_commentable, :except => [:index]
   authorize_resource
   
   def index
-    @comments = @commentable.comments
+    @comments = Comment.all
   end
 
   def new
@@ -33,6 +34,10 @@ class CommentsController < ApplicationController
 private
   def load_commentable
     resource, id = request.path.split('/')[1, 2]
-    @commentable = resource.singularize.classify.constantize.find(id)
+    if resource && id 
+      @commentable = resource.singularize.classify.constantize.find(id)
+    else
+      @commentable = closest_day_to_today
+    end
   end
 end

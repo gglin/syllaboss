@@ -8,7 +8,7 @@ class Lecture < ActiveRecord::Base
   has_many :school_days, :through => :school_day_lectures
 
   has_many :attachments, as: :attachable
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, :dependent => :destroy
 
   searchable do
     text :title, :content, :creator, :file_upload  

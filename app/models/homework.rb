@@ -6,7 +6,7 @@ class Homework < ActiveRecord::Base
   has_many :school_day_homeworks
   has_many :school_days, :through => :school_day_homeworks
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, :dependent => :destroy
 
   searchable do
     text :title, :content  

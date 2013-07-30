@@ -1,2 +1,44 @@
-<h1>Comments#index</h1>
-<p>Find me in app/views/comments/index.html.erb</p>
+<div class="page-head">
+  <h1>Discussion Stream</h1>
+</div>
+
+<div class="matter">
+  <div class="container-fluid">
+    <%= render "layouts/messages" %> 
+      <div class="row-fluid">
+        <div id="comments">
+          <h4><%= pluralize(@comments.size, "Comment") %></h4> 
+          <% @comments.each do |comment| %>
+            <div class="comment well well-small hoverable">
+              <%= auto_link(simple_format(comment.content), :all, :target => "_blank") %>
+              <% case comment.commentable_type %>
+              <% when "SchoolDay" then label_type = "label-warning" %>
+              <% when "Lecture" then label_type = "label-success" %>
+              <% when "Homework" then label_type = "label-info" %>
+              <% when "Potd" then label_type = "label-inverse" %>
+              <% when "Todo" then label_type = "label-success" %>
+              <% when "Link" then label_type = "label-info" %>
+              <% when "Lab" then label_type = "label-important" %>
+              <% else %>
+              <% label_type = "" %>
+              <% end %>
+              <span class="label <%= label_type %> pull-right"><strong> <%= material_capitalize(comment.commentable_type.downcase) %>: <%= comment.commentable_type.classify.constantize.find(comment.commentable_id).print_name %></strong></span>
+
+
+              <em style="color: #aaa;">
+                posted by <%= comment.user.full_name if comment.user %>
+                <%= time_ago_in_words(comment.created_at) %> ago 
+              </em>
+              <span class="admin">
+                &nbsp; <%= link_to 'Edit', "#" %>
+                | <%= link_to 'Delete', [@commentable, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+              </span>
+            </div>
+          <% end %>
+          </div>
+        <br />
+
+        <%= link_to 'New Comment', new_comment_path %>
+    </div>
+  </div>
+</div>

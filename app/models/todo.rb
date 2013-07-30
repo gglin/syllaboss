@@ -6,7 +6,7 @@ class Todo < ActiveRecord::Base
   has_many :school_day_todos
   has_many :school_days, :through => :school_day_todos
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, :dependent => :destroy
 
   searchable do
     text :name, :gist

@@ -6,7 +6,7 @@ class Lab < ActiveRecord::Base
   has_many :school_day_labs
   has_many :school_days, :through => :school_day_labs
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, :dependent => :destroy
 
   searchable do
     text :name, :lab_url  

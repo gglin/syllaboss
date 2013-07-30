@@ -6,7 +6,7 @@ class Potd < ActiveRecord::Base
 
   has_many :school_days
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, :dependent => :destroy
 
   searchable do
     text :name, :wikipedia, :presentation_url

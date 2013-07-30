@@ -49,8 +49,10 @@
     
     <%= link_to '<i class="icon-caret-left"></i> Prev Day'.html_safe, school_day_path(@previous_school_day) if @previous_school_day %>
     &nbsp;
-    <%= link_to 'Next Day <i class="icon-caret-right"></i>'.html_safe, school_day_path(@next_school_day) if (@next_school_day.calendar_date <= Date.today) || (can? :update, @next_school_day)  %>
-    
+    <% if @next_school_day %> 
+      <%= link_to 'Next Day <i class="icon-caret-right"></i>'.html_safe, school_day_path(@next_school_day) if (@next_school_day.calendar_date <= Date.today) || (can? :update, @next_school_day)  %>
+    <% end %>
+
   </ul>
 
 </div>

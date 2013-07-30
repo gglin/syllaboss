@@ -18,11 +18,13 @@
             </span>
 
             <h2 class="less-padding inline"><%= link_to "Day #{@active_school_day.ordinal}", @active_school_day %></h2>
-
-            <% if (@next_school_day.calendar_date <= Date.today) || (can? :edit, @next_school_day) %>
-            <span>
-              <%= link_to '<i class="icon-caret-right dir-icon"></i>'.html_safe, school_day_path(@next_school_day), class: "dir-icon" if @next_school_day %>
-            </span>
+            
+            <% if @next_school_day %>
+              <% if (@next_school_day.calendar_date <= Date.today) || (can? :edit, @next_school_day) %>
+                <span>
+                  <%= link_to '<i class="icon-caret-right dir-icon"></i>'.html_safe, school_day_path(@next_school_day), class: "dir-icon" if @next_school_day %>
+                </span>
+              <% end %>
             <% end %>
 
             <% if @active_school_day.calendar_date == Date.today %>

@@ -18,5 +18,9 @@ class Lecture < ActiveRecord::Base
     title
   end
 
+  def print_search
+    [title, content, creator, file_upload]
+  end
+
   accepts_nested_attributes_for :comments, allow_destroy: true
 end

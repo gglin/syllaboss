@@ -15,4 +15,8 @@ class Todo < ActiveRecord::Base
   def print_name
   	name
   end
+
+  def print_search
+    [name, gist]
+  end
 end

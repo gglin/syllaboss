@@ -14,6 +14,10 @@ class Attachment < ActiveRecord::Base
   	title
   end
 
+  def print_search
+    [title, filename, attachable_type]
+  end
+
   def filename_short
     filename.to_s.split("/").last
   end

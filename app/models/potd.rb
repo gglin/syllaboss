@@ -18,4 +18,8 @@ class Potd < ActiveRecord::Base
   def print_name
     name
   end
+
+  def print_search
+    [name, wikipedia, presentation_url]
+  end
 end

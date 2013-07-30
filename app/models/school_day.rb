@@ -76,6 +76,10 @@ class SchoolDay < ActiveRecord::Base
 
   def read_stuff
   end
+
+  def print_search
+    [ordinal, calendar_date,schedule]
+  end
   
 end
 

@@ -15,6 +15,10 @@ class Link < ActiveRecord::Base
   def print_name
   	title
   end
+
+  def print_search
+    [title, link_url, description]
+  end
 end
 
 

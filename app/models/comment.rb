@@ -11,4 +11,8 @@ class Comment < ActiveRecord::Base
   def print_name
     commentable_id
   end
+
+  def print_search
+    [commentable_id, filename, attachable_type]
+  end
 end

@@ -15,4 +15,8 @@ class Homework < ActiveRecord::Base
   def print_name
   	title
   end
+
+  def print_search
+    [title, content]
+  end
 end

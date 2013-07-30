@@ -15,4 +15,8 @@ class Lab < ActiveRecord::Base
   def print_name
   	name
   end
+
+  def print_search
+    [name, lab_url]
+  end
 end

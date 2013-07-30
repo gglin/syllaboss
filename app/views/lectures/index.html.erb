@@ -19,6 +19,7 @@
       </thead>
       <tbody>
       <% @lectures.each do |lecture| %>
+        <% if (lecture.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today) || (can? :edit, @lecture) %>
         <tr>
           <td>
             <h3>
@@ -43,6 +44,7 @@
             <td><%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
         </tr>
+        <% end %>
       <% end %>
       </tbody>
       </table>

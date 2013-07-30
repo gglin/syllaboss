@@ -1,7 +1,7 @@
 class PotdsController < ApplicationController
   # GET /potds
   # GET /potds.json
-  before_filter :authorize, only: [:edit, :update]
+  load_and_authorize_resource
 
   def index
     # if params[:search].present?

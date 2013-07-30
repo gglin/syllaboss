@@ -18,6 +18,7 @@
         <tbody>
 
         <% @potds.each do |potd| %>
+          <% if (potd.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today) || (can? :edit, @potd) %>
           <tr>
             <td><%= link_to(potd.name, potd) %></td>
             <td><%= link_to(potd.wikipedia, potd.http_link(potd.wikipedia), :target => "_blank") %></td>
@@ -30,6 +31,7 @@
               <td><%= link_to 'Destroy', potd, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
           </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>

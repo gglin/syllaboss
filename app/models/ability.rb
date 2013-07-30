@@ -8,7 +8,31 @@ class Ability
       if user.admin?
         can :manage, :all
       else
-        can :read, :all
+        can :read, SchoolDay do |school_day|
+          school_day.calendar_date <= Date.today
+        end
+        can [:read], SchoolDay do |school_day|
+          school_day.calendar_date <= Date.today
+        end
+        can [:read], Lecture do |lecture|
+          lecture.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today
+        end
+        can [:read], Todo do |todo|
+          todo.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today
+        end
+        can [:read], Potd do |potd|
+          potd.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today
+        end
+        can [:read], Lab do |lab|
+          lab.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today
+        end
+        can [:read], Link do |link|
+          link.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today
+        end
+        can [:read], Homework do |homework|
+          homework.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today
+        end
+
         can :create, Comment
         can :update, Comment do |comment|
           comment && comment.user == user

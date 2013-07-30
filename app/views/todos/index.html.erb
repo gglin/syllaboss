@@ -17,6 +17,7 @@
           </thead>
         <tbody>
           <% @todos.each do |todo| %>
+            <% if (todo.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today) || (can? :edit, @todo) %>
             <tr>
               <td><%= todo.name %></td>
               <td><%= link_to todo.gist, todo.http_link(todo.gist), :target => "_blank" %></td>
@@ -25,6 +26,7 @@
                 <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
                 <td><%= link_to 'Delete', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               <% end %>
+            <% end %>
             </tr>
           <% end %>
         </tbody>

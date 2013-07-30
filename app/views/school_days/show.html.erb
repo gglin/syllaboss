@@ -35,7 +35,9 @@
       </a>
       <ul class="dropdown-menu" role="menu">
         <% SchoolDay.all.each do |school_day| %>
+          <% if (school_day.calendar_date <= Date.today) || (can? :edit, @active_school_day)%>
           <li><%= link_to "Day #{school_day.ordinal}", school_day_path(school_day) %></li>
+          <% end %>
         <% end %>
         <li><%= link_to "Show All Days", school_days_path %></li>
       </ul>
@@ -47,7 +49,7 @@
     
     <%= link_to '<i class="icon-caret-left"></i> Prev Day'.html_safe, school_day_path(@previous_school_day) if @previous_school_day %>
     &nbsp;
-    <%= link_to 'Next Day <i class="icon-caret-right"></i>'.html_safe, school_day_path(@next_school_day) if @next_school_day %>
+    <%= link_to 'Next Day <i class="icon-caret-right"></i>'.html_safe, school_day_path(@next_school_day) if (@next_school_day.calendar_date <= Date.today) || (can? :update, @next_school_day)  %>
     
   </ul>
 

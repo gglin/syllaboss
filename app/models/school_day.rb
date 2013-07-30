@@ -56,7 +56,7 @@ class SchoolDay < ActiveRecord::Base
     output2.each_with_index do |row, index|   
       if row[:time] != ""
         @row_with_time = row 
-      elsif row[:time] == "" && !row.nil?
+      elsif !@row_with_time.nil? && row[:time] == "" && !row.nil?
         @row_with_time[:stuff] << " #{row[:stuff]}"
       end
     end

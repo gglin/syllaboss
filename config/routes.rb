@@ -44,6 +44,7 @@ Pizza::Application.routes.draw do
   end
 
   resources :attachments
+  resources :comments
 
 
   # The priority is based upon order of creation:

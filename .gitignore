@@ -12,6 +12,7 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/log/*.log.*
 /tmp
 
 *.DS_Store
@@ -21,3 +22,5 @@
 
 # Ignore all Sunspot Solr data files
 solr/
+solr/data/**/*
+solr/pids/**/*

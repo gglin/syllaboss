@@ -1,44 +1,72 @@
 <div class="page-head">
-  <h1>Discussion Stream</h1>
+  <div class = "row-fluid fit-content">
+    <div class = "span9 maxspan minspan">
+      <h1 class = "inline">Discussion Stream</h1>
+      <%= link_to 'New Comment', new_comment_path, class: "btn btn-info" %>
+    </div>
+  </div>
+
 </div>
 
 <div class="matter">
   <div class="container-fluid">
     <%= render "layouts/messages" %> 
-      <div class="row-fluid">
-        <div id="comments">
-          <h4><%= pluralize(@comments.size, "Comment") %></h4> 
-          <% @comments.each do |comment| %>
-            <div class="comment well well-small hoverable">
-              <%= auto_link(simple_format(comment.content), :all, :target => "_blank") %>
-              <% case comment.commentable_type %>
-              <% when "SchoolDay" then label_type = "label-warning" %>
-              <% when "Lecture" then label_type = "label-success" %>
-              <% when "Homework" then label_type = "label-info" %>
-              <% when "Potd" then label_type = "label-inverse" %>
-              <% when "Todo" then label_type = "label-success" %>
-              <% when "Link" then label_type = "label-info" %>
-              <% when "Lab" then label_type = "label-important" %>
-              <% else %>
-              <% label_type = "" %>
-              <% end %>
-              <span class="label <%= label_type %> pull-right"><strong> <%= material_capitalize(comment.commentable_type.downcase) %>: <%= comment.commentable_type.classify.constantize.find(comment.commentable_id).print_name %></strong></span>
+      <div class="row-fluid fit-content">
+        <div class="span9 maxspan minspan">
+          <div id="comments">
+            <ul class="chats">
+            <h4><%= pluralize(@comments.size, "Comment") %></h4> 
+            <% @comments.each do |comment| %>
+              <% by_type = comment.user.admin? ? "by-admin" : ""%>
+            <li class = "by-me <%= by_type %>">
+              <div class = "avatar pull-left">
+                <img src="http://placekitten.com/40/40">
+              </div>
+              <div class="chat-content hoverable">
+                <div class = "chat-meta">
+                  <%= comment.user == current_user ? "Me" : comment.user.full_name %>
+                  
+                  <% if comment.user.admin? %>
+                    &nbsp; <span class="badge badge-instructor">Instructor</span>
+                  <% end %>
 
+                  
+                  <span class="admin inline pull-right">
+                    | <%= link_to 'Edit', "#" %>
+                    | <%= link_to 'Delete', [@commentable, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </span>
+                  <span class="pull-right">
+                    <%= time_ago_in_words(comment.created_at) %> ago 
+                  </span>                  
+                </div>
 
-              <em style="color: #aaa;">
-                posted by <%= comment.user.full_name if comment.user %>
-                <%= time_ago_in_words(comment.created_at) %> ago 
-              </em>
-              <span class="admin">
-                &nbsp; <%= link_to 'Edit', "#" %>
-                | <%= link_to 'Delete', [@commentable, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
-              </span>
+               <!--  This is the actual comment -->
+                <%= auto_link(simple_format(re_truncate(comment.content, length:500, separator: ' ')), :all, :target => "_blank") %>
+
+                <% case comment.commentable_type %>
+                <% when "SchoolDay" then label_type = "label" %>
+                <% when "Lecture" then label_type = "label-info" %>
+                <% when "Homework" then label_type = "label-success" %>
+                <% when "Potd" then label_type = "label-primary" %>
+                <% when "Todo" then label_type = "label-success" %>
+                <% when "Link" then label_type = "label-info" %>
+                <% when "Lab" then label_type = "label-success" %>
+                <% else %>
+                <% label_type = "" %>
+                <% end %>
+                <% comment_parent = comment.commentable_type.classify.constantize.find(comment.commentable_id) %>
+                <% comment_parent_type = comment.commentable_type.underscore %>
+                <span class="label <%= label_type %> pull-right inline">
+                  <strong> 
+                    <%= link_to "#{material_capitalize(comment_parent_type)}: #{comment_parent.print_name}", self.send("#{comment_parent_type}_path", comment_parent) %>
+                  </strong>
+                </span>
+                <div class="clearfix"></div>
+              </div>
+            <% end %>
             </div>
-          <% end %>
           </div>
         <br />
-
-        <%= link_to 'New Comment', new_comment_path %>
     </div>
   </div>
 </div>

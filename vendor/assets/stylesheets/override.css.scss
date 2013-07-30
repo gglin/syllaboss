@@ -28,6 +28,28 @@ h1.less-padding, h2.less-padding, h3.less-padding, h4.less-padding, h5.less-padd
   display: inline !important;
 }
 
+.chats .by-me .chat-content {
+  font-size: 14px;
+  border-top: 1px solid #52b9e9;
+}
+
+
+.chats .by-me .chat-meta {
+  font-size: 12px;
+  color: #666;
+}
+
+.chats .by-admin .avatar img{
+  // border: 3px solid #FF6600;
+
+}
+
+.badge-instructor{
+  background-color: #fbd850;
+  color: #000;
+  font-size: 12px;
+
+}
 
 /*********/
 /* Links */
@@ -61,6 +83,19 @@ a, .sidebar a i {
 
 .widget-content table a, p a {
   text-decoration: none !important;
+}
+
+.label a {
+  color: white;
+  
+  &:hover {
+    color: #ddd;
+    text-decoration: none; 
+  }
+}
+
+.label-primary {
+  background-color: #1171a3;
 }
 
 /******************/
@@ -150,6 +185,7 @@ textarea {
 .widget .form-sub-widget .widget-head i {
   color: #000;
 }
+
 
 
 /**************/

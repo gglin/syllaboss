@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   authorize_resource
   
   def index
-    @comments = Comment.all
+    @comments = Comment.order("created_at DESC")
   end
 
   def new
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
 private
   def load_commentable
     resource, id = request.path.split('/')[1, 2]
-    if resource && id 
+    if resource != "comments" && id 
       @commentable = resource.singularize.classify.constantize.find(id)
     else
       @commentable = closest_day_to_today

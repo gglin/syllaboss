@@ -1,6 +1,8 @@
 class LabsController < ApplicationController
   # GET /labs
   # GET /labs.json
+  load_and_authorize_resource
+
   def index
     # if params[:search].present?
     #   @search = Lab.search do

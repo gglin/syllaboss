@@ -1,6 +1,8 @@
 class HomeworksController < ApplicationController
   # GET /homeworks
   # GET /homeworks.json
+  load_and_authorize_resource
+
   def index
     # if params[:search].present?
     #   @search = Homework.search do

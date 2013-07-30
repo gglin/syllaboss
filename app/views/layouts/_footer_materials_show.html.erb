@@ -5,9 +5,11 @@
 
 <div class="row-fluid fit-content">
   <div class="span9 maxspan minspan">
-    <span class="admin">
-      <%= link_to 'Edit', self.send("edit_#{material_type}_path", material) %> |
-    </span>
+    <% if can? :edit, @homework %>
+      <span class="admin">
+        <%= link_to 'Edit', self.send("edit_#{material_type}_path", material) %> |
+      </span>
+    <% end %>
     <%= link_to "Show All #{material_titles}", self.send("#{material_types}_path") %>
     <br><br><br>
   </div>

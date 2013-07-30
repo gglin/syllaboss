@@ -1,6 +1,8 @@
 class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
+  load_and_authorize_resource
+
   def index
     # if params[:search].present?
     #   @search = Todo.search do

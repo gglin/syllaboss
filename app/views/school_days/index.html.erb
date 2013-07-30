@@ -1,7 +1,9 @@
 
 <div class="page-head">
   <h3 class="inline">All School Days</h3>
- <span class="btn btn-warning pull-right admin-title"><%= link_to 'New School day', new_school_day_path %></span>
+  <% if can? :create, @school_day %>
+   <span class="btn btn-warning pull-right admin-title"><%= link_to 'New School day', new_school_day_path %></span>
+  <% end %>
   <ul class="breadcrumb" >
     <li>
 
@@ -61,7 +63,11 @@
             <table class="table table-bordered time-in-column1 tablesorter" id="myTable">
               <thead>
                 <tr>
-                  <th colspan="2">Day</th>
+                  <% if can? :edit, @school_day %>
+                    <th colspan="2">Day</th>
+                  <% else %>
+                    <th colspan="1">Day</th>
+                  <% end %>
                   <th>Week</th>
                   <th>Date</th>
                   <script>
@@ -83,9 +89,11 @@
                     <td>
                       <h2><%= link_to school_day.ordinal, school_day %></h2>
                     </td>
-                    <td><%= link_to 'Edit', edit_school_day_path(school_day) %>
-                        <%= link_to 'Delete', school_day, method: :delete, data: { confirm: 'Are you sure?' } %>
-                    </td>
+                    <% if can? :edit, @school_day %>
+                      <td><%= link_to 'Edit', edit_school_day_path(school_day) %>
+                          <%= link_to 'Delete', school_day, method: :delete, data: { confirm: 'Are you sure?' } %>
+                      </td>
+                    <% end %>
                     <td>
                       <h4><%= school_day.week %></h4>
                     </td>

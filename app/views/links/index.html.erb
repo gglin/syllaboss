@@ -23,16 +23,19 @@
             <td><%= link_to link.link_url, link.http_link(link.link_url), :target => "_blank" %></td>
             <td><%= link.description %>
             <td><%= link_to 'Show', link %></td>
-            <td><%= link_to 'Edit', edit_link_path(link) %></td>
-            <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% if can? :edit, @links %>
+              <td><%= link_to 'Edit', edit_link_path(link) %></td>
+              <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
           </tr> 
         <% end %>
       </tbody>
         </table>
 
         <br />
-
-        <%= link_to 'New Link', new_link_path %>
+        <% if can? :create, @link %>
+          <%= link_to 'New Link', new_link_path %>
+        <% end %>
     </div>
   </div>
 </div>

@@ -20,16 +20,19 @@
             <td><%= lab.name %></td>
             <td><%= link_to lab.lab_url, lab.http_link(lab.lab_url), :target => "_blank" %></td>
             <td><%= link_to 'Show', lab %></td>
-            <td><%= link_to 'Edit', edit_lab_path(lab) %></td>
-            <td><%= link_to 'Destroy', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% if can? :edit, @lab %>
+              <td><%= link_to 'Edit', edit_lab_path(lab) %></td>
+              <td><%= link_to 'Destroy', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
       </table>
 
         <br />
-
-        <%= link_to 'New Lab', new_lab_path %>
+        <% if can? :create, @lab %>
+          <%= link_to 'New Lab', new_lab_path %>
+        <% end %>
     </div>
   </div>
 </div>

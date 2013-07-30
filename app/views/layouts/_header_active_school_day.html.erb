@@ -4,7 +4,10 @@
   </h3>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <span class="admin-title pull-right">
-    <%= link_to 'Edit', edit_school_day_path(@active_school_day) %> |
+  	<% if can? :edit, @school_day %>
+    	<%= link_to 'Edit', edit_school_day_path(@active_school_day) %> |
+    <% end %>
+
     <%= link_to 'Show All Days', school_days_path %>
   </span>
 </p>

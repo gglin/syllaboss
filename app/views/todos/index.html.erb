@@ -21,8 +21,10 @@
               <td><%= todo.name %></td>
               <td><%= link_to todo.gist, todo.http_link(todo.gist), :target => "_blank" %></td>
               <td><%= link_to 'Show', todo %></td>
-              <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-              <td><%= link_to 'Delete', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% if can? :edit, @todo %>
+                <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
+                <td><%= link_to 'Delete', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>
@@ -30,7 +32,9 @@
 
         <br />
 
-        <%= link_to 'New Todo', new_todo_path %>
+        <% if can? :create, @todo %>
+          <%= link_to 'New Todo', new_todo_path %>
+        <% end %>
     </div>
   </div>
 </div>

@@ -1,6 +1,8 @@
 class LinksController < ApplicationController
   # GET /links
   # GET /links.json
+  load_and_authorize_resource
+
   def index
     # if params[:search].present?
     #   @search = Link.search do

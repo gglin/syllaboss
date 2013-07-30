@@ -21,16 +21,19 @@
             <td><%= homework.title %></td>
             <td><%= homework.content %></td>
             <td><%= link_to 'Show', homework %></td>
-            <td><%= link_to 'Edit', edit_homework_path(homework) %></td>
-            <td><%= link_to 'Destroy', homework, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% if can? :update, @homework %>
+              <td><%= link_to 'Edit', edit_homework_path(homework) %></td>
+              <td><%= link_to 'Destroy', homework, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
         </table>
 
         <br />
-
-        <%= link_to 'New Homework', new_homework_path %>
+        <% if can? :create, @homework %>
+          <%= link_to 'New Homework', new_homework_path %>
+        <% end %>
     </div>
   </div>
 </div>

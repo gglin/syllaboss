@@ -12,7 +12,9 @@
           <div class="widget-head">
             <div class="pull-left">Lab</div>
             <div class="widget-icons pull-right">
-              <span class="admin"><a href="<%= edit_lab_path %>"><i class="icon-pencil"></i></a></span>
+              <% if can? :edit, @lab %>
+                <span class="admin"><a href="<%= edit_lab_path %>"><i class="icon-pencil"></i></a></span>
+              <% end %>
               <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
               <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
             </div>

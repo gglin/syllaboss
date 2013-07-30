@@ -27,6 +27,7 @@
       </ul>
     </li>
 
+    
     <li class="dropdown">
       <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
         Day <%= @active_school_day.ordinal %>
@@ -39,6 +40,7 @@
         <li><%= link_to "Show All Days", school_days_path %></li>
       </ul>
     </li>
+    
   </ul>
 
   <ul class="breadcrumb">
@@ -68,7 +70,9 @@
           <div class="widget-head">
             <div class="pull-left">Schedule</div>
             <div class="widget-icons pull-right">
-              <span class="admin"><a href="<%= edit_school_day_path %>"><i class="icon-pencil"></i></a></span>
+              <% if can? :update, @school_day %>
+                <span class="admin"><a href="<%= edit_school_day_path %>"><i class="icon-pencil"></i></a></span> 
+              <% end %>
               <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
               <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
             </div>
@@ -150,7 +154,9 @@
           <div class="widget-head">
             <div class="pull-left">Resources</div>
             <div class="widget-icons pull-right">
-              <span class="admin"><a href="<%= edit_school_day_path %>"><i class="icon-pencil"></i></a></span>
+              <% if can? :update, @school_day %>
+                <span class="admin"><a href="<%= edit_school_day_path %>"><i class="icon-pencil"></i></a></span>
+              <% end %>
               <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
               <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
             </div>
@@ -177,10 +183,12 @@
                       <% @active_school_day.lectures.each do |lecture| %>
                       <li class="hoverable">
                         <%= link_to lecture.title, lecture_path(lecture) %>
-                        <span class="admin pull-right">
-                          &nbsp; <%= link_to 'Edit', edit_lecture_path(lecture) %>
-                          | <%= link_to 'Delete', lecture, method: :delete, data: { confirm: 'Are you sure?' } %>
-                        </span>
+                        <% if can? :update, @school_day %>
+                          <span class="admin pull-right">
+                            &nbsp; <%= link_to 'Edit', edit_lecture_path(lecture) %>
+                            | <%= link_to 'Delete', lecture, method: :delete, data: { confirm: 'Are you sure?' } %>
+                          </span>
+                        <% end %>
                       </li> 
                       <% end %>
                     <% else %>
@@ -209,10 +217,12 @@
                       <% @active_school_day.todos.each do |todo| %>
                       <li class="hoverable">
                         <%= link_to todo.name, todo_path(todo) %>
-                        <span class="admin pull-right">
-                          &nbsp; <%= link_to 'Edit', edit_todo_path(todo) %>
-                          | <%= link_to 'Delete', todo, method: :delete, data: { confirm: 'Are you sure?' } %>
-                        </span>
+                        <% if can? :update, @school_day %>
+                          <span class="admin pull-right">
+                            &nbsp; <%= link_to 'Edit', edit_todo_path(todo) %>
+                            | <%= link_to 'Delete', todo, method: :delete, data: { confirm: 'Are you sure?' } %>
+                           </span>
+                        <% end %>
                       </li> 
                       <% end %>
                     <% else %>
@@ -242,10 +252,12 @@
                       <% @active_school_day.labs.each do |lab| %>
                       <li class="hoverable">
                         <%= link_to lab.name, lab_path(lab) %>
-                        <span class="admin pull-right">
-                          &nbsp; <%= link_to 'Edit', edit_lab_path(lab) %>
-                          | <%= link_to 'Delete', lab, method: :delete, data: { confirm: 'Are you sure?' } %>
-                        </span>
+                        <% if can? :update, @school_day %>  
+                          <span class="admin pull-right">
+                            &nbsp; <%= link_to 'Edit', edit_lab_path(lab) %>
+                            | <%= link_to 'Delete', lab, method: :delete, data: { confirm: 'Are you sure?' } %>
+                          </span>
+                        <% end %>
                       </li> 
                       <% end %>
                     <% else %>
@@ -276,11 +288,12 @@
                       <li class="hoverable">
                         <a href="<%= link.http_link(link.link_url) if link %>" target="_blank"> <%= link.title if link %></a>
 
-                        <span class="admin pull-right">
-                          | <%= link_to 'Edit', edit_link_path(link) %>
-                          | <%= link_to 'Delete', link, method: :delete, data: { confirm: 'Are you sure?' } %>
-                        </span>
-
+                        <% if can? :update, @school_day %>
+                          <span class="admin pull-right">
+                            | <%= link_to 'Edit', edit_link_path(link) %>
+                            | <%= link_to 'Delete', link, method: :delete, data: { confirm: 'Are you sure?' } %>
+                          </span>
+                        <% end %>
                         <span class="show-on-hover pull-right">
                           &nbsp; 
                           <%= link_to 'Show ', link_path(link) %>
@@ -316,10 +329,12 @@
                       <% @active_school_day.homeworks.each do |homework| %>
                       <li class="hoverable">
                         <%= link_to homework.title, homework_path(homework) %>
-                        <span class="admin pull-right">
-                          &nbsp; <%= link_to 'Edit', edit_homework_path(homework) %>
-                          | <%= link_to 'Delete', homework, method: :delete, data: { confirm: 'Are you sure?' } %>
-                        </span>
+                        <% if can? :update, @school_day %>
+                          <span class="admin pull-right">
+                            &nbsp; <%= link_to 'Edit', edit_homework_path(homework) %>
+                            | <%= link_to 'Delete', homework, method: :delete, data: { confirm: 'Are you sure?' } %>
+                          </span>
+                        <% end %>
                       </li> 
                       <% end %>
                     <% else %>

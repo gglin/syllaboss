@@ -38,16 +38,19 @@
             </ol>
           </td>
           <td><%= link_to 'Show', lecture %></td>
-          <td><%= link_to 'Edit', edit_lecture_path(lecture) %></td>
-          <td><%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if can? :edit, @lecture %>
+            <td><%= link_to 'Edit', edit_lecture_path(lecture) %></td>
+            <td><%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
       <% end %>
       </tbody>
       </table>
 
       <br />
-
-      <%= link_to 'New Lecture', new_lecture_path %>
+      <% if can? :create, @lecture %>
+        <%= link_to 'New Lecture', new_lecture_path %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -24,8 +24,11 @@
             <td><%= link_to(potd.presentation_url, potd.http_link(potd.presentation_url), :target => "_blank") %></td>
           
             <td><%= link_to 'Show', potd %></td>
-            <td><%= link_to 'Edit', edit_potd_path(potd) %></td>
-            <td><%= link_to 'Destroy', potd, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+            <% if can? :edit, @potd %>
+              <td><%= link_to 'Edit', edit_potd_path(potd) %></td>
+              <td><%= link_to 'Destroy', potd, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
@@ -33,8 +36,9 @@
 
         <br />
 
-
-        <%= link_to 'New Programmer of the Day', new_potd_path %>
+        <% if can? :create, @potd %>
+          <%= link_to 'New Programmer of the Day', new_potd_path %>
+        <% end %>
     </div>
   </div>
 </div>

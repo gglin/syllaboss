@@ -1,4 +1,4 @@
-<% material_type   = material.class.to_s.downcase %>
+<% material_type   = material.class.to_s.underscore %>
 <% material_types  = material_type.pluralize %>
 <% material_title  = material_capitalize(material_type) %>
 <% material_titles = material_title.pluralize %>

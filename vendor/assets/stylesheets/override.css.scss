@@ -7,6 +7,39 @@ body {
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
+ul, ol, ul li, ol li, li {
+  left-margin: 0 !important;
+}
+
+.horizontal-list li {
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+}
+
+.no-bullet {
+  list-style-type:none; 
+  margin-left:0;
+}
+
+.navbar .nav-icon, .navbar .nav-icon li {
+  position: relative;
+  left: 0;
+  display: block;
+  float: left;
+  margin: 0 0px 0 0 !important;
+}
+
+.navbar .nav-icon > li > a {
+  padding-left:  2px !important;
+  padding-right: 2px !important;
+}
+
+
+td {
+  padding: 0px;
+}
+
 .inline {
   display: inline;
 }
@@ -110,6 +143,10 @@ textarea {
 
 .maxspan {
   max-width: 780px;
+}
+
+.table-maxspan {
+  max-width: 1000px;
 }
 
 .minspan {
@@ -460,11 +497,15 @@ body {
   width: 120px;
 }
 
-// .table th, .table td, .table tr { border: none !important; border-top: none !important; }
-// table td, table tr {
-//     border-top: none !important;
-//     border: none;
-// }
+.material-index td:nth-child(1),
+.material-index td:nth-child(1) {
+  width: 80px;
+}
+
+.material-index td:nth-child(2),
+.material-index td:nth-child(2) {
+  width: 200px;
+}
 
 
 /*******************/

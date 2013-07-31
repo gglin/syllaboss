@@ -11,12 +11,12 @@
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label :creator, class: "control-label" %>
-    <div class="controls">
-      <%= f.number_field :creator %>
+  <% if current_user %>
+    <div class="field">
+      <%= f.hidden_field :creator, :value => current_user.id %>
     </div>
-  </div>
+  <% end %>
+  
   <div class="control-group">
     <%= f.label :title, class: "control-label" %>
     <div class="controls">

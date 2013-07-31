@@ -1,0 +1,67 @@
+<% @material_type   = materials.first.class.to_s.underscore %>
+<% @material_types  = @material_type.pluralize %>
+<% @material_title  = material_capitalize(@material_type) %>
+<% @material_titles = @material_title.pluralize %>
+
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <%= render "layouts/messages" %>
+      
+      <div class="span12 table-maxspan minspan">
+
+        <table class="table tablesorter material-index" id="myTable">
+          <thead>
+          <tr>
+            <th>Day(s)</th>
+            <% if can? :edit, materials %>
+              <th colspan="2">Title</th>
+            <% else %>
+              <th colspan="1">Title</th>
+            <% end %>
+
+            <% material_columns.each do |material_column| %>
+              <th><%= material_column %></th>
+            <% end %>
+
+          </tr>
+          </thead>
+
+          <tbody>
+          <% materials.each do |material| %>
+            <% if (!material.school_days.empty? && material.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, materials) %>
+            <tr>
+              <td>
+                <ul class="no-bullet">
+                <% material.school_days.order("ordinal DESC").each do |school_day| %>
+                  <li>
+                    <h3 class="less-padding"><%= link_to school_day.ordinal, school_day %></h3>
+                  <li>
+                <% end %>
+                </ul>
+              </td>
+              <td>
+                <h5><%= link_to material.print_name, material %></h5>
+                <% if can? :edit, materials %>
+                  <%= link_to 'Edit', self.send("edit_#{@material_type}_path", material) %>
+                  <%= link_to 'Delete', material, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+              </td>
+
+              <% if can? :edit, materials %>
+                <td></td>
+              <% end %>
+              
+              <%= render partial: "body_index_content", locals: {material: material} %>
+
+            </tr>
+            <% end %>
+          <% end %>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+</div>

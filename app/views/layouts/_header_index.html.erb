@@ -1,0 +1,35 @@
+<% chosen_material_type   = chosen_materials.first.class.to_s.underscore %>
+<% chosen_material_types  = chosen_material_type.pluralize %>
+<% chosen_material_title  = material_capitalize(chosen_material_type) %>
+<% chosen_material_titles = chosen_material_title.pluralize %>
+
+<div class="page-head">
+  <h2 class="inline">All <%= chosen_material_titles %></h2>
+  
+  <ul class="horizontal-list breadcrumb">
+    <li>Show All: </li>
+    <% material_type_list.each do |material_type_hash| %>
+      <% material_type = material_type_hash[:name] %>
+      <% material_icon = material_type_hash[:icon] %>
+
+      <% material_types  = material_type.pluralize %>
+      <% material_title  = material_capitalize(material_type) %>
+      <% material_titles = material_title.pluralize %>
+      
+      <%# unless material_type == chosen_material_type %>
+      <li>
+        <a href="<%= self.send("#{material_types}_path") %>">
+          <i class="icon-<%= material_icon %>"></i>
+          <%= material_titles %>
+        </a>
+      </li>
+      <%# end %>
+      
+    <% end %>
+  </ul>
+
+  <br />
+
+  <%= link_to "Create New #{chosen_material_title}", self.send("new_#{chosen_material_type}_path"), class: "btn btn-primary link-btn" %>
+
+</div>

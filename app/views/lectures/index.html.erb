@@ -1,59 +1,69 @@
-<div class="page-head">
-  <h2>All Lectures</h2>
-</div>
+<%= render partial: "layouts/header_index", locals: {chosen_materials: @lectures} %>
 
 <div class="matter">
   <div class="container-fluid">
     <div class="row-fluid">
-     <%= render "layouts/messages" %>
+      <%= render "layouts/messages" %>
+      
+      <div class="span12 table-maxspan minspan">
 
-      <table class="tablesorter" id="myTable">
-        <thead>
-        <tr>
-          <th>Day</th>
-          <th>Creator</th>
-          <th>Title</th>
-          <th>Content</th>
-          <th>Attachments</th>
-          <th colspan="3" onclick='return false;'class="not_sortable">Options</th>
-        </tr>
-      </thead>
-      <tbody>
-      <% @lectures.each do |lecture| %>
-        <% if (!lecture.school_days.empty? && lecture.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @lecture) %>
-        <tr>
-          <td>
-            <h3>
-            <%= lecture.school_days.order("ordinal DESC").map{|i| i.ordinal} %>
-            </h3>
-          </td>    
-          <td><%= lecture.creator %></td>
-          <td><%= lecture.title %></td>
-          <td><%= simple_format lecture.content %></td>
-          <td>
-            <ol>
-            <% lecture.attachments.each do |attachment| %>
-              <li>
-                <%= link_to attachment.title, attachment.filename.to_s %>
-              </li>
+        <table class="table tablesorter material-index" id="myTable">
+          <thead>
+          <tr>
+            <th>Day(s)</th>
+            <% if can? :edit, @lectures %>
+              <th colspan="2">Title</th>
+            <% else %>
+              <th colspan="1">Title</th>
             <% end %>
-            </ol>
-          </td>
-          <td><%= link_to 'Show', lecture %></td>
-          <% if can? :edit, @lecture %>
-            <td><%= link_to 'Edit', edit_lecture_path(lecture) %></td>
-            <td><%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
-        </tr>
-        <% end %>
-      <% end %>
-      </tbody>
-      </table>
+            <th>Content</th>
+            <th>Attachments</th>
+          </tr>
+          </thead>
 
-      <br />
-      <% if can? :create, @lecture %>
-        <%= link_to 'New Lecture', new_lecture_path %>
-      <% end %>
+          <tbody>
+          <% @lectures.each do |lecture| %>
+            <% if (!lecture.school_days.empty? && lecture.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @lecture) %>
+            <tr>
+              <td>
+                <ul class="no-bullet">
+                <% lecture.school_days.order("ordinal DESC").each do |school_day| %>
+                  <li>
+                    <h3 class="less-padding"><%= link_to school_day.ordinal, school_day %></h3>
+                  <li>
+                <% end %>
+                </ul>
+              </td>
+              <td>
+                <h5><%= link_to lecture.print_name, lecture %></h5>
+                <% if can? :edit, @lecture %>
+                  <%= link_to 'Edit', edit_lecture_path(lecture) %>
+                  <%= link_to 'Delete', lecture, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+              </td>
+
+              <% if can? :edit, @lecture %>
+                <td></td>
+              <% end %>
+
+              <td><%= simple_format(re_truncate lecture.content, length: 500) %></td>
+              <td>
+                <ul class="no-bullet">
+                <% lecture.attachments.each do |attachment| %>
+                  <li>
+                    <%= link_to attachment.title, attachment.filename.to_s %>
+                  </li>
+                <% end %>
+                </ul>
+              </td>
+            </tr>
+            <% end %>
+          <% end %>
+          </tbody>
+        </table>
+
+      </div>
+
     </div>
   </div>
 </div>

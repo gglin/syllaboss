@@ -1,40 +1,59 @@
-<div class="page-head">
-  <h2>All Labs</h2>
-</div>
+<%= render partial: "layouts/header_index", locals: {chosen_materials: @labs} %>
 
 <div class="matter">
   <div class="container-fluid">
     <div class="row-fluid">
-       <%= render "layouts/messages" %>
-      <table class="tablesorter" id="myTable">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Lab url</th>
-            <th class="not_sortable" colspan="3" onclick='return false;'>Options</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @labs.each do |lab| %>
-          <% if (!lab.school_days.empty? && lab.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @lab) %>
-          <tr>
-            <td><%= lab.name %></td>
-            <td><%= link_to lab.lab_url, lab.http_link(lab.lab_url), :target => "_blank" %></td>
-            <td><%= link_to 'Show', lab %></td>
-            <% if can? :edit, @lab %>
-              <td><%= link_to 'Edit', edit_lab_path(lab) %></td>
-              <td><%= link_to 'Destroy', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
-          </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-      </table>
+      <%= render "layouts/messages" %>
+      
+      <div class="span12 table-maxspan minspan">
 
-        <br />
-        <% if can? :create, @lab %>
-          <%= link_to 'New Lab', new_lab_path %>
-        <% end %>
+        <table class="table tablesorter material-index" id="myTable">
+          <thead>
+          <tr>
+            <th>Day(s)</th>
+            <% if can? :edit, @labs %>
+              <th colspan="2">Title</th>
+            <% else %>
+              <th colspan="1">Title</th>
+            <% end %>
+            <th>URL</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @labs.each do |lab| %>
+            <% if (!lab.school_days.empty? && lab.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @lab) %>
+            <tr>
+              <td>
+                <ul class="no-bullet">
+                <% lab.school_days.order("ordinal DESC").each do |school_day| %>
+                  <li>
+                    <h3 class="less-padding"><%= link_to school_day.ordinal, school_day %></h3>
+                  <li>
+                <% end %>
+                </ul>
+              </td>
+              <td>
+                <h5><%= link_to lab.print_name, lab %></h5>
+                <% if can? :edit, @lab %>
+                  <%= link_to 'Edit', edit_lab_path(lab) %>
+                  <%= link_to 'Delete', lab, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+              </td>
+
+              <% if can? :edit, @lab %>
+                <td></td>
+              <% end %>
+
+              <td><%= simple_format(re_truncate lab.lab_url, length: 500) %></td>
+            </tr>
+            <% end %>
+          <% end %>
+          </tbody>
+        </table>
+
+      </div>
+
     </div>
   </div>
 </div>

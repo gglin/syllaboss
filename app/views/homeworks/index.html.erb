@@ -1,40 +1,59 @@
-<div class="page-head">
-  <h2>All Homeworks</h2>
-</div>
+<%= render partial: "layouts/header_index", locals: {chosen_materials: @homeworks} %>
 
 <div class="matter">
   <div class="container-fluid">
     <div class="row-fluid">
-       <%= render "layouts/messages" %>
-      <table class="tablesorter" id="myTable">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Content</th>
-            <th colspan="3" class="not_sortable" onclick='return false;'>Options</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @homeworks.each do |homework| %>
-          <% if (!homework.school_days.empty? && homework.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @homework) %>
-          <tr>
-            <td><%= homework.title %></td>
-            <td><%= homework.content %></td>
-            <td><%= link_to 'Show', homework %></td>
-            <% if can? :update, @homework %>
-              <td><%= link_to 'Edit', edit_homework_path(homework) %></td>
-              <td><%= link_to 'Destroy', homework, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
-          </tr>
-          <% end %>
-        <% end %>
-        </tbody>
-      </table>
+      <%= render "layouts/messages" %>
+      
+      <div class="span12 table-maxspan minspan">
 
-        <br />
-        <% if can? :create, @homework %>
-          <%= link_to 'New Homework', new_homework_path %>
-        <% end %>
+        <table class="table tablesorter material-index" id="myTable">
+          <thead>
+          <tr>
+            <th>Day(s)</th>
+            <% if can? :edit, @homeworks %>
+              <th colspan="2">Title</th>
+            <% else %>
+              <th colspan="1">Title</th>
+            <% end %>
+            <th>Content</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @homeworks.each do |homework| %>
+            <% if (!homework.school_days.empty? && homework.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @homework) %>
+            <tr>
+              <td>
+                <ul class="no-bullet">
+                <% homework.school_days.order("ordinal DESC").each do |school_day| %>
+                  <li>
+                    <h3 class="less-padding"><%= link_to school_day.ordinal, school_day %></h3>
+                  <li>
+                <% end %>
+                </ul>
+              </td>
+              <td>
+                <h5><%= link_to homework.print_name, homework %></h5>
+                <% if can? :edit, @homework %>
+                  <%= link_to 'Edit', edit_homework_path(homework) %>
+                  <%= link_to 'Delete', homework, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+              </td>
+
+              <% if can? :edit, @homework %>
+                <td></td>
+              <% end %>
+
+              <td><%= simple_format(re_truncate homework.content, length: 500) %></td>
+            </tr>
+            <% end %>
+          <% end %>
+          </tbody>
+        </table>
+
+      </div>
+
     </div>
   </div>
 </div>

@@ -1,43 +1,61 @@
-<div class="page-head">
-  <h2>All Links</h2>
-</div>
+<%= render partial: "layouts/header_index", locals: {chosen_materials: @links} %>
 
 <div class="matter">
   <div class="container-fluid">
     <div class="row-fluid">
-      <p id="notice"><%= notice %></p>
+      <%= render "layouts/messages" %>
+      
+      <div class="span12 table-maxspan minspan">
 
-      <table class="tablesorter" id="myTable">
-        <thead>
+        <table class="table tablesorter material-index" id="myTable">
+          <thead>
           <tr>
-            <th>Title</th>
+            <th>Day(s)</th>
+            <% if can? :edit, @links %>
+              <th colspan="2">Title</th>
+            <% else %>
+              <th colspan="1">Title</th>
+            <% end %>
             <th>URL</th>
             <th>Description</th>
-            <th colspan="3" class="not_sortable" onclick='return false;'>Options</th>
           </tr>
-        </thead>
-        <tbody>
-        <% @links.each do |link| %>
-          <% if (!link.school_days.empty? && link.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @link) %>
-          <tr>
-            <td><%= link.title %></td>
-            <td><%= link_to link.link_url, link.http_link(link.link_url), :target => "_blank" %></td>
-            <td><%= link.description %>
-            <td><%= link_to 'Show', link %></td>
-            <% if can? :edit, @links %>
-              <td><%= link_to 'Edit', edit_link_path(link) %></td>
-              <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </thead>
+
+          <tbody>
+          <% @links.each do |link| %>
+            <% if (!link.school_days.empty? && link.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @link) %>
+            <tr>
+              <td>
+                <ul class="no-bullet">
+                <% link.school_days.order("ordinal DESC").each do |school_day| %>
+                  <li>
+                    <h3 class="less-padding"><%= link_to school_day.ordinal, school_day %></h3>
+                  <li>
+                <% end %>
+                </ul>
+              </td>
+              <td>
+                <h5><%= link_to link.print_name, link %></h5>
+                <% if can? :edit, @link %>
+                  <%= link_to 'Edit', edit_link_path(link) %>
+                  <%= link_to 'Delete', link, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+              </td>
+
+              <% if can? :edit, @link %>
+                <td></td>
+              <% end %>
+
+              <td><%= link_to link.link_url, link.http_link(link.link_url), :target => "_blank" %></td>
+              <td><%= link.description %></td>
+            </tr>
             <% end %>
-          </tr> 
           <% end %>
-        <% end %>
-      </tbody>
+          </tbody>
         </table>
 
-        <br />
-        <% if can? :create, @link %>
-          <%= link_to 'New Link', new_link_path %>
-        <% end %>
+      </div>
+
     </div>
   </div>
 </div>

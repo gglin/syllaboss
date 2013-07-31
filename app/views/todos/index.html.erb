@@ -1,42 +1,5 @@
-<div class="page-head">
-  <h2>All Todos</h2>
-</div>
+<%= render partial: "layouts/header_index", locals: {chosen_materials: @todos} %>
 
-<div class="matter">
-  <div class="container-fluid">
-    <div class="row-fluid">
-      <%= render "layouts/messages" %>
+<% @material_columns = ["URL"] %>
 
-        <table class="tablesorter" id="myTable">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Gist</th>
-              <th colspan="3" class="not_sortable" onclick='event.preventDefault()'>Options</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @todos.each do |todo| %>
-              <% if (!todo.school_days.empty? && todo.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @todo) %>
-              <tr>
-                <td><%= todo.name %></td>
-                <td><%= link_to todo.gist, todo.http_link(todo.gist), :target => "_blank" %></td>
-                <td><%= link_to 'Show', todo %></td>
-                <% if can? :edit, @todo %>
-                  <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-                  <td><%= link_to 'Delete', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                <% end %>
-              <% end %>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-
-        <br />
-
-        <% if can? :create, @todo %>
-          <%= link_to 'New Todo', new_todo_path %>
-        <% end %>
-    </div>
-  </div>
-</div>
+<%= render partial: "layouts/body_materials_index", locals: {materials: @todos, material_columns: @material_columns } %>

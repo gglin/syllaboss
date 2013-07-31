@@ -1,47 +1,63 @@
-<div class="page-head">
-  <h2>All Programmers of the Day</h2>
-</div>
+<%= render partial: "layouts/header_index", locals: {chosen_materials: @potds} %>
+
 <div class="matter">
   <div class="container-fluid">
     <div class="row-fluid">
       <%= render "layouts/messages" %>
       
-        <table class="tablesorter" id="myTable">
-        <thead>
+      <div class="span12 table-maxspan minspan">
+
+        <table class="table tablesorter material-index" id="myTable">
+          <thead>
           <tr>
-            <th>Name</th>
+            <th>Day(s)</th>
+            <% if can? :edit, @potds %>
+              <th colspan="2">Name</th>
+            <% else %>
+              <th colspan="1">Name</th>
+            <% end %>
             <th>Wikipedia</th>
             <th>Presentation URL</th>
-            <th class="not_sortable" onclick='return false;'colspan="3">Options</th>
-
           </tr>
-        </thead>
-        <tbody>
+          </thead>
 
-        <% @potds.each do |potd| %>
-          <% if (!potd.school_days.empty? && potd.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @potd) %>
-          <tr>
-            <td><%= link_to(potd.name, potd) %></td>
-            <td><%= link_to(potd.wikipedia, potd.http_link(potd.wikipedia), :target => "_blank") %></td>
-            <td><%= link_to(potd.presentation_url, potd.http_link(potd.presentation_url), :target => "_blank") %></td>
-          
-            <td><%= link_to 'Show', potd %></td>
+          <tbody>
+          <% @potds.each do |potd| %>
+            <% if (!potd.school_days.empty? && potd.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @potd) %>
+            <tr>
+              <td>
+                <ul class="no-bullet">
+                <% potd.school_days.order("ordinal DESC").each do |school_day| %>
+                  <li>
+                    <h3 class="less-padding"><%= link_to school_day.ordinal, school_day %></h3>
+                  <li>
+                <% end %>
+                </ul>
+              </td>
+              <td>
+                <h5><%= link_to potd.print_name, potd %></h5>
+                <% if can? :edit, @potd %>
+                  <%= link_to 'Edit', edit_potd_path(potd) %>
+                  <%= link_to 'Delete', potd, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+              </td>
 
-            <% if can? :edit, @potd %>
-              <td><%= link_to 'Edit', edit_potd_path(potd) %></td>
-              <td><%= link_to 'Destroy', potd, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% if can? :edit, @potd %>
+                <td></td>
+              <% end %>
+
+              <td><%= link_to(potd.wikipedia, potd.http_link(potd.wikipedia), :target => "_blank") %></td>
+
+              <td><%= link_to(potd.presentation_url, potd.http_link(potd.presentation_url), :target => "_blank") %></td>
+
+            </tr>
             <% end %>
-          </tr>
           <% end %>
-        <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
 
-        <br />
+      </div>
 
-        <% if can? :create, @potd %>
-          <%= link_to 'New Programmer of the Day', new_potd_path %>
-        <% end %>
     </div>
   </div>
 </div>

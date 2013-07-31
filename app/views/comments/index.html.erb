@@ -1,33 +1,54 @@
 <div class="page-head">
   <h2>Discussion Stream</h2>
+
+  <ul class="horizontal-list breadcrumb">
+    <li>Filter by: </li>
+    <% material_type_list.each do |material_type_hash| %>
+      <% material_type = material_type_hash[:name] %>
+      <% material_icon = material_type_hash[:icon] %>
+
+      <% material_types  = material_type.pluralize %>
+      <% material_title  = material_capitalize(material_type) %>
+      <% material_titles = material_title.pluralize %>
+      
+      <li>
+        <a href="#">
+          <i class="icon-<%= material_icon %>"></i>
+          <%= material_titles %>
+        </a>
+      </li>
+      
+    <% end %>
+  </ul>
+  
+  <%# link_to 'Start a discussion', "#", class: "btn btn-info link-btn" %>
+  <div class="row-fluid fit-content">
+    <div class="span9 maxspan minspan">    
+      <div class="widget comment-widget">
+        <div class="widget-head fit-content transparent">
+          <span class="response-button widget-icons">
+            <a href="#" class="wminimize">
+              <span class="btn btn-primary link-btn">Post New Comment</span>
+            </a>
+          </span>
+          <div class="clearfix"></div>
+        </div>
+
+        <div class="widget-content" style="display: none;">
+          
+          <%= render partial: "comments/new_form", locals: {parent: @commentable, new_comment: @new_comment, default_value: ""} %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <div class="matter">
   <div class="container-fluid">
 
     <%= render "layouts/messages" %> 
-    
-    <%# link_to 'Start a discussion', "#", class: "btn btn-info link-btn" %>
-    <div class="row-fluid fit-content">
-      <div class="span9 maxspan minspan">    
-        <div class="widget comment-widget">
-          <div class="widget-head fit-content transparent">
-            <span class="response-button widget-icons">
-              <a href="#" class="wminimize">
-                <span class="btn btn-primary link-btn">Post New Comment</span>
-              </a>
-            </span>
-            <div class="clearfix"></div>
-          </div>
-
-          <div class="widget-content" style="display: none;">
-            
-            <%= render partial: "comments/new_form", locals: {parent: @commentable, new_comment: @new_comment, default_value: ""} %>
-
-          </div>
-        </div>
-      </div>
-    </div>
 
     <br />
 

@@ -23,27 +23,7 @@
 
       </ul>
 
-      <ul class="nav nav-icon">
-        <!-- <li><a>Create:</a></li> -->
-        <% material_type_list.each do |material_type_hash| %>
-          <% material_type = material_type_hash[:name] %>
-          <% material_icon = material_type_hash[:icon] %>
-
-          <% material_types  = material_type.pluralize %>
-          <% material_title  = material_capitalize(material_type) %>
-          <% material_titles = material_title.pluralize %>
-          
-          <%# unless material_type == chosen_material_type %>
-          <li>
-            <a href="<%= self.send("new_#{material_type}_path") %>" title="Create New <%= material_title %>">
-              <i class="icon-<%= material_icon %>"></i>
-              <%# material_titles %>
-            </a>
-          </li>
-          <%# end %>
-          
-        <% end %>
-      </ul>
+      
 
       <ul class="nav all-stats pull-right">
         <li>
@@ -74,6 +54,28 @@
           </li>
           <% end %>
         </ul>
+      </ul>
+
+      <ul class="nav nav-icon pull-right">
+        <!-- <li><i class="icon-plus"></i></li> -->
+        <% material_type_list.each do |material_type_hash| %>
+          <% material_type = material_type_hash[:name] %>
+          <% material_icon = material_type_hash[:icon] %>
+
+          <% material_types  = material_type.pluralize %>
+          <% material_title  = material_capitalize(material_type) %>
+          <% material_titles = material_title.pluralize %>
+          
+          <%# unless material_type == chosen_material_type %>
+          <li>
+            <a href="<%= self.send("new_#{material_type}_path") %>" title="Create New <%= material_title %>">
+              <i class="icon-<%= material_icon %>"></i>
+              <%# material_titles %>
+            </a>
+          </li>
+          <%# end %>
+          
+        <% end %>
       </ul>
 
     </div>

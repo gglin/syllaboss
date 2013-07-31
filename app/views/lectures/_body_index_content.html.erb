@@ -1,0 +1,13 @@
+<td>
+  <%= simple_format(re_truncate material.content, length: 500) %>
+</td>
+
+<td>
+  <ul class="no-bullet">
+  <% material.attachments.each do |attachment| %>
+    <li>
+      <%= link_to attachment.title, attachment.filename.to_s %>
+    </li>
+  <% end %>
+  </ul>
+</td>

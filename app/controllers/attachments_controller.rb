@@ -1,8 +1,9 @@
 class AttachmentsController < ApplicationController
-  # GET /attachments
-  # GET /attachments.json
+  
   authorize_resource
 
+  # GET /attachments
+  # GET /attachments.json
   def index
     @attachments = Attachment.all
 

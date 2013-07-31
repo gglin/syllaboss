@@ -162,6 +162,9 @@ textarea {
   padding-top: 3px;
 }
 
+
+// Resource sub-widgets
+
 .widget .sub-widget .widget-head {
   background-color: #fff !important;
   border-bottom: 1px solid #ccc !important;
@@ -174,6 +177,13 @@ textarea {
 .widget .sub-widget .widget-head i {
   color: #888;
 }
+
+.sub-widget .widget-content {
+  border: none;
+}
+
+
+// Form sub-widgets
 
 .widget .form-sub-widget .widget-head {
   background-color: #fff !important;
@@ -188,17 +198,24 @@ textarea {
   color: #000;
 }
 
+
+// Comment widgets
+
 .comment-widget {
   margin-bottom: 0px;
 }
 
 .comment-widget .widget-head {
-  background-color: none !important;
+  background-color: #f7f7f7 !important;
   border: none !important;
   font-size: 12px !important;
   color: #000 !important;
   border: 0 0 !important;
   padding: 0 0 !important;
+}
+
+.comment-widget .widget-content {
+  border: none;
 }
 
 

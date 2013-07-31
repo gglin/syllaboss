@@ -3,6 +3,7 @@ class SchoolDaysController < ApplicationController
   include SchoolDaysHelper
 
   skip_before_filter :load_current_day, :only => [:show, :edit]
+  
   load_and_authorize_resource 
 
   # GET /school_days

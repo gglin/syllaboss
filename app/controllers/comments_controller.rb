@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
 
   before_filter :load_commentable, :except => [:index]
+  
   authorize_resource
   
   def index
@@ -30,7 +31,6 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
 
 private
   def load_commentable

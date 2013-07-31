@@ -1,8 +1,9 @@
 class LecturesController < ApplicationController
-  # GET /lectures
-  # GET /lectures.json
+  
   load_and_authorize_resource
 
+  # GET /lectures
+  # GET /lectures.json
   def index
     @lectures = Lecture.all
 
@@ -27,6 +28,7 @@ class LecturesController < ApplicationController
     @comment = Comment.new
 
     @active_school_day = most_recent_day_for_material(@lecture)
+    @active_school_day = closest_day_to_today if @active_school_day.nil?
     load_prev_and_next_day
 
     respond_to do |format|

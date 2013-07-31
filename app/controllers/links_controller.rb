@@ -1,8 +1,9 @@
 class LinksController < ApplicationController
-  # GET /links
-  # GET /links.json
+
   load_and_authorize_resource
 
+  # GET /links
+  # GET /links.json
   def index
     # if params[:search].present?
     #   @search = Link.search do
@@ -30,6 +31,7 @@ class LinksController < ApplicationController
     @comment = Comment.new
 
     @active_school_day = most_recent_day_for_material(@link)
+    @active_school_day = closest_day_to_today if @active_school_day.nil?
     load_prev_and_next_day
 
     respond_to do |format|

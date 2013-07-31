@@ -17,9 +17,6 @@ class SearchesController < ApplicationController
   # GET /searches/1
   # GET /searches/1.json
   def show
-
-    
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @search }

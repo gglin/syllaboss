@@ -1,8 +1,9 @@
 class PotdsController < ApplicationController
+
+  load_and_authorize_resource
+  
   # GET /potds
   # GET /potds.json
-  load_and_authorize_resource
-
   def index
     # if params[:search].present?
     #   @search = Potd.search do
@@ -31,6 +32,7 @@ class PotdsController < ApplicationController
     @comment = Comment.new
 
     @active_school_day = most_recent_day_for_material(@potd)
+    @active_school_day = closest_day_to_today if @active_school_day.nil?
     load_prev_and_next_day
 
     respond_to do |format|

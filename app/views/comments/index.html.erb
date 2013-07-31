@@ -1,113 +1,105 @@
 <div class="page-head">
-  <div class = "row-fluid fit-content">
-    <div class = "span9 maxspan minspan">
-      <h1 class = "inline">Discussion Stream</h1>
-      <%= link_to 'New Comment', new_comment_path, class: "btn btn-info" %>
-    </div>
-  </div>
-
+  <h2>Discussion Stream</h2>
 </div>
 
 <div class="matter">
   <div class="container-fluid">
+
     <%= render "layouts/messages" %> 
-      <div class="row-fluid fit-content">
-        <div class="span9 maxspan minspan">
-          <div id="comments">
-            <ul class="chats">
-            <h4><%= pluralize(@comments.size, "Comment") %></h4> 
-            <% @comments.each do |comment| %>
-              <% by_type = comment.user.admin? ? "by-admin" : ""%>
+    
+    <%= link_to 'Start a discussion', new_comment_path, class: "btn btn-info cancel" %>
+    <br /><br />
+
+    <div class="row-fluid fit-content">
+      <div class="span9 maxspan minspan">
+
+        <ul class="chats">
+
+          <h4><%= pluralize(@comments.size, "Comment") %></h4> 
+
+          <% @comments.each do |comment| %>
+            
+            <% comment_parent = comment.commentable_type.classify.constantize.find(comment.commentable_id) %>
+            <% comment_parent_type = comment.commentable_type.underscore %>
+            <% by_type = comment.user.admin? ? "by-admin" : "" %>
+
             <li class = "by-me <%= by_type %>">
-              <div class = "avatar pull-left">
+
+              <div class="avatar pull-left">
                 <img src="http://placekitten.com/40/40">
               </div>
+
               <div class="chat-content hoverable">
                 <div class = "chat-meta">
                   <%= comment.user == current_user ? "Me" : comment.user.full_name %>
-
-                  <% comment_parent = comment.commentable_type.classify.constantize.find(comment.commentable_id) %>
-
-                  <% comment_parent_type = comment.commentable_type.underscore %>
                   
                   <% if comment.user.admin? %>
                     &nbsp; <span class="badge badge-instructor">Instructor</span>
                   <% end %>
+                  
+                  <span class="inline pull-right">
+                    <%= time_ago_in_words(comment.created_at) %> ago 
+                  </span>
 
                   <span class="admin inline pull-right">
-                    | <%= link_to 'Edit', "#" %>
+                    <%= link_to 'Edit', "#" %>
                     | <%= link_to 'Delete', [@commentable, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+                    &nbsp;&nbsp; 
                   </span>
-                  <span class="pull-right">
-                    <%= time_ago_in_words(comment.created_at) %> ago 
-                  </span>                  
                 </div>
 
-                <!--  This is the actual comment -->
+                <!-- Actual comment content -->
                 <%= auto_link(simple_format(re_truncate(comment.content, length:500, separator: ' ')), :all, :target => "_blank") %>
-                <!-- End comment -->
+                <!-- End comment content -->
 
-                <div class="row-fluid">
-                  <div class="span10">
-                    
+                <div class="row-fluid fit-content">
+
+                  <div class="span8">
                     <div class="widget comment-widget">
                       <div class="widget-head">
                         <span class="response-button widget-icons">
-                          <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
+                          <a href="#" class="wminimize"><i class="icon-chevron-down"></i></a>
                         </span>
                         <div class="clearfix"></div>
                       </div>
 
                       <div class="widget-content" style="display: none;">
-                        
-                        <%= form_for [comment_parent, @new_comment] do |f| %>
-                          
-                          <% if current_user %>
-                            <div class="field">
-                              <%= f.hidden_field :user_id, :value => current_user.id %>
-                            </div>
-                          <% end %>
 
-                          <div class="field">
-                            <%= f.text_area :content, :placeholder => "Leave a comment", rows: 5, value: "@#{comment.user.full_name}  ", class: "commentspan" %>
-                          </div>
-
-                          
-                          <div class="actions">
-                            <%= f.submit "Reply", class: "btn btn-info" %>
-                          </div>
-                        <% end %>
+                        <%= render partial: "comments/reply_form", locals: {parent: comment_parent, new_comment: @new_comment, default_value: "@#{comment.user.full_name}  "} %>
 
                       </div>
                     </div>
                   </div>
               
-                <div class="span2">
-                  <% case comment.commentable_type %>
-                  <% when "SchoolDay" then label_type = "label" %>
-                  <% when "Lecture" then label_type = "label-info" %>
-                  <% when "Homework" then label_type = "label-success" %>
-                  <% when "Potd" then label_type = "label-primary" %>
-                  <% when "Todo" then label_type = "label-success" %>
-                  <% when "Link" then label_type = "label-info" %>
-                  <% when "Lab" then label_type = "label-success" %>
-                  <% else %>
-                  <% label_type = "" %>
-                  <% end %>
-                  
-                  <span class="label <%= label_type %> pull-right inline">
-                    <strong> 
+                  <div class="span4">
+                    
+                    <% if comment_parent_type != "school_day" %>
+                      <% latest_school_day = comment_parent.school_days.order("calendar_date DESC").first %>
+                      <% unless latest_school_day.nil? %>
+                        <span class="label <%= label_type("school_day") %> pull-right inline">
+                          <%= link_to "#{material_capitalize("school_day")}: #{latest_school_day.print_name}", school_day_path( latest_school_day) %>
+                        </span>
+                      <% end %>
+                    <% end %>
+                    &nbsp;
+
+                    <span class="label <%= label_type(comment.commentable_type) %> pull-right inline" style="margin-right: 2px;">
                       <%= link_to "#{material_capitalize(comment_parent_type)}: #{comment_parent.print_name}", self.send("#{comment_parent_type}_path", comment_parent) %>
-                    </strong>
-                  </span>
-                  <div class="clearfix"></div>
+                    </span>
+
+                    <div class="clearfix"></div>
+                  </div>
+
                 </div>
 
               </div>
-            <% end %>
-            </div>
-          </div>
-        <br />
+            </li>
+
+          <% end %>
+
+        </ul>
+
+      </div>
     </div>
   </div>
 </div>

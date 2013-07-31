@@ -1,8 +1,9 @@
 class HomeworksController < ApplicationController
-  # GET /homeworks
-  # GET /homeworks.json
+  
   load_and_authorize_resource
 
+  # GET /homeworks
+  # GET /homeworks.json
   def index
     # if params[:search].present?
     #   @search = Homework.search do
@@ -30,6 +31,7 @@ class HomeworksController < ApplicationController
     @comment = Comment.new
 
     @active_school_day = most_recent_day_for_material(@homework)
+    @active_school_day = closest_day_to_today if @active_school_day.nil?
     load_prev_and_next_day
 
     respond_to do |format|

@@ -2,10 +2,16 @@ module SchoolDaysHelper
 
   def most_recent_day_for_material(material)
     if material.respond_to?("school_days")
-      material.school_days.order("calendar_date DESC").limit(1).first
+      most_recent_day = material.school_days.order("calendar_date DESC").where("calendar_date <= ?", Date.today).limit(1).first
     else
-      material.school_day
+      most_recent_day = material.school_day
     end
+
+    if most_recent_day.nil?
+      most_recent_day = closest_day_to_today
+    end
+
+    most_recent_day
   end
 
   def redirect_date(datestring)

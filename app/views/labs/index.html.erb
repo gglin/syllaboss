@@ -1,11 +1,11 @@
 <div class="page-head">
-  <h1>Listing labs</h1>
+  <h2>All Labs</h2>
 </div>
 
 <div class="matter">
   <div class="container-fluid">
     <div class="row-fluid">
-      <p id="notice"><%= notice %></p>
+       <%= render "layouts/messages" %>
       <table class="tablesorter" id="myTable">
         <thead>
           <tr>
@@ -16,7 +16,7 @@
         </thead>
         <tbody>
         <% @labs.each do |lab| %>
-          <% if (lab.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today) || (can? :edit, @lab) %>
+          <% if (!lab.school_days.empty? && lab.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @lab) %>
           <tr>
             <td><%= lab.name %></td>
             <td><%= link_to lab.lab_url, lab.http_link(lab.lab_url), :target => "_blank" %></td>

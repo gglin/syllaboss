@@ -36,9 +36,9 @@
     <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
     <% if @todo.persisted? %>
-      <%= link_to "Cancel", @todo, class: "btn btn-inverse cancel" %> 
+      <%= link_to "Cancel", @todo, class: "btn btn-inverse link-btn" %> 
     <% else %>
-      <%= link_to "Cancel", "/", class: "btn btn-inverse cancel" %> 
+      <%= link_to "Cancel", "/", class: "btn btn-inverse link-btn" %> 
     <% end %>
 
 <% end %>

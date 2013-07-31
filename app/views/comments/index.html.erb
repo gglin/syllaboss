@@ -7,8 +7,29 @@
 
     <%= render "layouts/messages" %> 
     
-    <%= link_to 'Start a discussion', new_comment_path, class: "btn btn-info cancel" %>
-    <br /><br />
+    <%# link_to 'Start a discussion', "#", class: "btn btn-info link-btn" %>
+    <div class="row-fluid fit-content">
+      <div class="span9 maxspan minspan">    
+        <div class="widget comment-widget">
+          <div class="widget-head fit-content transparent">
+            <span class="response-button widget-icons">
+              <a href="#" class="wminimize">
+                <span class="btn btn-primary link-btn">Post New Comment</span>
+              </a>
+            </span>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="widget-content" style="display: none;">
+            
+            <%= render partial: "comments/new_form", locals: {parent: @commentable, new_comment: @new_comment, default_value: ""} %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
 
     <div class="row-fluid fit-content">
       <div class="span9 maxspan minspan">
@@ -23,14 +44,14 @@
             <% comment_parent_type = comment.commentable_type.underscore %>
             <% by_type = comment.user.admin? ? "by-admin" : "" %>
 
-            <li class = "by-me <%= by_type %>">
+            <li class="by-me <%= by_type %>">
 
               <div class="avatar pull-left">
                 <img src="http://placekitten.com/40/40">
               </div>
 
               <div class="chat-content hoverable">
-                <div class = "chat-meta">
+                <div class="chat-meta">
                   <%= comment.user == current_user ? "Me" : comment.user.full_name %>
                   
                   <% if comment.user.admin? %>
@@ -49,7 +70,9 @@
                 </div>
 
                 <!-- Actual comment content -->
-                <%= auto_link(simple_format(re_truncate(comment.content, length:500, separator: ' ')), :all, :target => "_blank") %>
+                <div class="padd-top">
+                  <%= auto_link(simple_format(re_truncate(comment.content, length:500, separator: ' ')), :all, :target => "_blank") %>
+                </div>
                 <!-- End comment content -->
 
                 <div class="row-fluid fit-content">
@@ -58,14 +81,15 @@
                     <div class="widget comment-widget">
                       <div class="widget-head">
                         <span class="response-button widget-icons">
-                          <a href="#" class="wminimize"><i class="icon-chevron-down"></i></a>
+                          <a href="#" class="wminimize">Reply</a>
                         </span>
                         <div class="clearfix"></div>
                       </div>
 
                       <div class="widget-content" style="display: none;">
-
-                        <%= render partial: "comments/reply_form", locals: {parent: comment_parent, new_comment: @new_comment, default_value: "@#{comment.user.full_name}  "} %>
+                        
+                        <% default_value = comment.user==current_user ? "" : "@#{comment.user.full_name}  " %>
+                        <%= render partial: "comments/reply_form", locals: {parent: comment_parent, new_comment: @new_comment, default_value: default_value} %>
 
                       </div>
                     </div>
@@ -77,14 +101,15 @@
                       <% latest_school_day = comment_parent.school_days.order("calendar_date DESC").first %>
                       <% unless latest_school_day.nil? %>
                         <span class="label <%= label_type("school_day") %> pull-right inline">
-                          <%= link_to "#{material_capitalize("school_day")}: #{latest_school_day.print_name}", school_day_path( latest_school_day) %>
+                          <%= link_to "#{material_capitalize("school_day")} #{latest_school_day.print_name}", school_day_path(latest_school_day) %>
                         </span>
                       <% end %>
                     <% end %>
                     &nbsp;
-
+                    
+                    <% colon = comment_parent_type=="school_day" ? "" : ":" %>
                     <span class="label <%= label_type(comment.commentable_type) %> pull-right inline" style="margin-right: 2px;">
-                      <%= link_to "#{material_capitalize(comment_parent_type)}: #{comment_parent.print_name}", self.send("#{comment_parent_type}_path", comment_parent) %>
+                      <%= link_to "#{material_capitalize(comment_parent_type)}#{colon} #{comment_parent.print_name}", self.send("#{comment_parent_type}_path", comment_parent)+"#comment-#{comment.id}" %>
                     </span>
 
                     <div class="clearfix"></div>

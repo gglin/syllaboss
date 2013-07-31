@@ -1,10 +1,11 @@
 <div class="page-head">
-  <h1>Listing lectures</h1>
+  <h2>All Lectures</h2>
 </div>
 
 <div class="matter">
   <div class="container-fluid">
     <div class="row-fluid">
+     <%= render "layouts/messages" %>
 
       <table class="tablesorter" id="myTable">
         <thead>
@@ -19,7 +20,7 @@
       </thead>
       <tbody>
       <% @lectures.each do |lecture| %>
-        <% if (lecture.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today) || (can? :edit, @lecture) %>
+        <% if (!lecture.school_days.empty? && lecture.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @lecture) %>
         <tr>
           <td>
             <h3>

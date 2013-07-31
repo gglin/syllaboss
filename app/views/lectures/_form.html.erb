@@ -31,7 +31,7 @@
   </div>
 
   <div class="control-group">
-    <%= f.label :attachment, "Attachment(s)" %> <%= link_to "Create New", new_attachment_path, target: "_blank", class: "btn btn-info new-material control-label" %>
+    <%= f.label :attachment, "Attachment(s)" %> <%= link_to "Create New", new_attachment_path, target: "_blank", class: "btn btn-primary link-btn new-material control-label" %>
     <div class="controls">
       <%= f.collection_select(:attachment_ids, Attachment.order("title"), :id, :title, {:selected => @lecture.attachment_ids, :prompt => "Please Select Attachment(s)"}, {:class => "span4", multiple: "multiple"}) %>
     </div>
@@ -48,8 +48,8 @@
     <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
     <% if @lecture.persisted? %>
-      <%= link_to "Cancel", @lecture, class: "btn btn-inverse cancel" %> 
+      <%= link_to "Cancel", @lecture, class: "btn btn-inverse link-btn" %> 
     <% else %>
-      <%= link_to "Cancel", "/", class: "btn btn-inverse cancel" %> 
+      <%= link_to "Cancel", "/", class: "btn btn-inverse link-btn" %> 
     <% end %>
 <% end %>

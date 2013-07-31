@@ -1,5 +1,5 @@
 <div class="page-head">
-  <h1>Listing links</h1>
+  <h2>All Links</h2>
 </div>
 
 <div class="matter">
@@ -18,7 +18,7 @@
         </thead>
         <tbody>
         <% @links.each do |link| %>
-          <% if (link.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today) || (can? :edit, @link) %>
+          <% if (!link.school_days.empty? && link.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @link) %>
           <tr>
             <td><%= link.title %></td>
             <td><%= link_to link.link_url, link.http_link(link.link_url), :target => "_blank" %></td>

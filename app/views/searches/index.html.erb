@@ -1,20 +1,26 @@
 <div class="page-head">
-  <h1>Listing searches</h1>
+  <h2>All results</h2>
 </div>
 
-<ol>
-  <%#  debugger %>
-  <% @searches.each do |object| %>
-    <li><%="#{object.class}:"%>
-    	
-    	<% if object.class == SchoolDay %>
-    		<a href=<%= "school_days/#{object.id}" %>><%= object.print_name %></a>
-        <%= object.try(:print_search) %>
-    	<% else %>
-      <% debugger %>
-    		<a href=<%= "#{object.class.to_s.downcase}s/#{object.id}" %>><%= object.print_name %></a> 
-        <%= object.try(:print_search) %>
-    	<% end %>
-    </li>
-   <% end %>
-</ol>
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <ol>
+        <%#  debugger %>
+        <% @searches.each do |object| %>
+          <li><%="#{object.class}:"%>
+          	
+          	<% if object.class == SchoolDay %>
+          		<a href=<%= "school_days/#{object.id}" %>><%= object.print_name %></a>
+              <%= object.try(:print_search) %>
+          	<% else %>
+            <%# debugger %>
+          		<a href=<%= "#{object.class.to_s.downcase}s/#{object.id}" %>><%= object.print_name %></a> 
+              <%= object.try(:print_search) %>
+          	<% end %>
+          </li>
+         <% end %>
+      </ol>
+    </div>
+  </div>
+</div>

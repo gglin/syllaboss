@@ -9,14 +9,10 @@ class CommentsController < ApplicationController
     @new_comment  = Comment.new
   end
 
-  def new
-    @comment = @commentable.comments.new
-  end
-
   def create
     @comment = @commentable.comments.new(params[:comment])
     if @comment.save
-      redirect_to @commentable, notice: "Comment posted."
+      redirect_to self.send("#{@commentable_type}_path", @commentable) + "#comment-#{@comment.id}", notice: "Comment posted."
     else
       render :new
     end
@@ -37,8 +33,10 @@ private
     resource, id = request.path.split('/')[1, 2]
     if resource != "comments" && id 
       @commentable = resource.singularize.classify.constantize.find(id)
+      @commentable_type = resource.singularize.underscore
     else
       @commentable = closest_day_to_today
+      @commentable_type = "school_day"
     end
   end
 end

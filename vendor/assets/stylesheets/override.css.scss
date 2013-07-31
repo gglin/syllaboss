@@ -1,4 +1,4 @@
-body{
+body {
   font-size: 14px;
   // line-height: 23px;
   color: #444;
@@ -39,11 +39,11 @@ h1.less-padding, h2.less-padding, h3.less-padding, h4.less-padding, h5.less-padd
   color: #666;
 }
 
-.chats .by-admin .avatar img{
+.chats .by-admin .avatar img {
   // border: 3px solid #FF6600;
 }
 
-.badge-instructor{
+.badge-instructor {
   background-color: #fbd850;
   color: #000;
   font-size: 12px;
@@ -144,6 +144,10 @@ textarea {
   max-width: 800px;
 }
 
+.padd-top {
+  padding-top: 8px !important;
+}
+
 // .row-fluid {
 //   padding-right: 0px !important;
 // }
@@ -216,6 +220,11 @@ textarea {
 
 .comment-widget .widget-content {
   border: none;
+  padding-bottom: 1px;
+}
+
+.comment-widget .transparent {
+  background-color: transparent !important
 }
 
 
@@ -491,7 +500,7 @@ body {
 
 .dropdown:hover > .dropdown-menu {
   // opacity: 1;
-  // z-index: 100;
+  z-index: 10000;
   // -webkit-transform: scale(1, 1);
   visibility: visible;
   display: block\9;
@@ -505,7 +514,7 @@ body {
   // position: absolute;
   // top: 0;
   // width: 234px;
-  // z-index: -100;
+  z-index: -100;
   // -webkit-transform: scale(1, 0.99);
   // -webkit-transform-origin: 0 0;
   visibility: hidden;
@@ -611,7 +620,7 @@ body {
 // }
 
 
-.cancel {
+.link-btn {
   color: #ffffff !important; 
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25) !important;
   display: inline-block !important;
@@ -627,17 +636,6 @@ body {
 }
 
 .new-material {
-  color: #ffffff !important; 
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25) !important;
-  display: inline-block !important;
   padding: 4.3px 5px !important;
-  margin-bottom: 0 !important;
-  font-size: 14px !important;
-  line-height: 20px !important;
-  text-align: center !important;
-  vertical-align: middle !important;
-  border: 1px solid #ccc !important;
-  font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
-  font-size: 13px !important;
 }
  

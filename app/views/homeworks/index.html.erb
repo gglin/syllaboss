@@ -1,11 +1,11 @@
 <div class="page-head">
-  <h1>Listing Homeworks</h1>
+  <h2>All Homeworks</h2>
 </div>
 
 <div class="matter">
   <div class="container-fluid">
     <div class="row-fluid">
-      <p id="notice"><%= notice %></p>
+       <%= render "layouts/messages" %>
       <table class="tablesorter" id="myTable">
         <thead>
           <tr>
@@ -15,9 +15,8 @@
           </tr>
         </thead>
         <tbody>
-
         <% @homeworks.each do |homework| %>
-          <% if (homework.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today) || (can? :edit, @homework) %>
+          <% if (!homework.school_days.empty? && homework.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @homework) %>
           <tr>
             <td><%= homework.title %></td>
             <td><%= homework.content %></td>
@@ -29,8 +28,8 @@
           </tr>
           <% end %>
         <% end %>
-      </tbody>
-        </table>
+        </tbody>
+      </table>
 
         <br />
         <% if can? :create, @homework %>

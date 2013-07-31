@@ -13,37 +13,36 @@
       <!-- <li>&nbsp;</li> -->
       <li class="nred day-title" style="background-color: rgb(220,220,220);">
           
+        <span>
+          <%= link_to '<i class="icon-caret-left dir-icon"></i>'.html_safe, school_day_path(@previous_school_day), class: "dir-icon" if @previous_school_day %>
+        </span>
+
+        <h2 class="less-padding inline"><%= link_to "Day #{@active_school_day.ordinal}", @active_school_day %></h2>
+        
+        <% if @next_school_day %>
+          <% if (@next_school_day.calendar_date <= Date.today) || (can? :edit, @next_school_day) %>
             <span>
-              <%= link_to '<i class="icon-caret-left dir-icon"></i>'.html_safe, school_day_path(@previous_school_day), class: "dir-icon" if @previous_school_day %>
+              <%= link_to '<i class="icon-caret-right dir-icon"></i>'.html_safe, school_day_path(@next_school_day), class: "dir-icon" if @next_school_day %>
             </span>
+          <% end %>
+        <% end %>
 
-            <h2 class="less-padding inline"><%= link_to "Day #{@active_school_day.ordinal}", @active_school_day %></h2>
-            
-            <% if @next_school_day %>
-              <% if (@next_school_day.calendar_date <= Date.today) || (can? :edit, @next_school_day) %>
-                <span>
-                  <%= link_to '<i class="icon-caret-right dir-icon"></i>'.html_safe, school_day_path(@next_school_day), class: "dir-icon" if @next_school_day %>
-                </span>
-              <% end %>
-            <% end %>
+        <% if @active_school_day.calendar_date == Date.today %>
+          <br>
+          <span class="badge badge-warning pull-right"><strong>Today</strong></span>
+        <% elsif @active_school_day.calendar_date < Date.today %>
+          <br>
+          <span class="badge pull-right"><strong><%= distance_of_time_in_words(Date.today, @active_school_day.calendar_date) %> ago</strong></span>
+        <% else %>
+          <br>
+          <span class="badge pull-right"><strong><%= distance_of_time_in_words(Date.today, @active_school_day.calendar_date) %> from now</strong></span>
+        <% end %>
 
-            <% if @active_school_day.calendar_date == Date.today %>
-              <br>
-              <span class="badge badge-warning pull-right"><strong>Today</strong></span>
-            <% elsif @active_school_day.calendar_date < Date.today %>
-              <br>
-              <span class="badge pull-right"><strong><%= distance_of_time_in_words(Date.today, @active_school_day.calendar_date) %> ago</strong></span>
-            <% else %>
-              <br>
-              <span class="badge pull-right"><strong><%= distance_of_time_in_words(Date.today, @active_school_day.calendar_date) %> from now</strong></span>
-            <% end %>
-
-            <h4 class="less-padding">Week <%= @active_school_day.week %></h4>
-          
-
-          <p>
-            <%= @active_school_day.calendar_date.strftime("%A %B %d, %Y") %>
-          </p>
+        <h4 class="less-padding">Week <%= @active_school_day.week %></h4>
+      
+        <p>
+          <%= @active_school_day.calendar_date.strftime("%A %B %d, %Y") %>
+        </p>
 
       </li>
 
@@ -73,7 +72,7 @@
       <li class="has_submenu nlightblue hoverable">
         <a href="#">
           <!-- Menu name with icon -->
-          <i class="icon-pencil"></i> To-Dos 
+          <i class="icon-edit"></i> To-Dos 
           <!-- Icon for dropdown -->
           <span class="pull-right hover-only">(<%= @active_school_day.todos.size %>)</span>
           <span class="pull-right no-hover-only"><i class="icon-angle-right"></i></span>

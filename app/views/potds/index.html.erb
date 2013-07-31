@@ -1,10 +1,11 @@
 <div class="page-head">
-  <h1>All Programmers of the Day</h1>
+  <h2>All Programmers of the Day</h2>
 </div>
 <div class="matter">
   <div class="container-fluid">
     <div class="row-fluid">
-      <p id="notice"><%= notice %></p>
+      <%= render "layouts/messages" %>
+      
         <table class="tablesorter" id="myTable">
         <thead>
           <tr>
@@ -18,7 +19,7 @@
         <tbody>
 
         <% @potds.each do |potd| %>
-          <% if (potd.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today) || (can? :edit, @potd) %>
+          <% if (!potd.school_days.empty? && potd.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, @potd) %>
           <tr>
             <td><%= link_to(potd.name, potd) %></td>
             <td><%= link_to(potd.wikipedia, potd.http_link(potd.wikipedia), :target => "_blank") %></td>
@@ -33,8 +34,8 @@
           </tr>
           <% end %>
         <% end %>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
 
         <br />
 

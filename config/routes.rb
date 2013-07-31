@@ -43,8 +43,9 @@ Pizza::Application.routes.draw do
     resources :comments
   end
 
+  resources :comments, only: [:index, :create, :destroy]
+
   resources :attachments
-  resources :comments
 
 
   # The priority is based upon order of creation:

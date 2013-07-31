@@ -638,4 +638,16 @@ body {
 .new-material {
   padding: 4.3px 5px !important;
 }
+
+#resource_preview{
+  position: fixed;
+  width: 26%;
+  top: 181px;
+  right: 353px;
+}
  
+@media (max-width: 1900px) {
+#resource_preview {
+    visibility: hidden;
+  }
+}

@@ -1,0 +1,7 @@
+$('option').dblclick(function(){
+	var id = $(this).val();
+	var frame = "resource_preview";
+	var path = $(this).parents(".control-group").data("name");
+	var url = "/"+path+"/" + id;	
+	window.open(url, frame);
+});

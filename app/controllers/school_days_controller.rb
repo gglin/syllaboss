@@ -86,6 +86,7 @@ class SchoolDaysController < ApplicationController
   # PUT /school_days/1
   # PUT /school_days/1.json
   def update
+    # raise params.inspect
     @school_day = SchoolDay.find(params[:id])
 
     respond_to do |format|

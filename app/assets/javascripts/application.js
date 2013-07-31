@@ -62,6 +62,7 @@
 //= require jquery.tablesorter
 
 //= require school_day_index
+//= require school_day_form
 
 //= require_tree .
 

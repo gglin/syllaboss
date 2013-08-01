@@ -27,10 +27,12 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-rails'
 end
 
 # gem 'flatui-rails'
-gem 'jquery-rails'
+
+gem 'jquery-ui-rails'
 
 # gem 'will_paginate', '> 3.0'
 

@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-
 //= require bootstrap
 //= require jquery-ui-1.10.2.custom.min
 //= require fullcalendar.min
@@ -59,8 +58,9 @@
 // require ../../../vendor/assets/javascripts/prettify
 // require ../../../vendor/assets/javascripts/applymultiselect
 
-//= require jquery.tablesorter
 
+//= require jquery.tablesorter
+//= require jquery.ui.datepicker 
 //= require school_day_index
 //= require school_day_form
 

@@ -29,7 +29,7 @@
   <div class="control-group">
     <%= f.label :calendar_date, "Calendar Date", class: "control-label" %>
     <div class="controls">
-      <%= f.date_select :calendar_date %>
+      <%= f.text_field :calendar_date_string %>
     </div>
   </div>
   <% end %>
@@ -127,7 +127,7 @@
 
             <!-- Homeworks -->
             <div class="control-group" data-name="homeworks">
-              <%= f.label :homework, "Select z(s)", class: "control-label" %>
+              <%= f.label :homework, "Select Homework(s)", class: "control-label" %>
               <div class="controls">
                  <%= f.collection_select(:homework_ids, Homework.all, :id, :print_name, {:selected => @school_day.homework_ids, :prompt => "Please Select Homework(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
                 <span><%= link_to "Create New", new_homework_path, class: "btn btn-primary link-btn" %></span>

@@ -1,5 +1,5 @@
 class SchoolDay < ActiveRecord::Base
-  attr_accessible :calendar_date, :ordinal, :schedule, :week, :links, :links_attributes, :comment_ids
+  attr_accessible :calendar_date_string, :ordinal, :schedule, :week, :links, :links_attributes, :comment_ids
   attr_accessible :potd_id, :link_ids, :lecture_ids, :todo_ids, :lab_ids, :homework_ids
 
   belongs_to :potd
@@ -80,6 +80,21 @@ class SchoolDay < ActiveRecord::Base
   def print_search
     [ordinal, calendar_date,schedule]
   end
-  
+
+  DATE_FORMAT = ['%d/%m/%Y']
+
+  def calendar_date_string
+    calendar_date.to_s
+  end
+
+  def calendar_date_string=(calendar_date_str)
+    self.calendar_date = Date.parse(calendar_date_str)
+  rescue ArgumentError
+    @calendar_date_invalid = true
+  end
+
+  def validate
+    errors.add(:calendar_date, "is invalid") if @calendar_date_invalid
+  end
 end
 

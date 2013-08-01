@@ -27,17 +27,19 @@
           <span class="inline pull-right">
             <%= time_ago_in_words(comment.created_at) %> ago 
           </span>
-
-          <span class="admin inline pull-right">
-            <%= link_to 'Edit', "#" %>
-            | <%= link_to 'Delete', [@commentable, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
-            &nbsp;&nbsp; 
-          </span>
+          
+          <% if can? :edit, comment %>
+            <span class="admin inline pull-right">
+              <%= link_to 'Edit', "#" %>
+              | <%= link_to 'Delete', [@commentable, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+              &nbsp;&nbsp; 
+            </span>
+          <% end %>
         </div>
 
         <!-- Actual comment content -->
         <div class="padd-top">
-          <%= auto_link(simple_format(re_truncate(comment.content, length:500, separator: ' ')), :all, :target => "_blank") %>
+          <%= auto_link(simple_format(comment.content), :all, :target => "_blank") %>
         </div>
         <!-- End comment content -->
 
@@ -55,7 +57,7 @@
               <div class="widget-content" style="display: none;">
                 
                 <% default_value = comment.user==current_user ? "" : "@#{comment.user.full_name}  " %>
-                <%# render partial: "comments/reply_form", locals: {parent: comment_parent, new_comment: @new_comment, default_value: default_value} %>
+                <%= render partial: "comments/reply_form", locals: {parent: comment_parent, new_comment: @comment, default_value: default_value} %>
 
               </div>
             </div>

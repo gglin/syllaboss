@@ -31,6 +31,10 @@ module SchoolDaysHelper
     end
   end
 
+  def furthest_day_for_material(material)
+    material.school_days.order("calendar_date DESC").limit(1).first
+  end
+
   def redirect_date(datestring)
     date = Date.strptime(datestring, "%m/%d/%Y")
     school_day = SchoolDay.find_by_calendar_date(date)

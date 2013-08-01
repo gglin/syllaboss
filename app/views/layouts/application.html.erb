@@ -19,8 +19,12 @@
 
   <!-- Begin Content -->
   <div class="content">
-
-    <%= render "layouts/sidebar" %>
+    
+    <% if current_user && current_user.admin? %>
+      <%= render "layouts/sidebar_admin" %>
+    <% else %>
+      <%= render "layouts/sidebar" %>
+    <% end %>
     
     <div class="mainbar">
 

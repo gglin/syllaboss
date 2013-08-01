@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<div class="sidebar sidebar-fixed-left">
+<div class="sidebar sidebar-admin-fixed-left">
   <div class="sidebar-dropdown"><a href="#">Navigation</a></div>
 
   <div class="sidebar-inner" style="position: static;">
@@ -45,7 +45,7 @@
       </li>
 
       <% material_type_list.each do |material_type_hash| %>
-        
+
         <% material_icon   = material_type_hash[:icon] %>
 
         <% material_type   = material_type_hash[:name] %>
@@ -53,12 +53,12 @@
         
         <% material_title  = material_capitalize(material_type) %>
         <% material_titles = material_title.pluralize %>
+
+        <% material_class  = material_type.classify.constantize %>
         
         <% if material_type != "school_day" %>
 
-          <% if @active_school_day.respond_to?(material_types) %>
-
-            <% if @active_school_day.send(material_types).size > 0 %>
+            <% if material_class.all.sort_by {|m| m.print_name}.size > 0 %>
               <% color   = "nlightblue" %>
               <% submenu = "has_submenu" %>
             <% else %>
@@ -71,45 +71,33 @@
                 <!-- Menu name with icon -->
                 <i class="icon-<%= material_icon %>"></i> <%= material_titles %> 
                 <!-- Icon for dropdown -->
-                <span class="pull-right hover-only">(<%= @active_school_day.send(material_types).size %>)</span>
+                <span class="pull-right hover-only">(<%= material_class.all.sort_by {|m| m.print_name}.size %>)</span>
                 <span class="pull-right no-hover-only"><i class="icon-angle-right"></i></span>
               </a>
 
               <ul>
-                <% @active_school_day.send(material_types).each_with_index do |material, index| %>
+                <li>
+                  <a href='<%= self.send("#{material_types}_path") %>'>
+                    <i class="icon-list"></i>
+                    Show All
+                  </a>
+                </li>
+                <% material_class.all.sort_by {|m| m.print_name}.each_with_index do |material, index| %>
+                  
+                  <% furthest_day_object = furthest_day_for_material(material) %>
+                  <% day_for_material    = furthest_day_object.nil? ? "" : "Day #{furthest_day_object.ordinal}" %>
+
                   <li>
-                    <%= link_to material.print_name, self.send("#{material_type}_path", material) %>
+                    <a href='<%= self.send("#{material_type}_path", material) %>'>
+                      <div class="row-fluid">
+                        <div class="span9 sidebar_material_name no-height"><%= material.print_name   %></div>
+                        <div class="span3 sidebar_day_for_material no-height"><%= "#{day_for_material}" %></div>
+                      </div>
+                    </a>
                   </li>
                 <% end %>
               </ul>
             </li>
-
-          <% else %>
-
-            <% if @active_school_day.send(material_type) %>
-              <% color   = "nlightblue" %>
-              <% submenu = "has_submenu" %>
-            <% else %>
-              <% color   = "" %>
-              <% submenu = "no_submenu" %>
-            <% end %>
-
-            <li class="<%= submenu %> <%= color %> hoverable">
-              <a href="#">
-                <!-- Menu name with icon -->
-                <i class="icon-user"></i> <%= material_title %> 
-                <!-- Icon for dropdown -->
-                <span class="pull-right hover-only">(<%= @active_school_day.send(material_type) ? 1 : 0 %>)</span>
-                <span class="pull-right no-hover-only"><i class="icon-angle-right"></i></span>
-              </a>
-              <ul>
-                <li class="norange">
-                  <%= link_to @active_school_day.send(material_type).print_name, self.send("#{material_type}_path", @active_school_day.send(material_type)) if @active_school_day.send(material_type) %>
-                </li>
-              </ul>
-            </li>
-
-          <% end %>
           
         <% end %>
 

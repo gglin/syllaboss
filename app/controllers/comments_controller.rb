@@ -5,14 +5,32 @@ class CommentsController < ApplicationController
   authorize_resource
   
   def index
-    @comments = Comment.order("created_at DESC")
-    @new_comment  = Comment.new
+    if current_user.admin?
+      @comments = Comment.order("created_at DESC")
+    else
+      @comments = Comment.order("created_at DESC").select do |comment|
+        comment_parent      = comment.commentable_type.classify.constantize.find(comment.commentable_id)
+        comment_parent_type = comment.commentable_type.underscore
+
+        if comment_parent_type == "school_day"
+          comment_parent.calendar_date <= Date.today
+        else
+          comment_parent.school_days.order("calendar_date")[0].calendar_date <= Date.today if !comment_parent.school_days.empty?
+        end
+      end
+    end
+
+    @new_comment = Comment.new
   end
 
   def create
     @comment = @commentable.comments.new(params[:comment])
     if @comment.save
-      redirect_to self.send("#{@commentable_type}_path", @commentable) + "#comment-#{@comment.id}", notice: "Comment posted."
+      if request.referrer.split('/').last == "comments"
+        redirect_to comments_path, notice: "Comment posted."
+      else
+        redirect_to self.send("#{@commentable_type}_path", @commentable) + "#comment-#{@comment.id}", notice: "Comment posted."
+      end
     else
       render :new
     end
@@ -23,7 +41,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_to :back, notice: "Comment deleted." }
       format.json { head :no_content }
     end
   end

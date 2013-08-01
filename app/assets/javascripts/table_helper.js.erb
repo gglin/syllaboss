@@ -1,130 +1,130 @@
-var url = window.location.href.toString().split(window.location.host)[1];
+// var url = window.location.href.toString().split(window.location.host)[1];
 
-switch (url)
-  {
-  case "/lectures":
-          $(document).ready(function() { 
-            $("#myTable").tablesorter({ 
-                // pass the headers argument and assing a object 
-                headers: { 
-                    // assign the secound column (we start counting zero) 
-                    2: { 
-                        // disable it by setting the property sorter to false 
-                        sorter: false 
-                    }, 
-                } 
-            }); 
-        });
-    
-    break;
-  case "/links":
-      $(document).ready(function() { 
-        $("table").tablesorter({ 
-            // pass the headers argument and assing a object 
-            headers: { 
-                // assign the third column (we start counting zero) 
-                2: { 
-                    // disable it by setting the property sorter to false 
-                    sorter: false 
-                } 
-            } 
-        }); 
-    });
-    
-     break;
-//   case "/potds":
-    //   $(document).ready(function() { 
-    //     $("table").tablesorter({ 
-    //         // pass the headers argument and assing a object 
-    //         headers: { 
-    //             // assign the secound column (we start counting zero) 
-    //             1: { 
-    //                 // disable it by setting the property sorter to false 
-    //                 sorter: false 
-    //             }, 
-    //             // assign the third column (we start counting zero) 
-    //             2: { 
-    //                 // disable it by setting the property sorter to false 
-    //                 sorter: false 
-    //             } 
-    //         } 
-    //     }); 
-    // });
+// switch (url)
+//   {
+//   case "/lectures":
+//           $(document).ready(function() { 
+//             $("#myTable").tablesorter({ 
+//                 // pass the headers argument and assing a object 
+//                 headers: { 
+//                     // assign the secound column (we start counting zero) 
+//                     2: { 
+//                         // disable it by setting the property sorter to false 
+//                         sorter: false 
+//                     }, 
+//                 } 
+//             }); 
+//         });
+//     
+//     break;
+//   case "/links":
+//       $(document).ready(function() { 
+//         $("table").tablesorter({ 
+//             // pass the headers argument and assing a object 
+//             headers: { 
+//                 // assign the third column (we start counting zero) 
+//                 2: { 
+//                     // disable it by setting the property sorter to false 
+//                     sorter: false 
+//                 } 
+//             } 
+//         }); 
+//     });
+//     
+//      break;
+// //   case "/potds":
+//     //   $(document).ready(function() { 
+//     //     $("table").tablesorter({ 
+//     //         // pass the headers argument and assing a object 
+//     //         headers: { 
+//     //             // assign the secound column (we start counting zero) 
+//     //             1: { 
+//     //                 // disable it by setting the property sorter to false 
+//     //                 sorter: false 
+//     //             }, 
+//     //             // assign the third column (we start counting zero) 
+//     //             2: { 
+//     //                 // disable it by setting the property sorter to false 
+//     //                 sorter: false 
+//     //             } 
+//     //         } 
+//     //     }); 
+//     // });
+// //     
+// //     break;
+//   case "/school_days":
+//       $(document).ready(function() { 
+//         $("table").tablesorter({ 
+//             // pass the headers argument and assing a object 
+//             headers: { 
+//                 // assign the secound column (we start counting zero) 
+//                 3: { 
+//                     // disable it by setting the property sorter to false 
+//                     sorter: false 
+//                 }, 
+
+//             } 
+//         }); 
+//     });
 //     
 //     break;
-  case "/school_days":
-      $(document).ready(function() { 
-        $("table").tablesorter({ 
-            // pass the headers argument and assing a object 
-            headers: { 
-                // assign the secound column (we start counting zero) 
-                3: { 
-                    // disable it by setting the property sorter to false 
-                    sorter: false 
-                }, 
-
-            } 
-        }); 
-    });
-    
-    break;
-//   case "/todos":
-    //   $(document).ready(function() { 
-    //     $("table").tablesorter({ 
-    //         // pass the headers argument and assing a object 
-    //         headers: { 
-    //             // assign the secound column (we start counting zero) 
-    //             1: { 
-    //                 // disable it by setting the property sorter to false 
-    //                 sorter: false 
-    //             }, 
-    //             // assign the third column (we start counting zero) 
-    //             2: { 
-    //                 // disable it by setting the property sorter to false 
-    //                 sorter: false 
-    //             } 
-    //         } 
-    //     }); 
-    // });
-//    
-//     break;
-//   case "/labs":
-    //   $(document).ready(function() { 
-    //     $("table").tablesorter({ 
-    //         // pass the headers argument and assing a object 
-    //         headers: { 
-    //             // assign the secound column (we start counting zero) 
-    //             1: { 
-    //                 // disable it by setting the property sorter to false 
-    //                 sorter: false 
-    //             }, 
-    //             // assign the third column (we start counting zero) 
-    //             2: { 
-    //                 // disable it by setting the property sorter to false 
-    //                 sorter: false 
-    //             } 
-    //         } 
-    //     }); 
-    // });
-//     
-//     break;
-  case "/homeworks":
-      $(document).ready(function() { 
-        $("table").tablesorter({ 
-            // pass the headers argument and assing a object 
-            headers: { 
-                // assign the secound column (we start counting zero) 
-                1: { 
-                    // disable it by setting the property sorter to false 
-                    sorter: false 
-                }, 
+// //   case "/todos":
+//     //   $(document).ready(function() { 
+//     //     $("table").tablesorter({ 
+//     //         // pass the headers argument and assing a object 
+//     //         headers: { 
+//     //             // assign the secound column (we start counting zero) 
+//     //             1: { 
+//     //                 // disable it by setting the property sorter to false 
+//     //                 sorter: false 
+//     //             }, 
+//     //             // assign the third column (we start counting zero) 
+//     //             2: { 
+//     //                 // disable it by setting the property sorter to false 
+//     //                 sorter: false 
+//     //             } 
+//     //         } 
+//     //     }); 
+//     // });
+// //    
+// //     break;
+// //   case "/labs":
+//     //   $(document).ready(function() { 
+//     //     $("table").tablesorter({ 
+//     //         // pass the headers argument and assing a object 
+//     //         headers: { 
+//     //             // assign the secound column (we start counting zero) 
+//     //             1: { 
+//     //                 // disable it by setting the property sorter to false 
+//     //                 sorter: false 
+//     //             }, 
+//     //             // assign the third column (we start counting zero) 
+//     //             2: { 
+//     //                 // disable it by setting the property sorter to false 
+//     //                 sorter: false 
+//     //             } 
+//     //         } 
+//     //     }); 
+//     // });
+// //     
+// //     break;
+//   case "/homeworks":
+//       $(document).ready(function() { 
+//         $("table").tablesorter({ 
+//             // pass the headers argument and assing a object 
+//             headers: { 
+//                 // assign the secound column (we start counting zero) 
+//                 1: { 
+//                     // disable it by setting the property sorter to false 
+//                     sorter: false 
+//                 }, 
                 
-            } 
-        }); 
-    });
-    
-    break;
-  }
+//             } 
+//         }); 
+//     });
+//     
+//     break;
+//   }
 
 
 

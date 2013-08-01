@@ -59,8 +59,11 @@
 // require ../../../vendor/assets/javascripts/applymultiselect
 
 
-//= require jquery.tablesorter
 //= require jquery.ui.datepicker 
+
+//= require ../../../vendor/assets/javascripts/stupidtable.min
+//= require table_sort
+
 //= require school_day_index
 //= require school_day_form
 

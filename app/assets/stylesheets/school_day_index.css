@@ -1,22 +1,22 @@
 
-#indexTable {
+/*#indexTable {
   width: 90% !important;
 }
 
-.tablesorter th {
-  background: rgb(230, 238, 238);
+table th {
+  background: rgb(230, 238, 238) !important;
   padding-right: 20px !important;
 }
 
-.tablesorter tbody + tr.hoverable {
+table tbody + tr.hoverable {
   background: #efefef !important;
  }
 
-table.tablesorter th.not_sortable{
+table th.not_sortable{
   background-image:none !important;
   cursor:auto !important;
 
-/*.tablesorter{
+/*table{
   border:white !important;
 }
 <<<<<<< HEAD
@@ -24,7 +24,40 @@ table.tablesorter th.not_sortable{
   border:white !important;
 }*/
 
-table.tablesorter th.not_sortable{
+/*table th.not_sortable{
   background-image:none !important;
   cursor:auto !important;
+}*/
+
+/* table style */
+
+table {
+  border-top: 1px solid #ccc !important;
+  border-left: 1px solid #ccc !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
 }
+
+table th, table td {
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 1px solid #ccc !important;
+  border-bottom: 1px solid #ccc !important;
+}
+
+table tr:nth-child(even){
+  background: #efefef !important;
+}
+
+table thead {
+  background: rgb(98, 185, 231) !important;
+  color: white;
+}
+
+/* asc desc arrow style */
+
+.arrow { 
+  padding-left: 5px;
+  color: white;
+} /* see table sort.js to change tarrow character */
+

@@ -9,13 +9,12 @@
       <%= render "layouts/messages" %>
       
       <div class="span12 table-maxspan minspan">
-
-        <table class="table tablesorter material-index" id="myTable">
+        <table class="table material-index" id="linksTable">
           <thead>
           <tr>
             <th data-sort="int">Day(s)</th>
             <% if can? :edit, materials %>
-              <th colspan="2" data-sort="string">Title</th>
+              <th colspan="1" data-sort="string">Title</th>
             <% else %>
               <th colspan="1" data-sort="string">Title</th>
             <% end %>
@@ -49,10 +48,6 @@
                   <%= link_to 'Delete', material, method: :delete, data: { confirm: 'Are you sure?' } %>
                 <% end %>
               </td>
-
-              <% if can? :edit, materials %>
-                <td></td>
-              <% end %>
               
               <%= render partial: "body_index_content", locals: {material: material} %>
 

@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
 
   include SchoolDaysHelper
 
+  before_filter :authenticate 
   before_filter :load_current_day
+  
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
@@ -17,6 +19,7 @@ class ApplicationController < ActionController::Base
 
 
 private
+
   
   def load_current_day
     @active_school_day = closest_day_to_today
@@ -29,9 +32,13 @@ private
   end
   helper_method :current_user
 
-  def authorize
-    redirect_to login_url, alert: "unauthorized access" if current_user.nil?
+  def authenticate
+    redirect_to signup_url if current_user.nil?
   end
+
+  # def authorize
+  #   redirect_to signup_url, alert: "unauthorized access" if current_user.nil?
+  # end
 
   # def admin?
   # end

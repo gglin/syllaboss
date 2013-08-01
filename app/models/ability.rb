@@ -7,7 +7,7 @@ class Ability
       user ||= User.new # guest user (not logged in)
       if user.admin?
         can :manage, :all
-      else
+      elsif user.student?
         can :read, SchoolDay do |school_day|
           school_day.calendar_date <= Date.today
         end
@@ -41,6 +41,8 @@ class Ability
           user.id == current_user.id || user.role == "admin"
         end
 
+      else  
+        can :new, User
         can :create, User
       end
     #

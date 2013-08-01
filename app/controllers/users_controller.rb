@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   authorize_resource
-  # skip_authorize_resource :only => :index
+  skip_before_filter :authenticate, :only => [:new, :create]
 
   def index
     @users = User.all
@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    render :layout => false
   end
 
   def create
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
       session[:user_id]= @user.id
       redirect_to root_url, notice: "Thanks for signing up!"
     else
-      render "new"
+      render "new", :layout => false
     end
   end
 

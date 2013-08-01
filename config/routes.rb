@@ -7,6 +7,7 @@ Pizza::Application.routes.draw do
   #get 'show_results', to: 'schooldays#show_results'
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
+  post 'login', to: 'sessions#create', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'discussion', to: 'comments#index', as: 'discussion'
   get 'search', to: 'searches#index'

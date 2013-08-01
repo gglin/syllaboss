@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
     true if self.role_name == :admin
   end
 
+  def student?
+    true if self.role_name == :student
+  end
+
   def owns?(material)
     true if self.id == material.user_id
   end

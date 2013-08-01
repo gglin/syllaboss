@@ -3,7 +3,7 @@ Damn it Feels Good to Be a Gangsta
 ---------------------------------------------------------------------
 AUGUST 1ST HOMIE
 
-** Sign In Related => Chris
+** Sign In Related => X Chris
 -flash message for incorrect password
 -password validation
 -sign in with username
@@ -12,7 +12,7 @@ AUGUST 1ST HOMIE
 ** Nav Bar => Katie
 -make a new: + in front of icons
 
-** Side Bar => George
+** Side Bar => X George 
 -student v admin, admin has links to indices instead of current student layout
 -if nothing, gray out links in sidebar
 
@@ -23,7 +23,7 @@ AUGUST 1ST HOMIE
 -adding a new day doesn't end up in a pool for new resources. -> w/ query strings, create new takes us to view, and then redirects back
 -Spelling Error Select z(s)
 
-** Day Show View
+** Day Show View => X Jen
 -Kill table headings in day view (time, stuff)
 
 ** Discussion => George
@@ -31,9 +31,10 @@ AUGUST 1ST HOMIE
 ??make days not clickable
 
 **General
--Change titles of pages w/ railscast
+-Change titles of pages w/ railscast 
 -all forms indicate what is required
 -general validation => Katie
+-img upload for profile w/ carrierwave
 
 **Not Today
 -First view would be week -> set that shit up today

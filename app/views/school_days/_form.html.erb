@@ -135,6 +135,7 @@
                  <% selected_hw_ids << params[:last_page] %>
                  <%= f.collection_select(:homework_ids, Homework.all, :id, :print_name, {:selected => selected_hw_ids, :prompt => "Please Select Homework(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
                 <span class= "new-btns"><%= link_to "Create New", new_homework_path + "?day=#{@school_day.id}&last_page=edit_school_day", class: "btn btn-primary link-btn" %></span>
+
               </div>
             </div>
 

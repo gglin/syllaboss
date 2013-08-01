@@ -8,6 +8,9 @@ class Todo < ActiveRecord::Base
 
   has_many :comments, as: :commentable, :dependent => :destroy
 
+  validates :name, presence: true
+  validates :gist, presence:true
+
   searchable do
     text :name, :gist
   end

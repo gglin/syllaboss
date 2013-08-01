@@ -8,6 +8,9 @@ class Lab < ActiveRecord::Base
 
   has_many :comments, as: :commentable, :dependent => :destroy
 
+  validates :name, presence: true
+  validates :lab_url, presence:true
+
   searchable do
     text :name, :lab_url  
   end

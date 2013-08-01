@@ -44,6 +44,9 @@ gem 'sunspot_rails', '~> 1.3.0'
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
+#validates date
+gem 'date_validator'
+
 #jQuery table sorting function
 # gem 'jquery-tablesorter'
 

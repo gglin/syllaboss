@@ -26,8 +26,12 @@ class SchoolDay < ActiveRecord::Base
   end  
 
   # validates_uniqueness_of :ordinal, :calendar_date
-  validates :ordinal, :week, :calendar_date, :presence => true
-
+  validates :ordinal, :week, :calendar_date, :schedule, :presence => true
+  validates :ordinal, :inclusion => { :in => 1..65, :message => "must be between 1 and 65" }
+  validates :ordinal, uniqueness: {case_sensitive: false, :message => "That day already exists. You suck at picking days." }
+  validates :week, :inclusion => { :in => 1..11, :message => "must be between 1 and 11" }
+  validates :calendar_date, :date => { :before => Time.now, :message => "You can't select dates in the past." }
+  validates_format_of :schedule, :with =>/\d{1,2}\W{1}\d{2}.*\s*[-]\s*\d{1,2}\W{1}\d{2}.*/ , :on => :create, :message=>"You must format times as X:XX - XX:XX, for example, 9:45 - 11:30"
   accepts_nested_attributes_for :links
 
   def print_name

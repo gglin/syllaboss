@@ -8,6 +8,9 @@ class Link < ActiveRecord::Base
   
   has_many :comments, as: :commentable, :dependent => :destroy
 
+  validates :title, presence: true
+  validates :link_url, presence:true
+
   searchable do
     text :link_url, :title, :description
   end

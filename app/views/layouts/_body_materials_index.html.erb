@@ -13,15 +13,17 @@
         <table class="table tablesorter material-index" id="myTable">
           <thead>
           <tr>
-            <th>Day(s)</th>
+            <th data-sort="int">Day(s)</th>
             <% if can? :edit, materials %>
-              <th colspan="2">Title</th>
+              <th colspan="2" data-sort="string">Title</th>
             <% else %>
-              <th colspan="1">Title</th>
+              <th colspan="1" data-sort="string">Title</th>
             <% end %>
 
             <% material_columns.each do |material_column| %>
-              <th><%= material_column %></th>
+              <% column_name = material_column[:name] %>
+              <% column_type = material_column[:data_type] %>
+              <th <%= column_type %>><%= column_name %></th>
             <% end %>
 
           </tr>

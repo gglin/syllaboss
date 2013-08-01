@@ -81,7 +81,6 @@ class SchoolDay < ActiveRecord::Base
     [ordinal, calendar_date,schedule]
   end
 
-  DATE_FORMAT = ['%d/%m/%Y']
 
   def calendar_date_string
     calendar_date.to_s

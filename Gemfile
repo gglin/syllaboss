@@ -32,7 +32,7 @@ end
 
 # gem 'flatui-rails'
 
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails' 
 
 # gem 'will_paginate', '> 3.0'
 

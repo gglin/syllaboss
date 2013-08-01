@@ -13,9 +13,13 @@ module ApplicationHelper
   end
 
   def re_truncate(text, options={}, max_lines=8, &block)
-    new_text = text.split("\n")[0..max_lines].join("\n")
-    new_text += "..." if new_text != text
-    truncate(new_text, options, &block)
+    if !text.nil?
+      new_text = text.split("\n")[0..max_lines].join("\n")
+      new_text += "..." if new_text != text
+      truncate(new_text, options, &block)
+    else
+      " "
+    end
   end
 
   def material_type_list

@@ -43,10 +43,11 @@ class HomeworksController < ApplicationController
   # GET /homeworks/new.json
   def new
     @homework = Homework.new
-
+    #access to params[:test] day=20&action=edit
+    #raise params.inspect
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @homework }
+       format.json { render json: @homework }
     end
   end
 
@@ -64,9 +65,13 @@ class HomeworksController < ApplicationController
     @homework = Homework.new(params[:homework])
 
     respond_to do |format|
-      if @homework.save
-        format.html { redirect_to @homework, notice: 'Homework was successfully created.' }
-        format.json { render json: @homework, status: :created, location: @homework }
+      if @homework.save #need an if statement -- if params[:from] redirect_to 
+        if params[:last_page].nil?
+          format.html { redirect_to @homework, notice: 'Homework was successfully created.' }
+          format.json { render json: @homework, status: :created, location: @homework }
+        else
+          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @homework.errors, status: :unprocessable_entity }

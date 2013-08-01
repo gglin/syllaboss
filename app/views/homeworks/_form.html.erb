@@ -1,3 +1,4 @@
+
 <%= form_for @homework, :html => {class: "form-horizontal"} do |f| %>
   <% if @homework.errors.any? %>
     <div id="error_explanation">
@@ -25,16 +26,24 @@
     </div>
   </div>
 
+  <div class="field">
+    <%= hidden_field_tag :last_page, params[:day]%>
+  </div>
+
+
    <div class="control-group">
     <%= f.label :school_day, "Select Day(s)", class: "control-label" %>
     <div class="controls">
-      <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => @homework.school_day_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple"}) %>
+      <% selected_ids = @homework.school_day_ids %>
+      <% selected_ids << params[:day] %>
+      <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => selected_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple"}) %>
     </div>
   </div>
 
   <div class="actions inline">
     <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
+
     <% if @homework.persisted? %>
       <%= link_to "Cancel", @homework, class: "btn btn-inverse link-btn" %> 
     <% else %>

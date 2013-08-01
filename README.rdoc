@@ -1,7 +1,46 @@
 == Welcome to Syllaboss
 Damn it Feels Good to Be a Gangsta
+---------------------------------------------------------------------
+AUGUST 1ST HOMIE
+
+** Sign In Related
+flash message for incorrect password
+password validation
+sign in with username
+fix view
+
+** Nav Bar
+-make a new: in front of icons
+
+** Side Bar
+-student v admin, admin has links to indices instead
+-if nothing, gray out links in sidebar
+
+** Day New
+-no negative days
+-Feb 31 example
+-create new below forms
+-adding a new day doesn't end up in a pool for new resources
+-selecting a day indicate optional
+-Spelling Error Select z(s)
+
+** Day Show
+-Kill table headings in day view (time, stuff)
+
+** Discussion
+--submit comment from discussion stream should stay in discussion stream
+??make days not clickable
+
+**General
+-Change titles of pages
+
+**Not Today
+--first view would be week -> set that shit up today
+--Render in IFrame without layout
 
 ---------------------------------------------------------------------
+GENERAL BIZ
+
 !!!
 - form/index view cleanup -> navigation
   - table sorting
@@ -11,7 +50,11 @@ Damn it Feels Good to Be a Gangsta
 - reading model -> reading is it's own separate thing, from links
 - this week is admin/student distinction -> integrate with comments
 
-!!create & preview, preview things in a new window, search => name, whatever it is, preview
+!!
+-create & preview, preview things in a new window, search => name, whatever it is, preview
+-datepicker
+-tooltip
+
 
 !
 - week logic
@@ -31,3 +74,6 @@ assignment.io integration, assignment gets created on our end. talk towards the 
 -for next week:
 friendlyid for urls
 access to signup page
+
+-------------------
+

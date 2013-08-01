@@ -29,7 +29,7 @@
 
           <tbody>
           <% materials.each do |material| %>
-            <% if (!material.school_days.empty? && material.school_days.order("calendar_date DESC")[0].calendar_date <= Date.today) || (can? :edit, materials) %>
+            <% if (!material.school_days.empty? && material.school_days.order("calendar_date")[0].calendar_date <= Date.today) || (can? :edit, materials) %>
             <tr>
               <td>
                 <ul class="no-bullet">

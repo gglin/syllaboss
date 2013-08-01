@@ -4,7 +4,8 @@
 <% chosen_material_titles = chosen_material_title.pluralize %>
 
 <div class="page-head">
-  <h2 class="inline">All <%= chosen_material_titles %></h2>
+  <% title "All #{chosen_material_titles}" %>
+  <h2 class="inline"><%= yield(:title) %></h2>
   
   <ul class="horizontal-list breadcrumb">
     <li>Show All: </li>

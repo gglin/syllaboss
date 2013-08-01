@@ -1,4 +1,5 @@
 <p>
+  <% title @active_school_day.calendar_date.strftime("%a %m/%d") %>
   <h3 class="inline">
     <%= @active_school_day.calendar_date.strftime("%A %B %d, %Y") %>
   </h3>

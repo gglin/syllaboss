@@ -3,7 +3,7 @@
 <% material_title  = material_capitalize(material_type) %>
 <% material_titles = material_title.pluralize %>
 
-<% if @active_school_day == most_recent_day_before_today(material) %>
+<% unless material.school_days.empty? %>
 
   <div class="page-head">
 

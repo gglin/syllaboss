@@ -35,7 +35,7 @@ private
       @commentable = resource.singularize.classify.constantize.find(id)
       @commentable_type = resource.singularize.underscore
     else
-      @commentable = closest_day_to_today
+      @commentable = closest_day_before_today
       @commentable_type = "school_day"
     end
   end

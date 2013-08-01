@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content ="width=device-width, minimum-scale=1.0, initial-scale=1.0">
 
-  <title>Syllaboss</title>
+  <title>Syllaboss <%=("- #{yield(:title)}" if yield(:title).length>0)  %></title>
 
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= csrf_meta_tags %>

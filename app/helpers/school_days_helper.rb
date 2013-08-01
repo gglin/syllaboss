@@ -1,11 +1,16 @@
 module SchoolDaysHelper
 
   def most_recent_day_for_material(material)
-    most_recent_day = most_recent_day_before_today(material)
+    if can? :edit, @school_day
+      most_recent_day = most_recent_day_after_today(material)
+      most_recent_day = most_recent_day_before_today(material) if most_recent_day.nil?
+    else
+      most_recent_day = most_recent_day_before_today(material)      
+    end
 
     if most_recent_day.nil?
-      most_recent_day = closest_day_to_today
-    end
+        most_recent_day = closest_day_before_today
+    end  
 
     most_recent_day
   end
@@ -13,6 +18,14 @@ module SchoolDaysHelper
   def most_recent_day_before_today(material)
     if material.respond_to?("school_days")
       most_recent_day = material.school_days.order("calendar_date DESC").where("calendar_date <= ?", Date.today).limit(1).first
+    else
+      most_recent_day = material.school_day
+    end
+  end
+
+  def most_recent_day_after_today(material)
+    if material.respond_to?("school_days")
+      most_recent_day = material.school_days.order("calendar_date").where("calendar_date >= ?", Date.today).limit(1).first
     else
       most_recent_day = material.school_day
     end
@@ -30,8 +43,18 @@ module SchoolDaysHelper
     end
   end
 
-  def closest_day_to_today
+  def closest_day_before_today
     closest_day = SchoolDay.order("calendar_date DESC").where("calendar_date <= ?", Date.today).limit(1).first
+
+    if closest_day.nil?
+      closest_day = SchoolDay.order("calendar_date").limit(1).first
+    end
+
+    closest_day
+  end
+
+  def closest_day_after_today
+    closest_day = SchoolDay.order("calendar_date").where("calendar_date >= ?", Date.today).limit(1).first
 
     if closest_day.nil?
       closest_day = SchoolDay.order("calendar_date").limit(1).first

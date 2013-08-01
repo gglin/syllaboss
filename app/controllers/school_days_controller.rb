@@ -38,7 +38,7 @@ class SchoolDaysController < ApplicationController
       end
     else
       flash.keep
-      @active_school_day = closest_day_to_today
+      @active_school_day = closest_day_before_today
       redirect_to school_day_path(@active_school_day.id)
     end
   end

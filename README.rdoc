@@ -3,40 +3,44 @@ Damn it Feels Good to Be a Gangsta
 ---------------------------------------------------------------------
 AUGUST 1ST HOMIE
 
-** Sign In Related
-flash message for incorrect password
-password validation
-sign in with username
-fix view
+** Sign In Related => Chris
+-flash message for incorrect password
+-password validation
+-sign in with username
+-fix view
 
-** Nav Bar
--make a new: in front of icons
+** Nav Bar => Katie
+-make a new: + in front of icons
 
-** Side Bar
--student v admin, admin has links to indices instead
+** Side Bar => George
+-student v admin, admin has links to indices instead of current student layout
 -if nothing, gray out links in sidebar
 
-** Day New
--no negative days
--Feb 31 example
--create new below forms
--adding a new day doesn't end up in a pool for new resources
--selecting a day indicate optional
+** Day New => Jen 
+-no negative day ordinal -> validation
+-Feb 31 example -> datepicker
+-create new button (decrease size) below forms
+-adding a new day doesn't end up in a pool for new resources. -> w/ query strings, create new takes us to view, and then redirects back
 -Spelling Error Select z(s)
 
-** Day Show
+** Day Show View
 -Kill table headings in day view (time, stuff)
 
-** Discussion
---submit comment from discussion stream should stay in discussion stream
+** Discussion => George
+-submit comment from discussion stream should stay in discussion stream
 ??make days not clickable
 
 **General
--Change titles of pages
+-Change titles of pages w/ railscast
+-all forms indicate what is required
+-general validation => Katie
 
 **Not Today
---first view would be week -> set that shit up today
---Render in IFrame without layout
+-First view would be week -> set that shit up today
+-Render in IFrame without layout
+-Send email password reset
+-ajax request to choose ordinal and week
+-POTD preview iframe
 
 ---------------------------------------------------------------------
 GENERAL BIZ

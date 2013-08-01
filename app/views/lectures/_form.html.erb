@@ -30,6 +30,10 @@
     </div>
   </div>
 
+  <div class="field">
+    <%= hidden_field_tag :last_page, params[:day]%>
+  </div>
+
   <div class="control-group">
     <%= f.label :attachment, "Attachment(s)" %> <%= link_to "Create New", new_attachment_path, target: "_blank", class: "btn btn-primary link-btn new-material control-label" %>
     <div class="controls">

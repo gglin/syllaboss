@@ -66,8 +66,12 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
-        format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
-        format.json { render json: @todo, status: :created, location: @todo }
+        if params[:last_page].nil?
+          format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
+          format.json { render json: @todo, status: :created, location: @todo }
+        else
+          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) }          
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @todo.errors, status: :unprocessable_entity }

@@ -68,8 +68,12 @@ class PotdsController < ApplicationController
 
     respond_to do |format|
       if @potd.save
-        format.html { redirect_to @potd, notice: 'Potd was successfully created.' }
-        format.json { render json: @potd, status: :created, location: @potd }
+        if params[:last_page].nil?
+          format.html { redirect_to @potd, notice: 'Potd was successfully created.' }
+          format.json { render json: @potd, status: :created, location: @potd }
+        else
+          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @potd.errors, status: :unprocessable_entity }

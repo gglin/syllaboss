@@ -62,8 +62,12 @@ class LecturesController < ApplicationController
 
     respond_to do |format|
       if @lecture.save
-        format.html { redirect_to @lecture, notice: 'Lecture was successfully created.' }
-        format.json { render json: @lecture, status: :created, location: @lecture }
+        if params[:last_page].nil?
+          format.html { redirect_to @lecture, notice: 'Lecture was successfully created.' }
+          format.json { render json: @lecture, status: :created, location: @lecture }
+        else
+          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @lecture.errors, status: :unprocessable_entity }

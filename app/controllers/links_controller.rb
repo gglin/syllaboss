@@ -65,8 +65,12 @@ class LinksController < ApplicationController
     @link.title=(params[:link] [:title])
     respond_to do |format|
       if @link.save
-        format.html { redirect_to @link, notice: 'Link was successfully created.' }
-        format.json { render json: @link, status: :created, location: @link }
+        if params[:last_page].nil?
+          format.html { redirect_to @link, notice: 'Link was successfully created.' }
+          format.json { render json: @link, status: :created, location: @link }
+        else
+          format.html {redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @link.errors, status: :unprocessable_entity }

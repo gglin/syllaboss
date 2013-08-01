@@ -66,8 +66,12 @@ class LabsController < ApplicationController
 
     respond_to do |format|
       if @lab.save
-        format.html { redirect_to @lab, notice: 'Lab was successfully created.' }
-        format.json { render json: @lab, status: :created, location: @lab }
+        if params[:last_page].nil?
+          format.html { redirect_to @lab, notice: 'Lab was successfully created.' }
+          format.json { render json: @lab, status: :created, location: @lab }
+        else
+          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @lab.errors, status: :unprocessable_entity }

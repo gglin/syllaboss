@@ -56,6 +56,7 @@
         </ul>
       </ul>
 
+      <% if can? :edit, @active_school_day %>
       <ul class="nav nav-icon pull-right">
         <!-- <li><i class="icon-plus"></i></li> -->
         <% material_type_list.each do |material_type_hash| %>
@@ -77,6 +78,7 @@
           
         <% end %>
       </ul>
+      <% end %>
 
     </div>
   </div>

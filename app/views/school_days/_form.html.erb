@@ -94,7 +94,7 @@
               <%= f.label :todo, "Select To-Do(s)", class: "control-label" %>
               <div class="controls previewable">
                 <%= f.collection_select(:todo_ids, Todo.all, :id, :print_name, {:selected => @school_day.todo_ids, :prompt => "Please Select To-Do(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
-                <span class= "new-btns"><%= link_to "Create New", new_todo_path + "?day=#{@school_day.id}", class: "btn btn-primary link-btn" %></span>
+                <span class= "new-btns"><%= link_to "Create New", new_todo_path + "?day=#{@school_day.id}&last_page=edit_school_day", class: "btn btn-primary link-btn" %></span>
               </div>
             </div>
 

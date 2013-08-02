@@ -51,6 +51,10 @@
     <% if @potd.persisted? %>
       <%= link_to "Cancel", @potd, class: "btn btn-inverse link-btn" %> 
     <% else %>
-      <%= link_to "Cancel", "/", class: "btn btn-inverse link-btn" %> 
+      <% if params[:last_page].nil? %>
+        <%= link_to "Cancel", "/", class: "btn btn-inverse link-btn" %> 
+      <% else %>
+        <%= link_to "Cancel", edit_school_day_path(SchoolDay.find(params[:day])), class: "btn btn-inverse link-btn" %>
+      <% end %>
     <% end %>
 <% end %>

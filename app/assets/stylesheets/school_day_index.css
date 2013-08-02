@@ -14,6 +14,7 @@ table th, table td {
   border-left: 0 !important;
   border-right: 1px solid #ccc !important;
   border-bottom: 1px solid #ccc !important;
+  padding:7px;
 }
 
 table tr:nth-child(even){

@@ -40,7 +40,7 @@
         <ul class="nav pull-right">
           <% if current_user %>
           <li class="dropdown pull-right">
-            <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/user.jpg" class="nav-user-pic"/><%= current_user.username %> <b class="caret"></b></a>
+            <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/user.jpg" class="nav-user-pic"/><%= current_user.full_name %> <b class="caret"></b></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
               <li><a href="<%= lectures_path %>"><i class="icon-user"></i> Profile </a></li>
               <li><a href="<%= lectures_path %>"><i class="icon-cogs"></i> Settings </a></li>

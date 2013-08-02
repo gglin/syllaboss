@@ -6,9 +6,9 @@ AUGUST 1ST HOMIE
 
 
 ** Sign In Related => X Chris
--delete username cross the whole site.
-- sign in with email
-- fix view (eventually landing page)
+-delete username cross the whole site. X
+- sign in with email X
+- fix view (eventually landing page) --:>
 
 ** Nav Bar => Katie
 -make a new: + in front of icons

@@ -2,9 +2,10 @@
 <% new_material_types  = new_material_type.pluralize %>
 <% new_material_title  = material_capitalize(new_material_type) %>
 <% new_material_titles = new_material_title.pluralize %>
+<% title "New #{new_material_title}" %>
 
 <div class="page-head">
-  <h2 class="inline">New <%= new_material_title %></h2>
+  <h2 class="inline"><%= yield :title %></h2>
   
   <ul class="horizontal-list breadcrumb">
     <li>Show All: </li>

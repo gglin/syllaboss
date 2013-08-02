@@ -8,7 +8,7 @@ AUGUST 1ST HOMIE
 ** Sign In Related => X Chris
 -delete username cross the whole site. X
 - sign in with email X
-- fix view (eventually landing page) --:>
+- fix view (eventually landing page) --:> Next Week
 
 ** Nav Bar => Katie
 -make a new: + in front of icons
@@ -33,7 +33,7 @@ AUGUST 1ST HOMIE
 - @ashley williams --- make LINK
 
 **General
--Change titles of pages w/ railscast (ongoing) 
+-Change titles of pages w/ railscast X
 -all forms indicate what is required
 -img upload for profile w/ carrierwave
 - fix iframe formatting

@@ -18,13 +18,13 @@
   <% end %>
   
   <div class="control-group">
-    <%= f.label :title, class: "control-label" %>
+    <%= f.label :title, "Title #{mark_required(@lecture, :title)}", class: "control-label" %>
     <div class="controls">
       <%= f.text_field :title %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :content, class: "control-label" %>
+    <%= f.label :content, "Content #{mark_required(@lecture, :content)}", class: "control-label" %>
     <div class="controls">
       <%= f.text_area :content %>
     </div>

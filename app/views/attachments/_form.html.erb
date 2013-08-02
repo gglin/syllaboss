@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title, "Title #{mark_required(@attachment, :title)}" %><br />
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :filename %><br />
+    <%= f.label :filename, "Filename #{mark_required(@attachment, :filename)}" %><br />
     <%= f.file_field :filename %>
   </div>
 

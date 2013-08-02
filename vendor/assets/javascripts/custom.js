@@ -86,6 +86,34 @@ $('.wclose').click(function(e){
     $wcontent.toggle(500);
   }); 
 
+  $('.wminimize-reply').click(function(e){
+    e.preventDefault();
+    var $wcontent = $(this).parent().parent().next('.widget-content');
+    if($wcontent.is(':visible')) 
+    {
+      $(this).text("Reply")
+    }
+    else 
+    {
+      $(this).text("Cancel")
+    }            
+    $wcontent.toggle(500);
+  }); 
+
+  $('.wminimize-newcomment').click(function(e){
+    e.preventDefault();
+    var $wcontent = $(this).parent().parent().next('.widget-content');
+    if($wcontent.is(':visible')) 
+    {
+      $(this).children('span').text("Post New Comment")
+    }
+    else 
+    {
+      $(this).children('span').text("Cancel")
+    }            
+    $wcontent.toggle(500);
+  }); 
+
 /* Calendar */
 
   $(document).ready(function() {

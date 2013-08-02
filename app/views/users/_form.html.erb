@@ -16,11 +16,12 @@
     <%= f.text_field :email %>
   </div>
 
+<% if can? :assign_role, @user %>
    <div class="field">
     <%= f.label :role %><br />
     <%= f.number_field :role %>
   </div>
-
+<% end %>
 
   <div class="actions">
     <%= f.submit "#{@action} Submit" %>

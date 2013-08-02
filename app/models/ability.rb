@@ -35,7 +35,7 @@ class Ability
         can [:update, :destroy], Comment do |comment|
           comment && comment.user == user
         end
-        cannot :index, User
+        can :read, User
         cannot :assign_role, User
         can [:show, :edit, :update], User do |current_user|
           user.id == current_user.id || user.role == "admin"

@@ -5,6 +5,8 @@ class CommentsController < ApplicationController
   authorize_resource
   
   def index
+    @new_comment = Comment.new
+
     if current_user.admin?
       @comments = Comment.order("created_at DESC")
     else
@@ -19,12 +21,11 @@ class CommentsController < ApplicationController
         end
       end
     end
-
-    @new_comment = Comment.new
   end
 
   def create
     @comment = @commentable.comments.new(params[:comment])
+
     if @comment.save
       if request.referrer.split('/').last == "comments"
         redirect_to comments_path, notice: "Comment posted."
@@ -32,7 +33,21 @@ class CommentsController < ApplicationController
         redirect_to self.send("#{@commentable_type}_path", @commentable) + "#comment-#{@comment.id}", notice: "Comment posted."
       end
     else
-      render :new
+      render :index
+    end
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+
+    if @comment.update_attributes(params[:comment])
+      if request.referrer.split('/').last == "comments"
+        redirect_to comments_path + "#comment-#{@comment.id}", notice: "Comment edited."
+      else
+        redirect_to self.send("#{@commentable_type}_path", @commentable) + "#comment-#{@comment.id}", notice: "Comment edited."
+      end
+    else
+      render :index
     end
   end
 

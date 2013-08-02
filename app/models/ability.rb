@@ -30,12 +30,24 @@ class Ability
           homework.school_days.sort_by{|school_day| school_day.calendar_date}[0].calendar_date <= Date.today
         end
 
-        can :create, Comment
+        can :create, Comment do |comment|
+          comment_parent      = comment.commentable_type.classify.constantize.find(comment.commentable_id)
+          comment_parent_type = comment.commentable_type.underscore
+
+          if comment_parent_type == "school_day"
+            comment_parent.calendar_date <= Date.today
+          else
+            comment_parent.school_days.order("calendar_date")[0].calendar_date <= Date.today if !comment_parent.school_days.empty?
+          end
+        end
+
         can :read, Comment
         can [:update, :destroy], Comment do |comment|
           comment && comment.user == user
         end
-        cannot :index, User
+
+        can :read, User
+
         cannot :assign_role, User
         can [:show, :edit, :update], User do |current_user|
           user.id == current_user.id || user.role == "admin"

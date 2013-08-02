@@ -18,13 +18,13 @@
   <% end %>
   
   <div class="control-group">
-    <%= f.label :title, class: "control-label" %>
+    <%= f.label :title, "Title #{mark_required(@lecture, :title)}", class: "control-label" %>
     <div class="controls">
       <%= f.text_field :title %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :content, class: "control-label" %>
+    <%= f.label :content, "Content #{mark_required(@lecture, :content)}", class: "control-label" %>
     <div class="controls">
       <%= f.text_area :content %>
     </div>
@@ -44,7 +44,9 @@
   <div class="control-group">
     <%= f.label :school_day, "Select Day(s)", class: "control-label" %>
     <div class="controls">
-      <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => @lecture.school_day_ids, :prompt => "Please Select Day(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
+      <% selected_ids = @lecture.school_day_ids %>
+      <% selected_ids << params[:day] %>
+      <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => selected_ids, :prompt => "Please Select Day(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
     </div>
   </div>
   
@@ -54,6 +56,10 @@
     <% if @lecture.persisted? %>
       <%= link_to "Cancel", @lecture, class: "btn btn-inverse link-btn" %> 
     <% else %>
-      <%= link_to "Cancel", "/", class: "btn btn-inverse link-btn" %> 
+      <% if params[:last_page].nil? %>
+        <%= link_to "Cancel", "/", class: "btn btn-inverse link-btn" %> 
+       <% else %>
+        <%= link_to "Cancel", edit_school_day_path(SchoolDay.find(params[:day])), class: "btn btn-inverse link-btn" %>
+      <% end %>
     <% end %>
 <% end %>

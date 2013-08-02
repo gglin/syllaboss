@@ -27,8 +27,12 @@
  *= require style
  *= require widgets
  *= require bootstrap-responsive
- *= require override
  *= require ../../../vendor/assets/stylesheets/blue/style
+
  *= require font-awesome
+
+
+ *= require school_day_index
+ *= require override
 
  */

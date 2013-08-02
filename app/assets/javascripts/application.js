@@ -66,5 +66,6 @@
 
 //= require school_day_form
 
+
 //= require_tree .
 

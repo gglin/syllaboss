@@ -13,21 +13,21 @@
 
   <%= field_set_tag do %>
   <div class="control-group">
-    <%= f.label :ordinal, "Day", class: "control-label" %>
+    <%= f.label :ordinal, "Day #{mark_required(@school_day, :ordinal)}", class: "control-label" %>
     <div class="controls">
       <%= f.number_field :ordinal %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :week, class: "control-label" %>
+    <%= f.label :week, "Week #{mark_required(@school_day, :week)}", class: "control-label" %>
     <div class="controls">
       <%= f.number_field :week %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :calendar_date, "Calendar Date", class: "control-label" %>
+    <%= f.label :calendar_date, "Calendar Date#{mark_required(@school_day, :calendar_date)}", class: "control-label" %>
     <div class="controls">
       <%= f.text_field :calendar_date_string %>
     </div>

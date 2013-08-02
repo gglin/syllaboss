@@ -12,13 +12,13 @@
   <% end %>
 
   <div class="control-group">
-    <%= f.label :title, class: "control-label" %>
+    <%= f.label :title, "Title #{mark_required(@link, :title)}", class: "control-label" %>
     <div class="controls">
       <%= f.text_field :title %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :link_url, class: "control-label" %>
+    <%= f.label :link_url, "URL #{mark_required(@link, :link_url)}", class: "control-label" %>
     <div class="controls">
       <%= f.text_field :link_url %>
     </div>
@@ -29,7 +29,7 @@
   </div>
 
   <div class="control-group">
-    <%= f.label :description, class: "control-label" %>
+    <%= f.label :description, "Description #{mark_required(@link, :description)}", class: "control-label" %>
     <div class="controls">
       <%= f.text_field :description %>
     </div>

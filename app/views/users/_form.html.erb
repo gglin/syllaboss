@@ -12,13 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, "Email #{mark_required(@user, :email)}" %><br />
     <%= f.text_field :email %>
   </div>
 
 <% if can? :assign_role, @user %>
    <div class="field">
-    <%= f.label :role %><br />
+    <%= f.label :role, "Role #{mark_required(@user, :role)}" %><br />
     <%= f.number_field :role %>
   </div>
 <% end %>

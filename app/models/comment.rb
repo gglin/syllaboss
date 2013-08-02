@@ -13,6 +13,6 @@ class Comment < ActiveRecord::Base
   end
 
   def print_search
-    [commentable_id, filename, attachable_type]
+    [commentable_id, content]
   end
 end

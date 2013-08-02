@@ -83,7 +83,7 @@
             <!-- Lectures -->
             <div class="control-group" data-name="lectures"> 
               <%= f.label :lecture, "Select Lecture(s)", class: "control-label" %>
-              <div class="controls">
+              <div class="controls previewable">
                 <%= f.collection_select(:lecture_ids, Lecture.all, :id, :print_name, {:selected => @school_day.lecture_ids, :prompt => "Please Select Lecture(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
                 <span class= "new-btns"><%= link_to "Create New", new_lecture_path + "?day=#{@school_day.id}&last_page=edit_school_day", class: "btn btn-primary link-btn" %></span>
               </div>
@@ -92,7 +92,7 @@
             <!-- To-Dos -->
             <div class="control-group" data-name="todos">
               <%= f.label :todo, "Select To-Do(s)", class: "control-label" %>
-              <div class="controls">
+              <div class="controls previewable">
                 <%= f.collection_select(:todo_ids, Todo.all, :id, :print_name, {:selected => @school_day.todo_ids, :prompt => "Please Select To-Do(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
                 <span class= "new-btns"><%= link_to "Create New", new_todo_path + "?day=#{@school_day.id}", class: "btn btn-primary link-btn" %></span>
               </div>
@@ -101,7 +101,7 @@
             <!-- POTD -->
             <div class="control-group" data-name="potds">
               <%= f.label :potd, "Select POTD", class: "control-label" %>
-              <div class="controls">
+              <div class="controls previewable">
                 <%= f.collection_select(:potd_id, Potd.all, :id, :print_name, {:selected => @school_day.potd_id, :prompt => "Please Select POTD"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
                 <span class= "new-btns"><%= link_to "Create New", new_potd_path + "?day=#{@school_day.id}&last_page=edit_school_day", class: "btn btn-primary link-btn" %></span>
               </div>
@@ -110,7 +110,7 @@
             <!-- Labs -->
             <div class="control-group" data-name="labs">
               <%= f.label :lab, "Select Lab(s)", class: "control-label" %>
-              <div class="controls">
+              <div class="controls previewable">
                 <%= f.collection_select(:lab_ids, Lab.all, :id, :print_name, {:selected => @school_day.lab_ids, :prompt => "Please Select Lab(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
                 <span class= "new-btns"><%= link_to "Create New", new_lab_path + "?day=#{@school_day.id}&last_page=edit_school_day", class: "btn btn-primary link-btn" %></span>
               </div>
@@ -119,7 +119,7 @@
             <!-- Links -->
             <div class="control-group" data-name="links">
               <%= f.label :link, "Select Link(s)", class: "control-label" %>
-              <div class="controls">
+              <div class="controls previewable">
                 <% selected_link_ids = @school_day.link_ids %>
                  <% selected_link_ids << params[:last_page] %>
                 <%= f.collection_select(:link_ids, Link.all, :id, :print_name, {:selected => selected_link_ids, :prompt => "Please Select Link(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
@@ -130,7 +130,7 @@
             <!-- Homeworks -->
             <div class="control-group" data-name="homeworks">
               <%= f.label :homework, "Select Homework(s)", class: "control-label" %>
-              <div class="controls">
+              <div class="controls previewable">
                 <% selected_hw_ids = @school_day.homework_ids %>
                  <% selected_hw_ids << params[:last_page] %>
                  <%= f.collection_select(:homework_ids, Homework.all, :id, :print_name, {:selected => selected_hw_ids, :prompt => "Please Select Homework(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>

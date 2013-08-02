@@ -9,19 +9,20 @@
       <%= render "layouts/messages" %>
       
       <div class="span12 table-maxspan minspan">
-
-        <table class="table tablesorter material-index" id="myTable">
+        <table class="table material-index" id="linksTable">
           <thead>
           <tr>
-            <th>Day(s)</th>
+            <th data-sort="int">Day(s)</th>
             <% if can? :edit, materials %>
-              <th colspan="2">Title</th>
+              <th colspan="1" data-sort="string">Title</th>
             <% else %>
-              <th colspan="1">Title</th>
+              <th colspan="1" data-sort="string">Title</th>
             <% end %>
 
             <% material_columns.each do |material_column| %>
-              <th><%= material_column %></th>
+              <% column_name = material_column[:name] %>
+              <% column_type = material_column[:data_type] %>
+              <th <%= column_type %>><%= column_name %></th>
             <% end %>
 
           </tr>
@@ -47,10 +48,6 @@
                   <%= link_to 'Delete', material, method: :delete, data: { confirm: 'Are you sure?' } %>
                 <% end %>
               </td>
-
-              <% if can? :edit, materials %>
-                <td></td>
-              <% end %>
               
               <%= render partial: "body_index_content", locals: {material: material} %>
 

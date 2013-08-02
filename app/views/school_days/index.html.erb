@@ -4,6 +4,7 @@
   <div class="container-fluid">
     <div class="row-fluid fit-content">
 
+
     <!--   <div class="span11 minspan">
 
         <div class="widget wlightblue mainwidget">
@@ -32,16 +33,13 @@
         </table> -->
 
           <!-- <div class="widget-content"> -->
-            <table class="table tablesorter" id="myTable">
+          
+            <table id="indexTable">
               <thead>
                 <tr>
-                  <% if can? :edit, @school_day %>
-                    <th colspan="2">Day</th>
-                  <% else %>
-                    <th colspan="1">Day</th>
-                  <% end %>
-                  <th>Week</th>
-                  <th>Date</th>
+                  <th colspan="1" data-sort="int">Day</th>
+                  <th data-sort="int">Week</th>
+                  <th data-sort="date">Date</th>
                   <!-- <script>
                     function test() {
                       alert("ASDF");
@@ -49,12 +47,12 @@
                     }
                   </script> -->
                   <th class="not_sortable" onclick="test();">Schedule</th>
-                  <th><%= link_to 'Lectures',   lectures_path %></th>
-                  <th><%= link_to 'To-Dos',     todos_path %></th>
-                  <th><%= link_to 'POTD',       potds_path %></th>
-                  <th><%= link_to 'Labs',       labs_path %></th>
-                  <th><%= link_to 'Links',      links_path %></th>
-                  <th><%= link_to 'Homeworks',  homeworks_path %></th>
+                  <th data-sort="string"><%= link_to 'Lectures',   lectures_path %></th>
+                  <th data-sort="string"><%= link_to 'To-Dos',     todos_path %></th>
+                  <th data-sort="string"><%= link_to 'POTD',       potds_path %></th>
+                  <th data-sort="string"><%= link_to 'Labs',       labs_path %></th>
+                  <th data-sort="string"><%= link_to 'Links',      links_path %></th>
+                  <th data-sort="string"><%= link_to 'Homeworks',  homeworks_path %></th>
                 </tr>
               </thead>
               <tbody>
@@ -69,10 +67,7 @@
                       <% end %>
                     </td>
 
-                    <% if can? :edit, @school_day %>
-                      <td></td>
-                    <% end %>
-
+                  
                     <td>
                       <h4><%= school_day.week %></h4>
                     </td>

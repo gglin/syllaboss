@@ -10,6 +10,10 @@ class Lecture < ActiveRecord::Base
   has_many :attachments, as: :attachable
   has_many :comments, as: :commentable, :dependent => :destroy
 
+  validates_uniqueness_of :title, :case_sensitive => false
+  validates :title, :presence => true
+  validates :content, :presence => true
+
   searchable do
     text :title, :content, :creator, :file_upload  
   end

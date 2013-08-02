@@ -1,30 +1,39 @@
 
-#indexTable {
-  width: 90% !important;
+
+/* table style */
+
+table {
+  border-top: 1px solid #ccc !important;
+  border-left: 1px solid #ccc !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
 }
 
-.tablesorter th {
-  background: rgb(230, 238, 238);
-  padding-right: 20px !important;
+table th, table td {
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 1px solid #ccc !important;
+  border-bottom: 1px solid #ccc !important;
+  padding:7px;
 }
 
-.tablesorter tbody + tr.hoverable {
+table tr:nth-child(even){
   background: #efefef !important;
- }
-
-table.tablesorter th.not_sortable{
-  background-image:none !important;
-  cursor:auto !important;
-
-/*.tablesorter{
-  border:white !important;
 }
-<<<<<<< HEAD
-#indexTable{
-  border:white !important;
-}*/
 
-table.tablesorter th.not_sortable{
-  background-image:none !important;
-  cursor:auto !important;
+table thead {
+  background: rgb(98, 185, 231) !important;
+  color: white;
+}
+
+/* asc desc arrow style */
+
+.arrow { 
+  padding-left: 5px;
+  color: white;
+} /* see table sort.js to change tarrow character */
+table thead a{
+  background: rgb(98, 185, 231) !important;
+  color: white !important;
+  text-decoration:underline !important;
 }

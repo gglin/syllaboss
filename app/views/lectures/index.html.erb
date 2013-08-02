@@ -1,5 +1,5 @@
 <%= render partial: "layouts/header_index", locals: {chosen_materials: @lectures} %>
 
-<% @material_columns = ["Content", "Attachments"] %>
+<% @material_columns = [{name: "Content", data_type: "data-sort=string"},{name: "Attachments"}] %>
 
 <%= render partial: "layouts/body_materials_index", locals: {materials: @lectures, material_columns: @material_columns } %>

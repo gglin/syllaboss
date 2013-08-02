@@ -753,6 +753,7 @@ body {
   width: 26%;
   top: 181px;
   right: 353px;
+  z-index: 99px;
 }
  
 @media (max-width: 1400px) {
@@ -761,3 +762,4 @@ body {
     display: none;
   }
 }
+

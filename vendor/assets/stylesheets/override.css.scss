@@ -755,8 +755,9 @@ body {
   right: 353px;
 }
  
-@media (max-width: 1900px) {
+@media (max-width: 1400px) {
   #resource_preview {
-    visibility: hidden;
+    visibility: hidden !important;
+    display: none;
   }
 }

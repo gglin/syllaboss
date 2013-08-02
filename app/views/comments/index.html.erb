@@ -1,5 +1,6 @@
 <div class="page-head">
-  <h2>Discussion Stream</h2>
+  <% title "Discussion" %>
+  <h2><%=  yield :title %> Stream</h2>
 
   <ul class="horizontal-list breadcrumb">
     <li>Filter by: </li>
@@ -27,7 +28,7 @@
       <div class="widget comment-widget">
         <div class="widget-head fit-content transparent">
           <span class="response-button widget-icons">
-            <a href="#" class="wminimize">
+            <a href="#" class="wminimize-newcomment">
               <span class="btn btn-primary link-btn">Post New Comment</span>
             </a>
           </span>
@@ -73,7 +74,7 @@
                   <img src="http://placekitten.com/40/40">
                 </div>
 
-                <div class="chat-content hoverable">
+                <div class="chat-content">
                   <div class="chat-meta">
                     <%= comment.user == current_user ? "Me" : comment.user.full_name %>
                     
@@ -87,9 +88,24 @@
                     
                     <% if can? :edit, comment %>
                       <span class="admin inline pull-right">
-                        <%= link_to 'Edit', "#" %>
-                        | <%= link_to 'Delete', [@commentable, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
-                        &nbsp;&nbsp; 
+
+                        <span class="widget comment-widget">
+                          <span class="widget-head">
+                            <span class="response-button widget-icons">
+                              <a href="#" class="wminimize-edit">Edit</a>
+                              | <%= link_to 'Delete', [@commentable, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+                              &nbsp; &nbsp;
+                            </span>
+                            <span class="clearfix"></span>
+                          </span>
+
+                          <span class="widget-content" style="display: none;">
+                            
+                            <%= render partial: "comments/reply_form", locals: {parent: comment_parent, new_comment: comment, default_value: comment.content} %>
+
+                          </span>
+                        </span>
+                        
                       </span>
                     <% end %>
                   </div>
@@ -106,7 +122,7 @@
                       <div class="widget comment-widget">
                         <div class="widget-head">
                           <span class="response-button widget-icons">
-                            <a href="#" class="wminimize">Reply</a>
+                            <a href="#" class="wminimize-reply">Reply</a>
                           </span>
                           <div class="clearfix"></div>
                         </div>

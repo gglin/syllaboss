@@ -41,7 +41,7 @@ Pizza::Application.routes.draw do
     resources :comments
   end
 
-  resources :comments, only: [:index, :create, :destroy]
+  resources :comments, only: [:index, :create, :update, :destroy]
   get 'discussion', to: 'comments#index', as: 'discussion'
 
   resources :attachments

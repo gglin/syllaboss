@@ -12,19 +12,19 @@
   <% end %>
 
   <div class="control-group">
-    <%= f.label :name, class: "control-label" %>
+    <%= f.label :name, "Name #{mark_required(@potd, :name)}", class: "control-label" %>
     <div class="controls">
       <%= f.text_field :name %>
     </div>
   </div>
    <div class="control-group">
-    <%= f.label :wikipedia, class: "control-label" %>
+    <%= f.label :wikipedia, "Wikipedia URL #{mark_required(@potd, :wikipedia)}", class: "control-label" %>
     <div class="controls">
       <%= f.text_field :wikipedia %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :presentation_url, class: "control-label" %>
+    <%= f.label :presentation_url, "Presentation URL #{mark_required(@potd, :presentation_url)}", class: "control-label" %>
     <div class="controls">
       <%= f.text_field :presentation_url %>
     </div>

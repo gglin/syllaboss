@@ -1,7 +1,7 @@
 module SchoolDaysHelper
 
   def most_recent_day_for_material(material)
-    if can? :edit, @school_day
+    if can? :edit, material
       most_recent_day = most_recent_day_after_today(material)
       most_recent_day = most_recent_day_before_today(material) if most_recent_day.nil?
     else

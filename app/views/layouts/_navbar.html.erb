@@ -40,10 +40,13 @@
         <ul class="nav pull-right">
           <% if current_user %>
           <li class="dropdown pull-right">
-            <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/user.jpg" class="nav-user-pic"/><%= current_user.username %> <b class="caret"></b></a>
+            <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/user.jpg" class="nav-user-pic"/><%= current_user.full_name %> <b class="caret"></b></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
               <li><a href="<%= lectures_path %>"><i class="icon-user"></i> Profile </a></li>
-              <li><a href="<%= lectures_path %>"><i class="icon-cogs"></i> Settings </a></li>
+              <li>
+                <a href="<%= users_path %>"><i class="icon-group"></i>
+                  <%=  current_user.admin? ? "Manage Users" : "User List" %>
+                </a></li>
               <li><a href="<%= logout_path %>"><i class="icon-off"></i> Log Out</a></li>
             </ul>
           </li>
@@ -56,6 +59,7 @@
         </ul>
       </ul>
 
+      <% if can? :edit, @active_school_day %>
       <ul class="nav nav-icon pull-right">
         <!-- <li><i class="icon-plus"></i></li> -->
         <% material_type_list.each do |material_type_hash| %>
@@ -77,6 +81,7 @@
           
         <% end %>
       </ul>
+      <% end %>
 
     </div>
   </div>

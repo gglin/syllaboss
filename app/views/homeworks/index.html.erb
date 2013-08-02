@@ -1,5 +1,5 @@
 <%= render partial: "layouts/header_index", locals: {chosen_materials: @homeworks} %>
 
-<% @material_columns = ["Content"] %>
+<% @material_columns = [{name: "Content", data_type: "data-sort=string"}] %>
 
 <%= render partial: "layouts/body_materials_index", locals: {materials: @homeworks, material_columns: @material_columns } %>

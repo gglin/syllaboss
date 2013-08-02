@@ -60,4 +60,8 @@ table thead {
   padding-left: 5px;
   color: white;
 } /* see table sort.js to change tarrow character */
-
+table thead a{
+  background: rgb(98, 185, 231) !important;
+  color: white !important;
+  text-decoration:underline !important;
+}

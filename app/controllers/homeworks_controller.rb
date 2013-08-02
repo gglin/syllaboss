@@ -66,7 +66,7 @@ class HomeworksController < ApplicationController
 
     respond_to do |format|
       if @homework.save #need an if statement -- if params[:from] redirect_to 
-        if params[:last_page].nil?
+        if params[:last_page].empty?
           format.html { redirect_to @homework, notice: 'Homework was successfully created.' }
           format.json { render json: @homework, status: :created, location: @homework }
         else
@@ -102,7 +102,7 @@ class HomeworksController < ApplicationController
     @homework.destroy
 
     respond_to do |format|
-      format.html { redirect_to homeworks_url }
+      format.html { redirect_to homeworks_url, notice: "Homework was successfully deleted." }
       format.json { head :no_content }
     end
   end

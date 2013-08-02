@@ -66,7 +66,7 @@ class LabsController < ApplicationController
 
     respond_to do |format|
       if @lab.save
-        if params[:last_page].nil?
+        if params[:last_page].empty?
           format.html { redirect_to @lab, notice: 'Lab was successfully created.' }
           format.json { render json: @lab, status: :created, location: @lab }
         else
@@ -102,7 +102,7 @@ class LabsController < ApplicationController
     @lab.destroy
 
     respond_to do |format|
-      format.html { redirect_to labs_url }
+      format.html { redirect_to labs_url, notice: "Lab was successfully deleted." }
       format.json { head :no_content }
     end
   end

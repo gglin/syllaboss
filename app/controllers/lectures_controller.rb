@@ -62,7 +62,7 @@ class LecturesController < ApplicationController
 
     respond_to do |format|
       if @lecture.save
-        if params[:last_page].nil?
+        if params[:last_page].empty?
           format.html { redirect_to @lecture, notice: 'Lecture was successfully created.' }
           format.json { render json: @lecture, status: :created, location: @lecture }
         else
@@ -98,7 +98,7 @@ class LecturesController < ApplicationController
     @lecture.destroy
 
     respond_to do |format|
-      format.html { redirect_to lectures_url }
+      format.html { redirect_to lectures_url, notice: "Lecture was successfully deleted." }
       format.json { head :no_content }
     end
   end

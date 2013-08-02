@@ -1,15 +1,12 @@
 Pizza::Application.routes.draw do
-  
-  # get 'comments', to: 'comments#index'
-  # get 'comments/new', to: 'comments#new'
-  # post 'comments', to: 'comments#create'
 
   #get 'show_results', to: 'schooldays#show_results'
-  get 'signup', to: 'users#new', as: 'signup'
-  get 'login', to: 'sessions#new', as: 'login'
-  post 'login', to: 'sessions#create', as: 'login'
-  get 'logout', to: 'sessions#destroy', as: 'logout'
-  get 'discussion', to: 'comments#index', as: 'discussion'
+  
+  get  'signup', to: 'users#new',        as: 'signup'
+  get  'login',  to: 'sessions#new',     as: 'login'
+  post 'login',  to: 'sessions#create',  as: 'login'
+  get  'logout', to: 'sessions#destroy', as: 'logout'
+
   get 'search', to: 'searches#index'
 
   resources :searches
@@ -45,6 +42,7 @@ Pizza::Application.routes.draw do
   end
 
   resources :comments, only: [:index, :create, :destroy]
+  get 'discussion', to: 'comments#index', as: 'discussion'
 
   resources :attachments
 

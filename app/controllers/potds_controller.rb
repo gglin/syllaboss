@@ -68,8 +68,8 @@ class PotdsController < ApplicationController
 
     respond_to do |format|
       if @potd.save
-        if params[:last_page].nil?
-          format.html { redirect_to @potd, notice: 'Potd was successfully created.' }
+        if params[:last_page].empty?
+          format.html { redirect_to @potd, notice: 'POTD was successfully created.' }
           format.json { render json: @potd, status: :created, location: @potd }
         else
           format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) }
@@ -88,7 +88,7 @@ class PotdsController < ApplicationController
 
     respond_to do |format|
       if @potd.update_attributes(params[:potd])
-        format.html { redirect_to @potd, notice: 'Potd was successfully updated.' }
+        format.html { redirect_to @potd, notice: 'POTD was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -104,7 +104,7 @@ class PotdsController < ApplicationController
     @potd.destroy
 
     respond_to do |format|
-      format.html { redirect_to potds_url }
+      format.html { redirect_to potds_url, notice: "POTD was successfully deleted." }
       format.json { head :no_content }
     end
   end

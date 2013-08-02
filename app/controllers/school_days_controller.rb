@@ -107,7 +107,7 @@ class SchoolDaysController < ApplicationController
     @school_day.destroy
 
     respond_to do |format|
-      format.html { redirect_to school_days_url }
+      format.html { redirect_to school_days_url, notice: "School day was successfully deleted." }
       format.json { head :no_content }
     end
   end

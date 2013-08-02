@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate 
   before_filter :load_current_day
   
-
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
     redirect_to root_url

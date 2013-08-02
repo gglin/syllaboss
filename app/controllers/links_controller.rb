@@ -65,7 +65,7 @@ class LinksController < ApplicationController
     @link.title=(params[:link] [:title])
     respond_to do |format|
       if @link.save
-        if params[:last_page].nil?
+        if params[:last_page].empty?
           format.html { redirect_to @link, notice: 'Link was successfully created.' }
           format.json { render json: @link, status: :created, location: @link }
         else
@@ -101,7 +101,7 @@ class LinksController < ApplicationController
     @link.destroy
 
     respond_to do |format|
-      format.html { redirect_to links_url }
+      format.html { redirect_to links_url, notice: "Link was successfully deleted." }
       format.json { head :no_content }
     end
   end

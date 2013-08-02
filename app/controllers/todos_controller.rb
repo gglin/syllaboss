@@ -66,8 +66,8 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
-        if params[:last_page].nil?
-          format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
+        if params[:last_page].empty?
+          format.html { redirect_to @todo, notice: 'To-Do was successfully created.' }
           format.json { render json: @todo, status: :created, location: @todo }
         else
           format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) }          
@@ -86,7 +86,7 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.update_attributes(params[:todo])
-        format.html { redirect_to @todo, notice: 'Todo was successfully updated.' }
+        format.html { redirect_to @todo, notice: 'To-Do was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -102,7 +102,7 @@ class TodosController < ApplicationController
     @todo.destroy
 
     respond_to do |format|
-      format.html { redirect_to todos_url }
+      format.html { redirect_to todos_url, notice: "To-Do was successfully deleted." }
       format.json { head :no_content }
     end
   end

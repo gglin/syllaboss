@@ -3,40 +3,45 @@ Damn it Feels Good to Be a Gangsta
 ---------------------------------------------------------------------
 AUGUST 1ST HOMIE
 
+
+
 ** Sign In Related => X Chris
--flash message for incorrect password
--password validation
--sign in with username
--fix view
+-delete username cross the whole site.
+- sign in with email
+- @ashley williams --- make LINK
+-fix view (eventually landing page)
 
 ** Nav Bar => Katie
 -make a new: + in front of icons
 
 ** Side Bar => X George 
--student v admin, admin has links to indices instead of current student layout
--if nothing, gray out links in sidebar
+- fixed side bar until click drop down
 
 ** Day New => Jen 
--no negative day ordinal -> validation
--Feb 31 example -> datepicker
 -create new button (decrease size) below forms
--adding a new day doesn't end up in a pool for new resources. -> w/ query strings, create new takes us to view, and then redirects back
--Spelling Error Select z(s)
+- use query string for cancel -- redirect back to form
+- auto select for other models (right now just HW working)
 
-** Day Show View => X Jen
--Kill table headings in day view (time, stuff)
+** search
+- names of columns/models broken.
+
 
 ** Discussion => George
--submit comment from discussion stream should stay in discussion stream
-??make days not clickable
+- @ functionality eventually click name goes to profile or comment thread
+- students should not be able to comment on something they can't like future comments
+- make comments editable
+- reply button changes to cancel on dropdown
 
 **General
--Change titles of pages w/ railscast 
+-Change titles of pages w/ railscast (ongoing) 
 -all forms indicate what is required
--general validation => Katie
 -img upload for profile w/ carrierwave
+- fix iframe formatting
 
-**Not Today
+**next week
+- user show page (profiles)
+- index user view (but user able to edit their own information)
+
 -First view would be week -> set that shit up today
 -Render in IFrame without layout
 -Send email password reset

@@ -37,7 +37,6 @@
           <thead>
           <tr>
             <th>Full Name</th>
-            <th>Username</th>
             <th>Email</th>
             <th>Role</th>
           </tr>
@@ -55,7 +54,6 @@
                   <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %>
                 <% end %>
               </td>
-              <td><%= user.username %></td>
               <td><%= link_to user.email, user.email %></td>
               <td>
                 <% if user.admin? %>

@@ -100,6 +100,20 @@ $('.wclose').click(function(e){
     $wcontent.toggle(500);
   }); 
 
+  $('.wminimize-edit').click(function(e){
+    e.preventDefault();
+    var $wcontent = $(this).parent().parent().next('.widget-content');
+    if($wcontent.is(':visible')) 
+    {
+      $(this).text("Edit")
+    }
+    else 
+    {
+      $(this).text("Cancel")
+    }            
+    $wcontent.toggle(500);
+  }); 
+
   $('.wminimize-newcomment').click(function(e){
     e.preventDefault();
     var $wcontent = $(this).parent().parent().next('.widget-content');

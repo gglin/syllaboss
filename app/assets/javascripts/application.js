@@ -64,7 +64,6 @@
 //= require ../../../vendor/assets/javascripts/stupidtable.min
 //= require table_sort
 
-//= require school_day_index
 //= require school_day_form
 
 //= require_tree .

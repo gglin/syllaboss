@@ -14,7 +14,7 @@
  *
  *= require normalize 
  *= require bootstrap
- *= require font-awesome
+
  *= require jquery-ui
  *= require fullcalendar
  *= require prettyPhoto
@@ -23,11 +23,12 @@
  *= require jquery.gritter
  *= require jquery.cleditor
  *= require bootstrap-toggle-buttons
+ *= require school_day_index
  *= require style
  *= require widgets
  *= require bootstrap-responsive
  *= require override
  *= require ../../../vendor/assets/stylesheets/blue/style
- *= require school_day_index
+ *= require font-awesome
 
  */

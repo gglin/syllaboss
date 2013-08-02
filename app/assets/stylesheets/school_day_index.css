@@ -1,15 +1,14 @@
 
-
 /* table style */
 
-table {
+ table {
   border-top: 1px solid #ccc !important;
   border-left: 1px solid #ccc !important;
   border-right: 0 !important;
   border-bottom: 0 !important;
 }
 
-table th, table td {
+ table th, table td {
   border-top: 0 !important;
   border-left: 0 !important;
   border-right: 1px solid #ccc !important;
@@ -17,11 +16,11 @@ table th, table td {
   padding:7px;
 }
 
-table tr:nth-child(even){
+ table tr:nth-child(even){
   background: #efefef !important;
 }
 
-table thead {
+ table thead {
   background: rgb(98, 185, 231) !important;
   color: white;
 }
@@ -32,7 +31,7 @@ table thead {
   padding-left: 5px;
   color: white;
 } /* see table sort.js to change tarrow character */
-table thead a{
+ table thead a{
   background: rgb(98, 185, 231) !important;
   color: white !important;
   text-decoration:underline !important;

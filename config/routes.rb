@@ -7,8 +7,8 @@ Pizza::Application.routes.draw do
   post 'login',  to: 'sessions#create',  as: 'login'
   get  'logout', to: 'sessions#destroy', as: 'logout'
 
-  get  'weeks',     to: 'weeks#index', as: 'weeks'
-  get  'weeks/:id', to: 'weeks#show',  as: 'week'
+  get 'weeks',     to: 'weeks#index', as: 'weeks'
+  get 'weeks/:id', to: 'weeks#show',  as: 'week'
 
   get 'search', to: 'searches#index'
 
@@ -99,7 +99,7 @@ Pizza::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'school_days#show'
+  root :to => 'passthrough#index'
 
   # See how all your routes lay out with "rake routes"
 

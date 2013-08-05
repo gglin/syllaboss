@@ -3,12 +3,22 @@ Damn it Feels Good to Be a Gangsta
 ---------------------------------------------------------------------
 AUGUST 5th HOMIE
 
-d- USER model: gravatar/uploadable pic, expand user table to include social media
+- NOTIFICATION
+  - keeping track of:
+   - unread comments
+   - unread materials
+   - updated materials
 
+  - notification box working on page (wow features)
+  
 - SEMESTER model
+- landing page
+
+- USER model: expand user table to include social media
+
 - PRETTIFY preview (iframe) on forms (on dblclick)
 - nested form or query string for uploading attachments
-- landing page
+
 - reading model -- aggregate reading/resources
 - scrape wikipedia for POTD main page
 - edit column names (i.e. gist_url) lecture should have space for content
@@ -27,19 +37,18 @@ d- USER model: gravatar/uploadable pic, expand user table to include social medi
 - hashtag functionality
 
 
-**next week
 - user show page (profiles)
 
--Send email password reset
-
+- Send email password reset
 - email notfications (activemailer)
-- notifcation box working on page (wow features)
+
 - ajax request to choose ordinal and week
 - filtering the discussion stream (drop down from discussion tab in nav bar)
 - friendlyid for urls
 
 
-
+Weeks
+gravatar/uploadable pic
 
 ---------------------------------------------------------------------
 GENERAL BIZ

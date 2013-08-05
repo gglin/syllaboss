@@ -19,18 +19,23 @@
       </li>
 
       <li class="dropdown">
-        <%= link_to "Week #{@active_school_day.week}", "#" %>
+        <%= link_to "Week #{@active_school_day.week}", week_path(@active_school_day.week) %>
         <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-          <span class = "caret"></span>
+          <i class = "caret"></i>
         </a>
 
         <span class="divider">/</span>
 
         <ul class="dropdown-menu" role="menu">
-          <% SchoolDay.all.each do |school_day| %>
-            <li><%= link_to "Week #{school_day.week}", '#' %></li>
+          <% weeks = SchoolDay.select("week").map(&:week).uniq %>
+          <% weeks.each do |week| %>
+            <% if (SchoolDay.where("week = ?", week).order("week").first.calendar_date <= Date.today) || (can? :update, @active_school_day) %>
+              <li>
+                <%= link_to "Week #{week}", week_path(week) %>
+              </li>
+            <% end %>
           <% end %>
-          <li><%= link_to "Show All Weeks", '#' %></li>
+          <li><%= link_to "Show All Weeks", weeks_path %></li>
         </ul>
       </li>
 

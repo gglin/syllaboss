@@ -22,6 +22,10 @@ ul, ol, ul li, ol li, li {
   margin-left:0;
 }
 
+.row-today {
+  border: 3px solid #f88529;
+}
+
 .navbar .nav-icon, .navbar .nav-icon li {
   position: relative;
   left: 0;
@@ -586,7 +590,7 @@ body {
 
 .day-index td:nth-child(3),
 .day-index th:nth-child(3), {
-  width: 120px;
+  width: 100px;
 }
 
 

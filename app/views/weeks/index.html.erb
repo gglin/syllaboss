@@ -1,0 +1,64 @@
+<div class="page-head">
+  <% title "All Weeks" %>
+  <h2 class="inline"><%= yield(:title) %></h2>
+  
+  <ul class="horizontal-list breadcrumb">
+    <li>Show All: </li>
+    <% material_type_list.each do |material_type_hash| %>
+      <% material_type = material_type_hash[:name] %>
+      <% material_icon = material_type_hash[:icon] %>
+
+      <% material_types  = material_type.pluralize %>
+      <% material_title  = material_capitalize(material_type) %>
+      <% material_titles = material_title.pluralize %>
+      
+      <%# unless material_type == chosen_material_type %>
+      <li>
+        <a href="<%= self.send("#{material_types}_path") %>">
+          <i class="icon-<%= material_icon %>"></i>
+          <%= material_titles %>
+        </a>
+      </li>
+      <%# end %>
+      
+    <% end %>
+  </ul>
+</div>
+
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid fit-content">
+
+      <table id="linksTable" class="day-index">
+        <thead>
+          <tr>
+            <th colspan="1" data-sort="int">Week</th>
+            <th>Dates</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @weeks.each do |week| %>
+            <% if (SchoolDay.where("week = ?", week).order("week").first.calendar_date <= Date.today) || (can? :update, @active_school_day) %>
+            <% first_date = SchoolDay.where("week = ?", week).order("week").first.calendar_date %>
+            <% first_day_of_week = first_date.beginning_of_week %>
+            <% last_day_of_week  = first_date.end_of_week %>
+            <% row_today = Date.today.between?(first_day_of_week, last_day_of_week) ? "row-today" : "" %>
+            <tr class="<%= row_today %>">
+              <td>
+                <h2><%= link_to week, week_path(week) %></h2>
+              </td>
+              <td>
+                
+                <%= "#{first_day_of_week.strftime('%b %d')} - #{last_day_of_week.strftime('%b %d')}" %>
+              </td>
+            </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>  
+  </div>
+</div>
+
+<br />

@@ -36,7 +36,7 @@
           <span class="badge pull-right"><strong><%= distance_of_time_in_words(Date.today, @active_school_day.calendar_date) %> from now</strong></span>
         <% end %>
 
-        <h4 class="less-padding">Week <%= @active_school_day.week %></h4>
+        <h4 class="less-padding"><%= link_to "Week #{@active_school_day.week}", week_path(@active_school_day.week) %></h4>
       
         <p>
           <%= @active_school_day.calendar_date.strftime("%A %B %d, %Y") %>

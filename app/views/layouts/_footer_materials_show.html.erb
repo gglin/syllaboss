@@ -5,9 +5,10 @@
 
 <div class="row-fluid fit-content">
   <div class="span9 maxspan minspan">
-    <% if can? :edit, @homework %>
+    <% if can? :edit, @active_school_day %>
       <span class="admin">
-        <%= link_to 'Edit', self.send("edit_#{material_type}_path", material) %> |
+        <%= link_to 'Edit',   self.send("edit_#{material_type}_path", material) %> |
+        <%= link_to 'Delete', material, method: :delete, data: { confirm: 'Are you sure?' }  %> |
       </span>
     <% end %>
     <%= link_to "Show All #{material_titles}", self.send("#{material_types}_path") %>

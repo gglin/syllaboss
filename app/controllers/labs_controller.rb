@@ -44,6 +44,8 @@ class LabsController < ApplicationController
   # GET /labs/new.json
   def new
     @lab = Lab.new
+    @active_school_day = SchoolDay.find(params[:day]) unless params[:day].nil? || params[:day].empty?
+    load_prev_and_next_day
 
     respond_to do |format|
       format.html # new.html.erb
@@ -66,11 +68,13 @@ class LabsController < ApplicationController
 
     respond_to do |format|
       if @lab.save
-        if params[:last_page].empty?
+        if params[:last_page].nil?
           format.html { redirect_to @lab, notice: 'Lab was successfully created.' }
           format.json { render json: @lab, status: :created, location: @lab }
+        elsif params[:last_page].empty?
+          format.html { redirect_to new_school_day_path + "?lab_added=#{@lab.id}#labs", notice: 'Lab was successfully created.' }
         else
-          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) }
+          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?lab_added=#{@lab.id}#labs", notice: 'Lab was successfully created.' }
         end
       else
         format.html { render action: "new" }

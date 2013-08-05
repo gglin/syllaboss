@@ -1,4 +1,3 @@
-
 <%= form_for @homework, :html => {class: "form-horizontal"} do |f| %>
   <% if @homework.errors.any? %>
     <div id="error_explanation">
@@ -12,27 +11,27 @@
     </div>
   <% end %>
 
+  <% if params[:day] %>
+    <div class="field">
+      <%= hidden_field_tag :last_page, params[:day] %>
+    </div>
+  <% end %> 
+
   <div class="control-group">
-    
     <%= f.label :title, "Title #{mark_required(@homework, :title)}", class: "control-label" %>
     <div class="controls">
       <%= f.text_field :title %>
     </div>
   </div>
 
-   <div class="control-group">
+  <div class="control-group">
     <%= f.label :content, "Content #{mark_required(@homework, :content)}", class: "control-label" %>
     <div class="controls">
       <%= f.text_field :content %>
     </div>
   </div>
 
-  <div class="field">
-    <%= hidden_field_tag :last_page, params[:day]%>
-  </div>
-
-
-   <div class="control-group">
+  <div class="control-group">
     <%= f.label :school_day, "Select Day(s)", class: "control-label" %>
     <div class="controls">
       <% selected_ids = @homework.school_day_ids %>
@@ -45,17 +44,21 @@
     <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
 
+  <% if params[:last_page].nil? || params[:last_page].empty? %>
+
     <% if @homework.persisted? %>
-        <%= link_to "Cancel", @homework, class: "btn btn-inverse link-btn" %> 
+      <%= link_to "Cancel", @homework, class: "btn btn-inverse link-btn" %>
     <% else %>
-      <% if params[:last_page].nil? || params[:last_page].empty? %>
-        <%= link_to "Cancel", "/", class: "btn btn-inverse link-btn" %> 
-      <% else %>
-        <% if params[:day].empty? %>
-          <%= link_to "Cancel", new_school_day_path, class: "btn btn-inverse link-btn" %>
-        <% else %>
-          <%= link_to "Cancel", edit_school_day_path(SchoolDay.find(params[:day])), class: "btn btn-inverse link-btn" %>
-        <% end %>
-      <% end %>
+      <%= link_to "Cancel", "/", class: "btn btn-inverse link-btn" %> 
     <% end %>
+
+  <% else %>
+
+    <% if params[:day].empty? %>
+      <%= link_to "Cancel", new_school_day_path + "#homeworks", class: "btn btn-inverse link-btn" %>
+    <% else %>
+      <%= link_to "Cancel", edit_school_day_path(SchoolDay.find(params[:day])) + "#homeworks", class: "btn btn-inverse link-btn" %>
+    <% end %>
+
+  <% end %>
 <% end %>

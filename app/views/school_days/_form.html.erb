@@ -82,60 +82,67 @@
 
             <!-- Lectures -->
             <div class="control-group" data-name="lectures"> 
-              <%= f.label :lecture, "Select Lecture(s)", class: "control-label" %>
+              <%= f.label :lecture, "Select Lecture(s)", class: "control-label", id: "lectures" %>
               <div class="controls previewable">
-                <%= f.collection_select(:lecture_ids, Lecture.all, :id, :print_name, {:selected => @school_day.lecture_ids, :prompt => "Please Select Lecture(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
-                <span class= "new-btns"><%= link_to "Create New", new_lecture_path + "?day=#{@school_day.id}&last_page=edit_school_day", class: "btn btn-primary link-btn" %></span>
+                <% selected_lecture_ids = @school_day.lecture_ids %>
+                <% selected_lecture_ids << params[:lecture_added] %>
+                <%= f.collection_select(:lecture_ids, Lecture.all.sort_by { |x|x.print_name.downcase }, :id, :print_name, {:selected => selected_lecture_ids, :prompt => "Please Select Lecture(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
+                <span class= "new-btns"><%= link_to "Create New", new_lecture_path + "?day=#{@school_day.id}&last_page=school_day_form", class: "btn btn-primary link-btn" %></span>
               </div>
             </div>
 
             <!-- To-Dos -->
             <div class="control-group" data-name="todos">
-              <%= f.label :todo, "Select To-Do(s)", class: "control-label" %>
+              <%= f.label :todo, "Select To-Do(s)", class: "control-label", id: "todos"  %>
               <div class="controls previewable">
-                <%= f.collection_select(:todo_ids, Todo.all, :id, :print_name, {:selected => @school_day.todo_ids, :prompt => "Please Select To-Do(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
-                <span class= "new-btns"><%= link_to "Create New", new_todo_path + "?day=#{@school_day.id}&last_page=edit_school_day", class: "btn btn-primary link-btn" %></span>
+                <% selected_todo_ids = @school_day.todo_ids %>
+                <% selected_todo_ids << params[:todo_added] %>
+                <%= f.collection_select(:todo_ids, Todo.all.sort_by { |x|x.print_name.downcase }, :id, :print_name, {:selected => selected_todo_ids, :prompt => "Please Select To-Do(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
+                <span class= "new-btns"><%= link_to "Create New", new_todo_path + "?day=#{@school_day.id}&last_page=school_day_form", class: "btn btn-primary link-btn" %></span>
               </div>
             </div>
 
             <!-- POTD -->
             <div class="control-group" data-name="potds">
-              <%= f.label :potd, "Select POTD", class: "control-label" %>
+              <%= f.label :potd, "Select POTD", class: "control-label", id: "potds"  %>
               <div class="controls previewable">
-                <%= f.collection_select(:potd_id, Potd.all, :id, :print_name, {:selected => @school_day.potd_id, :prompt => "Please Select POTD"}, {:class => "span4 multi-select"}) %>
-                <span class= "new-btns"><%= link_to "Create New", new_potd_path + "?day=#{@school_day.id}&last_page=edit_school_day", class: "btn btn-primary link-btn" %></span>
+                <% selected_potd_id = @school_day.potd_id %>
+                <% selected_potd_id = params[:potd_added] if selected_potd_id.nil? %>
+                <%= f.collection_select(:potd_id, Potd.all.sort_by { |x|x.print_name.downcase }, :id, :print_name, {:selected => selected_potd_id, :include_blank => "None"}, {:class => "span4 multi-select"}) %>
+                <span class= "new-btns"><%= link_to "Create New", new_potd_path + "?day=#{@school_day.id}&last_page=school_day_form", class: "btn btn-primary link-btn" %></span>
               </div>
             </div>
 
             <!-- Labs -->
             <div class="control-group" data-name="labs">
-              <%= f.label :lab, "Select Lab(s)", class: "control-label" %>
+              <%= f.label :lab, "Select Lab(s)", class: "control-label", id: "labs"  %>
               <div class="controls previewable">
-                <%= f.collection_select(:lab_ids, Lab.all, :id, :print_name, {:selected => @school_day.lab_ids, :prompt => "Please Select Lab(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
-                <span class= "new-btns"><%= link_to "Create New", new_lab_path + "?day=#{@school_day.id}&last_page=edit_school_day", class: "btn btn-primary link-btn" %></span>
+                <% selected_lab_ids = @school_day.lab_ids %>
+                <% selected_lab_ids << params[:lab_added] %>
+                <%= f.collection_select(:lab_ids, Lab.all.sort_by { |x|x.print_name.downcase }, :id, :print_name, {:selected => selected_lab_ids, :prompt => "Please Select Lab(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
+                <span class= "new-btns"><%= link_to "Create New", new_lab_path + "?day=#{@school_day.id}&last_page=school_day_form", class: "btn btn-primary link-btn" %></span>
               </div>
             </div>
 
             <!-- Links -->
             <div class="control-group" data-name="links">
-              <%= f.label :link, "Select Link(s)", class: "control-label" %>
+              <%= f.label :link, "Select Link(s)", class: "control-label", id: "links"  %>
               <div class="controls previewable">
                 <% selected_link_ids = @school_day.link_ids %>
-                 <% selected_link_ids << params[:last_page] %>
-                <%= f.collection_select(:link_ids, Link.all, :id, :print_name, {:selected => selected_link_ids, :prompt => "Please Select Link(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
-                <span class= "new-btns"><%= link_to "Create New", new_link_path + "?day=#{@school_day.id}&last_page=edit_school_day", class: "btn btn-primary link-btn" %></span>
+                <% selected_link_ids << params[:link_added] %>
+                <%= f.collection_select(:link_ids, Link.all.sort_by { |x|x.print_name.downcase }, :id, :print_name, {:selected => selected_link_ids, :prompt => "Please Select Link(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
+                <span class= "new-btns"><%= link_to "Create New", new_link_path + "?day=#{@school_day.id}&last_page=school_day_form", class: "btn btn-primary link-btn" %></span>
               </div>
             </div>
 
             <!-- Homeworks -->
             <div class="control-group" data-name="homeworks">
-              <%= f.label :homework, "Select Homework(s)", class: "control-label" %>
+              <%= f.label :homework, "Select Homework(s)", class: "control-label", id: "homeworks"  %>
               <div class="controls previewable">
-                <% selected_hw_ids = @school_day.homework_ids %>
-                 <% selected_hw_ids << params[:last_page] %>
-                 <%= f.collection_select(:homework_ids, Homework.all, :id, :print_name, {:selected => selected_hw_ids, :prompt => "Please Select Homework(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
-                <span class= "new-btns"><%= link_to "Create New", new_homework_path + "?day=#{@school_day.id}&last_page=edit_school_day", class: "btn btn-primary link-btn" %></span>
-
+                <% selected_homework_ids = @school_day.homework_ids %>
+                <% selected_homework_ids << params[:homework_added] %>
+                <%= f.collection_select(:homework_ids, Homework.all.sort_by { |x|x.print_name.downcase }, :id, :print_name, {:selected => selected_homework_ids, :prompt => "Please Select Homework(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
+                <span class= "new-btns"><%= link_to "Create New", new_homework_path + "?day=#{@school_day.id}&last_page=school_day_form", class: "btn btn-primary link-btn" %></span>
               </div>
             </div>
 

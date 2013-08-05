@@ -40,6 +40,8 @@ class LecturesController < ApplicationController
   # GET /lectures/new.json
   def new
     @lecture = Lecture.new
+    @active_school_day = SchoolDay.find(params[:day]) unless params[:day].nil? || params[:day].empty?
+    load_prev_and_next_day
 
     respond_to do |format|
       format.html # new.html.erb
@@ -62,11 +64,13 @@ class LecturesController < ApplicationController
 
     respond_to do |format|
       if @lecture.save
-        if params[:last_page].empty?
+        if params[:last_page].nil?
           format.html { redirect_to @lecture, notice: 'Lecture was successfully created.' }
           format.json { render json: @lecture, status: :created, location: @lecture }
+        elsif params[:last_page].empty?
+          format.html { redirect_to new_school_day_path + "?lecture_added=#{@lecture.id}#lectures", notice: 'Lecture was successfully created.' }
         else
-          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) }
+          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?lecture_added=#{@lecture.id}#lectures", notice: 'Lecture was successfully created.' }
         end
       else
         format.html { render action: "new" }

@@ -44,6 +44,8 @@ class TodosController < ApplicationController
   # GET /todos/new.json
   def new
     @todo = Todo.new
+    @active_school_day = SchoolDay.find(params[:day]) unless params[:day].nil? || params[:day].empty?
+    load_prev_and_next_day
 
     respond_to do |format|
       format.html # new.html.erb
@@ -66,11 +68,13 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
-        if params[:last_page].empty?
+        if params[:last_page].nil?
           format.html { redirect_to @todo, notice: 'To-Do was successfully created.' }
           format.json { render json: @todo, status: :created, location: @todo }
+        elsif params[:last_page].empty?
+          format.html { redirect_to new_school_day_path + "?todo_added=#{@todo.id}#todos", notice: 'To-Do was successfully created.' }
         else
-          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) }          
+          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?todo_added=#{@todo.id}#todos", notice: 'To-Do was successfully created.' }
         end
       else
         format.html { render action: "new" }

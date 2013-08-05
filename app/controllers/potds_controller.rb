@@ -45,6 +45,8 @@ class PotdsController < ApplicationController
   def new
     @potd = Potd.new
     @action = "Create"
+    @active_school_day = SchoolDay.find(params[:day]) unless params[:day].nil? || params[:day].empty?
+    load_prev_and_next_day
 
     respond_to do |format|
       format.html # new.html.erb
@@ -68,11 +70,13 @@ class PotdsController < ApplicationController
 
     respond_to do |format|
       if @potd.save
-        if params[:last_page].empty?
+        if params[:last_page].nil?
           format.html { redirect_to @potd, notice: 'POTD was successfully created.' }
           format.json { render json: @potd, status: :created, location: @potd }
+        elsif params[:last_page].empty?
+          format.html { redirect_to new_school_day_path + "?potd_added=#{@potd.id}#potds", notice: 'POTD was successfully created.' }
         else
-          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) }
+          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?potd_added=#{@potd.id}#potds", notice: 'POTD was successfully created.' }
         end
       else
         format.html { render action: "new" }

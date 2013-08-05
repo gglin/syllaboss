@@ -11,6 +11,12 @@
     </div>
   <% end %>
 
+  <% if params[:day] %>
+    <div class="field">
+      <%= hidden_field_tag :last_page, params[:day] %>
+    </div>
+  <% end %> 
+
   <div class="control-group">
     <%= f.label :name, "Name #{mark_required(@todo, :name)}", class: "control-label" %>
     <div class="controls">
@@ -25,11 +31,7 @@
     </div>
   </div>
 
-  <div class="field">
-    <%= hidden_field_tag :last_page, params[:day]%>
-  </div>
-
-   <div class="control-group">
+  <div class="control-group">
     <%= f.label :school_day, "Select Day(s)", class: "control-label" %>
     <div class="controls">
       <% selected_ids = @todo.school_day_ids %>
@@ -41,17 +43,22 @@
   <div class="actions inline">
     <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
+  
+  <% if params[:last_page].nil? || params[:last_page].empty? %>
+
     <% if @todo.persisted? %>
-      <%= link_to "Cancel", @todo, class: "btn btn-inverse link-btn" %> 
+      <%= link_to "Cancel", @todo, class: "btn btn-inverse link-btn" %>
     <% else %>
-      <% if params[:last_page].nil? || params[:last_page].empty? %>
-        <%= link_to "Cancel", "/", class: "btn btn-inverse link-btn" %>
-      <% else %>
-        <% if params[:day].empty? %>
-          <%= link_to "Cancel", new_school_day_path, class: "btn btn-inverse link-btn" %>
-        <% else %>
-          <%= link_to "Cancel", edit_school_day_path(SchoolDay.find(params[:day])), class: "btn btn-inverse link-btn" %>
-        <% end %>
-      <% end %> 
+      <%= link_to "Cancel", "/", class: "btn btn-inverse link-btn" %> 
     <% end %>
+
+  <% else %>
+
+    <% if params[:day].empty? %>
+      <%= link_to "Cancel", new_school_day_path + "#todos", class: "btn btn-inverse link-btn" %>
+    <% else %>
+      <%= link_to "Cancel", edit_school_day_path(SchoolDay.find(params[:day])) + "#todos", class: "btn btn-inverse link-btn" %>
+    <% end %>
+
+  <% end %>
 <% end %>

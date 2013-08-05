@@ -13,23 +13,18 @@
           <thead>
           <tr>
             <th data-sort="int">Day(s)</th>
-            <% if can? :edit, materials %>
-              <th colspan="1" data-sort="string">Title</th>
-            <% else %>
-              <th colspan="1" data-sort="string">Title</th>
-            <% end %>
-
+            <th colspan="1" data-sort="string">Title</th>
             <% material_columns.each do |material_column| %>
               <% column_name = material_column[:name] %>
               <% column_type = material_column[:data_type] %>
               <th <%= column_type %>><%= column_name %></th>
             <% end %>
-
+            <th data-sort="date">Date Created</th>
           </tr>
           </thead>
 
           <tbody>
-          <% materials.each do |material| %>
+          <% materials.sort_by(&:created_at).reverse.each do |material| %>
             <% if (!material.school_days.empty? && material.school_days.order("calendar_date")[0].calendar_date <= Date.today) || (can? :edit, materials) %>
             <tr>
               <td>
@@ -51,6 +46,9 @@
               
               <%= render partial: "body_index_content", locals: {material: material} %>
 
+              <td>
+                <%= material.created_at.strftime("%b %d, %Y %l:%M%P") %>
+              </td>
             </tr>
             <% end %>
           <% end %>

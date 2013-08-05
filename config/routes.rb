@@ -7,6 +7,9 @@ Pizza::Application.routes.draw do
   post 'login',  to: 'sessions#create',  as: 'login'
   get  'logout', to: 'sessions#destroy', as: 'logout'
 
+  get  'weeks',     to: 'weeks#index', as: 'weeks'
+  get  'weeks/:id', to: 'weeks#show',  as: 'week'
+
   get 'search', to: 'searches#index'
 
   resources :searches

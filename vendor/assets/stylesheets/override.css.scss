@@ -570,13 +570,23 @@ body {
 }
 
 .material-index td:nth-child(1),
-.material-index td:nth-child(1) {
+.material-index th:nth-child(1) {
   width: 80px;
 }
 
 .material-index td:nth-child(2),
-.material-index td:nth-child(2) {
+.material-index th:nth-child(2) {
   width: 200px;
+}
+
+.material-index td:last-child,
+.material-index th:last-child {
+  width: 100px;
+}
+
+.day-index td:nth-child(3),
+.day-index th:nth-child(3), {
+  width: 120px;
 }
 
 

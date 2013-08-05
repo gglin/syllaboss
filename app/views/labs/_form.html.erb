@@ -44,10 +44,14 @@
     <% if @lab.persisted? %>
       <%= link_to "Cancel", @lab, class: "btn btn-inverse link-btn" %>
     <% else %>
-      <% if params[:last_page].nil? %>
+      <% if params[:last_page].nil? || params[:last_page].empty? %>
         <%= link_to "Cancel", "/", class: "btn btn-inverse link-btn" %> 
       <% else %>
-        <%= link_to "Cancel", edit_school_day_path(SchoolDay.find(params[:day])), class: "btn btn-inverse link-btn" %>
+        <% if params[:day].empty? %>
+          <%= link_to "Cancel", new_school_day_path, class: "btn btn-inverse link-btn" %>
+        <% else %>
+          <%= link_to "Cancel", edit_school_day_path(SchoolDay.find(params[:day])), class: "btn btn-inverse link-btn" %>
+        <% end %>
       <% end %>
     <% end %>
 <% end %>

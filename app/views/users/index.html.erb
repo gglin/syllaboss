@@ -47,6 +47,7 @@
             <tr>
               <td>
                 <h5><%= link_to user.full_name, user %></h5>
+                <%= image_tag user.image_url(:thumb).to_s, :class => "icon-user-pic" if user.image_url %>
                 <% if can? :edit, user %>
                   <%= link_to 'Edit', edit_user_path(user) %>
                 <% end %>

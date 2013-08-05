@@ -1,18 +1,17 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  attr_accessible :email, :role, :password, :password_confirmation, :password_digest, :full_name, :username
+  attr_accessible :email, :role, :password, :password_confirmation, :password_digest, :full_name, :username, :image
   attr_accessible :comment_ids
 
   has_many :comments, as: :commentable
+  mount_uploader :image, ImageUploader
 
   validates :password, :presence => { :on => :create }
   validates :full_name, :presence => {:message => "cannot be blank"}
   validates :email, :presence => {:message => "cannot be blank"}
-  validates :username, :presence => {:message => "cannot be blank"}
 
-
-  validates_uniqueness_of :username, :message => "Sorry, that username  already belongs to an existing account."
+  validates_uniqueness_of :full_name, :message => "Sorry, that name already belongs to an existing account."
   validates_uniqueness_of :email, :message => "Sorry, that e-mail address already belongs to an existing account."
 
     USER_ROLES = {

@@ -39,6 +39,7 @@ gem 'jquery-ui-rails'
 
 gem 'carrierwave'
 gem 'sunspot_rails', '~> 1.3.0'
+gem "rmagick"
 
 
 # To use ActiveModel has_secure_password

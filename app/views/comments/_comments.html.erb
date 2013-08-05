@@ -13,7 +13,11 @@
     <li class="by-me <%= by_type %>">
 
       <div class="avatar pull-left">
-        <img src="http://placekitten.com/40/40">
+        <% if comment.user.image_url %>
+          <%= image_tag comment.user.image_url(:thumb), :class => "stream-user-pic" %>
+        <% else %>
+        <img src="http://placekitten.com/40/40" class="stream-user-pic"/>
+        <% end %>
       </div>
 
       <div class="chat-content">

@@ -61,4 +61,8 @@
     <% end %>
 
   <% end %>
+
+  <% if @lab.persisted? %>
+    <%= link_to "Delete", @lab, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger link-btn" %>
+  <% end %>
 <% end %>

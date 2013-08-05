@@ -159,11 +159,16 @@
   <div class="actions inline">
     <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
-    <% if @school_day.persisted? %>
-      <%= link_to "Cancel", @school_day, class: "btn btn-inverse link-btn" %> 
-    <% else %>
-      <%= link_to "Cancel", "/", class: "btn btn-inverse link-btn" %> 
-    <% end %>
+
+  <% if @school_day.persisted? %>
+    <%= link_to "Cancel", @school_day, class: "btn btn-inverse link-btn" %> 
+  <% else %>
+    <%= link_to "Cancel", "/", class: "btn btn-inverse link-btn" %> 
+  <% end %>
+
+  <% if @school_day.persisted? %>
+    <%= link_to "Delete", @school_day, method: :delete, data: { confirm: 'Are you sure you want to delete this day? Resources associated with this day will not be deleted.' }, class: "btn btn-danger link-btn" %>
+  <% end %>
 <% end %>
 
 <iframe name="resource_preview" width="600" height="600" id="resource_preview" class = "affix-top"></iframe>

@@ -186,7 +186,6 @@
                         <% if can? :update, @school_day %>
                           <span class="admin pull-right">
                             &nbsp; <%= link_to 'Edit', edit_lecture_path(lecture) %>
-                            | <%= link_to 'Delete', lecture, method: :delete, data: { confirm: 'Are you sure?' } %>
                           </span>
                         <% end %>
                       </li> 
@@ -220,7 +219,6 @@
                         <% if can? :update, @school_day %>
                           <span class="admin pull-right">
                             &nbsp; <%= link_to 'Edit', edit_todo_path(todo) %>
-                            | <%= link_to 'Delete', todo, method: :delete, data: { confirm: 'Are you sure?' } %>
                            </span>
                         <% end %>
                       </li> 
@@ -255,7 +253,6 @@
                         <% if can? :update, @school_day %>  
                           <span class="admin pull-right">
                             &nbsp; <%= link_to 'Edit', edit_lab_path(lab) %>
-                            | <%= link_to 'Delete', lab, method: :delete, data: { confirm: 'Are you sure?' } %>
                           </span>
                         <% end %>
                       </li> 
@@ -291,7 +288,6 @@
                         <% if can? :update, @school_day %>
                           <span class="admin pull-right">
                             | <%= link_to 'Edit', edit_link_path(link) %>
-                            | <%= link_to 'Delete', link, method: :delete, data: { confirm: 'Are you sure?' } %>
                           </span>
                         <% end %>
                         <span class="show-on-hover pull-right">
@@ -332,7 +328,6 @@
                         <% if can? :update, @school_day %>
                           <span class="admin pull-right">
                             &nbsp; <%= link_to 'Edit', edit_homework_path(homework) %>
-                            | <%= link_to 'Delete', homework, method: :delete, data: { confirm: 'Are you sure?' } %>
                           </span>
                         <% end %>
                       </li> 

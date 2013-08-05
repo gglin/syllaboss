@@ -1,4 +1,3 @@
-<%= render partial: "layouts/header_materials_show", locals: {material: @todo} %>
 
 <div class="matter">
   <div class="container-fluid">
@@ -10,10 +9,10 @@
       <div class="span9 maxspan minspan">
         <div class="widget wlightblue mainwidget">
           <div class="widget-head">
-            <div class="pull-left">To-Do</div>
+            <div class="pull-left">Profile</div>
             <div class="widget-icons pull-right">
-              <% if can? :edit, @todo %>
-                <span class="admin"><a href="<%= edit_todo_path %>"><i class="icon-pencil"></i></a></span>
+              <% if can? :edit, @user %>
+                <span class="admin"><a href="<%= edit_user_path %>"><i class="icon-pencil"></i></a></span>
               <% end %>
 
               <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
@@ -27,10 +26,11 @@
 
               <p>
                 <h3><%= @user.full_name %></h3>
+                <%= image_tag @user.image.url(:thumb) %>
+
               </p>
 
               <p>
-                <%= image_tag @user.photo.url(:small) %>
               </p>
 
             </div>
@@ -40,7 +40,6 @@
 
     </div>
     
-    <%= render partial: "layouts/footer_materials_show", locals: {material: @todo} %>
 
   </div>
 </div>

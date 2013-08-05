@@ -1,6 +1,43 @@
-<h1>Editing User</h1>
+<div class="page-head">
+  <h1>Editing User</h1>
+</div>
+<%= form_for @user, :html => {:multipart => true} do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :full_name, "Full Name #{mark_required(@user, :full_name)}" %><br />
+    <%= f.text_field :full_name %>
+  </div>
+ 
+  <!-- <div class="field"> 
+    <%# f.label :username, "Username #{mark_required(@user, :username)}" %><br />
+    <%# f.text_field :username %>
+  </div> -->
+
+  <div class="field">
+    <%= f.label :email, "Email #{mark_required(@user, :email)}" %><br />
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "#{@action} Submit" %>
+  </div>
 
 <%= link_to 'Show', @todo %> |
 <%= link_to 'Back', todos_path %>
+
+<% end %>

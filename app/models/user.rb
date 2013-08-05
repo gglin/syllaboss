@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  attr_accessible :email, :role, :password, :password_confirmation, :password_digest, :full_name, :username, :image, :remote_image_url
+  attr_accessible :email, :role, :password, :password_confirmation, :password_digest, :full_name, :username, :image
   attr_accessible :comment_ids
 
   has_many :comments, as: :commentable

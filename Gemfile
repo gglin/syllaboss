@@ -9,6 +9,8 @@ gem 'sqlite3'
 gem 'cancan'
 gem 'rinku', :require => 'rails_rinku'
 gem 'sunspot_solr'
+gem 'nokogiri'
+
 
 group :development do
   gem "better_errors"

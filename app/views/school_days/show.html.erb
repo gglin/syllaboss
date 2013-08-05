@@ -1,3 +1,4 @@
+<% require 'open-uri' %>
 <!-- <title>Today</title> -->
 
 <div class="page-head">
@@ -125,12 +126,12 @@
 
               <div>
                 <h4 class="inline">
+
                   <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.presentation_url) %>" target="_blank"> <%= @active_school_day.potd.name %></a>
                 </h4>
                 
               </div>
-              
-              <%= image_tag("http://placekitten.com/200/200") %>
+              <%= image_tag("#{Potd.get_wiki_pic(@active_school_day.potd.name)}") %>
               <br>
               
               <p>

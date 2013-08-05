@@ -23,6 +23,9 @@ AUGUST 5th HOMIE
 - scrape wikipedia for POTD main page
 - edit column names (i.e. gist_url) lecture should have space for content
 
+- Change index view for weeks and days to be calendar views
+http://railscasts.com/episodes/213-calendars
+
 ** Nav Bar => Katie
 -make a new: + in front of icons
 

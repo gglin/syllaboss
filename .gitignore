@@ -19,6 +19,7 @@
 
 # Ignore all files uploaded as attachments
 /public/uploads/attachment/*
+/public/uploads/**/*
 
 # Ignore all Sunspot Solr data files
 solr/

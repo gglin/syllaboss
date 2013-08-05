@@ -1,14 +1,14 @@
 
 /* table style */
 
- table {
+ table#linksTable {
   border-top: 1px solid #ccc !important;
   border-left: 1px solid #ccc !important;
   border-right: 0 !important;
   border-bottom: 0 !important;
 }
 
- table th, table td {
+ table#linksTable th, table#linksTable td {
   border-top: 0 !important;
   border-left: 0 !important;
   border-right: 1px solid #ccc !important;
@@ -16,11 +16,11 @@
   padding:7px;
 }
 
- table tr:nth-child(even){
+ table#linksTable tr:nth-child(even){
   background: #efefef !important;
 }
 
- table thead {
+ table#linksTable thead {
   background: rgb(98, 185, 231) !important;
   color: white;
 }
@@ -36,3 +36,4 @@
   color: white !important;
   text-decoration:underline !important;
 }
+

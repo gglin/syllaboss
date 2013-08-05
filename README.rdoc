@@ -1,43 +1,45 @@
 == Welcome to Syllaboss
 Damn it Feels Good to Be a Gangsta
 ---------------------------------------------------------------------
-AUGUST 1ST HOMIE
+AUGUST 5th HOMIE
 
+d- USER model: gravatar/uploadable pic, expand user table to include social media
 
-
-** Sign In Related => X Chris
-- fix view (eventually landing page) --:> Next Week
+- SEMESTER model
+- PRETTIFY preview (iframe) on forms (on dblclick)
+- nested form or query string for uploading attachments
+- landing page
+- reading model -- aggregate reading/resources
+- scrape wikipedia for POTD main page
+- edit column names (i.e. gist_url) lecture should have space for content
 
 ** Nav Bar => Katie
 -make a new: + in front of icons
 
-** Side Bar => X George 
-
-
-** Day New => Jen 
-- style create new button
 
 ** search
-- make pretty (+ preview)
+- make pretty + preview
 
 
 ** Discussion => George
 - @ functionality eventually click name goes to profile or comment thread
 - @ashley williams --- make LINK
+- hashtag functionality
 
-**General
--img upload for profile w/ carrierwave
--fix iframe formatting
 
 **next week
 - user show page (profiles)
-- index user view (but user able to edit their own information)
 
--First view would be week -> set that shit up today
--Render in IFrame without layout
 -Send email password reset
--ajax request to choose ordinal and week
--POTD preview iframe
+
+- email notfications (activemailer)
+- notifcation box working on page (wow features)
+- ajax request to choose ordinal and week
+- filtering the discussion stream (drop down from discussion tab in nav bar)
+- friendlyid for urls
+
+
+
 
 ---------------------------------------------------------------------
 GENERAL BIZ
@@ -73,7 +75,6 @@ assignment.io integration, assignment gets created on our end. talk towards the 
 - restrict content by day
 
 -for next week:
-friendlyid for urls
 access to signup page
 
 -------------------

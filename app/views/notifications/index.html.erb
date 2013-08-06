@@ -46,7 +46,7 @@
                 <%= link_to re_truncate(material.print_name, length:50, separator: ' '), self.send("#{material_type}_path", material) %>
               </div>
               <div class="span3 no-height same-height-col">
-                <span class="label <%= label_type(material_type) %> pull-right inline valign" style="margin-right: 2px;">
+                <span class="label <%= label_type(material_type.classify) %> pull-right inline valign" style="margin-right: 2px;">
                   <%= "#{material_capitalize(material_type)}" %>
                 </span>
               </div>

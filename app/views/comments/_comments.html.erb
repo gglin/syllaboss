@@ -14,15 +14,16 @@
 
       <div class="avatar pull-left">
         <% if comment.user.image_url %>
-          <%= image_tag comment.user.image_url(:thumb), :class => "stream-user-pic" %>
+          <%= link_to image_tag(comment.user.image_url(:thumb), :class => "stream-user-pic"), user_path(comment.user) %>        
         <% else %>
-        <img src="http://placekitten.com/40/40" class="stream-user-pic"/>
+          <img src="http://placekitten.com/40/40" class="stream-user-pic"/>
         <% end %>
       </div>
 
       <div class="chat-content">
         <div class="chat-meta">
-          <%= comment.user == current_user ? "Me" : comment.user.full_name %>
+          <%  name = comment.user == current_user ? "Me" : comment.user.full_name %>
+          <%= link_to name, user_path(comment.user) %>
           
           <% if comment.user.admin? %>
             &nbsp; <span class="badge badge-instructor">Instructor</span>

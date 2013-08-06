@@ -1,5 +1,6 @@
 class Lab < ActiveRecord::Base
   include Formattable
+  acts_as_readable :on => :created_at
   
   attr_accessible :lab_url, :name, :school_day_ids, :comment_ids
 

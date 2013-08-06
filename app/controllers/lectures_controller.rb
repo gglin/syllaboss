@@ -7,11 +7,6 @@ class LecturesController < ApplicationController
   def index
     @lectures = Lecture.all
 
-    # @search = Lecture.search do
-    #   fulltext params[:search]
-    # end
-    # @lectures = @search.results
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @lectures }
@@ -26,6 +21,8 @@ class LecturesController < ApplicationController
     @commentable = @lecture
     @comments = @commentable.comments
     @comment = Comment.new
+
+    @lecture.mark_as_read! :for => current_user
 
     @active_school_day = most_recent_day_for_material(@lecture)
     load_prev_and_next_day
@@ -53,6 +50,8 @@ class LecturesController < ApplicationController
   def edit
     @lecture = Lecture.find(params[:id])
     
+    @lecture.mark_as_read! :for => current_user
+
     @active_school_day = most_recent_day_for_material(@lecture)
     load_prev_and_next_day
   end

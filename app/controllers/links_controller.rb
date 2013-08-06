@@ -30,6 +30,8 @@ class LinksController < ApplicationController
     @comments = @commentable.comments
     @comment = Comment.new
 
+    @link.mark_as_read! :for => current_user
+
     @active_school_day = most_recent_day_for_material(@link)
     load_prev_and_next_day
 
@@ -55,6 +57,8 @@ class LinksController < ApplicationController
   # GET /links/1/edit
   def edit
     @link = Link.find(params[:id])
+
+    @link.mark_as_read! :for => current_user
 
     @active_school_day = most_recent_day_for_material(@link)
     load_prev_and_next_day

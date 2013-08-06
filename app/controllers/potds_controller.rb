@@ -31,6 +31,8 @@ class PotdsController < ApplicationController
     @comments = @commentable.comments
     @comment = Comment.new
 
+    @potd.mark_as_read! :for => current_user
+
     @active_school_day = most_recent_day_for_material(@potd)
     load_prev_and_next_day
 
@@ -58,6 +60,8 @@ class PotdsController < ApplicationController
   def edit
     @potd = Potd.find(params[:id])
     @action = "Update"
+
+    @potd.mark_as_read! :for => current_user
 
     @active_school_day = most_recent_day_for_material(@potd)
     load_prev_and_next_day

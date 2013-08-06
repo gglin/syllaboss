@@ -31,6 +31,8 @@ class TodosController < ApplicationController
     @comments = @commentable.comments
     @comment = Comment.new
 
+    @todo.mark_as_read! :for => current_user
+
     @active_school_day = most_recent_day_for_material(@todo)
     load_prev_and_next_day
 
@@ -56,6 +58,8 @@ class TodosController < ApplicationController
   # GET /todos/1/edit
   def edit
     @todo = Todo.find(params[:id])
+
+    @todo.mark_as_read! :for => current_user
 
     @active_school_day = most_recent_day_for_material(@todo)
     load_prev_and_next_day

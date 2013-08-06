@@ -31,6 +31,8 @@ class LabsController < ApplicationController
     @comments = @commentable.comments
     @comment = Comment.new
 
+    @lab.mark_as_read! :for => current_user
+
     @active_school_day = most_recent_day_for_material(@lab)
     load_prev_and_next_day
 
@@ -56,6 +58,8 @@ class LabsController < ApplicationController
   # GET /labs/1/edit
   def edit
     @lab = Lab.find(params[:id])
+
+    @lab.mark_as_read! :for => current_user
 
     @active_school_day = most_recent_day_for_material(@lab)
     load_prev_and_next_day

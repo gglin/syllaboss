@@ -30,6 +30,8 @@ class HomeworksController < ApplicationController
     @comments = @commentable.comments
     @comment = Comment.new
 
+    @homework.mark_as_read! :for => current_user
+
     @active_school_day = most_recent_day_for_material(@homework)
     load_prev_and_next_day
 
@@ -55,6 +57,8 @@ class HomeworksController < ApplicationController
   # GET /homeworks/1/edit
   def edit
     @homework = Homework.find(params[:id])
+
+    @homework.mark_as_read! :for => current_user
 
     @active_school_day = most_recent_day_for_material(@homework)
     load_prev_and_next_day

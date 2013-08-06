@@ -103,35 +103,31 @@
         <!-- Notifications with unread and updated count -->
         <li class="dropdown dropdown-big">
           <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-            <i class="icon-exclamation-sign"></i> Notifications <span class="badge badge-info">6</span> 
+            <i class="icon-exclamation-sign"></i> Notifications <span class="badge badge-info"><%= @unread.size %></span> 
           </a>
 
           <ul class="dropdown-menu dropdown-comments">
             <li>
-              <h5><i class="icon-exclamation-sign"></i> Unread & Updated (6)</h5>
+              <h5><i class="icon-exclamation-sign"></i> Unread & Updated (<%= @unread.size %>) </h5>
               <hr />
             </li>
-            <% comments = Comment.order("created_at DESC").limit(3) %>
+            <% @unread.each do |material| %>
+              <% material_type = material.class.to_s.underscore %>
 
-            <% comments.each do |comment| %>
-              <% comment_parent = comment.commentable_type.classify.constantize.find(comment.commentable_id) %>
-              <% comment_parent_type = comment.commentable_type.underscore %>
               <li>
                 <div class="chat-meta">
-                  <%= comment.user == current_user ? "Me" : comment.user.full_name %>
                   <span class="inline pull-right">
-                    <%= time_ago_in_words(comment.created_at) %> ago 
+                    <%= time_ago_in_words(material.created_at) %> ago 
                   </span>
                 </div>
 
                 <div class="row-fluid same-height-col-wrap">
                   <div class="span9 no-height same-height-col">
-                    <%= link_to re_truncate(comment.content, length:50, separator: ' '), comments_path + "#comment-#{comment.id}" %>
+                    <%= link_to re_truncate(material.print_name, length:50, separator: ' '), self.send("#{material_type}_path", material) %>
                   </div>
                   <div class="span3 no-height same-height-col">
-                    <% name  = comment_parent_type=="school_day" ? comment_parent.print_name : "" %>
-                    <span class="label <%= label_type(comment.commentable_type) %> pull-right inline valign" style="margin-right: 2px;">
-                      <%= link_to "#{material_capitalize(comment_parent_type)}#{name}", self.send("#{comment_parent_type}_path", comment_parent)+"#comment-#{comment.id}" %>
+                    <span class="label <%= label_type(material_type) %> pull-right inline valign" style="margin-right: 2px;">
+                      <%= "#{material_capitalize(material_type)}" %>
                     </span>
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 class Potd < ActiveRecord::Base
   include Formattable
-  
+  acts_as_readable :on => :created_at
+
   attr_accessible :name, :presentation_url, :wikipedia  # these columns exist in db
   attr_accessible :school_day_ids, :comment_ids   # these columns do not exist in db - only for mass assign
 

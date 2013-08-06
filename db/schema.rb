@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805171428) do
+ActiveRecord::Schema.define(:version => 20130806144122) do
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -79,6 +79,15 @@ ActiveRecord::Schema.define(:version => 20130805171428) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "read_marks", :force => true do |t|
+    t.integer  "readable_id"
+    t.integer  "user_id",                     :null => false
+    t.string   "readable_type", :limit => 20, :null => false
+    t.datetime "timestamp"
+  end
+
+  add_index "read_marks", ["user_id", "readable_type", "readable_id"], :name => "index_read_marks_on_user_id_and_readable_type_and_readable_id"
+
   create_table "school_day_homeworks", :force => true do |t|
     t.integer  "school_day_id"
     t.integer  "homework_id"
@@ -134,11 +143,15 @@ ActiveRecord::Schema.define(:version => 20130805171428) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.integer  "role"
     t.string   "full_name"
     t.string   "username"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.string   "image"
   end
 

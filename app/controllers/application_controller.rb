@@ -2,9 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   include SchoolDaysHelper
+  include ApplicationHelper
 
   before_filter :authenticate 
   before_filter :load_current_day
+  before_filter :load_unread_resources
   
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
@@ -34,6 +36,15 @@ private
   def authenticate
     redirect_to signup_url if current_user.nil?
   end
+
+  def load_unread_resources
+    @unread = []
+    material_type_list.each do |material|
+      @unread += material[:name].classify.constantize.unread_by(current_user) if material[:name] != "school_day"
+    end
+    @unread.sort_by!(&:updated_at).reverse!
+  end
+
 
   # def authorize
   #   redirect_to signup_url, alert: "unauthorized access" if current_user.nil?

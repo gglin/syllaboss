@@ -1,5 +1,6 @@
 class Homework < ActiveRecord::Base
   include Formattable
+  acts_as_readable :on => :created_at
 
   attr_accessible :title, :content, :school_day_ids, :comment_ids
   

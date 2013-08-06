@@ -135,7 +135,7 @@
               <br>
               
               <p>
-                Alan Curtis Kay (born May 17, 1940) is an American computer scientist. He has been elected a Fellow of the American Academy of Arts and 
+                <%= Potd.get_wiki_bio(@active_school_day.potd.name) %>
               </p>
 
               <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.wikipedia) %>" target="_blank">Wikipedia</a> 

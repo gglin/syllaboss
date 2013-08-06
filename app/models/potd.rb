@@ -28,18 +28,70 @@ class Potd < ActiveRecord::Base
     [name, wikipedia, presentation_url]
   end
 
-  def self.get_wiki_pic(query_item)
-    search_keywords = query_item.strip.gsub(/\s+/,'+')
-    # url = "http://www.google.com/search?q=#{search_keywords}+site%3Aen.wikipedia.org"
+  require 'nokogiri'
+  require 'open-uri'
 
+    def self.get_wiki_pic(query_item)
+      search_keywords = query_item.strip.gsub(/\s+/,'+')
+
+      page = open "http://www.google.com/search?num=100&q=#{search_keywords}+wikipedia"
+      google_result = Nokogiri::HTML page
+
+      found_url = google_result.search("cite").first.inner_text
+
+      if found_url.include?("http://") || found_url.include?("https://")
+        wiki = Nokogiri::HTML(open("#{google_result.search("cite").first.inner_text}"))
+      else
+        wiki = Nokogiri::HTML(open("http://#{google_result.search("cite").first.inner_text}")) 
+      end
+
+      unless wiki.css(".infobox img").empty?
+        image = "http:#{wiki.css(".infobox img").attribute("src").value}"
+      else
+        page = open "http://www.google.com/search?num=100&q=#{search_keywords}+github"
+        google_result = Nokogiri::HTML page
+        found_url = google_result.search("cite").first.inner_text
+
+        if found_url.include?("http://") || found_url.include?("https://")
+          wiki = Nokogiri::HTML(open("#{google_result.search("cite").first.inner_text}"))
+        else
+          wiki = Nokogiri::HTML(open("http://#{google_result.search("cite").first.inner_text}")) 
+        end
+        image = "#{wiki.search("img").attribute("src").value}"
+
+      end
+    end
+
+    def self.get_wiki_bio(query_item)
+    search_keywords = query_item.strip.gsub(/\s+/,'+')
 
     page = open "http://www.google.com/search?num=100&q=#{search_keywords}+wikipedia"
-    html = Nokogiri::HTML page
-    
-    html2 = Nokogiri::HTML(open("http://#{html.search("cite").first.inner_text}"))
+    google_result = Nokogiri::HTML page
 
-    image = "http:#{html2.css(".infobox img").attribute("src").value}"
+    found_url = google_result.search("cite").first.inner_text
 
+    if found_url.include?("http://") || found_url.include?("https://")
+      wiki = Nokogiri::HTML(open("#{google_result.search("cite").first.inner_text}"))
+    else
+      wiki = Nokogiri::HTML(open("http://#{google_result.search("cite").first.inner_text}")) 
+    end
+
+    if found_url.include?("wikipedia")
+      bio = wiki.css("p")[0].text.strip
+    else
+      page = open "http://www.google.com/search?num=100&q=#{search_keywords}+github"
+      google_result = Nokogiri::HTML page
+      found_url = google_result.search("cite").first.inner_text
+      
+      if found_url.include?("http://") || found_url.include?("https://")
+        wiki = Nokogiri::HTML(open("#{google_result.search("cite").first.inner_text}"))
+      else
+        wiki = Nokogiri::HTML(open("http://#{google_result.search("cite").first.inner_text}")) 
+      end
+      bio = wiki.css(".details").collect do |detail|
+        detail.text.strip
+      end
+    end
 
   end
 end

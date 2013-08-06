@@ -111,7 +111,7 @@
               <h5><i class="icon-exclamation-sign"></i> Unread & Updated (<%= @unread.size %>) </h5>
               <hr />
             </li>
-            <% @unread.each do |material| %>
+            <% @unread[0..6].each do |material| %>
               <% material_type = material.class.to_s.underscore %>
 
               <li>

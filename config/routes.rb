@@ -9,6 +9,7 @@ Pizza::Application.routes.draw do
 
   get 'weeks',     to: 'weeks#index', as: 'weeks'
   get 'weeks/:id', to: 'weeks#show',  as: 'week'
+  get 'notifications', to: 'notifications#index', as: 'notifications'
 
   get 'search', to: 'searches#index'
 

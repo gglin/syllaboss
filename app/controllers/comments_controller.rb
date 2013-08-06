@@ -21,6 +21,10 @@ class CommentsController < ApplicationController
         end
       end
     end
+    
+    @comments.each do |comment|
+      comment.mark_as_read! :for => current_user
+    end
   end
 
   def create

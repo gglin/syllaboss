@@ -23,6 +23,10 @@ class LecturesController < ApplicationController
     @comment = Comment.new
 
     @lecture.mark_as_read! :for => current_user
+    
+    @lecture.comments.each do |comment|
+      comment.mark_as_read! :for => current_user
+    end
 
     @active_school_day = most_recent_day_for_material(@lecture)
     load_prev_and_next_day

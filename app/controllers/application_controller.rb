@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate 
   before_filter :load_current_day
   before_filter :load_unread_resources
+  before_filter :load_unread_comments
   
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
@@ -56,6 +57,21 @@ private
     @unread.sort_by!(&:updated_at).reverse!
   end
 
+  def load_unread_comments
+    @unread_comments = Comment.unread_by(current_user)
+    if current_user.student?
+      @unread_comments = @unread_comments.select do |comment| 
+        comment_parent      = comment.commentable_type.classify.constantize.find(comment.commentable_id)
+        comment_parent_type = comment.commentable_type.underscore
+        if comment_parent_type == "school_day"
+          comment_parent.calendar_date <= Date.today
+        else
+          comment_parent.school_days.order("calendar_date")[0].calendar_date <= Date.today if !comment_parent.school_days.empty?
+        end
+      end
+    end
+    @unread_comments.sort_by!(&:created_at).reverse!
+  end
 
   # def authorize
   #   redirect_to signup_url, alert: "unauthorized access" if current_user.nil?

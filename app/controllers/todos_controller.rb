@@ -33,6 +33,10 @@ class TodosController < ApplicationController
 
     @todo.mark_as_read! :for => current_user
 
+    @todo.comments.each do |comment|
+      comment.mark_as_read! :for => current_user
+    end
+
     @active_school_day = most_recent_day_for_material(@todo)
     load_prev_and_next_day
 

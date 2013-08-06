@@ -54,17 +54,15 @@
         <!-- Discussion Stream with Unread Comments count -->
         <li class="dropdown dropdown-big">
           <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-            <i class="icon-comments"></i> Discussion <span class="badge badge-info">6</span> 
+            <i class="icon-comments"></i> Discussion <span class="badge badge-info"><%= @unread_comments.size %></span> 
           </a>
 
           <ul class="dropdown-menu dropdown-comments">
             <li>
-              <h5><i class="icon-comments"></i> Unread Comments (6)</h5>
+              <h5><i class="icon-comments"></i> Unread Comments (<%= @unread_comments.size %>)</h5>
               <hr />
             </li>
-            <% comments = Comment.order("created_at DESC").limit(3) %>
-
-            <% comments.each do |comment| %>
+            <% @unread_comments[0..6].each do |comment| %>
               <% comment_parent = comment.commentable_type.classify.constantize.find(comment.commentable_id) %>
               <% comment_parent_type = comment.commentable_type.underscore %>
               <li>

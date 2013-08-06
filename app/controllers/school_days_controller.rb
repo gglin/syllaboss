@@ -32,6 +32,10 @@ class SchoolDaysController < ApplicationController
       @comments = @commentable.comments
       @comment = Comment.new
 
+      @active_school_day.comments.each do |comment|
+        comment.mark_as_read! :for => current_user
+      end
+
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @active_school_day }

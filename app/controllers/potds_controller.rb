@@ -33,6 +33,10 @@ class PotdsController < ApplicationController
 
     @potd.mark_as_read! :for => current_user
 
+    @potd.comments.each do |comment|
+      comment.mark_as_read! :for => current_user
+    end
+
     @active_school_day = most_recent_day_for_material(@potd)
     load_prev_and_next_day
 

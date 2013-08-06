@@ -4,6 +4,8 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, polymorphic: true
   belongs_to :user
 
+  acts_as_readable :on => :created_at
+
   searchable do
     text :commentable_type, :content  
   end

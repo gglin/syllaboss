@@ -47,7 +47,7 @@ private
           filtered_unread_materials = unread_materials
         else
           filtered_unread_materials = unread_materials.select do |material| 
-            !material.school_days.empty? && !material.school_days.nil? && material.school_days.order("calendar_date")[0].calendar_date <= Date.today
+            !material.school_days.empty? && !material.school_days.nil? && material.school_days.include?(closest_day_before_today)
           end
         end
         @unread += filtered_unread_materials

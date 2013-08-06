@@ -26,6 +26,12 @@ ul, ol, ul li, ol li, li {
   border: 3px solid #f88529;
 }
 
+.dropdown:hover > .dropdown-menu {
+  -webkit-box-shadow: 3px 3px 2px rgba(0,0,0,0.2) !important;
+  -moz-box-shadow:    3px 3px 2px rgba(0,0,0,0.2) !important;
+  box-shadow:         3px 3px 2px rgba(0,0,0,0.2) !important;
+}
+
 .navbar .nav-icon, .navbar .nav-icon li {
   position: relative;
   left: 0;
@@ -37,6 +43,45 @@ ul, ol, ul li, ol li, li {
 .navbar .nav-icon > li > a {
   padding-left:  2px !important;
   padding-right: 2px !important;
+}
+
+
+.navbar .chat-meta {
+  font-size: 10px;
+  color: #666;
+}
+
+.navbar .badge {
+  margin-left: 5px;
+}
+
+.navbar .nav > .dropdown-comments > a {
+  font-size: 13px !important;
+  color: #fff !important;
+  // font-weight: bold;
+}
+
+.dropdown-big .dropdown-comments .label a {
+  font-size: 11px;
+  line-height: 14px;
+  // background: transparent;
+  padding: 0px;
+  color: #fff !important;
+  // display: inline;
+}
+
+.same-height-col {
+  margin-bottom: -99999px;
+  padding-bottom: 99999px;
+}
+
+.same-height-col-wrap {
+  overflow: hidden; 
+}
+
+.valign {
+  position: relative;
+  bottom: -3px;
 }
 
 
@@ -75,6 +120,7 @@ h1.less-padding, h2.less-padding, h3.less-padding, h4.less-padding, h5.less-padd
   font-size: 12px;
   color: #666;
 }
+
 
 .chats .by-admin .avatar img {
   // border: 3px solid #FF6600;
@@ -130,6 +176,15 @@ a {
 }
 
 .label a {
+  color: white;
+  
+  &:hover {
+    color: #ddd;
+    text-decoration: none; 
+  }
+}
+
+.dropdown-comments .label a {
   color: white;
   
   &:hover {
@@ -360,10 +415,13 @@ textarea {
 
 .search-bar input {
   position: relative;
+  width: 150px;
 }
 
 .navbar .search-bar .btn {
   margin-top: 0;
+  width: 70px;
+  text-align: center;
 }
 
 .search-bar .btn, .search-bar .btn-group {
@@ -373,6 +431,7 @@ textarea {
 .search-bar .btn {
   vertical-align: top;
 }
+
 
 /*******************/
 /* Fix Black Color */
@@ -406,6 +465,11 @@ body {
 .navbar-inverse .nav a:hover {
   background-color: #52b9e9 !important;
   color: #fff !important;
+}
+
+.navbar-inverse .nav .dropdown-comments a:hover {
+  background-color: transparent !important;
+  color: #aaa !important;
 }
 
 .navbar .nav-user-pic {
@@ -618,7 +682,7 @@ body {
 }
 
 .navbar .nav > li > a {
-  font-size: 16px !important;
+  font-size: 15px !important;
   color: #111 !important;
   // font-weight: bold;
 }

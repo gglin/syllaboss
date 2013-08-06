@@ -48,7 +48,7 @@
         <span class="divider">/</span>
 
         <ul class="dropdown-menu" role="menu">
-          <% SchoolDay.all.each do |school_day| %>
+          <% SchoolDay.order("ordinal").each do |school_day| %>
             <li><%= link_to "Day #{school_day.ordinal}", school_day_path(school_day) %></li>
           <% end %>
           <li><%= link_to "Show All Days", school_days_path %></li>

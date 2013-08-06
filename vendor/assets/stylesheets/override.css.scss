@@ -32,6 +32,11 @@ ul, ol, ul li, ol li, li {
   box-shadow:         3px 3px 2px rgba(0,0,0,0.2) !important;
 }
 
+.scrollable-dropdown {
+  overflow:auto; 
+  max-height:400px;
+}
+
 .navbar .nav-icon, .navbar .nav-icon li {
   position: relative;
   left: 0;
@@ -705,16 +710,16 @@ body {
   // position: absolute;
   // top: 0;
   // width: 234px;
-  z-index: -100;
-  // -webkit-transform: scale(1, 0.99);
-  // -webkit-transform-origin: 0 0;
-  visibility: hidden;
-  display: none\9;
-  -webkit-transition: 0.2s ease-out;
-  -moz-transition: 0.2s ease-out;
-  -o-transition: 0.2s ease-out;
-  transition: 0.2s ease-out;
-  -webkit-backface-visibility: hidden;
+  // z-index: -100;
+  // // -webkit-transform: scale(1, 0.99);
+  // // -webkit-transform-origin: 0 0;
+  // visibility: hidden;
+  // display: none\9;
+  // -webkit-transition: 0.2s ease-out;
+  // -moz-transition: 0.2s ease-out;
+  // -o-transition: 0.2s ease-out;
+  // transition: 0.2s ease-out;
+  // -webkit-backface-visibility: hidden;
 }
 
 // /**************/

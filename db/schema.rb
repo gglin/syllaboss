@@ -143,15 +143,11 @@ ActiveRecord::Schema.define(:version => 20130806144122) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "role"
     t.string   "full_name"
     t.string   "username"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.string   "image"
   end
 

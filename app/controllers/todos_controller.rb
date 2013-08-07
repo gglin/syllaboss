@@ -46,6 +46,10 @@ class TodosController < ApplicationController
     end
   end
 
+  def preview
+    render "show", :layout => "preview"
+  end
+
   # GET /todos/new
   # GET /todos/new.json
   def new

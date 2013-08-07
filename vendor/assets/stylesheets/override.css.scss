@@ -152,6 +152,10 @@ h1.less-padding, h2.less-padding, h3.less-padding, h4.less-padding, h5.less-padd
   font-size: 12px;
 }
 
+.select-materials {
+  width: 80% !important;
+}
+
 /*********/
 /* Links */
 /*********/
@@ -852,15 +856,28 @@ body {
 }
 
 #resource_preview {
+  // position: fixed;
+  // width: 26%;
+  // top: 181px;
+  // right: 353px;
+  // z-index: 99px;
+}
+
+.preview-panel {
+  top: 80px;
+  max-width: 600px !important;
+  // min-width: 400px !important;
   position: fixed;
-  width: 26%;
-  top: 181px;
-  right: 353px;
-  z-index: 99px;
+  // width: 30.42553191489362%;
 }
  
-@media (max-width: 1400px) {
+@media (max-width: 1136px) {
   #resource_preview {
+    visibility: hidden !important;
+    display: none;
+  }
+
+  .preview-panel {
     visibility: hidden !important;
     display: none;
   }

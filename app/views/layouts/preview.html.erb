@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+  <meta charset="UTF-8" />
+  <meta name="viewport" content ="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+
+  <title>Syllaboss <%=("- #{yield(:title)}" if yield(:title).length>0)  %></title>
+
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= csrf_meta_tags %>
+  
+</head>
+
+<body>
+
+  <!-- Begin Content -->
+  <div class="content">
+    
+    <div class="mainbar">
+
+      <%= yield %>
+
+    </div>
+  
+  </div>
+  <!-- End Content -->
+
+  <%= render "layouts/notification_box" %>
+
+  <%= javascript_include_tag "application" %>
+
+</body>
+</html>

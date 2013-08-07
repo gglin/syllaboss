@@ -34,6 +34,7 @@ Pizza::Application.routes.draw do
   resources :todos do
     resources :comments
   end
+  get 'todos/:id/preview', to: 'todos#preview', as: 'preview_todo'
 
   resources :labs do
     resources :comments

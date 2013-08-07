@@ -195,6 +195,14 @@ html, body {
 		right: 50px;
 		text-align: center;
 		border: 2px solid white;
+
+		font-family: "proxima-nova", Helvetica, Arial, sans-serif;
+		font-weight: 300 ;
+		/*text-transform: uppercase;*/
+		font-style: italic ;
+		font-size: 16px;
+		line-height: 1.4em;
+		/*text-shadow: 1px 1px 2px rgba(100, 100, 100, 1);*/
 	}
 
 

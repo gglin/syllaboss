@@ -1,5 +1,6 @@
 class PassthroughController < ApplicationController
   def index
+    flash.keep
     path =  if current_user.admin?
               week_path(@active_school_day.week)
             else

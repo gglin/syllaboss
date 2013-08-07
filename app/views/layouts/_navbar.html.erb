@@ -122,7 +122,10 @@
             <li>
               <h5>
                 <a href="<%= notifications_path %>">
-                  <i class="icon-exclamation-sign"></i> Recent Unread & Updated (<%= @unread.size %>) 
+                  <% if current_user.student? %>
+                    <li><i class="icon-warning-sign"></i> Day <%= closest_day_before_today.ordinal %> Unread Materials (<%= @unread.size %>)</li>
+                  <% end %>
+                  <li><i class="icon-exclamation-sign"></i> All Unread Materials (<%= @all_unread.size %>)</li>
                 </a>
               </h5>
               <hr />
@@ -164,10 +167,18 @@
             </div> 
 
             <li>
-              <div class="drop-foot">
-                <%= link_to "View All", notifications_path %>
+              <% if @unread.size > 8 %>
+                <hr />
+              <% end %>
+              <div class="drop-foot row-fluid">
+                <div class="span5">
+                  <%= link_to "View All", notifications_path %>
+                </div>
+                <div class="span7">
+                  <%= link_to 'Mark All As Read', notifications_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </div>
               </div>
-            </li>  
+            </li>
 
           </ul>
         </li>
@@ -191,7 +202,7 @@
               <% if current_user.image_url %>
                 <%= image_tag current_user.image_url(:thumb), :class => "nav-user-pic" %>
               <% else %>
-              <img src="http://placekitten.com/40/40" class="nav-user-pic"/>
+                <img src="http://placekitten.com/40/40" class="nav-user-pic"/>
               <% end %>
                 
               <%= current_user.full_name %> <b class="caret"></b></a>

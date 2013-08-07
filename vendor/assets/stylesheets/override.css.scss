@@ -4,7 +4,7 @@ body {
   color: #444;
   // background: #111;  
   // padding-top: 45px;
-  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-font-smoothing: auto;
 }
 
 ul, ol, ul li, ol li, li {
@@ -39,9 +39,13 @@ ul, ol, ul li, ol li, li {
   color: #888;
 }
 
+.dropdown-menu li hr {
+  margin: 8px 0px 0px 0px !important;
+}
+
 .scrollable-dropdown {
   overflow:auto; 
-  max-height:400px;
+  max-height:390px;
 }
 
 .navbar .nav-icon, .navbar .nav-icon li {
@@ -73,7 +77,7 @@ ul, ol, ul li, ol li, li {
   // font-weight: bold;
 }
 
-.dropdown-big .dropdown-comments .label a {
+.dropdown-big .dropdown-comments .label a, .dropdown-big .dropdown-comments .label {
   font-size: 11px;
   line-height: 14px;
   // background: transparent;

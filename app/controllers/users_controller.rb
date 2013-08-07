@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
 
   skip_before_filter :authenticate, :only => [:new, :create]
+  skip_before_filter :load_unread_resources, :only => [:new, :create]
+  skip_before_filter :load_all_unread,       :only => [:new, :create]
+  skip_before_filter :load_unread_comments,  :only => [:new, :create]
 
   authorize_resource
 

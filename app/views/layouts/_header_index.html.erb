@@ -30,7 +30,9 @@
   </ul>
 
   <br />
-
-  <%= link_to "Create New #{chosen_material_title}", self.send("new_#{chosen_material_type}_path"), class: "btn btn-primary link-btn" %>
+  
+  <% if can? :edit, chosen_materials %>
+    <%= link_to "Create New #{chosen_material_title}", self.send("new_#{chosen_material_type}_path"), class: "btn btn-primary link-btn" %>
+  <% end %>
 
 </div>

@@ -1494,7 +1494,7 @@ border:1px solid #eee;
 	}
 }
 
-@media (min-width: 768px) and (max-width: 979px){
+@media (min-width: 768px) and (max-width: 1120px){
 	.form{
 		margin: 0px !important;
 	}

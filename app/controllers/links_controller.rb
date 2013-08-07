@@ -45,6 +45,12 @@ class LinksController < ApplicationController
     end
   end
 
+  def preview
+    @link = Link.find(params[:id])
+
+    render "show_preview", :layout => "preview"
+  end
+
   # GET /links/new
   # GET /links/new.json
   def new

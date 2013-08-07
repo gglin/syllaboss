@@ -46,6 +46,12 @@ class LabsController < ApplicationController
     end
   end
 
+  def preview
+    @lab = Lab.find(params[:id])
+
+    render "show_preview", :layout => "preview"
+  end
+
   # GET /labs/new
   # GET /labs/new.json
   def new

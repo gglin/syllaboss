@@ -46,6 +46,12 @@ class PotdsController < ApplicationController
     end
   end
 
+  def preview
+    @potd = Potd.find(params[:id])
+
+    render "show_preview", :layout => "preview"
+  end
+
   # GET /potds/new
   # GET /potds/new.json
   def new

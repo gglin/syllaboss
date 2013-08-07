@@ -37,6 +37,12 @@ class LecturesController < ApplicationController
     end
   end
 
+  def preview
+    @lecture = Lecture.find(params[:id])
+
+    render "show_preview", :layout => "preview"
+  end
+
   # GET /lectures/new
   # GET /lectures/new.json
   def new

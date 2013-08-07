@@ -23,30 +23,42 @@ Pizza::Application.routes.draw do
     resources :comments
   end
   
+
   resources :potds do
     resources :comments
   end
+  get 'potds/:id/preview', to: 'potds#preview', as: 'preview_potd'
+
 
   resources :links do
     resources :comments
   end
+  get 'links/:id/preview', to: 'links#preview', as: 'preview_link'
+
 
   resources :todos do
     resources :comments
   end
   get 'todos/:id/preview', to: 'todos#preview', as: 'preview_todo'
 
+
   resources :labs do
     resources :comments
   end
+  get 'labs/:id/preview', to: 'labs#preview', as: 'preview_lab'
+
 
   resources :homeworks do
     resources :comments
   end
+  get 'homeworks/:id/preview', to: 'homeworks#preview', as: 'preview_homework'
   
+
   resources :lectures do
     resources :comments
   end
+  get 'lectures/:id/preview', to: 'lectures#preview', as: 'preview_lecture'
+
 
   resources :comments, only: [:index, :create, :update, :destroy]
   get 'discussion', to: 'comments#index', as: 'discussion'

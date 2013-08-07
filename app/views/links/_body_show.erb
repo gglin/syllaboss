@@ -1,0 +1,34 @@
+<div class="span9 maxspan minspan">
+  <div class="widget wlightblue mainwidget">
+    <div class="widget-head">
+      <div class="pull-left">Link</div>
+      <div class="widget-icons pull-right">
+        <% if can? :edit, @link %>
+          <span class="admin"><a href="<%= edit_link_path %>"><i class="icon-pencil"></i></a></span>
+        <% end %>
+        <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+        <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="widget-content">
+      <div class="padd lowtop">
+
+        <p>
+          <h2><%= @link.print_name %></h2>
+        </p>
+
+        <p>
+          <%=link_to @link.link_url, @link.http_link(@link.link_url), :target => "_blank" %>
+        </p>
+
+        <p>
+          <b>Description:</b>
+          <%= @link.description %>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>

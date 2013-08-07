@@ -45,6 +45,12 @@ class HomeworksController < ApplicationController
     end
   end
 
+  def preview
+    @homework = Homework.find(params[:id])
+
+    render "show_preview", :layout => "preview"
+  end
+
   # GET /homeworks/new
   # GET /homeworks/new.json
   def new

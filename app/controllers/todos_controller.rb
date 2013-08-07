@@ -47,7 +47,9 @@ class TodosController < ApplicationController
   end
 
   def preview
-    render "show", :layout => "preview"
+    @todo = Todo.find(params[:id])
+
+    render "show_preview", :layout => "preview"
   end
 
   # GET /todos/new

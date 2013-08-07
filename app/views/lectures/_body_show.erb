@@ -1,0 +1,41 @@
+<div class="span9 maxspan minspan">
+  <div class="widget wlightblue mainwidget">
+    <div class="widget-head">
+      <div class="pull-left">Lecture</div>
+      <div class="widget-icons pull-right">
+        <% if can? :edit, @lecture %>
+          <span class="admin"><a href="<%= edit_lecture_path %>"><i class="icon-pencil"></i></a></span>
+        <% end %>
+
+        <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+        <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="widget-content">
+      <div class="padd lowtop">
+
+        <p>
+          <h3><strong><%= @lecture.print_name %></strong></h3>
+        </p>    
+
+        <p>
+          <%= simple_format @lecture.content %>
+        </p>
+
+        <p>
+          <h4>Attached Files:</h4>
+          <ol>
+          <% @lecture.attachments.each do |attachment| %>
+            <li>
+              <%= link_to attachment.title, attachment.filename.to_s %>
+            </li>
+          <% end %>
+          </ol>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>

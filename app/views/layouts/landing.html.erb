@@ -32,6 +32,7 @@
     <![endif]-->
 
     <section id="landing">
+
       <div class="background-video-wrapper">
         <video id="background-video" loop="" preload="auto" autoplay="autoplay">
           <source src="/assets/flatiron.mp4" type="video/mp4">
@@ -47,27 +48,24 @@
         <div class="landing-logo">
           <img src="/assets/logo-white.png">
         </div>
-
-        
-
-        </div>
       </div>
 
       <a class="mute">Play Song</a>
 
       <div class="form-block">
-        <div style="position:relative; top:10%;">
-
+        <div style="height:400px; padding-top: 20px;">
           <%= yield %>
-          
-          <div class="form-link">
-            <a class="landing-button signup-button">
-              Sign Up
-            </a>
-          </div>
+        </div>
+
+        <div class="form-link">
+          <a class="landing-button signup-button">
+            Sign Up
+          </a>
         </div>
       </div>
+
     </section>
+
 
     <div class="footer">
       <div class="container">

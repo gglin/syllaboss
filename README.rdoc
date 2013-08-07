@@ -6,10 +6,9 @@ AUGUST 5th HOMIE
 - ANNOUNCEMENTs
 - notification box working on page (wow features)
   
-- landing page
-
 
 - Email invites for both students and admins - whitelist
+
 
 - PRETTIFY preview (iframe) on forms (on dblclick)
 - nested form or query string for uploading attachments
@@ -46,6 +45,9 @@ AUGUST 5th HOMIE
 - friendlyid for urls
 
 
+
+
+- landing page
 
 - SEMESTER model
 

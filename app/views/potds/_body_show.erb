@@ -1,47 +1,48 @@
-<div class="span9 maxspan minspan">
-  <div class="widget wlightblue mainwidget">
-    <div class="widget-head">
-      <div class="pull-left">Programmer of the Day</div>
-      <div class="widget-icons pull-right">
-        <% if can? :edit, @potd %>
-          <span class="admin"><a href="<%= edit_potd_path %>"><i class="icon-pencil"></i></a></span>
-        <% end %>
-        <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
-        <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
+      <div class="span9 maxspan minspan">
+        <div class="widget wlightblue mainwidget">
+          <div class="widget-head">
+            <div class="pull-left">Programmer of the Day</div>
+            <div class="widget-icons pull-right">
+              <% if can? :edit, @potd %>
+                <span class="admin"><a href="<%= edit_potd_path %>"><i class="icon-pencil"></i></a></span>
+              <% end %>
+              <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+              <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="widget-content">
+            <div class="padd lowtop">
+
+              <p>
+                <h3><%= link_to @potd.name , @potd.http_link(@potd.presentation_url), :target => "_blank" %></h3>
+              </p>
+
+              <%= image_tag(@potd.wikipedia) %>
+              <br>
+
+              <p>
+                <%= @potd.bio %>
+                <%#= link_to "Wikipedia", @potd.http_link(@potd.wikipedia), :target => "_blank" %>
+              </p>
+
+              <p>
+                <b>Days:</b>
+                <% if @potd.school_day_ids.empty? %>
+                  No Days Selected!
+                <% else %>
+                  <ul>
+                  <% @potd.school_days.each do |school_day| %>
+                    <li>
+                      <%= link_to "Day #{school_day.ordinal} (#{school_day.calendar_date})", school_day_path(school_day) %>
+                    </li>
+                  <% end %>
+                  </ul>
+                <% end %>
+              </p>
+
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="clearfix"></div>
-    </div>
-
-    <div class="widget-content">
-      <div class="padd lowtop">
-
-        <p>
-          <h3><%= link_to @potd.name , @potd.http_link(@potd.presentation_url), :target => "_blank" %></h3>
-        </p>
-
-        <%= image_tag("http://placekitten.com/200/200") %>
-        <br>
-
-        <p>
-          <%= link_to "Wikipedia", @potd.http_link(@potd.wikipedia), :target => "_blank" %>
-        </p>
-
-        <p>
-          <b>Days:</b>
-          <% if @potd.school_day_ids.empty? %>
-            No Days Selected!
-          <% else %>
-            <ul>
-            <% @potd.school_days.each do |school_day| %>
-              <li>
-                <%= link_to "Day #{school_day.ordinal} (#{school_day.calendar_date})", school_day_path(school_day) %>
-              </li>
-            <% end %>
-            </ul>
-          <% end %>
-        </p>
-
-      </div>
-    </div>
-  </div>
-</div>

@@ -131,11 +131,12 @@
                 </h4>
                 
               </div>
-              <%= image_tag("#{Potd.get_wiki_pic(@active_school_day.potd.name)}") %>
+              <%= image_tag("#{@active_school_day.potd.wikipedia}") %>
               <br>
               
               <p>
-                <%= Potd.get_wiki_bio(@active_school_day.potd.name) %>
+                  <%=  @active_school_day.potd.bio%>
+               
               </p>
 
               <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.wikipedia) %>" target="_blank">Wikipedia</a> 

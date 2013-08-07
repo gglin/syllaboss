@@ -80,7 +80,7 @@ class PotdsController < ApplicationController
   # POST /potds
   # POST /potds.json
   def create
-    @potd = Potd.new(params[:potd])
+    @potd = Potd.new(params[:potd].merge :wikipedia => Potd.scrape_pic(params[:potd][:name]), :bio => Potd.scrape_bio(params[:potd][:name]))
 
     respond_to do |format|
       if @potd.save
@@ -105,7 +105,7 @@ class PotdsController < ApplicationController
     @potd = Potd.find(params[:id])
 
     respond_to do |format|
-      if @potd.update_attributes(params[:potd])
+      if @potd.update_attributes(params[:potd].merge :wikipedia => Potd.scrape_pic(params[:potd][:name]), :bio => Potd.scrape_bio(params[:potd][:name]))
         format.html { redirect_to @potd, notice: 'POTD was successfully updated.' }
         format.json { head :no_content }
       else

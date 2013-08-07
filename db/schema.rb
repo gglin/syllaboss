@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20130806144122) do
 
+
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -77,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20130806144122) do
     t.string   "presentation_url"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.text     "bio"
   end
 
   create_table "read_marks", :force => true do |t|

@@ -27,3 +27,7 @@ solr/
 /solr/pids/**/*
 /solr/data/**/**/*
 /solr/data/development/index/segments.gen
+
+# Ignore video files
+/app/assets/images/flatiron.mp4
+/app/assets/images/flatiron.oggtheora.ogv

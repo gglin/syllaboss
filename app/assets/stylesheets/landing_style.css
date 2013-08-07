@@ -16,7 +16,7 @@ Responsive Web Design"
 body > * {
 	font-family: "proxima-nova", Helvetica, Arial, sans-serif;
 	font-weight: 900 ;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	font-style: italic ;
 	font-size: 36px;
 	line-height: 1.4em;
@@ -50,7 +50,7 @@ html, body {
 	text-decoration: none;
 }
 
-.login-button {
+.landing-button {
 	display:block;
 	width: 280px;
 	border-radius: 5px;
@@ -69,7 +69,7 @@ html, body {
   	-ms-user-select: none; 
 }
 
-.login-button:active {
+.landing-button:active {
 	border-right:1px solid #FF6F3B;
 	border-bottom:1px solid #FF6F3B;
 	border-left:3px solid #BD2C00;
@@ -189,13 +189,14 @@ html, body {
 		width:400px;
 		height:500px;
 		background: rgb(255, 255, 255);
-	  background: rgba(255, 255, 255, 0.5);
+	  background: rgba(255, 255, 255, 0.8);
 		position: absolute;
 		top: 100px;
 		right: 50px;
 		text-align: center;
 		border: 2px solid white;
-
+		
+		text-transform: none;
 		font-family: "proxima-nova", Helvetica, Arial, sans-serif;
 		font-weight: 300 ;
 		/*text-transform: uppercase;*/
@@ -203,6 +204,16 @@ html, body {
 		font-size: 16px;
 		line-height: 1.4em;
 		/*text-shadow: 1px 1px 2px rgba(100, 100, 100, 1);*/
+	}
+
+	.form-link {
+		/*position: absolute;
+		bottom: -40%;
+		text-align: center;
+		left: 15%;*/
+		/*position: absolute; 
+		bottom: -40%;
+		vertical-align: bottom;*/
 	}
 
 

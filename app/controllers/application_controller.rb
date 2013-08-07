@@ -39,7 +39,7 @@ private
   helper_method :current_user
 
   def authenticate
-    redirect_to signup_url if current_user.nil?
+    redirect_to login_url if current_user.nil?
   end
 
   # def authorize

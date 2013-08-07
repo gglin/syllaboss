@@ -1,8 +1,8 @@
 Pizza::Application.routes.draw do
-
-  #get 'show_results', to: 'schooldays#show_results'
   
-  get  'signup', to: 'users#new',        as: 'signup'
+  # get  'signup', to: 'users#new',        as: 'signup'
+  
+  resources :sessions
   get  'login',  to: 'sessions#new',     as: 'login'
   post 'login',  to: 'sessions#create',  as: 'login'
   get  'logout', to: 'sessions#destroy', as: 'logout'
@@ -16,8 +16,8 @@ Pizza::Application.routes.draw do
   get 'search', to: 'searches#index'
 
   resources :searches
-  resources :users
-  resources :sessions
+  resources :users, except: [:new]
+  
 
   resources :school_days do
     resources :comments

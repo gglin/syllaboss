@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
   skip_before_filter :load_unread_comments,  :only => [:new, :create]
 
   def new
-    render :layout => false
+    @user = User.new
+    render :layout => "landing"
   end
 
   def create 
@@ -17,13 +18,13 @@ class SessionsController < ApplicationController
       redirect_to root_url, notice: "Logged in!"
     else
       flash[:notice] = "Email/Username or password is invalid"
-      render "new", :layout => false
+      render "new", :layout => "landing"
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to new_user_path, notice: "Logged out"
+    redirect_to new_session_path, notice: "Logged out"
     #reset_session
   end
 end

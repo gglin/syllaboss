@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
   skip_before_filter :authenticate, :only => [:new, :create]
-  skip_before_filter :load_unread_resources, :only => [:new, :create]
-  skip_before_filter :load_all_unread,       :only => [:new, :create]
-  skip_before_filter :load_unread_comments,  :only => [:new, :create]
+  skip_before_filter :load_unread_resources, :only => [:create]
+  skip_before_filter :load_all_unread,       :only => [:create]
+  skip_before_filter :load_unread_comments,  :only => [:create]
 
   authorize_resource
 
@@ -22,11 +22,6 @@ class UsersController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @user }
     end
-  end
-
-  def new
-    @user = User.new
-    render :layout => "landing"
   end
 
   def create

@@ -25,7 +25,7 @@
       <ul class="dropdown-menu" role="menu">
         <% weeks = SchoolDay.select("week").map(&:week).uniq %>
         <% weeks.each do |week| %>
-          <% if (SchoolDay.where("week = ?", week).order("week").first.calendar_date <= Date.today) || (can? :update, @active_school_day) %>
+          <% if (!SchoolDay.where("week = ?", week).empty? && SchoolDay.where("week = ?", week).order("week").first.calendar_date <= Date.today) || (can? :update, @active_school_day) %>
             <li>
               <%= link_to "Week #{week}", week_path(week) %>
             </li>

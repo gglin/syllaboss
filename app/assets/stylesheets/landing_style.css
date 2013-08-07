@@ -1,0 +1,209 @@
+/*
+
+Designed by Shiva Kilaru - AKA the "fresh prince of CSS"
+AKA the "Steve Jobs of Internet" aka the "Rick James of
+Responsive Web Design"
+
+*/
+
+@media (min-width: 481px) {
+	body {
+		min-width: 960px;
+	}
+}
+
+
+body > * {
+	font-family: "proxima-nova", Helvetica, Arial, sans-serif;
+	font-weight: 900 ;
+	text-transform: uppercase;
+	font-style: italic ;
+	font-size: 36px;
+	line-height: 1.4em;
+	text-shadow: 1px 1px 2px rgba(100, 100, 100, 1);
+}
+
+section {
+	height: 720px;
+	overflow: hidden;
+	text-align: center;
+	width: 100%;
+
+	position: relative;
+
+	-moz-box-shadow:    1px 1px 1px 1px #ccc;
+  	-webkit-box-shadow: 1px 1px 1px 1px #ccc;
+  	box-shadow:         1px 1px 1px 1px #ccc;
+
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+.emphasis, a, a:visited {
+	color: #FF5521;
+	text-decoration: none;
+}
+
+.login-button {
+	display:block;
+	width: 280px;
+	border-radius: 5px;
+	background-color: #FF5521;
+	border-top:1px solid #FF6F3B;
+	border-left:1px solid #FF6F3B;
+	border-right:3px solid #BD2C00;
+	border-bottom:3px solid #BD2C00;
+	text-shadow: 0px -1px 0px #374683;
+	cursor: pointer;
+	color: white !important;
+	font-size: 30px;
+	margin: 0 auto;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+  	-moz-user-select: none;     /* Firefox all */
+  	-ms-user-select: none; 
+}
+
+.login-button:active {
+	border-right:1px solid #FF6F3B;
+	border-bottom:1px solid #FF6F3B;
+	border-left:3px solid #BD2C00;
+	border-top:3px solid #BD2C00;
+}
+
+
+.colored {
+	-webkit-filter: grayscale(25%);	
+}
+
+/* Section-wide styles */
+#landing {
+	background-size:cover;
+	background-repeat:no-repeat;
+}
+
+
+.container {
+	width: 960px;
+	margin: 0 auto;
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box;
+	padding:0 20px;
+	position:relative;
+}
+
+
+
+
+
+
+
+
+/* ------------------ */
+/* Section 1: Landing */
+/* ------------------ */
+
+	#landing {
+	}
+
+	.landing-block {
+		width:400px;
+		position: absolute;
+		top: 50px;
+		left: 50px;
+		text-align: center;
+	}
+
+	.landing-title {
+		color: white;
+		font-size: 42px;
+		line-height: 1em;
+		text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
+	}
+
+	.landing-logo {
+		width: 200px;
+		margin: 40px auto;
+	}
+
+	.landing-block img {
+		width: 100%;
+	}
+
+	#background-video {
+		position:relative;
+		min-height:720px;
+		min-width:100%;
+		left:0;
+		z-index:0;
+	}
+
+	.mute {
+		color:#fff;
+		font-size:24px;
+		position:absolute;
+		top:50px;
+		right:70px;
+		text-decoration:none;
+		cursor:pointer;
+	}
+
+	.landing-details {
+		font-weight: 800;
+		color: white;
+		font-size: 20px;
+		text-transform: normal;
+	}
+
+	.landing-date {
+		margin-top:20px;
+	}
+
+	.landing-location, .landing-school {
+		margin-top:-25px;
+	}
+
+	.landing-location a {
+		color: white;
+		-o-transition:.25s;
+		-ms-transition:.25s;
+		-moz-transition:.25s;
+		-webkit-transition:.25s;
+		transition:.25s;
+	}
+
+	.landing-location a:hover {
+		cursor: pointer;
+		color: #FF5521;
+	}
+
+/*Form block*/
+
+	.form-block {
+		width:400px;
+		height:500px;
+		background: rgb(255, 255, 255);
+	  background: rgba(255, 255, 255, 0.5);
+		position: absolute;
+		top: 100px;
+		right: 50px;
+		text-align: center;
+		border: 2px solid white;
+	}
+
+
+/* ------ */
+/* Footer */
+/* ------ */
+
+	.footer > .container {
+		font-size: 14px;
+		text-align: center;
+		text-shadow: none;
+	}

@@ -3,15 +3,9 @@ Damn it Feels Good to Be a Gangsta
 ---------------------------------------------------------------------
 AUGUST 5th HOMIE
 
-- NOTIFICATION
-  - keeping track of:
-   - unread comments
-   - unread materials
-   - updated materials
-
-  - notification box working on page (wow features)
+- ANNOUNCEMENTs
+- notification box working on page (wow features)
   
-- SEMESTER model
 - landing page
 
 
@@ -21,7 +15,7 @@ AUGUST 5th HOMIE
 - nested form or query string for uploading attachments
 
 - reading model -- aggregate reading/resources
-- scrape wikipedia for POTD main page
+
 - edit column names (i.e. gist_url) lecture should have space for content
 
 - USER model: expand user table to include social media
@@ -52,8 +46,9 @@ AUGUST 5th HOMIE
 - friendlyid for urls
 
 
-Weeks
-gravatar/uploadable pic
+
+- SEMESTER model
+
 
 ---------------------------------------------------------------------
 GENERAL BIZ

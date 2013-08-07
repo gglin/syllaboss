@@ -1,0 +1,67 @@
+@media (max-width: 930px) {
+	body {
+		min-width: 100%;
+	}
+
+	.mute {
+		display: none;
+	}
+
+	.landing-block {
+		position: relative;
+		padding: 20px 0;
+		top: auto;
+		left: auto;
+		width: 100%;
+		background-image:url('../img/mobile-bg.jpg');
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+
+	.landing-title {
+		font-size:32px;
+	}
+
+	.landing-date {
+		margin-top: 0px;
+	}
+
+	.landing-logo {
+		width: 100px;
+		margin: 20px auto;
+	}
+
+	section {
+		height: auto;
+	}
+
+	.container {
+		width: 100%;
+	}
+
+	.background-video-wrapper {
+		display: none;
+	}
+
+	.footer > .container {
+		line-height: 28px;
+		padding: 20px;
+	}
+
+	.background-video-wrapper {
+		height: auto;
+	}
+
+	.form-block {
+		position: relative;
+		padding: 20px 0;
+		top: auto;
+		left: auto;
+		width: 100%;
+		background-image:url('../img/mobile-bg.jpg');
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+}

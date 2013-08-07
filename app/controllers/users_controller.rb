@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    render :layout => false
+    render :layout => "landing"
   end
 
   def create
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       session[:user_id]= @user.id
       redirect_to root_url, notice: "Thanks for signing up!"
     else
-      render "new", :layout => false
+      render "new", :layout => "landing"
     end
   end
 

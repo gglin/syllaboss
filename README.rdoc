@@ -3,13 +3,12 @@ Damn it Feels Good to Be a Gangsta
 ---------------------------------------------------------------------
 AUGUST 5th HOMIE
 
-- Email invites for both students and admins - whitelist
+- Email invites for both students and admins - whitelist (append query string to log in)
 
-
-- ANNOUNCEMENTs
-  - notification box working on page (wow features)
-  
 - nested form or query string for uploading attachments
+- PUSH TO DIGITAL OCEAN!!!
+
+- ANNOUNCEMENTs notification box working on page (wow features)
 
 - reading model -- aggregate reading/resources
 

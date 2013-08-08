@@ -6,7 +6,7 @@ $('.previewable option').click(function(){
 	var id = $(this).val();
 	var frame = "resource_preview";
 	var path = $(this).parents(".control-group").data("name");
-	var url = "/"+path+"/" + id +"/preview";	
+	var url = "/"+path+"/" + id + "/preview";	
 	window.open(url, frame);
 
   resize_preview();
@@ -28,7 +28,7 @@ function resize_preview() {
   var total_width = $(window).width();
   var panel_width = total_width - margin_left - spacer;
 
-  console.log(total_width);
+  // console.log(total_width);
   $('.preview-panel').css("left", margin_left)
   $('.preview-panel').css("width", panel_width)
 }

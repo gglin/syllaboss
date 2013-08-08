@@ -4,7 +4,8 @@
       <div class="pull-left">Lecture</div>
       <div class="widget-icons pull-right">
         <% if can? :edit, @lecture %>
-          <span class="admin"><a href="<%= edit_lecture_path %>"><i class="icon-pencil"></i></a></span>
+          <% path = @from_preview ? edit_lecture_preview_path : edit_lecture_path %>
+          <span class="admin"><a href="<%= path %>"><i class="icon-pencil"></i></a></span>
         <% end %>
 
         <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 

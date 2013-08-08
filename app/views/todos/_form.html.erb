@@ -44,23 +44,7 @@
     <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
   
-  <% if params[:last_page].nil? || params[:last_page].empty? %>
-
-    <% if @todo.persisted? %>
-      <%= link_to "Cancel", @todo, class: "btn btn-inverse link-btn" %>
-    <% else %>
-      <%= link_to "Cancel", "/", class: "btn btn-inverse link-btn" %> 
-    <% end %>
-
-  <% else %>
-
-    <% if params[:day].empty? %>
-      <%= link_to "Cancel", new_school_day_path + "#todos", class: "btn btn-inverse link-btn" %>
-    <% else %>
-      <%= link_to "Cancel", edit_school_day_path(SchoolDay.find(params[:day])) + "#todos", class: "btn btn-inverse link-btn" %>
-    <% end %>
-
-  <% end %>
+  <%= link_to "Cancel", cancel_path_for(@todo), class: "btn btn-inverse link-btn" %>
 
   <% if @todo.persisted? %>
     <%= link_to "Delete", @todo, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger link-btn" %>

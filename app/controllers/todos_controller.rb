@@ -26,6 +26,7 @@ class TodosController < ApplicationController
   # GET /todos/1.json
   def show
     @todo = Todo.find(params[:id])
+    @from_preview = false
 
     @commentable = @todo
     @comments = @commentable.comments
@@ -48,7 +49,7 @@ class TodosController < ApplicationController
 
   def preview
     @todo = Todo.find(params[:id])
-
+    @from_preview = true
     render "show_preview", :layout => "preview"
   end
 
@@ -65,6 +66,12 @@ class TodosController < ApplicationController
     end
   end
 
+  def new_preview
+    @todo = Todo.new
+    @from_preview = true
+    render "form_preview", :layout => "preview"
+  end
+
   # GET /todos/1/edit
   def edit
     @todo = Todo.find(params[:id])
@@ -73,6 +80,12 @@ class TodosController < ApplicationController
 
     @active_school_day = most_recent_day_for_material(@todo)
     load_prev_and_next_day
+  end
+
+  def edit_preview
+    @todo = Todo.find(params[:id])
+    @from_preview = true
+    render "form_preview", :layout => "preview"
   end
 
   # POST /todos
@@ -104,8 +117,13 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.update_attributes(params[:todo])
-        format.html { redirect_to @todo, notice: 'To-Do was successfully updated.' }
-        format.json { head :no_content }
+        if request.referrer.split('/').last == "preview"
+          format.html { redirect_to todo_preview_path(@todo), notice: 'To-Do was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to @todo, notice: 'To-Do was successfully updated.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @todo.errors, status: :unprocessable_entity }

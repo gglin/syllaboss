@@ -35,26 +35,29 @@
       <div class="span9 maxspan minspan">
         <% @all_unread.each do |material| %>
           <% material_type = material.class.to_s.underscore %>
-            <div class="chat-meta">
-              <span class="inline pull-right">
-                <%= time_ago_in_words(material.created_at) %> ago 
+
+          <div class="chat-meta">
+            <span class="inline pull-right">
+              <%= time_ago_in_words(material.created_at) %> ago 
+            </span>
+          </div>
+
+          <div class="row-fluid same-height-col-wrap">
+            <div class="span9 no-height same-height-col">
+              <%= link_to re_truncate(material.print_name, length:50, separator: ' '), self.send("#{material_type}_path", material) %>
+            </div>
+            <div class="span3 no-height same-height-col">
+              <span class="label <%= label_type(material_type.classify) %> pull-right inline valign" style="margin-right: 2px;">
+                <%= "#{material_capitalize(material_type)}" %>
               </span>
             </div>
+          </div>
 
-            <div class="row-fluid same-height-col-wrap">
-              <div class="span9 no-height same-height-col">
-                <%= link_to re_truncate(material.print_name, length:50, separator: ' '), self.send("#{material_type}_path", material) %>
-              </div>
-              <div class="span3 no-height same-height-col">
-                <span class="label <%= label_type(material_type.classify) %> pull-right inline valign" style="margin-right: 2px;">
-                  <%= "#{material_capitalize(material_type)}" %>
-                </span>
-              </div>
-            </div>
-            <div class="clearfix"></div>
-            <hr />
+          <div class="clearfix"></div>
+          <hr />
         <% end %>
       </div>
     </div>
+    
   </div>
 </div>

@@ -25,6 +25,7 @@ class LinksController < ApplicationController
   # GET /links/1.json
   def show
     @link = Link.find(params[:id])
+    @from_preview = false
 
     @commentable = @link
     @comments = @commentable.comments
@@ -47,7 +48,7 @@ class LinksController < ApplicationController
 
   def preview
     @link = Link.find(params[:id])
-
+    @from_preview = true
     render "show_preview", :layout => "preview"
   end
 
@@ -64,6 +65,12 @@ class LinksController < ApplicationController
     end
   end
 
+  def new_preview
+    @link = Link.new
+    @from_preview = true
+    render "form_preview", :layout => "preview"
+  end
+
   # GET /links/1/edit
   def edit
     @link = Link.find(params[:id])
@@ -72,6 +79,12 @@ class LinksController < ApplicationController
 
     @active_school_day = most_recent_day_for_material(@link)
     load_prev_and_next_day
+  end
+
+  def edit_preview
+    @link = Link.find(params[:id])
+    @from_preview = true
+    render "form_preview", :layout => "preview"
   end
 
   # POST /links
@@ -103,8 +116,13 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.update_attributes(params[:link])
-        format.html { redirect_to @link, notice: 'Link was successfully updated.' }
-        format.json { head :no_content }
+        if request.referrer.split('/').last == "preview"
+          format.html { redirect_to link_preview_path(@link), notice: 'Link was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to @link, notice: 'Link was successfully updated.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @link.errors, status: :unprocessable_entity }

@@ -9,8 +9,6 @@ AUGUST 5th HOMIE
 
 - Email invites for both students and admins - whitelist
 
-
-- PRETTIFY preview (iframe) on forms (on dblclick)
 - nested form or query string for uploading attachments
 
 - reading model -- aggregate reading/resources
@@ -21,9 +19,9 @@ AUGUST 5th HOMIE
 
 - Change index view for weeks to be calendar view
 
-** Nav Bar => Katie
+** Nav Bar => Katie, Chris
 -make a new: + in front of icons
-
+-tooltip
 
 ** search
 - make pretty + preview
@@ -34,8 +32,6 @@ AUGUST 5th HOMIE
 - @ashley williams --- make LINK
 - hashtag functionality
 
-
-- user show page (profiles)
 
 - Send email password reset
 - email notifications (activemailer)
@@ -48,45 +44,17 @@ AUGUST 5th HOMIE
 
 
 - landing page
-
+- homework only shows up after 6pm that day
+- flow for deleting materials from school day view
 - SEMESTER model
 
 
 ---------------------------------------------------------------------
 GENERAL BIZ
 
-!!!
-- form/index view cleanup -> navigation
-  - table sorting
-  - week model + pagination
-- discussion - general comment always associated to just a school day, comments for every model
-  - /discussions url loads all comments for that day (feed)
-- reading model -> reading is it's own separate thing, from links
-- this week is admin/student distinction -> integrate with comments
-
-!!
--create & preview, preview things in a new window, search => name, whatever it is, preview
--datepicker
--tooltip
-
-
-!
-- week logic
 - javascript for coloring schedule
-
-:)
 - remove time column if there is no time in schedule
 
 
 assignment.io integration, assignment gets created on our end. talk towards the end of the week
-
--table aut-sort DESC
------------------
-- splash page/force authentication
-- restrict content by day
-
--for next week:
-access to signup page
-
--------------------
 

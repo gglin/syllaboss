@@ -4,7 +4,8 @@
       <div class="pull-left">To-Do</div>
       <div class="widget-icons pull-right">
         <% if can? :edit, @todo %>
-          <span class="admin"><a href="<%= edit_todo_path %>"><i class="icon-pencil"></i></a></span>
+          <% path = @from_preview ? edit_todo_preview_path : edit_todo_path %>
+          <span class="admin"><a href="<%= path %>"><i class="icon-pencil"></i></a></span>
         <% end %>
 
         <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 

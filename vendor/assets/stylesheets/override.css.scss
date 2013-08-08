@@ -866,9 +866,15 @@ body {
 .preview-panel {
   top: 80px;
   max-width: 600px !important;
+
   // min-width: 400px !important;
   position: fixed;
   // width: 30.42553191489362%;
+}
+
+.preview-frame {
+  width: 100%;
+  min-height: 70vh !important;
 }
  
 @media (max-width: 1136px) {

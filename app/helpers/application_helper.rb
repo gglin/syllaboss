@@ -55,4 +55,23 @@ module ApplicationHelper
     "*" if object.class.validators_on(attribute).map(&:class).include? ActiveModel::Validations::PresenceValidator
   end
 
+  def cancel_path_for(material)
+    material_type  = material.class.to_s.underscore
+    material_types = material_type.pluralize
+
+    if @from_preview
+      material.persisted?  ?  self.send("#{material_type}_preview_path", material) : "/"
+    else
+      if params[:last_page].nil? || params[:last_page].empty?
+        material.persisted?  ?  self.send("#{material_type}_path", material) : "/"
+      else
+        if params[:day].empty?
+          new_school_day_path + "##{material_types}"
+        else
+          edit_school_day_path(SchoolDay.find(params[:day])) + "##{material_types}"
+        end
+      end
+    end
+  end
+
 end

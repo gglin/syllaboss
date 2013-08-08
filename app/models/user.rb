@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :full_name, :message => "Sorry, that name already belongs to an existing account."
   validates_uniqueness_of :email, :message => "Sorry, that e-mail address already belongs to an existing account."
 
-    USER_ROLES = {
+  USER_ROLES = {
     :admin => 0,
     :student => 10
   }

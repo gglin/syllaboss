@@ -31,7 +31,9 @@ class UsersController < ApplicationController
       session[:user_id]= @user.id
       redirect_to root_url, notice: "Thanks for signing up!"
     else
-      render "new", :layout => "landing"
+      @view_signup = true
+      flash[:error] = "There were errors signing up."
+      render "sessions/new", :layout => "landing"
     end
   end
 

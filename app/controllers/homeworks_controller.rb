@@ -25,13 +25,13 @@ class HomeworksController < ApplicationController
   # GET /homeworks/1.json
   def show
     @homework = Homework.find(params[:id])
+    @from_preview = false
 
     @commentable = @homework
     @comments = @commentable.comments
     @comment = Comment.new
 
     @homework.mark_as_read! :for => current_user
-
     @homework.comments.each do |comment|
       comment.mark_as_read! :for => current_user
     end
@@ -47,7 +47,7 @@ class HomeworksController < ApplicationController
 
   def preview
     @homework = Homework.find(params[:id])
-
+    @from_preview = true
     render "show_preview", :layout => "preview"
   end
 
@@ -64,6 +64,12 @@ class HomeworksController < ApplicationController
     end
   end
 
+  def new_preview
+    @homework = Homework.new
+    @from_preview = true
+    render "form_preview", :layout => "preview"
+  end
+
   # GET /homeworks/1/edit
   def edit
     @homework = Homework.find(params[:id])
@@ -72,6 +78,12 @@ class HomeworksController < ApplicationController
 
     @active_school_day = most_recent_day_for_material(@homework)
     load_prev_and_next_day
+  end
+
+  def edit_preview
+    @homework = Homework.find(params[:id])
+    @from_preview = true
+    render "form_preview", :layout => "preview"
   end
 
   # POST /homeworks
@@ -103,8 +115,13 @@ class HomeworksController < ApplicationController
 
     respond_to do |format|
       if @homework.update_attributes(params[:homework])
-        format.html { redirect_to @homework, notice: 'Homework was successfully updated.' }
-        format.json { head :no_content }
+        if request.referrer.split('/').last == "preview"
+          format.html { redirect_to homework_preview_path(@homework), notice: 'Homework was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to @homework, notice: 'Homework was successfully updated.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @homework.errors, status: :unprocessable_entity }

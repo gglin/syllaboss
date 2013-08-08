@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
 
   def new
     @user = User.new
+    @view_signup = false
     render :layout => "landing"
   end
 
@@ -17,14 +18,16 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_url, notice: "Logged in!"
     else
-      flash[:notice] = "Email/Username or password is invalid"
+      @user = User.new
+      @view_signup = false
+      flash[:error] = "Email or Password is invalid"
       render "new", :layout => "landing"
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to new_session_path, notice: "Logged out"
+    redirect_to login_path, notice: "Logged out"
     #reset_session
   end
 end

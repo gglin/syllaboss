@@ -26,6 +26,7 @@ class PotdsController < ApplicationController
   # GET /potds/1.json
   def show
     @potd = Potd.find(params[:id])
+    @from_preview = false
 
     @commentable = @potd
     @comments = @commentable.comments
@@ -48,7 +49,7 @@ class PotdsController < ApplicationController
 
   def preview
     @potd = Potd.find(params[:id])
-
+    @from_preview = true
     render "show_preview", :layout => "preview"
   end
 
@@ -66,6 +67,12 @@ class PotdsController < ApplicationController
     end
   end
 
+  def new_preview
+    @potd = Potd.new
+    @from_preview = true
+    render "form_preview", :layout => "preview"
+  end
+
   # GET /potds/1/edit
   def edit
     @potd = Potd.find(params[:id])
@@ -75,6 +82,12 @@ class PotdsController < ApplicationController
 
     @active_school_day = most_recent_day_for_material(@potd)
     load_prev_and_next_day
+  end
+
+  def edit_preview
+    @potd = Potd.find(params[:id])
+    @from_preview = true
+    render "form_preview", :layout => "preview"
   end
 
   # POST /potds

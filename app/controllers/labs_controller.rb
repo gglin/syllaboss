@@ -26,6 +26,7 @@ class LabsController < ApplicationController
   # GET /labs/1.json
   def show
     @lab = Lab.find(params[:id])
+    @from_preview = false
 
     @commentable = @lab
     @comments = @commentable.comments
@@ -48,7 +49,7 @@ class LabsController < ApplicationController
 
   def preview
     @lab = Lab.find(params[:id])
-
+    @from_preview = true
     render "show_preview", :layout => "preview"
   end
 
@@ -65,6 +66,12 @@ class LabsController < ApplicationController
     end
   end
 
+  def new_preview
+    @lab = Lab.new
+    @from_preview = true
+    render "form_preview", :layout => "preview"
+  end
+
   # GET /labs/1/edit
   def edit
     @lab = Lab.find(params[:id])
@@ -73,6 +80,12 @@ class LabsController < ApplicationController
 
     @active_school_day = most_recent_day_for_material(@lab)
     load_prev_and_next_day
+  end
+
+  def edit_preview
+    @lab = Lab.find(params[:id])
+    @from_preview = true
+    render "form_preview", :layout => "preview"
   end
 
   # POST /labs
@@ -104,8 +117,13 @@ class LabsController < ApplicationController
 
     respond_to do |format|
       if @lab.update_attributes(params[:lab])
-        format.html { redirect_to @lab, notice: 'Lab was successfully updated.' }
-        format.json { head :no_content }
+        if request.referrer.split('/').last == "preview"
+          format.html { redirect_to lab_preview_path(@lab), notice: 'Lab was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to @lab, notice: 'Lab was successfully updated.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @lab.errors, status: :unprocessable_entity }

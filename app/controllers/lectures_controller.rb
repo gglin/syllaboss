@@ -17,6 +17,7 @@ class LecturesController < ApplicationController
   # GET /lectures/1.json
   def show
     @lecture = Lecture.find(params[:id])
+    @from_preview = false
 
     @commentable = @lecture
     @comments = @commentable.comments
@@ -39,7 +40,7 @@ class LecturesController < ApplicationController
 
   def preview
     @lecture = Lecture.find(params[:id])
-
+    @from_preview = true
     render "show_preview", :layout => "preview"
   end
 
@@ -56,6 +57,12 @@ class LecturesController < ApplicationController
     end
   end
 
+  def new_preview
+    @lecture = Lecture.new
+    @from_preview = true
+    render "form_preview", :layout => "preview"
+  end
+
   # GET /lectures/1/edit
   def edit
     @lecture = Lecture.find(params[:id])
@@ -64,6 +71,12 @@ class LecturesController < ApplicationController
 
     @active_school_day = most_recent_day_for_material(@lecture)
     load_prev_and_next_day
+  end
+
+  def edit_preview
+    @lecture = Lecture.find(params[:id])
+    @from_preview = true
+    render "form_preview", :layout => "preview"
   end
 
   # POST /lectures
@@ -95,8 +108,13 @@ class LecturesController < ApplicationController
 
     respond_to do |format|
       if @lecture.update_attributes(params[:lecture])
-        format.html { redirect_to @lecture, notice: 'Lecture was successfully updated.' }
-        format.json { head :no_content }
+        if request.referrer.split('/').last == "preview"
+          format.html { redirect_to lecture_preview_path(@lecture), notice: 'Lecture was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to @lecture, notice: 'Lecture was successfully updated.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @lecture.errors, status: :unprocessable_entity }

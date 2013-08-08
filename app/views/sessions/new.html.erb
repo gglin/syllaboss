@@ -1,9 +1,15 @@
+<% if @view_signup %>
+  <% signup_display = "" %>
+  <% login_display  = "display: none;" %>
+<% else %>
+  <% signup_display = "display: none;" %>
+  <% login_display  = "" %>
+<% end %>
+
 <!-- Log In (New Session) -->
-<div class="login-form hideable">
+<div class="login-form hideable" style='<%= login_display %>'>
   <h1>Log In</h1>
-  <%# if flash[:notice] %>
-    <%# flash[:notice] %>
-  <%# end %>
+  <%= render "layouts/messages" %>
 
   <%= form_tag sessions_path do %>
     <div class="field">
@@ -23,10 +29,40 @@
 
 
 <!-- Sign Up (New User) -->
-<div class="signup-form hideable" style="display: none;">
+<div class="signup-form hideable" style='<%= signup_display %>'>
   <h1>Sign up</h1>
+  <%# render "layouts/messages" %>
 
   <%= form_for @user, :html => {:multipart => true} do |f| %>
+    <div class="field">
+      <%= f.label :full_name, "Full Name *" %><br />
+      <%= f.text_field :full_name %>
+    </div>
+   
+    <!-- <div class="field"> 
+      <%# f.label :username, "Username #{mark_required(@user, :username)}" %><br />
+      <%# f.text_field :username %>
+    </div> -->
+
+    <div class="field">
+      <%= f.label :email, "Email *" %><br />
+      <%= f.text_field :email %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, "Password *" %><br />
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, "Password Confirmation *" %><br />
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "#{@action} Submit" %>
+    </div>
+
     <% if @user.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -38,38 +74,5 @@
         </ul>
       </div>
     <% end %>
-
-    <div class="field">
-      <%= f.label :full_name, "Full Name #{mark_required(@user, :full_name)}" %><br />
-      <%= f.text_field :full_name %>
-    </div>
-   
-    <!-- <div class="field"> 
-      <%# f.label :username, "Username #{mark_required(@user, :username)}" %><br />
-      <%# f.text_field :username %>
-    </div> -->
-
-    <div class="field">
-      <%= f.label :email, "Email #{mark_required(@user, :email)}" %><br />
-      <%= f.text_field :email %>
-    </div>
-
-    <div class="field">
-      <%= f.file_field :image %>
-    </div>
-
-     <div class="field">
-      <%= f.label :password, "Password #{mark_required(@user, :password)}" %><br />
-      <%= f.password_field :password %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation, "Password Confirmation #{mark_required(@user, :password_confirmation)}" %><br />
-      <%= f.password_field :password_confirmation %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "#{@action} Submit" %>
-    </div>
   <% end %>
 </div>

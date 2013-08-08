@@ -1,0 +1,35 @@
+<div class="matter">
+  <div class="container-fluid">
+
+    <%= render "layouts/messages" %>
+    
+    <div class="row-fluid fit-content">
+
+      <div class="span9 maxspan minspan">
+        <div class="widget wlightblue mainwidget">
+          <div class="widget-head">
+            <div class="pull-left">
+              <% action = @potd.persisted? ? "Editing" : "New" %>
+              <%= "#{action} POTD" %>
+            </div>
+            <div class="widget-icons pull-right">
+              <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+              <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="widget-content">
+            <div class="padd lowtop">
+
+              <%= render 'form' %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

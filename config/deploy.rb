@@ -29,7 +29,7 @@ require 'bundler/capistrano' # for bundler support
 set :application, "syllaboss"
 set :repository,  "git@github.com:flatiron-school/syllaboss.git"
 
-set :user, 'flatiron-school'
+set :user, 'chrisgonzgonz'
 set :deploy_to, "/home/#{ user }/#{ application }"
 set :use_sudo, false
 

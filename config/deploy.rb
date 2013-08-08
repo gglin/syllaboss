@@ -26,7 +26,7 @@
 
 require 'bundler/capistrano' # for bundler support
 
-set :application, "syllaboss"
+set :application, "pizza"
 set :repository,  "git@github.com:flatiron-school/syllaboss.git"
 
 set :user, 'chrisgonzgonz'

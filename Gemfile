@@ -10,6 +10,8 @@ gem 'cancan'
 gem 'rinku', :require => 'rails_rinku'
 gem 'sunspot_solr'
 gem 'nokogiri'
+gem 'execjs'
+gem 'therubyracer', :platforms => :ruby
 
 
 group :development do

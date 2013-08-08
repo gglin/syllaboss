@@ -1,25 +1,62 @@
-<h1>Listing attachments</h1>
+<div class="page-head">
+  <% title "All Attachments" %>
+  <h2 class="inline"><%= yield(:title) %></h2>
+  
+  <ul class="horizontal-list breadcrumb">
+    <li>Show All: </li>
+    <% material_type_list.each do |material_type_hash| %>
+      <% material_type = material_type_hash[:name] %>
+      <% material_icon = material_type_hash[:icon] %>
+      <% material_types  = material_type.pluralize %>
+      <% material_title  = material_capitalize(material_type) %>
+      <% material_titles = material_title.pluralize %>
+      
+      <%# unless material_type == chosen_material_type %>
+      <li>
+        <a href="<%= self.send("#{material_types}_path") %>">
+          <i class="icon-<%= material_icon %>"></i>
+          <%= material_titles %>
+        </a>
+      </li>
+      <%# end %>
+      
+    <% end %>
+  </ul>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Filename</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <br />
 
-<% @attachments.each do |attachment| %>
-  <tr>
-    <td><%= attachment.title %></td>
-    <td><%= link_to attachment.filename_short, attachment.filename.to_s %></td>
-    <td><%= link_to 'Show', attachment %></td>
-    <td><%= link_to 'Edit', edit_attachment_path(attachment) %></td>
-    <td><%= link_to 'Destroy', attachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <% if can? :edit, @attachments %>
+    <%= link_to "Create New Attachment", new_attachment_path, class: "btn btn-primary link-btn" %>
+  <% end %>
 
-<br />
+</div>
 
-<%= link_to 'New Attachment', new_attachment_path %>
+<div class="matter">
+  <div class="container-fluid">
+    <%= render "layouts/messages" %>
+    <div class="row-fluid">
+      <div class="span12 table-maxspan minspan">
+
+        <table class="table">
+          <tr>
+            <th>Title</th>
+            <th>Filename</th>
+            <th></th>
+            <th></th>
+          </tr>
+
+        <% @attachments.each do |attachment| %>
+          <tr>
+            <td><%= attachment.title %></td>
+            <td><%= link_to attachment.filename_short, attachment.filename.to_s %></td>
+            <td><%= link_to 'Show', attachment %></td>
+            <td><%= link_to 'Destroy', attachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+</div>

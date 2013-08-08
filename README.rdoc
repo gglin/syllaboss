@@ -3,12 +3,12 @@ Damn it Feels Good to Be a Gangsta
 ---------------------------------------------------------------------
 AUGUST 5th HOMIE
 
-- ANNOUNCEMENTs
-- notification box working on page (wow features)
-  
-
 - Email invites for both students and admins - whitelist
 
+
+- ANNOUNCEMENTs
+  - notification box working on page (wow features)
+  
 - nested form or query string for uploading attachments
 
 - reading model -- aggregate reading/resources
@@ -28,7 +28,7 @@ AUGUST 5th HOMIE
 
 
 ** Discussion => George
-- @ functionality eventually click name goes to profile or comment thread
+- functionality eventually click name goes to profile or comment thread
 - @ashley williams --- make LINK
 - hashtag functionality
 
@@ -37,7 +37,10 @@ AUGUST 5th HOMIE
 - email notifications (activemailer)
 
 - ajax request to choose ordinal and week
+
 - filtering the discussion stream (drop down from discussion tab in nav bar)
+- infinite scroll for discussion stream
+
 - friendlyid for urls
 
 
@@ -52,7 +55,9 @@ AUGUST 5th HOMIE
 ---------------------------------------------------------------------
 GENERAL BIZ
 
-- javascript for coloring schedule
+- make first time show up as separate column if no timestamp
+- sidebar not fixed when expanded (jQuery)
+- javascript for coloring calendar
 - remove time column if there is no time in schedule
 
 

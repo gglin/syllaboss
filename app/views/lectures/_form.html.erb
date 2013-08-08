@@ -37,12 +37,25 @@
     </div>
   </div>
 
-  <div class="control-group">
-    <%= f.label :attachment, "Attachment(s)" %> <%= link_to "Create New", new_attachment_path, target: "_blank", class: "btn btn-primary link-btn new-material control-label" %>
+  <!-- <div class="control-group">
+    <%# f.label :attachment, "Attachment(s)" %> <%# link_to "Create New", new_attachment_path, target: "_blank", class: "btn btn-primary link-btn new-material control-label" %>
     <div class="controls">
-      <%= f.collection_select(:attachment_ids, Attachment.order("title"), :id, :title, {:selected => @lecture.attachment_ids, :prompt => "Please Select Attachment(s)"}, {:class => "span4", multiple: "multiple"}) %>
+      <%# f.collection_select(:attachment_ids, Attachment.order("title"), :id, :title, {:selected => @lecture.attachment_ids, :prompt => "Please Select Attachment(s)"}, {:class => "span4", multiple: "multiple"}) %>
     </div>
-  </div>
+  </div> -->
+  
+  <%= f.fields_for :attachments do |builder| %>
+    <div class="control-group">
+      <%= f.label :attachment, "Attachment(s)", class: "control-label" %>
+      <div class="controls">
+        <%= builder.label :title %>
+        <%= builder.text_field :title %>
+
+        <%= builder.label :filename, "Attach a File" %>
+        <%= builder.file_field :filename %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="control-group">
     <%= f.label :school_day, "Select Day(s)", class: "control-label" %>

@@ -6,7 +6,8 @@
 <% unless material.school_days.empty? %>
 
   <div class="page-head">
-
+    
+    <% title "#{material_title}: #{material.print_name} - " %>
     <%= render "layouts/header_active_school_day" %>
 
     <ul class="breadcrumb">

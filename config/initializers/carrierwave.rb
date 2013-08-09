@@ -1,6 +1,6 @@
 CarrierWave.configure do |config|
   config.storage = :file
-  if Rails.env.production?
+  # if Rails.env.production?
     # config.storage = :s3
     # config.s3_access_key_id = 'ACCESSKEY'
     # config.s3_secret_access_key = 'SEKRIT'
@@ -15,5 +15,5 @@ CarrierWave.configure do |config|
   #   config.storage = :file
   # else
   #   config.storage = :file
-  end
+  # end
 end

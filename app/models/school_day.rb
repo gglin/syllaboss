@@ -35,8 +35,6 @@ class SchoolDay < ActiveRecord::Base
  
   # validates_format_of :schedule, :with =>/\d{1,2}\W{1}\d{2}.*\s*[-]\s*\d{1,2}\W{1}\d{2}.*/ , :on => :create, :message=>"You must format times as X:XX - XX:XX, for example, 9:45 - 11:30"
   
-  accepts_nested_attributes_for :links
-
   def print_name
     ordinal
   end

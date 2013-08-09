@@ -19,7 +19,7 @@ $(document).ready(function(){
 });
 
 function switchAudio() {
-	//if video is muted, unmute and show audo on button and vice versa
+	//if video is muted, unmute and show audio on button and vice versa
 	if(video.muted) {
 		unMute();
 	}

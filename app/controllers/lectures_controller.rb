@@ -51,6 +51,9 @@ class LecturesController < ApplicationController
     @active_school_day = SchoolDay.find(params[:day]) unless params[:day].nil? || params[:day].empty?
     load_prev_and_next_day
 
+    @attachment = @lecture.attachments.build
+    # @attachments = [@attachment]
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @lecture }
@@ -66,6 +69,10 @@ class LecturesController < ApplicationController
   # GET /lectures/1/edit
   def edit
     @lecture = Lecture.find(params[:id])
+
+    @attachments = @lecture.attachments
+    @attachment  = @lecture.attachments.build
+    # @attachments << @attachment
     
     @lecture.mark_as_read! :for => current_user
 

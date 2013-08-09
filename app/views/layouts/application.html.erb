@@ -5,8 +5,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
   <meta charset="UTF-8" />
   <meta name="viewport" content ="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+  
+  <% num_unread_notifications = current_user.admin? ? @all_unread.size : @unread.size %>
+  <% all_unread = @unread_comments.size + num_unread_notifications %>
+  <% unread_show = all_unread==0 ? "" : "(#{all_unread})" %>
 
-  <title>Syllaboss <%=("- #{yield(:title)}" if yield(:title).length>0)  %></title>
+  <title><%= unread_show %> Syllaboss <%=("- #{yield(:title)}" if yield(:title).length>0)  %></title>
 
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= csrf_meta_tags %>

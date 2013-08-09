@@ -6,6 +6,8 @@ class Attachment < ActiveRecord::Base
 
   mount_uploader :filename, FileUploader
 
+  validates :filename, :presence => true
+
   searchable do
     text :attachable_type, :filename, :title  
   end

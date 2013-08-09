@@ -11,7 +11,7 @@ class Lecture < ActiveRecord::Base
   has_many :attachments, as: :attachable
   has_many :comments, as: :commentable, :dependent => :destroy
 
-  accepts_nested_attributes_for :attachments
+  accepts_nested_attributes_for :attachments, allow_destroy: true
 
   validates_uniqueness_of :title, :case_sensitive => false
   validates :title, :presence => true

@@ -45,16 +45,21 @@
   </div> -->
   
   <%= f.fields_for :attachments do |builder| %>
-    <div class="control-group">
-      <%= f.label :attachment, "Attachment(s)", class: "control-label" %>
-      <div class="controls">
-        <%= builder.label :title %>
-        <%= builder.text_field :title %>
+    <fieldset>
+      <div class="control-group">
+        <%= builder.label :attachment, "Attachment 1", class: "control-label" %>
+        <div class="controls">
+          <%= builder.label :title %>
+          <%= builder.text_field :title %>
 
-        <%= builder.label :filename, "Attach a File" %>
-        <%= builder.file_field :filename %>
+          <%= builder.label :filename, "Attach a File" %>
+          <%= builder.file_field :filename %></br>
+
+          <%= builder.hidden_field :_destroy %>
+          <a href="#" class="remove_fields">Remove Attachment</a>
+        </div>
       </div>
-    </div>
+    </fieldset>
   <% end %>
 
   <div class="control-group">

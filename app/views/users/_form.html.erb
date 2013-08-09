@@ -16,6 +16,18 @@
     <%= f.text_field :email %>
   </div>
 
+  <div class="field">
+    <%= f.label :facebook, "Facebook" %><br />
+    <%= f.text_field :facebook %>
+  </div>
+    <div class="field">
+    <%= f.label :linkedin, "LinkedIn" %><br />
+    <%= f.text_field :linkedin %>
+  </div>
+    <div class="field">
+    <%= f.label :twitter, "Twitter" %><br />
+    <%= f.text_field :twitter %>
+  </div>
 <% if can? :assign_role, @user %>
    <div class="field">
     <%= f.label :role, "Role #{mark_required(@user, :role)}" %><br />

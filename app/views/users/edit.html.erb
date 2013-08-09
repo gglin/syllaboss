@@ -28,7 +28,18 @@
     <%= f.label :email, "Email #{mark_required(@user, :email)}" %><br />
     <%= f.text_field :email %>
   </div>
-
+  <div class="field">
+    <%= f.label :facebook, "Facebook - http://www.facebook.com/[your_name]" %><br />
+    <%= f.text_field :facebook %>
+  </div>
+    <div class="field">
+    <%= f.label :linkedin, "LinkedIn - http://www.linkedin.com/in/[name]" %><br />
+    <%= f.text_field :linkedin %>
+  </div>
+    <div class="field">
+    <%= f.label :twitter, "Twitter - http://www.twitter.com/[your_name]" %><br />
+    <%= f.text_field :twitter %>
+  </div>
   <div class="field">
     <%= f.file_field :image %>
   </div>

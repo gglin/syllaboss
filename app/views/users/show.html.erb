@@ -25,8 +25,13 @@
 
               <p>
               <h3><%= @user.full_name %></h3>
+          
               <%= image_tag @user.image.url(:thumb) %>
-            
+          
+            <p><a href="mailto:<%= @user.email%>"><%= @user.email%></a></p>
+            <a href="http://<%= @user.linkedin%>" target="_blank"><i class="icon-linkedin icon-2x"></a></i>&nbsp;
+            <a href="http://<%= @user.facebook%>" target="_blank"><i class="icon-facebook icon-2x"></i></a>&nbsp;
+            <a href="http://<%= @user.twitter%>" target="_blank"><i class="icon-twitter icon-2x"></i></a>
               </p>
 
               <p>

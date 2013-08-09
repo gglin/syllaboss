@@ -36,6 +36,7 @@
           <tr>
             <th data-sort="string">Full Name</th>
             <th data-sort="string">Email</th>
+            <th>Social</th>
             <th data-sort="string">Role</th>
 
           </tr>
@@ -55,6 +56,49 @@
                 <% end %>
               </td>
               <td><%= link_to user.email, user.email %></td>
+              <td>
+              <%if user.linkedin?%>
+                <%if (user.linkedin.start_with?('http://') || user.linkedin.start_with?('https://')) %>
+                   <a href="<%= user.linkedin%>" target="_blank">
+                <% elsif user.linkedin.start_with?('www.')%>
+                   <a href="http://<%= user.linkedin%>" target="_blank">
+                <% elsif user.linkedin.start_with?('linkedin.com/')%>
+                   <a href="http://www.<%= user.linkedin%>" target="_blank">
+                <%end%>
+                <i class="icon-linkedin icon-2x"></a></i>&nbsp;
+              <%else%>
+                <i class="icon-linkedin icon-2x" style="color:#ccc;"></i>&nbsp;
+              <%end%>
+              <%if user.facebook?%>
+                <%if (user.facebook.start_with?('http://') || user.facebook.start_with?('https://')) %>
+                   <a href="<%= user.facebook%>" target="_blank">
+                <% elsif user.facebook.start_with?('www.')%>
+                   <a href="http://<%= user.facebook%>" target="_blank">
+                 <% elsif user.facebook.start_with?('facebook.com/')%>
+                   <a href="http://www.<%= user.facebook%>" target="_blank">
+                <%end%>
+                <i class="icon-facebook icon-2x"></a></i>&nbsp;
+              <%else%>
+                <i class="icon-facebook icon-2x" style="color:#ccc;"></i>&nbsp;
+              <%end%>
+              <%if user.twitter?%>
+                <%if (user.twitter.start_with?('http://') || user.twitter.start_with?('https://')) %>
+                   <a href="<%= user.twitter%>" target="_blank">
+                <% elsif user.twitter.start_with?('www.')%>
+                   <a href="http://<%= user.twitter%>" target="_blank">
+                <% elsif user.twitter.start_with?('@')%>
+                   <a href="http://www.twitter.com/<%= user.twitter[1..-1] %>" target="_blank">
+                <% elsif user.twitter.start_with?('twitter.com/')%>
+                   <a href="http://www.<%= user.twitter%>" target="_blank">
+                <% else%>
+                   <a href="http://www.twitter.com/<%= user.twitter %>" target="_blank">
+                <%end%>
+                  <i class="icon-twitter icon-2x"></a></i>&nbsp;
+                <%else%>
+                  <i class="icon-twitter icon-2x" style="color:#ccc;"></i>&nbsp;
+              <%end%>
+
+              </td>
               <td>
                 <% if user.admin? %>
                   <span class="badge badge-instructor">Instructor</span>

@@ -13,11 +13,11 @@
       </ul>
     </div>
   <% end %>
-
+<br>
   <div class="field">
     <%= f.label :full_name, "Full Name #{mark_required(@user, :full_name)}" %><br />
     <%= f.text_field :full_name %>
-  </div>
+  </div><br>
  
   <!-- <div class="field"> 
     <%# f.label :username, "Username #{mark_required(@user, :username)}" %><br />
@@ -25,21 +25,21 @@
   </div> -->
 
   <div class="field">
-    <%= f.label :email, "Email #{mark_required(@user, :email)}" %><br />
+    <%= f.label :email, "Email #{mark_required(@user, :email)}" %>
     <%= f.text_field :email %>
-  </div>
+  </div><br>
   <div class="field">
-    <%= f.label :facebook, "Facebook - http://www.facebook.com/[your_name]" %><br />
+    <%= f.label :facebook, "Facebook - http://www.facebook.com/[your_name]" %>
     <%= f.text_field :facebook %>
-  </div>
+  </div><br>
     <div class="field">
-    <%= f.label :linkedin, "LinkedIn - http://www.linkedin.com/in/[name]" %><br />
+    <%= f.label :linkedin, "LinkedIn - http://www.linkedin.com/in/[name]" %>
     <%= f.text_field :linkedin %>
-  </div>
+  </div><br>
     <div class="field">
-    <%= f.label :twitter, "Twitter - http://www.twitter.com/[your_name]" %><br />
+    <%= f.label :twitter, "Twitter - http://www.twitter.com/[your_name]" %>
     <%= f.text_field :twitter %>
-  </div>
+  </div><br>
   <div class="field">
     <%= f.file_field :image %>
   </div>

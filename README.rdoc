@@ -49,7 +49,6 @@ AUGUST 5th HOMIE
 
 - landing page
 - homework only shows up after 6pm that day
-- flow for deleting materials from school day view
 - SEMESTER model
 
 

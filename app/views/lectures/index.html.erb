@@ -4,3 +4,8 @@
 
 <%= render partial: "layouts/body_materials_index", locals: {materials: @lectures, material_columns: @material_columns } %>
 
+<% if @deleted_from_preview %>
+  <script>
+    parent.hideFrameAndReload();
+  </script>
+<% end %>

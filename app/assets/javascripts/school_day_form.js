@@ -33,15 +33,4 @@ $(function() {
     $('.preview-panel').css("left", margin_left)
     $('.preview-panel').css("width", panel_width)
   }
-
-  // Delete action when editing materials in iframe preview
-  // var delete_button = $('iframe').contents().find('.delete-btn');
-  // console.log(delete_button);
-
-  $('iframe').on('click', '.delete_button', function(e) {
-    e.preventDefault();
-    console.log('test');
-    $('iframe').hide(200);
-    return false;
-  });
 });

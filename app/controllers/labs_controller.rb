@@ -5,14 +5,9 @@ class LabsController < ApplicationController
   # GET /labs
   # GET /labs.json
   def index
-    # if params[:search].present?
-    #   @search = Lab.search do
-    #     fulltext params[:search]
-    #   end
-    #   @labs = @search.results
-    # else
-    #   @labs = Lab.all
-    # end
+    if request.referrer.split('/').last == "preview"
+      @deleted_from_preview = true
+    end
 
     @labs = Lab.all
 
@@ -33,7 +28,6 @@ class LabsController < ApplicationController
     @comment = Comment.new
 
     @lab.mark_as_read! :for => current_user
-
     @lab.comments.each do |comment|
       comment.mark_as_read! :for => current_user
     end

@@ -88,7 +88,7 @@ class HomeworksController < ApplicationController
     @homework = Homework.new(params[:homework])
 
     respond_to do |format|
-      if @homework.save #need an if statement -- if params[:from] redirect_to 
+      if @homework.save
         if params[:last_page].nil?
           format.html { redirect_to @homework, notice: 'Homework was successfully created.' }
           format.json { render json: @homework, status: :created, location: @homework }

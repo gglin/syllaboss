@@ -5,14 +5,10 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    # if params[:search].present?
-    #   @search = Link.search do
-    #     fulltext params[:search]
-    #   end
-    #   @links = @search.results
-    # else
-    #   @links = Link.all
-    # end
+    if request.referrer.split('/').last == "preview"
+      @deleted_from_preview = true
+    end
+    
     @links = Link.all
 
     respond_to do |format|
@@ -32,7 +28,6 @@ class LinksController < ApplicationController
     @comment = Comment.new
 
     @link.mark_as_read! :for => current_user
-
     @link.comments.each do |comment|
       comment.mark_as_read! :for => current_user
     end

@@ -5,6 +5,10 @@ class LecturesController < ApplicationController
   # GET /lectures
   # GET /lectures.json
   def index
+    if request.referrer.split('/').last == "preview"
+      @deleted_from_preview = true
+    end
+    
     @lectures = Lecture.all
 
     respond_to do |format|
@@ -24,7 +28,6 @@ class LecturesController < ApplicationController
     @comment = Comment.new
 
     @lecture.mark_as_read! :for => current_user
-    
     @lecture.comments.each do |comment|
       comment.mark_as_read! :for => current_user
     end

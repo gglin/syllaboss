@@ -5,14 +5,9 @@ class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
   def index
-    # if params[:search].present?
-    #   @search = Todo.search do
-    #     fulltext params[:search]
-    #   end
-    #   @todos = @search.results
-    # else
-    #   @todos = Todo.all
-    # end
+    if request.referrer.split('/').last == "preview"
+      @deleted_from_preview = true
+    end
 
     @todos = Todo.all
     
@@ -33,7 +28,6 @@ class TodosController < ApplicationController
     @comment = Comment.new
 
     @todo.mark_as_read! :for => current_user
-
     @todo.comments.each do |comment|
       comment.mark_as_read! :for => current_user
     end

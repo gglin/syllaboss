@@ -5,14 +5,9 @@ class PotdsController < ApplicationController
   # GET /potds
   # GET /potds.json
   def index
-    # if params[:search].present?
-    #   @search = Potd.search do
-    #     fulltext params[:search]
-    #   end
-    #   @potds = @search.results
-    # else
-    #   @potds = Potd.all
-    # end
+    if request.referrer.split('/').last == "preview"
+      @deleted_from_preview = true
+    end
 
     @potds = Potd.all
 
@@ -33,7 +28,6 @@ class PotdsController < ApplicationController
     @comment = Comment.new
 
     @potd.mark_as_read! :for => current_user
-
     @potd.comments.each do |comment|
       comment.mark_as_read! :for => current_user
     end

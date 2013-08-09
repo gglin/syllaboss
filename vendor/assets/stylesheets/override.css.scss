@@ -876,6 +876,10 @@ body {
   width: 100%;
   min-height: 70vh !important;
 }
+
+.mainbar {
+  min-height: 100vh;
+}
  
 @media (max-width: 1136px) {
   #resource_preview {

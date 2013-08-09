@@ -5,10 +5,12 @@ AUGUST 5th HOMIE
 
 - Email invites for both students and admins - whitelist (append query string to log in)
 
-- nested form or query string for uploading attachments
 - PUSH TO DIGITAL OCEAN!!!
 
-- ANNOUNCEMENTs notification box working on page (wow features)
+- ANNOUNCEMENTs
+  - notification box working on page (wow features)
+  
+- prettify uploading attachments
 
 - reading model -- aggregate reading/resources
 

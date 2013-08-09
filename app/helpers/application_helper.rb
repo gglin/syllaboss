@@ -12,16 +12,6 @@ module ApplicationHelper
     end
   end
 
-  def re_truncate(text, options={}, max_lines=8, &block)
-    if !text.nil?
-      new_text = text.split("\n")[0..max_lines].join("\n")
-      new_text += "..." if new_text != text
-      truncate(new_text, options, &block)
-    else
-      " "
-    end
-  end
-
   def material_type_list
     [
       {name: "school_day",  icon: "calendar"}, 
@@ -44,6 +34,16 @@ module ApplicationHelper
     when "Link"      then "label-info"     
     when "Lab"       then "label-success"  
     else                  ""               
+    end
+  end
+
+  def re_truncate(text, options={}, max_lines=8, &block)
+    if !text.nil?
+      new_text = text.split("\n")[0..max_lines].join("\n")
+      new_text += "..." if new_text != text
+      truncate(new_text, options, &block)
+    else
+      " "
     end
   end
 
@@ -72,6 +72,15 @@ module ApplicationHelper
         end
       end
     end
+  end
+
+  def link_to_add_fields(name, f, association, add_more_classes = "")
+    new_object = f.object.send(association).klass.new
+    id = new_object.object_id
+    fields = f.fields_for(association, new_object, child_index: id) do |builder|
+      render("layouts/" + association.to_s.singularize + "_fields", f: builder)
+    end
+    link_to(name, '#', class: "add_fields #{add_more_classes}", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
 end

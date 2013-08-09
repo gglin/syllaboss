@@ -1,0 +1,15 @@
+<fieldset>
+  <div class="control-group">
+    <%= f.label :attachment, class: "control-label" %>
+    <div class="controls">
+      <%= f.label :filename, "Attach a File" %>
+      <%= f.file_field :filename %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.hidden_field :_destroy %>
+      <a href="#" class="remove_fields">Remove Attachment</a>
+    </div>
+  </div>
+</fieldset>

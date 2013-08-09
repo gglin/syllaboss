@@ -44,19 +44,19 @@ function mute(){
 // Show / Hide Login / Signup Forms
 
 $('.signup-button').click(function(e){
-    e.preventDefault();
-    var $showform = $('.signup-form');
-    var $hideform = $('.login-form');
-           
-    $showform.toggle(0);
-    $hideform.toggle(0);
+  e.preventDefault();
+  var $showform = $('.signup-form');
+  var $hideform = $('.login-form');
+         
+  $showform.toggle(0);
+  $hideform.toggle(0);
 
-    if($showform.is(':visible')) 
-    {
-      $(this).text("Log In")
-    }
-    else 
-    {
-      $(this).text("Sign Up")
-    } 
-  }); 
+  if($showform.is(':visible')) 
+  {
+    $(this).text("Log In")
+  }
+  else 
+  {
+    $(this).text("Sign Up")
+  } 
+}); 

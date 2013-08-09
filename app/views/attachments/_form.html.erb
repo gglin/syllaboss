@@ -1,4 +1,6 @@
-<%= form_for(@attachment) do |f| %>
+<%= render "layouts/messages" %>
+
+<%= form_for @attachment, :html => {class: ""} do |f| %>
   <% if @attachment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@attachment.errors.count, "error") %> prohibited this attachment from being saved:</h2>
@@ -11,17 +13,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title, "Title #{mark_required(@attachment, :title)}" %><br />
-    <%= f.text_field :title %>
+  <div class="control-group">
+    <%= f.label :title, "Title #{mark_required(@attachment, :title)}" %>
+    <div class="controls">
+      <%= f.text_field :title %>
+    </div>
   </div>
   
-  <div class="field">
-    <%= f.label :filename, "Filename #{mark_required(@attachment, :filename)}" %><br />
-    <%= f.file_field :filename %>
+  <div class="control-group">
+    <%= f.label :filename, "Filename #{mark_required(@attachment, :filename)}" %>
+    <div class="controls">
+      <%= f.file_field :filename %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions inline">
+    <%= f.submit "Submit", class: "btn btn-info" %>
   </div>
 <% end %>

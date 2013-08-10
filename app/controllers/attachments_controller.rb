@@ -44,7 +44,6 @@ class AttachmentsController < ApplicationController
   # POST /attachments.json
   def create
     @attachment = Attachment.new(params[:attachment])
-    @attachment.title = @attachment.filename_short if @attachment.title.nil? || @attachment.title == ""
 
     respond_to do |format|
       if @attachment.save
@@ -61,7 +60,6 @@ class AttachmentsController < ApplicationController
   # PUT /attachments/1.json
   def update
     @attachment = Attachment.find(params[:id])
-    @attachment.title = @attachment.filename_short if @attachment.title.nil? || @attachment.title == ""
 
     respond_to do |format|
       if @attachment.update_attributes(params[:attachment])

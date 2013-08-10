@@ -31,9 +31,10 @@
     <div class="row-fluid">
       <div class="span12 table-maxspan minspan">
 
-        <table class="table tablesorter time-in-column1" id="myTable">
+        <table class="table table-hover" id="linksTable">
           <thead>
           <tr>
+            <th></th>
             <th data-sort="string">Full Name</th>
             <th data-sort="string">Email</th>
             <th>Social</th>
@@ -43,17 +44,28 @@
           </thead>
 
           <tbody>
-            <% @users.each do |user| %>  
-            <tr>
+            <% @users.each do |user| %>
+            <% color = if user.admin? %>
+              <% "warning" %>
+            <% else %>
+              <% "" %>
+            <% end %>
+            <tr class="hoverable <%= color %>">
               <td>
-                <h5><%= link_to user.full_name, user %></h5>
                 <%= image_tag user.image_url(:thumb).to_s, :class => "icon-user-pic" if user.image_url %>
-                <% if can? :edit, user %>
-                  <%= link_to 'Edit', edit_user_path(user) %>
-                <% end %>
-                <% if can? :delete, user %>
-                  <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %>
-                <% end %>
+              </td>
+              <td>
+                <div style="min-height: 50px;">
+                  <h5><%= link_to "#{user.full_name}", user %></h5>
+                  <span class="admin">
+                  <% if can? :edit, user %>
+                    <%=  link_to 'Edit', edit_user_path(user) %>
+                  <% end %>
+                  <% if can? :delete, user %>
+                    <%=  link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <% end %>
+                  </span>
+                </div>
               </td>
               <td><%= link_to user.email, user.email %></td>
               <td>
@@ -104,6 +116,10 @@
                   <span class="badge badge-instructor">Instructor</span>
                 <% else %>
                   <span class="badge">Student</span>
+                <% end %>
+                
+                <% if user==current_user %>
+                  <span class="badge badge-success">YOU</span>
                 <% end %>
               </td>
             </tr>

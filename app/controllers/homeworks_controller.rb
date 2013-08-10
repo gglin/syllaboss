@@ -98,8 +98,14 @@ class HomeworksController < ApplicationController
           format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?homework_added=#{@homework.id}#homeworks", notice: 'Homework was successfully created.' }
         end
       else
-        format.html { render action: "new" }
-        format.json { render json: @homework.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @homework.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @homework.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -119,8 +125,14 @@ class HomeworksController < ApplicationController
           format.json { head :no_content }
         end
       else
-        format.html { render action: "edit" }
-        format.json { render json: @homework.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @homework.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @homework.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

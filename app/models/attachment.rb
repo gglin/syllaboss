@@ -1,6 +1,7 @@
 class Attachment < ActiveRecord::Base
-  around_save :set_title_if_blank
+  before_save :set_title_before_save
 
+  # attr_accessor :title
   attr_accessible :attachable_id, :attachable_type, :filename, :title
 
   belongs_to :lecture
@@ -26,9 +27,9 @@ class Attachment < ActiveRecord::Base
     filename.to_s.split("/").last
   end
 
-  def set_title_if_blank
-    if title.empty? || title.nil?
-      title = filename_short
+  def set_title_before_save
+    if self.title.nil? || self.title.empty? || self.title =~ /\A\s+\z/ || filename_changed?
+      self.title = filename_short # 'title = ' doesnt work, need 'self.title = '
     end
   end
 end

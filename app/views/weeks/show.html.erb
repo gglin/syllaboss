@@ -47,7 +47,7 @@
 
     <div class="row-fluid fit-content">
 
-      <table id="linksTable" class="day-index">
+      <table class="table table-hover" id="linksTable" class="day-index">
         <thead>
           <tr>
             <th>Weekday</th>
@@ -65,7 +65,7 @@
         <tbody>
           <% @week.sort_by(&:ordinal).each do |school_day| %>
             <% if (school_day.calendar_date <= Date.today) || (can? :edit, school_day) %>
-            <% row_today = school_day.calendar_date==Date.today ? "row-today" : "" %>
+            <% row_today = school_day.calendar_date==Date.today ? "warning" : "" %>
             <tr class="<%= row_today %>">
               <td><h3><%= school_day.calendar_date.strftime("%a") %></h3></td>
 
@@ -86,42 +86,42 @@
               <td>
                 <ul class="no-bullet">
                 <% school_day.lectures.each do |lecture| %>
-                  <li><%= link_to lecture.print_name, edit_lecture_path(lecture), :target => "_blank"%></li>
+                  <li><%= link_to lecture.print_name, lecture %></li>
                 <% end %>
                 </ul>
               </td>
               <td>
                 <ul class="no-bullet">
                 <% school_day.todos.each do |todo| %>
-                  <li><%= link_to todo.print_name, edit_todo_path(todo), :target => "_blank"%></li>
+                  <li><%= link_to todo.print_name, todo %></li>
                 <% end %>
                 </ul>
               </td>
               <td>
                 <ul class="no-bullet">
                 <% if school_day.potd %>
-                  <li><%= link_to school_day.potd.name, edit_potd_path(school_day.potd), :target => "_blank" %></li>
+                  <li><%= link_to school_day.potd.name, school_day.potd %></li>
                 <% end %>
                 </ul>
               </td>
               <td>
                 <ul class="no-bullet">
                 <% school_day.labs.each do |lab| %>
-                  <li><%= link_to lab.print_name, lab.http_link(lab.lab_url), :target => "_blank"%></li>
+                  <li><%= link_to lab.print_name, lab %></li>
                 <% end %>
                 </ul>
               </td>
               <td>
                 <ul class="no-bullet">
                 <% school_day.links.each do |link| %>
-                  <li><%= link_to link.print_name, link.http_link(link.link_url), :target => "_blank"%></li>
+                  <li><%= link_to link.print_name, link %></li>
                 <% end %>
                 </ul>
               </td>
               <td>
                 <ul class="no-bullet">
                 <% school_day.homeworks.each do |homework| %>
-                  <li><%= link_to homework.print_name, edit_homework_path(homework), :target => "_blank"%></li>
+                  <li><%= link_to homework.print_name, homework %></li>
                 <% end %>
                 </ul>
               </td>

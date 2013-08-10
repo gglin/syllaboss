@@ -20,16 +20,33 @@
 
           <div class="widget-content">
             <div class="padd lowtop">
+              <h4><%= @attachment.title %></h4>
+              <br>
               <b>File:</b>
                 <%= link_to @attachment.filename_short, @attachment.filename.to_s %>
-                <br>
-              <b>Title:</b>
-                <%= link_to @attachment.title, @attachment.filename.to_s %>
+              <br><br>
+              <b>Belongs to:</b>
+                <p>
+                <% if @attachment.attachable_type.nil? %>
+                  No materials selected!
+                <% else %>
+                  <% material = Lecture.find(@attachment.attachable_id) if @attachment.attachable_type == "Lecture" %>
+                  <% material_type = @attachment.attachable_type.underscore %>
+                  <%= material_capitalize(material_type) %>:
+                  <%= link_to "#{material.print_name}", self.send("#{material_type}_path", material) %>
+                <% end %>
+                </p>
             </div>
           </div>
         </div>
 
-        <%= link_to 'Back', attachments_path %>
+        <% if can? :edit, @active_school_day %>
+        <span class="admin">
+          <%= link_to 'Edit',   edit_attachment_path(@attachment) %> |
+          <%= link_to 'Delete', @attachment, method: :delete, data: { confirm: 'Are you sure?' }  %> |
+        </span>
+        <% end %>
+        <%= link_to "Show All Attachments", attachments_path %>
       </div>
 
     </div>

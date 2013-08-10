@@ -100,8 +100,14 @@ class PotdsController < ApplicationController
           format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?potd_added=#{@potd.id}#potds", notice: 'POTD was successfully created.' }
         end
       else
-        format.html { render action: "new" }
-        format.json { render json: @potd.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @potd.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @potd.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -116,8 +122,14 @@ class PotdsController < ApplicationController
         format.html { redirect_to @potd, notice: 'POTD was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @potd.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @potd.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @potd.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

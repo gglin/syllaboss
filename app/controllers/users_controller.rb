@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   authorize_resource
 
   def index
-    @users = User.all
+    @users = User.order("role DESC, full_name")
     # authorize! :index, @users
     respond_to do |format|
       format.html # index.html.erb

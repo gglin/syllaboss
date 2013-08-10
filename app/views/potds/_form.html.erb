@@ -47,7 +47,7 @@
         <% selected_ids = [] %>
       <% end %>
       <% selected_ids << params[:day] %>
-      <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => selected_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple"}) %>
+      <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => selected_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple", size: 10}) %>
     </div>
   </div>
 

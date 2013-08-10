@@ -60,10 +60,10 @@ module ApplicationHelper
     material_types = material_type.pluralize
 
     if @from_preview
-      material.persisted?  ?  self.send("#{material_type}_preview_path", material) : "/"
+      material.persisted?  ?  self.send("#{material_type}_preview_path", material) : :back
     else
       if params[:last_page].nil? || params[:last_page].empty?
-        material.persisted?  ?  self.send("#{material_type}_path", material) : "/"
+        material.persisted?  ?  self.send("#{material_type}_path", material) : :back
       else
         if params[:day].empty?
           new_school_day_path + "##{material_types}"

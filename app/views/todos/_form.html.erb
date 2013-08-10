@@ -36,7 +36,7 @@
     <div class="controls">
       <% selected_ids = @todo.school_day_ids %>
       <% selected_ids << params[:day] %>
-      <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => selected_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple"}) %>
+      <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => selected_ids, :prompt => "Please Select Day(s)"}, {:class => "span4", multiple: "multiple", size: 10}) %>
     </div>
   </div>
 

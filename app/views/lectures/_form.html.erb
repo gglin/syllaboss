@@ -36,13 +36,6 @@
       <%= f.text_area :content %>
     </div>
   </div>
-
-  <!-- <div class="control-group">
-    <%# f.label :attachment, "Attachment(s)" %> <%# link_to "Create New", new_attachment_path, target: "_blank", class: "btn btn-primary link-btn new-material control-label" %>
-    <div class="controls">
-      <%# f.collection_select(:attachment_ids, Attachment.order("title"), :id, :title, {:selected => @lecture.attachment_ids, :prompt => "Please Select Attachment(s)"}, {:class => "span4", multiple: "multiple"}) %>
-    </div>
-  </div> -->
   
   <!-- Sub-widget -->
   <div class="widget form-sub-widget hoverable nested-add-remove">
@@ -56,11 +49,21 @@
 
     <div class="widget-content">
       <div class="padd">
+
+        <!-- <div class="control-group">
+          <%# f.label :attachment, "Select Existing Attachment(s):", class: "control-label" %> 
+          <div class="controls">
+            <%# f.collection_select(:attachment_ids, Attachment.order("title"), :id, :title, {:selected => @lecture.attachment_ids, :prompt => "Please Select Attachment(s)"}, {:class => "span4 inline", multiple: "multiple", size: 8}) %>
+          </div>
+            <%# link_to "Create New", new_attachment_path, target: "_blank", class: "btn btn-primary link-btn new-material control-label" %>
+        </div> -->
+
         <%= f.fields_for :attachments do |builder| %>
           <%= render 'layouts/attachment_fields', f: builder %>
         <% end %>
 
         <%= link_to_add_fields "Add Attachment", f, :attachments, "btn btn-primary link-btn" %>
+
       </div>
     </div>
   </div>
@@ -71,7 +74,7 @@
     <div class="controls">
       <% selected_ids = @lecture.school_day_ids %>
       <% selected_ids << params[:day] %>
-      <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => selected_ids, :prompt => "Please Select Day(s)"}, {:class => "span4 multi-select", multiple: "multiple"}) %>
+      <%= f.collection_select(:school_day_ids, SchoolDay.order("ordinal DESC"), :id, :ordinal, {:selected => selected_ids, :prompt => "Please Select Day(s)"}, {:class => "span4 multi-select", multiple: "multiple", size: 10}) %>
     </div>
   </div>
   

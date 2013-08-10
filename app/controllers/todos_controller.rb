@@ -98,8 +98,14 @@ class TodosController < ApplicationController
           format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?todo_added=#{@todo.id}#todos", notice: 'To-Do was successfully created.' }
         end
       else
-        format.html { render action: "new" }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @todo.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @todo.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -119,8 +125,14 @@ class TodosController < ApplicationController
           format.json { head :no_content }
         end
       else
-        format.html { render action: "edit" }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @todo.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @todo.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

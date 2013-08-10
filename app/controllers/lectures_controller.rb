@@ -103,8 +103,14 @@ class LecturesController < ApplicationController
           format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?lecture_added=#{@lecture.id}#lectures", notice: 'Lecture was successfully created.' }
         end
       else
-        format.html { render action: "new" }
-        format.json { render json: @lecture.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @lecture.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @lecture.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -124,8 +130,14 @@ class LecturesController < ApplicationController
           format.json { head :no_content }
         end
       else
-        format.html { render action: "edit" }
-        format.json { render json: @lecture.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @lecture.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @lecture.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

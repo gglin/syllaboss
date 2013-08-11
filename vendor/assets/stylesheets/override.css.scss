@@ -435,7 +435,7 @@ textarea {
 
 .search-bar input {
   position: relative;
-  width: 150px;
+  width: 120px;
 }
 
 .navbar .search-bar .btn {
@@ -689,6 +689,8 @@ body {
   color: #52b9e9 !important;
   padding-bottom: 0px;
   padding-top: 0px;
+  // background: url("/assets/syllaboss-inverse-nobackground.png") no-repeat fixed center;
+  width: 160px;
 
   &:hover {
     color: #fff !important;
@@ -701,20 +703,48 @@ body {
   }
 }
 
+.brand .brand-hover {
+  position:absolute;
+  top:3px;
+  left:20px;
+  opacity:0;
+  -moz-opacity:0;
+  -webkit-opacity:0;
+  -moz-transition:0.2s;
+  -webkit-transition:0.2s;
+  -o-transition:0.2s;
+  width: 160px;
+}
+
+.brand:hover .brand-hover {
+  opacity:1;
+  -moz-opacity:1;
+  -webkit-opacity:1;
+}
+
+.brand:hover .brand-nohover {
+  opacity:0;
+}
+
 .navbar .nav > li > a {
   font-size: 15px !important;
   color: #111 !important;
   // font-weight: bold;
 }
 
+.search-btn {
+  width: 40px !important;
+  border: 1px solid #ccc !important;
+}
+
 // Dropdown menu disappears when not hovered over
 
-.dropdown:hover > .dropdown-menu {
+.dropdown-hoverable:hover .dropdown-menu {
   // opacity: 1;
   z-index: 10000;
   // -webkit-transform: scale(1, 1);
-  visibility: visible;
-  display: block\9;
+  visibility: visible !important;
+  display: block !important;
 }
 
 .dropdown-menu {
@@ -893,3 +923,8 @@ body {
   }
 }
 
+@media (max-width: 1070px) {
+  .hide-title {
+    display: none;
+  }
+}

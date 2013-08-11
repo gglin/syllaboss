@@ -16,10 +16,6 @@ AUGUST 5th HOMIE
 
 - Change index view for weeks to be calendar view
 
-** Nav Bar => Katie, Chris
--make a new: + in front of icons
--tooltip
-
 ** search
 - make pretty + preview
 

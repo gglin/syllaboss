@@ -67,8 +67,22 @@ ul, ol, ul li, ol li, li {
   color: #666;
 }
 
+.navbar .comment-content a {
+  font-size: 12px !important;
+  color: rgb(17, 113, 163) !important;
+
+  &:hover {
+    color: #2ecc71 !important;
+  }
+}
+
 .navbar .badge {
   margin-left: 5px;
+}
+
+.navbar .badge-instructor {
+  font-size: 10px !important;
+  padding: 0px 3px;
 }
 
 .navbar .nav > .dropdown-comments > a {
@@ -154,6 +168,10 @@ h1.less-padding, h2.less-padding, h3.less-padding, h4.less-padding, h5.less-padd
 
 .select-materials {
   width: 80% !important;
+}
+
+.spaced-paragraphs p {
+  margin-bottom: 15px !important;
 }
 
 /*********/
@@ -748,6 +766,7 @@ body {
 }
 
 .dropdown-menu {
+  z-index: 10000;
   // border-radius: 4px;
   // list-style-type: none;
   // margin-left: 0;
@@ -926,5 +945,39 @@ body {
 @media (max-width: 1070px) {
   .hide-title {
     display: none;
+  }
+}
+
+// Make all dropdown menus pull left on smaller screens
+@media (max-width: 800px) {
+  // copy-pasted from bootstrap.css and changed right to left & vice verse
+  
+  .navbar .pull-right>li>.dropdown-menu,
+  .navbar .nav>li>.dropdown-menu.pull-right {
+    right:auto;
+    left:0;
+  }
+
+  .navbar .pull-right>li>.dropdown-menu:before,
+  .navbar .nav>li>.dropdown-menu.pull-right:before {
+    right:auto;
+    left:12px;
+  }
+
+  .navbar .pull-right>li>.dropdown-menu:after,
+  .navbar .nav>li>.dropdown-menu.pull-right:after {
+    right:auto;
+    left:13px;
+  }
+
+  .navbar .pull-right>li>.dropdown-menu .dropdown-menu,
+  .navbar .nav>li>.dropdown-menu.pull-right .dropdown-menu {
+    right:auto;
+    left:100%;
+    margin-right:0;
+    margin-left:-1px;
+    -webkit-border-radius:6px 0 6px 6px;
+    -moz-border-radius:6px 0 6px 6px;
+    border-radius:6px 0 6px 6px;
   }
 }

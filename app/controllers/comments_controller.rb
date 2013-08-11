@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
         redirect_to self.send("#{@commentable_type}_path", @commentable) + "#comment-#{@comment.id}", notice: "Comment posted."
       end
     else
-      render :index
+      redirect_to :back, alert: "Comment can't be empty!"
     end
   end
 
@@ -38,7 +38,7 @@ class CommentsController < ApplicationController
         redirect_to self.send("#{@commentable_type}_path", @commentable) + "#comment-#{@comment.id}", notice: "Comment edited."
       end
     else
-      render :index
+      redirect_to :back, alert: "Comment can't be empty!"
     end
   end
 

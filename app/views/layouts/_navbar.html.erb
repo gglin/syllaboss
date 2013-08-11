@@ -15,7 +15,7 @@
 
       <ul class="nav all-stats">
         
-        <!-- Students can quick browse resource indexes -->
+        <!-- Students can quick browse all resources -->
         <% if current_user.student? %>
           <li class="dropdown dropdown-hoverable">
             <a id="drop1" href="<%= school_day_path(@active_school_day) %>" role="button" class="dropdown-toggle" data-toggle="dropdown">
@@ -78,7 +78,7 @@
 
       <ul class="nav all-stats pull-right">
 
-        <!-- Discussion Stream with Unread Comments count -->
+        <!-- Discussion Stream with unread comments count -->
         <li class="dropdown dropdown-big">
           <a class="dropdown-toggle" href="#" data-toggle="dropdown">
             <i class="icon-comments"></i> 
@@ -86,7 +86,7 @@
             <span class="badge badge-info"><%= @unread_comments.size %></span> 
           </a>
 
-          <ul class="dropdown-menu dropdown-comments">
+          <ul class="dropdown-menu dropdown-comments" style="width:300px;">
             <li>
               <h5>
                 <a href="<%= comments_path %>">
@@ -105,6 +105,11 @@
                     <%# comment.user == current_user ? "Me" : comment.user.full_name %>
                     <% name = comment.user == current_user ? "Me" : comment.user.full_name %>
                     <%= link_to name, user_path(comment.user) %>
+
+                    <% if comment.user.admin? %>
+                      &nbsp; <span class="badge badge-instructor">Instr</span>
+                    <% end %>
+
                     <span class="inline pull-right">
                       <%= time_ago_in_words(comment.created_at) %> ago 
                     </span>
@@ -112,11 +117,11 @@
                   
                   <div class="row-fluid same-height-col-wrap">
                     <a href='<%= comments_path + "#comment-#{comment.id}" %>'>
-                      <div class="span9 no-height same-height-col">
+                      <div class="span8 no-height same-height-col comment-content">
                         <%= re_truncate(comment.content, length:50, separator: ' ') %>
                       </div>
                     </a>
-                    <div class="span3 no-height same-height-col">
+                    <div class="span3 no-height same-height-col pull-right">
                       <% name  = comment_parent_type=="school_day" ? comment_parent.print_name : "" %>
                       <span class="label <%= label_type(comment.commentable_type) %> pull-right inline valign" style="margin-right: 2px;">
                         <%= link_to "#{material_capitalize(comment_parent_type)} #{name}", self.send("#{comment_parent_type}_path", comment_parent)+"#comment-#{comment.id}" %>

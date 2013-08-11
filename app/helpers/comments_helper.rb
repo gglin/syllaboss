@@ -21,4 +21,15 @@ module CommentsHelper
     end
   end
 
+  def default_value_for(comment)
+    replied = comment.user==current_user ? "" : "@#{comment.user.full_name}"
+    all_matched_names = comment.content.scan(all_user_name_patterns).flatten
+    all_matched_names.unshift(replied).uniq!
+    
+    default_value = all_matched_names.delete_if { |name| name =~ /@#{current_user.full_name}/ }.join(" ")
+    default_value.strip! if default_value
+    default_value.gsub!(/\s+/, " ") if default_value
+    default_value += "  " unless default_value.empty? || default_value.nil?
+  end
+
 end

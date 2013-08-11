@@ -59,7 +59,7 @@
 
         <!-- Actual comment content -->
         <div class="padd-top">
-          <%= auto_link(simple_format(comment.content), :all, :target => "_blank") %>
+          <%= auto_link(better_format(comment.content), :all, :target => "_blank") %>
         </div>
         <!-- End comment content -->
 
@@ -76,7 +76,7 @@
 
               <div class="widget-content" style="display: none;">
                 
-                <% default_value = comment.user==current_user ? "" : "@#{comment.user.full_name}  " %>
+                <% default_value = default_value_for(comment) %>
                 <%= render partial: "comments/reply_form", locals: {parent: comment_parent, new_comment: @comment, default_value: default_value} %>
 
               </div>

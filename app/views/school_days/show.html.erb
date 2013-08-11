@@ -1,4 +1,4 @@
-<% require 'open-uri' %>
+<%# require 'open-uri' %>
 <!-- <title>Today</title> -->
 
 <div class="page-head">
@@ -91,12 +91,23 @@
           <div class="widget-content">
             <table class="table table-bordered time-in-column1">
               <tbody>
-                <%  @active_school_day.schedulize.each do |row| %>
-                <tr>
-                  
-                  <td><%= row.values[0] %></td>
-                  <td><%= auto_link(simple_format(row.values[1]), :all, :target => "_blank") %></td>
-                </tr>
+                <%  @active_school_day.schedulize.each_with_index do |row, index| %>
+                  <% if index == 0 && row.values[0].empty? %>
+                    <tr>
+                      <td colspan="2" style="padding:10px 20px;">
+                        <%= auto_link(simple_format(row.values[1]), :all, :target => "_blank") %>
+                      </td>
+                    <tr>
+                  <% else %>
+                    <tr>
+                      <td>
+                        <%= row.values[0] %>
+                      </td>
+                      <td>
+                        <%= auto_link(simple_format(row.values[1]), :all, :target => "_blank") %>
+                      </td>
+                    </tr>
+                  <% end %>
                 <% end %>
               </tbody>
             </table>
@@ -306,7 +317,11 @@
 
       <% if @active_school_day.potd %>
       <div class="span3 aside-minspan">
+
+        <!-- Announcements Widget -->
+        <!-- End Announcements Widget -->
         
+        <% if @active_school_day.potd %>
         <!-- POTD Widget -->
         <div class="widget wlightblue hoverable">
           <div class="widget-head">
@@ -323,17 +338,15 @@
 
               <div>
                 <h4 class="inline">
-
                   <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.presentation_url) %>" target="_blank"> <%= @active_school_day.potd.name %></a>
                 </h4>
-                
               </div>
+
               <%= image_tag("#{@active_school_day.potd.wikipedia}") %>
               <br>
               
               <p>
-                  <%=  @active_school_day.potd.bio%>
-               
+                <%=  @active_school_day.potd.bio %>
               </p>
 
               <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.wikipedia) %>" target="_blank">Wikipedia</a> 
@@ -346,6 +359,7 @@
           </div>
         </div>
         <!-- End POTD Widget -->
+        <% end %>
       
       </div>
       <% end %>

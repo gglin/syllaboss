@@ -21,7 +21,6 @@ AUGUST 5th HOMIE
 
 
 ** Discussion => George
-- @ashley williams --- make LINK
 - hashtag functionality
 
 
@@ -45,9 +44,6 @@ AUGUST 5th HOMIE
 
 ---------------------------------------------------------------------
 GENERAL BIZ
-
-- make first time show up as separate column if no timestamp
-- remove time column if there is no time in schedule
 
 - sidebar not fixed when expanded (jQuery)
 - javascript for coloring calendar

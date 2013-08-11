@@ -9,14 +9,10 @@ AUGUST 5th HOMIE
 
 - ANNOUNCEMENTs
   - notification box working on page (wow features)
-  
-- prettify uploading attachments
 
 - reading model -- aggregate reading/resources
 
 - edit column names (i.e. gist_url) lecture should have space for content
-
-- USER model: expand user table to include social media
 
 - Change index view for weeks to be calendar view
 
@@ -29,7 +25,6 @@ AUGUST 5th HOMIE
 
 
 ** Discussion => George
-- functionality eventually click name goes to profile or comment thread
 - @ashley williams --- make LINK
 - hashtag functionality
 
@@ -62,6 +57,7 @@ GENERAL BIZ
 - javascript for coloring calendar
 
 - look into totop bug
+- Edit / Cancel JS bug
 - request.referrer is no longer preview after failure to save
 
 assignment.io integration, assignment gets created on our end. talk towards the end of the week

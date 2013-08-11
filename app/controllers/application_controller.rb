@@ -1,9 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  include SchoolDaysHelper
   include ApplicationHelper
+  
+  include SchoolDaysHelper
   include NotificationsHelper
+  include CommentsHelper
 
   before_filter :authenticate 
   before_filter :load_current_day

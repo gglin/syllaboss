@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
 
+  load_and_authorize_resource
   skip_before_filter :authenticate, :only => [:new, :create]
   skip_before_filter :load_unread_resources, :only => [:create]
   skip_before_filter :load_all_unread,       :only => [:create]
   skip_before_filter :load_unread_comments,  :only => [:create]
 
-  authorize_resource
 
   def index
     @users = User.order("role DESC, full_name")
@@ -46,10 +46,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    # authorize! :edit, @user
   end
 
   def update
     @user = User.find(params[:id])
+    # authorize! :update, @user
 
     respond_to do |format|
       if @user.update_attributes(params[:user])

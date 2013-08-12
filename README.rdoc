@@ -1,25 +1,24 @@
 == Welcome to Syllaboss
 Damn it Feels Good to Be a Gangsta
 ---------------------------------------------------------------------
-AUGUST 5th HOMIE
+AUGUST 12th wut
+- PUSH TO DIGITAL OCEAN!!!
+- landing page
 
+
+CLEAN
+- edit column names (i.e. gist_url) lecture should have space for content
+- search: make pretty + preview
+- seeding production environment / database
+- notification box working on page (wow features) (ANNOUNCEMENTS)
 - Email invites for both students and admins - whitelist (append query string to log in)
 
-- PUSH TO DIGITAL OCEAN!!!
-
-- ANNOUNCEMENTs
-  - notification box working on page (wow features)
+- infinite scroll for discussion stream
 
 - reading model -- aggregate reading/resources
 
-- edit column names (i.e. gist_url) lecture should have space for content
 
 - Change index view for weeks to be calendar view
-
-** search
-- make pretty + preview
-
-
 ** Discussion => George
 - hashtag functionality
 
@@ -30,14 +29,9 @@ AUGUST 5th HOMIE
 - ajax request to choose ordinal and week
 
 - filtering the discussion stream (drop down from discussion tab in nav bar)
-- infinite scroll for discussion stream
 
 - friendlyid for urls
 
-
-
-
-- landing page
 - homework only shows up after 6pm that day
 - SEMESTER model
 
@@ -46,11 +40,8 @@ AUGUST 5th HOMIE
 GENERAL BIZ
 
 - sidebar not fixed when expanded (jQuery)
-- javascript for coloring calendar
+- javascript for coloring calendar -- only highlighting days that are in the system
 
-- look into totop bug
+- look into totop bug (js rednering engine)
 - Edit / Cancel JS bug
 - request.referrer is no longer preview after failure to save
-
-assignment.io integration, assignment gets created on our end. talk towards the end of the week
-

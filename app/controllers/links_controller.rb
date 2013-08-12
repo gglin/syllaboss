@@ -89,13 +89,13 @@ class LinksController < ApplicationController
     @link.title=(params[:link] [:title])
     respond_to do |format|
       if @link.save
-        if params[:last_page].nil?
+        if params[:day].nil?
           format.html { redirect_to @link, notice: 'Link was successfully created.' }
           format.json { render json: @link, status: :created, location: @link }
-        elsif params[:last_page].empty?
+        elsif params[:day].empty?
           format.html { redirect_to new_school_day_path + "?link_added=#{@link.id}#links", notice: 'Link was successfully created.' }
         else
-          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?link_added=#{@link.id}#links", notice: 'Link was successfully created.' }
+          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:day])) + "?link_added=#{@link.id}#links", notice: 'Link was successfully created.' }
         end
       else
         if request.referrer.split('/').last == "preview"
@@ -103,7 +103,7 @@ class LinksController < ApplicationController
           format.html { render "form_preview", :layout => "preview" }
           format.json { render json: @link.errors, status: :unprocessable_entity }
         else
-          format.html { render action: "new" }
+          format.html { render action: "new", :locals => {:day => params[:day]} }
           format.json { render json: @link.errors, status: :unprocessable_entity }
         end
       end

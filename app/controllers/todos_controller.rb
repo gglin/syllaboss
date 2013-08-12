@@ -89,13 +89,13 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
-        if params[:last_page].nil?
+        if params[:day].nil?
           format.html { redirect_to @todo, notice: 'To-Do was successfully created.' }
           format.json { render json: @todo, status: :created, location: @todo }
-        elsif params[:last_page].empty?
+        elsif params[:day].empty?
           format.html { redirect_to new_school_day_path + "?todo_added=#{@todo.id}#todos", notice: 'To-Do was successfully created.' }
         else
-          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?todo_added=#{@todo.id}#todos", notice: 'To-Do was successfully created.' }
+          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:day])) + "?todo_added=#{@todo.id}#todos", notice: 'To-Do was successfully created.' }
         end
       else
         if request.referrer.split('/').last == "preview"
@@ -103,7 +103,7 @@ class TodosController < ApplicationController
           format.html { render "form_preview", :layout => "preview" }
           format.json { render json: @todo.errors, status: :unprocessable_entity }
         else
-          format.html { render action: "new" }
+          format.html { render action: "new", :locals => {:day => params[:day]} }
           format.json { render json: @todo.errors, status: :unprocessable_entity }
         end
       end

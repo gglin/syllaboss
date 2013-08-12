@@ -62,7 +62,7 @@ module ApplicationHelper
     if @from_preview
       material.persisted?  ?  self.send("#{material_type}_preview_path", material) : :back
     else
-      if params[:last_page].nil? || params[:last_page].empty?
+      if params[:day].nil? || params[:day].empty?
         material.persisted?  ?  self.send("#{material_type}_path", material) : :back
       else
         if params[:day].empty?

@@ -89,13 +89,13 @@ class HomeworksController < ApplicationController
 
     respond_to do |format|
       if @homework.save
-        if params[:last_page].nil?
+        if params[:day].nil?
           format.html { redirect_to @homework, notice: 'Homework was successfully created.' }
           format.json { render json: @homework, status: :created, location: @homework }
-        elsif params[:last_page].empty?
+        elsif params[:day].empty?
           format.html { redirect_to new_school_day_path + "?homework_added=#{@homework.id}#homeworks", notice: 'Homework was successfully created.' }
         else
-          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?homework_added=#{@homework.id}#homeworks", notice: 'Homework was successfully created.' }
+          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:day])) + "?homework_added=#{@homework.id}#homeworks", notice: 'Homework was successfully created.' }
         end
       else
         if request.referrer.split('/').last == "preview"
@@ -103,7 +103,7 @@ class HomeworksController < ApplicationController
           format.html { render "form_preview", :layout => "preview" }
           format.json { render json: @homework.errors, status: :unprocessable_entity }
         else
-          format.html { render action: "new" }
+          format.html { render action: "new", :locals => {:day => params[:day]} }
           format.json { render json: @homework.errors, status: :unprocessable_entity }
         end
       end

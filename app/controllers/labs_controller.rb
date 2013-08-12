@@ -89,13 +89,13 @@ class LabsController < ApplicationController
 
     respond_to do |format|
       if @lab.save
-        if params[:last_page].nil?
+        if params[:day].nil?
           format.html { redirect_to @lab, notice: 'Lab was successfully created.' }
           format.json { render json: @lab, status: :created, location: @lab }
-        elsif params[:last_page].empty?
+        elsif params[:day].empty?
           format.html { redirect_to new_school_day_path + "?lab_added=#{@lab.id}#labs", notice: 'Lab was successfully created.' }
         else
-          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?lab_added=#{@lab.id}#labs", notice: 'Lab was successfully created.' }
+          format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:day])) + "?lab_added=#{@lab.id}#labs", notice: 'Lab was successfully created.' }
         end
       else
         if request.referrer.split('/').last == "preview"
@@ -103,7 +103,7 @@ class LabsController < ApplicationController
           format.html { render "form_preview", :layout => "preview" }
           format.json { render json: @lab.errors, status: :unprocessable_entity }
         else
-          format.html { render action: "new" }
+          format.html { render action: "new", :locals => {:day => params[:day]} }
           format.json { render json: @lab.errors, status: :unprocessable_entity }
         end
       end

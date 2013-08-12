@@ -757,6 +757,10 @@ body {
 
 // Dropdown menu disappears when not hovered over
 
+.dropdown-hoverable .dropdown-menu {
+  margin-top: 0 !important;
+}
+
 .dropdown-hoverable:hover .dropdown-menu {
   // opacity: 1;
   z-index: 10000;

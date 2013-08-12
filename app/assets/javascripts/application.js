@@ -18,16 +18,6 @@
 //= require jquery.rateit.min
 //= require jquery.prettyPhoto
 
-// jQuery Flot
-//=
-//= require excanvas.min
-//= require jquery.flot
-//= require jquery.flot.resize
-//= require jquery.flot.pie
-//= require jquery.flot.stack
-
-// require jquery.cleditor.min
-
 //= require bootstrap-datetimepicker.min
 //= require jquery.toggle.buttons
 //= require filter
@@ -58,7 +48,6 @@
 //= require jquery.ui.datepicker 
 
 //= require ../../../vendor/assets/javascripts/stupidtable.min
-//= require table_sort
 
 //= require school_day_form
 

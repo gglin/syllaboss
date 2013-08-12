@@ -21,19 +21,15 @@
  *= require prettyPhoto
  *= require rateit
  *= require bootstrap-datetimepicker.min
- *= require jquery.gritter
- *= require jquery.cleditor
  *= require bootstrap-toggle-buttons
  *= require school_day_index
  *= require style
  *= require widgets
  *= require bootstrap-responsive
- *= require ../../../vendor/assets/stylesheets/blue/style
 
  *= require font-awesome
 
 
- *= require school_day_index
  *= require override
 
  */

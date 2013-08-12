@@ -34,7 +34,7 @@ set :deploy_to, "/home/#{ user }/#{ application }"
 set :use_sudo, false
 
 set :shared_children, shared_children + %w{public/uploads}
-set :shared_children, shared_children + %w{app/assets/images/video}
+set :shared_children, shared_children + %w{app/assets/images/videos}
 
 set :scm, :git
 

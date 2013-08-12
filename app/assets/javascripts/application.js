@@ -26,7 +26,6 @@
 //= require jquery.flot.pie
 //= require jquery.flot.stack
 
-// require sparklines
 // require jquery.cleditor.min
 
 //= require bootstrap-datetimepicker.min
@@ -34,10 +33,8 @@
 //= require filter
 //= require custom
 
-//= require charts
 
-//
-//
+
 // require ../../../vendor/assets/javascripts/bootstrap/bootstrap-transition
 // require ../../../vendor/assets/javascripts/bootstrap/bootstrap-alert
 // require ../../../vendor/assets/javascripts/bootstrap/bootstrap-modal

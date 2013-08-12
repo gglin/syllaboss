@@ -29,5 +29,5 @@ solr/
 /solr/data/development/index/segments.gen
 
 # Ignore video files
-/app/assets/images/flatiron.mp4
-/app/assets/images/flatiron.oggtheora.ogv
+/app/assets/images/videos/flatiron.mp4
+/app/assets/images/videos/flatiron.oggtheora.ogv

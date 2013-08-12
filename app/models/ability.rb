@@ -49,7 +49,7 @@ class Ability
         can :read, User
 
         cannot :assign_role, User
-        can [:show, :edit, :update], User do |current_user|
+        can [:show, :edit, :update], User do |user|
           user.id == current_user.id || user.role == "admin"
         end
 

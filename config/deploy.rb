@@ -33,6 +33,8 @@ set :user, 'chrisgonzgonz'
 set :deploy_to, "/home/#{ user }/#{ application }"
 set :use_sudo, false
 
+set :shared_children, shared_children + %w{public/uploads}
+
 set :scm, :git
 
 default_run_options[:pty] = true

@@ -1,7 +1,7 @@
 $(function() {  
   $('.previewable option').click(function(){
     // show preview panel
-    $('.preview-panel').show()
+    $('.preview-panel').show();
 
     // show iframe
   	var id = $(this).val();
@@ -30,7 +30,7 @@ $(function() {
     var panel_width = total_width - margin_left - spacer;
 
     // console.log(total_width);
-    $('.preview-panel').css("left", margin_left)
-    $('.preview-panel').css("width", panel_width)
+    $('.preview-panel').css("left", margin_left);
+    $('.preview-panel').css("width", panel_width);
   }
 });

@@ -7,20 +7,7 @@ class CommentsController < ApplicationController
   def index
     @new_comment = Comment.new
 
-    if current_user.admin?
-      @comments = Comment.order("created_at DESC")
-    else
-      @comments = Comment.order("created_at DESC").select do |comment|
-        comment_parent      = comment.commentable_type.classify.constantize.find(comment.commentable_id)
-        comment_parent_type = comment.commentable_type.underscore
-
-        if comment_parent_type == "school_day"
-          comment_parent.calendar_date <= Date.today
-        else
-          comment_parent.school_days.order("calendar_date")[0].calendar_date <= Date.today if !comment_parent.school_days.empty?
-        end
-      end
-    end
+    @comments = filter_comments(Comment.order("created_at DESC"))
     
     @comments.each do |comment|
       comment.mark_as_read! :for => current_user
@@ -37,7 +24,7 @@ class CommentsController < ApplicationController
         redirect_to self.send("#{@commentable_type}_path", @commentable) + "#comment-#{@comment.id}", notice: "Comment posted."
       end
     else
-      render :index
+      redirect_to :back, alert: "Comment can't be empty!"
     end
   end
 
@@ -51,7 +38,7 @@ class CommentsController < ApplicationController
         redirect_to self.send("#{@commentable_type}_path", @commentable) + "#comment-#{@comment.id}", notice: "Comment edited."
       end
     else
-      render :index
+      redirect_to :back, alert: "Comment can't be empty!"
     end
   end
 

@@ -3,3 +3,9 @@
 <% @material_columns = [{name: "URL", data_type: "data-sort=string"}, {name: "Description"}] %>
 
 <%= render partial: "layouts/body_materials_index", locals: {materials: @links, material_columns: @material_columns } %>
+
+<% if @deleted_from_preview %>
+  <script>
+    parent.hideFrameAndReload();
+  </script>
+<% end %>

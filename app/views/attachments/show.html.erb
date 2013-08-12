@@ -1,8 +1,55 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>File:</b>
-  <%= link_to @attachment.title, @attachment.filename.to_s %>
-</p>
+<div class="matter">
+  <div class="container-fluid">
 
-<%= link_to 'Back', attachments_path %>
+    <%= render "layouts/messages" %>
+    
+    <div class="row-fluid fit-content">
+
+      <div class="span9 maxspan minspan">
+        <div class="widget wlightblue mainwidget">
+          <div class="widget-head">
+            <div class="pull-left">Attachment</div>
+            <div class="widget-icons pull-right">
+                <span class="admin"><a href="<%= edit_attachment_path %>"><i class="icon-pencil"></i></a></span>
+              <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+              <!-- <a href="#" class="wclose"><i class="icon-remove"></i></a> -->
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="widget-content">
+            <div class="padd lowtop">
+              <h4><%= @attachment.title %></h4>
+              <br>
+              <b>File:</b>
+                <%= link_to @attachment.filename_short, @attachment.filename.to_s %>
+              <br><br>
+              <b>Belongs to:</b>
+                <p>
+                <% if @attachment.attachable_type.nil? %>
+                  No materials selected!
+                <% else %>
+                  <% material = Lecture.find(@attachment.attachable_id) if @attachment.attachable_type == "Lecture" %>
+                  <% material_type = @attachment.attachable_type.underscore %>
+                  <%= material_capitalize(material_type) %>:
+                  <%= link_to "#{material.print_name}", self.send("#{material_type}_path", material) %>
+                <% end %>
+                </p>
+            </div>
+          </div>
+        </div>
+
+        <% if can? :edit, @active_school_day %>
+        <span class="admin">
+          <%= link_to 'Edit',   edit_attachment_path(@attachment) %> |
+          <%= link_to 'Delete', @attachment, method: :delete, data: { confirm: 'Are you sure?' }  %> |
+        </span>
+        <% end %>
+        <%= link_to "Show All Attachments", attachments_path %>
+      </div>
+
+    </div>
+    
+  </div>
+</div>

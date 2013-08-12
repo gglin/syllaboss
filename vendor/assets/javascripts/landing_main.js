@@ -19,7 +19,7 @@ $(document).ready(function(){
 });
 
 function switchAudio() {
-	//if video is muted, unmute and show audo on button and vice versa
+	//if video is muted, unmute and show audio on button and vice versa
 	if(video.muted) {
 		unMute();
 	}
@@ -44,19 +44,19 @@ function mute(){
 // Show / Hide Login / Signup Forms
 
 $('.signup-button').click(function(e){
-    e.preventDefault();
-    var $showform = $('.signup-form');
-    var $hideform = $('.login-form');
-           
-    $showform.toggle(0);
-    $hideform.toggle(0);
+  e.preventDefault();
+  var $showform = $('.signup-form');
+  var $hideform = $('.login-form');
+         
+  $showform.toggle(0);
+  $hideform.toggle(0);
 
-    if($showform.is(':visible')) 
-    {
-      $(this).text("Log In")
-    }
-    else 
-    {
-      $(this).text("Sign Up")
-    } 
-  }); 
+  if($showform.is(':visible')) 
+  {
+    $(this).text("Log In")
+  }
+  else 
+  {
+    $(this).text("Sign Up")
+  } 
+}); 

@@ -5,6 +5,10 @@ class LecturesController < ApplicationController
   # GET /lectures
   # GET /lectures.json
   def index
+    if request.referrer.split('/').last == "preview"
+      @deleted_from_preview = true
+    end
+    
     @lectures = Lecture.all
 
     respond_to do |format|
@@ -24,7 +28,6 @@ class LecturesController < ApplicationController
     @comment = Comment.new
 
     @lecture.mark_as_read! :for => current_user
-    
     @lecture.comments.each do |comment|
       comment.mark_as_read! :for => current_user
     end
@@ -51,6 +54,8 @@ class LecturesController < ApplicationController
     @active_school_day = SchoolDay.find(params[:day]) unless params[:day].nil? || params[:day].empty?
     load_prev_and_next_day
 
+    # @attachment = @lecture.attachments.build
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @lecture }
@@ -66,6 +71,9 @@ class LecturesController < ApplicationController
   # GET /lectures/1/edit
   def edit
     @lecture = Lecture.find(params[:id])
+
+    @attachments = @lecture.attachments
+    # @attachment  = @lecture.attachments.build
     
     @lecture.mark_as_read! :for => current_user
 
@@ -95,8 +103,14 @@ class LecturesController < ApplicationController
           format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?lecture_added=#{@lecture.id}#lectures", notice: 'Lecture was successfully created.' }
         end
       else
-        format.html { render action: "new" }
-        format.json { render json: @lecture.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @lecture.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @lecture.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -116,8 +130,14 @@ class LecturesController < ApplicationController
           format.json { head :no_content }
         end
       else
-        format.html { render action: "edit" }
-        format.json { render json: @lecture.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @lecture.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @lecture.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

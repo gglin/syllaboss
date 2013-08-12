@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   authorize_resource
 
   def index
-    @users = User.all
+    @users = User.order("role DESC, full_name")
     # authorize! :index, @users
     respond_to do |format|
       format.html # index.html.erb
@@ -18,6 +18,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @comments = filter_comments(Comment.where("user_id = ?", @user.id).order("created_at DESC"))
+    @comment = Comment.new
+
+    @comments.each do |comment|
+      comment.mark_as_read! :for => current_user
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }

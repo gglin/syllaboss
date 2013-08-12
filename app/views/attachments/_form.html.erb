@@ -1,4 +1,8 @@
-<%= form_for(@attachment) do |f| %>
+<%= render "layouts/messages" %>
+
+<% action = @attachment.filename ? "Replace" : "Add" %>
+
+<%= form_for @attachment, :html => {class: "form-inline"} do |f| %>
   <% if @attachment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@attachment.errors.count, "error") %> prohibited this attachment from being saved:</h2>
@@ -11,17 +15,31 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title, "Title #{mark_required(@attachment, :title)}" %><br />
-    <%= f.text_field :title %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :filename, "Filename #{mark_required(@attachment, :filename)}" %><br />
-    <%= f.file_field :filename %>
+  <div class="control-group">
+    <%= f.label :title, "Title #{mark_required(@attachment, :title)} <em>(leave blank to use filename as title)</em>".html_safe %>
+    <div class="controls">
+      <%= f.text_field :title %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <%= f.label :filename, "Current File#{mark_required(@attachment, :filename)} :" %> 
+  <strong><%= @attachment.filename_short || "None" %></strong>
+  <br>
+  
+  <div class="control-group">
+    <%= f.label :filename, "#{action} File:" %>
+    <div class="controls">
+      <%= f.file_field :filename %>
+    </div>
   </div>
+
+  <div class="actions inline">
+    <%= f.submit "Submit", class: "btn btn-info" %>
+  </div>
+
+  <%= link_to "Cancel", cancel_path_for(@attachment), class: "btn btn-inverse link-btn" %>
+
+  <% if @attachment.persisted? %>
+    <%= link_to "Delete", @attachment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger link-btn" %>
+  <% end %>
 <% end %>

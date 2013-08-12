@@ -18,7 +18,7 @@
 //= require jquery.rateit.min
 //= require jquery.prettyPhoto
 
-//=jQuery Flot
+// jQuery Flot
 //=
 //= require excanvas.min
 //= require jquery.flot
@@ -65,9 +65,8 @@
 
 //= require school_day_form
 
-
 //= require_tree .
 //
 //
-//= require jquery.gritter.min
+// require jquery.gritter.min
 

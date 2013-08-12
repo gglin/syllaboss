@@ -37,22 +37,28 @@
     <div class="row-fluid">
       <div class="span12 table-maxspan minspan">
 
-        <table class="table">
-          <tr>
-            <th>Title</th>
-            <th>Filename</th>
-            <th></th>
-            <th></th>
-          </tr>
-
-        <% @attachments.each do |attachment| %>
-          <tr>
-            <td><%= attachment.title %></td>
-            <td><%= link_to attachment.filename_short, attachment.filename.to_s %></td>
-            <td><%= link_to 'Show', attachment %></td>
-            <td><%= link_to 'Destroy', attachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Filename</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          
+          <tbody>
+          <% @attachments.each do |attachment| %>
+            <tr>
+              <td><%= link_to attachment.title, attachment %></td>
+              <td><%= link_to attachment.filename_short, attachment.filename.to_s %></td>
+              <td><%= link_to 'Show', attachment %></td>
+              <td><%= link_to 'Edit', edit_attachment_path(attachment) %></td>
+              <td><%= link_to 'Delete', attachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+          </tbody>
         </table>
 
       </div>

@@ -2,30 +2,27 @@
 <div class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="navbar-container">
-      <h1><a href="/" class="brand"> Syllaboss </a></h1>
+      <h1>
+        <a href="/" class="brand">
+          <div class="brand-nohover">
+            <img src="/assets/syllaboss-inverse-nobackground.png">
+          </div>
+          <div class="brand-hover">
+            <img src="/assets/syllaboss-homepage-nobackground.png">
+          </div>
+        </a>
+      </h1>
 
       <ul class="nav all-stats">
         
-        <!-- Students can quick browse resource indexes -->
+        <!-- Students can quick browse all resources -->
         <% if current_user.student? %>
-          <li class="dropdown">
-            <a id="drop1" href="<%= school_day_path(@active_school_day) %>" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list" style="font-weight: normal;"></i> Browse <b class="caret"></b></a>
+          <li class="dropdown dropdown-hoverable">
+            <a id="drop1" href="<%= school_day_path(@active_school_day) %>" role="button" class="dropdown-toggle" data-toggle="dropdown">
+              <!-- <i class="icon-list" style="font-weight: normal;"></i> --> Browse 
+              <b class="caret"></b>
+            </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-              <li><a href="<%= school_days_path %>"><i class="icon-calendar"></i> Days</a></li>
-              <li><a href="<%= lectures_path %>"><i class="icon-folder-open"></i> Lectures </a></li>
-              <li><a href="<%= todos_path %>"><i class="icon-edit"></i> To-Dos </a></li>
-              <li><a href="<%= potds_path %>"><i class="icon-user"></i> Programmers of the Day </a></li>
-              <li><a href="<%= labs_path %>"><i class="icon-laptop"></i> Labs </a></li>
-              <li><a href="<%= links_path %>"><i class="icon-link"></i> Links </a></li>
-              <li><a href="<%= homeworks_path %>"><i class="icon-book"></i> Homeworks </a></li>
-            </ul>
-          </li>
-        <% end %>
-        
-        <!-- Teachers can quick add new resources -->
-        <% if can? :edit, @active_school_day %>
-          <ul class="nav nav-icon">
-            <!-- <li><i class="icon-plus"></i></li> -->
             <% material_type_list.each do |material_type_hash| %>
               <% material_type = material_type_hash[:name] %>
               <% material_icon = material_type_hash[:icon] %>
@@ -33,17 +30,47 @@
               <% material_types  = material_type.pluralize %>
               <% material_title  = material_capitalize(material_type) %>
               <% material_titles = material_title.pluralize %>
-              
+
               <li>
-                <a href="<%= self.send("new_#{material_type}_path") %>" title="Create New <%= material_title %>">
+                <a href="<%= self.send("#{material_types}_path") %>" title="Browse <%= material_titles %>">
                   <i class="icon-<%= material_icon %>"></i>
-                  <%# material_titles %>
+                  <%= material_titles %>
                 </a>
               </li>
-              
             <% end %>
-          </ul>
+            </ul>
+          </li>
         <% end %>
+        <!-- End Quick Browse -->
+
+        
+        <!-- Teachers can quick add new resources -->
+        <% if can? :edit, @active_school_day %>
+          <li class="dropdown dropdown-hoverable">
+            <a id="drop1" href="<%= school_day_path(@active_school_day) %>" role="button" class="dropdown-toggle" data-toggle="dropdown">
+              Add
+              <i class="icon-plus-sign-alt"></i> 
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+            <% material_type_list.each do |material_type_hash| %>
+              <% material_type = material_type_hash[:name] %>
+              <% material_icon = material_type_hash[:icon] %>
+
+              <% material_types  = material_type.pluralize %>
+              <% material_title  = material_capitalize(material_type) %>
+              <% material_titles = material_title.pluralize %>
+
+              <li>
+                <a href="<%= self.send("new_#{material_type}_path") %>" title="Add <%= material_titles %>">
+                  <i class="icon-<%= material_icon %>"></i>
+                  <%= material_titles %>
+                </a>
+              </li>
+            <% end %>
+            </ul>
+          </li>
+        <% end %>
+        <!-- End Quick Add -->
 
       </ul>
 
@@ -51,13 +78,15 @@
 
       <ul class="nav all-stats pull-right">
 
-        <!-- Discussion Stream with Unread Comments count -->
+        <!-- Discussion Stream with unread comments count -->
         <li class="dropdown dropdown-big">
           <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-            <i class="icon-comments"></i> Discussion <span class="badge badge-info"><%= @unread_comments.size %></span> 
+            <i class="icon-comments"></i> 
+            <span class="hide-title">Discussion </span>
+            <span class="badge badge-info"><%= @unread_comments.size %></span> 
           </a>
 
-          <ul class="dropdown-menu dropdown-comments">
+          <ul class="dropdown-menu dropdown-comments" style="width:300px;">
             <li>
               <h5>
                 <a href="<%= comments_path %>">
@@ -76,6 +105,11 @@
                     <%# comment.user == current_user ? "Me" : comment.user.full_name %>
                     <% name = comment.user == current_user ? "Me" : comment.user.full_name %>
                     <%= link_to name, user_path(comment.user) %>
+
+                    <% if comment.user.admin? %>
+                      &nbsp; <span class="badge badge-instructor">Instr</span>
+                    <% end %>
+
                     <span class="inline pull-right">
                       <%= time_ago_in_words(comment.created_at) %> ago 
                     </span>
@@ -83,11 +117,11 @@
                   
                   <div class="row-fluid same-height-col-wrap">
                     <a href='<%= comments_path + "#comment-#{comment.id}" %>'>
-                      <div class="span9 no-height same-height-col">
+                      <div class="span8 no-height same-height-col comment-content">
                         <%= re_truncate(comment.content, length:50, separator: ' ') %>
                       </div>
                     </a>
-                    <div class="span3 no-height same-height-col">
+                    <div class="span3 no-height same-height-col pull-right">
                       <% name  = comment_parent_type=="school_day" ? comment_parent.print_name : "" %>
                       <span class="label <%= label_type(comment.commentable_type) %> pull-right inline valign" style="margin-right: 2px;">
                         <%= link_to "#{material_capitalize(comment_parent_type)} #{name}", self.send("#{comment_parent_type}_path", comment_parent)+"#comment-#{comment.id}" %>
@@ -109,12 +143,15 @@
             </li>                                    
           </ul>
         </li>
-            
+        <!-- End Discussion Stream -->
+
 
         <!-- Notifications with unread and updated count -->
         <li class="dropdown dropdown-big">
           <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-            <i class="icon-exclamation-sign"></i> Notifications <span class="badge badge-info"><%= @unread.size %></span> 
+            <i class="icon-exclamation-sign"></i> 
+            <span class="hide-title">Notifications </span>
+            <span class="badge badge-info"><%= @unread.size %></span> 
           </a>
 
           <ul class="dropdown-menu dropdown-comments">
@@ -182,6 +219,7 @@
 
           </ul>
         </li>
+        <!-- End Notifications -->
         
 
         <!-- Search form -->
@@ -189,11 +227,15 @@
           <%= form_tag "/searches", :method => :get, class: "form-inline" do %>
             <div class="search-bar row-fluid">
               <%= text_field_tag :search, params[:search], :placeholder =>"Search" %>
-              <%= submit_tag "Search", :title => nil, class: "btn btn-info"%>
+              <%# submit_tag "Search", :title => nil, class: "btn btn-info"%>
+              <button class='btn btn-info search-btn'>
+                <i class="icon-search"></i>
+              </button>
             </div>
           <% end %>
         </li>
-        
+        <!-- End Search form -->
+
 
         <!-- User Options -->
         <% if current_user %>
@@ -221,6 +263,8 @@
             <li><%= link_to "Log In", login_path %></li>
           </li>
         <% end %>
+        <!-- End User Options -->
+
       </ul>
 
     </div>

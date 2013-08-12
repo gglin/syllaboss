@@ -21,10 +21,11 @@
           <h3><strong><%= @lecture.print_name %></strong></h3>
         </p>    
 
-        <p>
-          <%= simple_format @lecture.content %>
-        </p>
+        <div class="spaced-paragraphs">
+          <%= auto_link(better_format(@lecture.content), :all, :target => "_blank") %>
+        </div>
 
+        <br />
         <p>
           <h4>Attached Files:</h4>
           <ol>

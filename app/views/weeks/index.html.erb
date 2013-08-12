@@ -30,7 +30,7 @@
     <%= render "layouts/messages" %>
     <div class="row-fluid fit-content">
 
-      <table id="linksTable" class="day-index">
+      <table class="table table-hover" id="linksTable" class="day-index" style="width:30%;">
         <thead>
           <tr>
             <th colspan="1" data-sort="int">Week</th>
@@ -43,14 +43,14 @@
             <% first_date = SchoolDay.where("week = ?", week).order("week").first.calendar_date %>
             <% first_day_of_week = first_date.beginning_of_week %>
             <% last_day_of_week  = first_date.end_of_week %>
-            <% row_today = Date.today.between?(first_day_of_week, last_day_of_week) ? "row-today" : "" %>
+            <% row_today = Date.today.between?(first_day_of_week, last_day_of_week) ? "warning" : "" %>
             <tr class="<%= row_today %>">
               <td>
                 <h2><%= link_to week, week_path(week) %></h2>
               </td>
               <td>
                 
-                <%= "#{first_day_of_week.strftime('%b %d')} - #{last_day_of_week.strftime('%b %d')}" %>
+                <%= link_to "#{first_day_of_week.strftime('%b %d')} - #{last_day_of_week.strftime('%b %d')}", week_path(week) %>
               </td>
             </tr>
             <% end %>

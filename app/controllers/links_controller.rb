@@ -5,14 +5,10 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    # if params[:search].present?
-    #   @search = Link.search do
-    #     fulltext params[:search]
-    #   end
-    #   @links = @search.results
-    # else
-    #   @links = Link.all
-    # end
+    if request.referrer.split('/').last == "preview"
+      @deleted_from_preview = true
+    end
+    
     @links = Link.all
 
     respond_to do |format|
@@ -32,7 +28,6 @@ class LinksController < ApplicationController
     @comment = Comment.new
 
     @link.mark_as_read! :for => current_user
-
     @link.comments.each do |comment|
       comment.mark_as_read! :for => current_user
     end
@@ -103,8 +98,14 @@ class LinksController < ApplicationController
           format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?link_added=#{@link.id}#links", notice: 'Link was successfully created.' }
         end
       else
-        format.html { render action: "new" }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @link.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @link.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -124,8 +125,14 @@ class LinksController < ApplicationController
           format.json { head :no_content }
         end
       else
-        format.html { render action: "edit" }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @link.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @link.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

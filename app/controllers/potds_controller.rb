@@ -5,14 +5,9 @@ class PotdsController < ApplicationController
   # GET /potds
   # GET /potds.json
   def index
-    # if params[:search].present?
-    #   @search = Potd.search do
-    #     fulltext params[:search]
-    #   end
-    #   @potds = @search.results
-    # else
-    #   @potds = Potd.all
-    # end
+    if request.referrer.split('/').last == "preview"
+      @deleted_from_preview = true
+    end
 
     @potds = Potd.all
 
@@ -33,7 +28,6 @@ class PotdsController < ApplicationController
     @comment = Comment.new
 
     @potd.mark_as_read! :for => current_user
-
     @potd.comments.each do |comment|
       comment.mark_as_read! :for => current_user
     end
@@ -106,8 +100,14 @@ class PotdsController < ApplicationController
           format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?potd_added=#{@potd.id}#potds", notice: 'POTD was successfully created.' }
         end
       else
-        format.html { render action: "new" }
-        format.json { render json: @potd.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @potd.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @potd.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -122,8 +122,14 @@ class PotdsController < ApplicationController
         format.html { redirect_to @potd, notice: 'POTD was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @potd.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @potd.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @potd.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

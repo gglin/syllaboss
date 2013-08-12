@@ -35,8 +35,6 @@ class SchoolDay < ActiveRecord::Base
  
   # validates_format_of :schedule, :with =>/\d{1,2}\W{1}\d{2}.*\s*[-]\s*\d{1,2}\W{1}\d{2}.*/ , :on => :create, :message=>"You must format times as X:XX - XX:XX, for example, 9:45 - 11:30"
   
-  accepts_nested_attributes_for :links
-
   def print_name
     ordinal
   end
@@ -44,6 +42,7 @@ class SchoolDay < ActiveRecord::Base
   def schedulize
     return [{:time => "", :stuff => ""}] if schedule.nil?
 
+    # split all rows by time
     output1 = self.schedule.split("\n").compact
     output2 = output1.collect do |row|
       # format time
@@ -60,15 +59,17 @@ class SchoolDay < ActiveRecord::Base
       end
     end
 
+    # aggregate rows without times into the last row that has a time (or the first row)
     output2.each_with_index do |row, index|   
-      if row[:time] != ""
-        @row_with_time = row 
+      if row[:time] != "" || index == 0
+        @row_with_time = row
       elsif !@row_with_time.nil? && row[:time] == "" && !row.nil?
         @row_with_time[:stuff] << " #{row[:stuff]}"
       end
     end
 
-    output2.delete_if {|row| row[:time].empty?}
+    # delete empty rows
+    output2.delete_if.with_index {|row, index| index != 0 && row[:time].empty?}
   end
 
   def read_schedule
@@ -85,7 +86,7 @@ class SchoolDay < ActiveRecord::Base
   end
 
   def print_search
-    [ordinal, calendar_date,schedule]
+    [ordinal, calendar_date, schedule]
   end
 
 

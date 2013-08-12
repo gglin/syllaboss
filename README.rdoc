@@ -1,34 +1,25 @@
 == Welcome to Syllaboss
 Damn it Feels Good to Be a Gangsta
 ---------------------------------------------------------------------
-AUGUST 5th HOMIE
+AUGUST 12th wut
+- PUSH TO DIGITAL OCEAN!!!
+- landing page
 
+
+CLEAN
+- edit column names (i.e. gist_url) lecture should have space for content
+- search: make pretty + preview
+- seeding production environment / database
+- notification box working on page (wow features) (ANNOUNCEMENTS)
 - Email invites for both students and admins - whitelist (append query string to log in)
 
-- nested form or query string for uploading attachments
-- PUSH TO DIGITAL OCEAN!!!
-
-- ANNOUNCEMENTs notification box working on page (wow features)
+- infinite scroll for discussion stream
 
 - reading model -- aggregate reading/resources
 
-- edit column names (i.e. gist_url) lecture should have space for content
-
-- USER model: expand user table to include social media
 
 - Change index view for weeks to be calendar view
-
-** Nav Bar => Katie, Chris
--make a new: + in front of icons
--tooltip
-
-** search
-- make pretty + preview
-
-
 ** Discussion => George
-- functionality eventually click name goes to profile or comment thread
-- @ashley williams --- make LINK
 - hashtag functionality
 
 
@@ -38,27 +29,19 @@ AUGUST 5th HOMIE
 - ajax request to choose ordinal and week
 
 - filtering the discussion stream (drop down from discussion tab in nav bar)
-- infinite scroll for discussion stream
 
 - friendlyid for urls
 
-
-
-
-- landing page
 - homework only shows up after 6pm that day
-- flow for deleting materials from school day view
 - SEMESTER model
 
 
 ---------------------------------------------------------------------
 GENERAL BIZ
 
-- make first time show up as separate column if no timestamp
 - sidebar not fixed when expanded (jQuery)
-- javascript for coloring calendar
-- remove time column if there is no time in schedule
+- javascript for coloring calendar -- only highlighting days that are in the system
 
-
-assignment.io integration, assignment gets created on our end. talk towards the end of the week
-
+- look into totop bug (js rednering engine)
+- Edit / Cancel JS bug
+- request.referrer is no longer preview after failure to save

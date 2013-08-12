@@ -51,7 +51,7 @@ class SchoolDaysController < ApplicationController
   # GET /school_days/new.json
   def new
     @school_day = SchoolDay.new
-    3.times.collect {link = @school_day.links.build}
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @school_day }
@@ -64,8 +64,6 @@ class SchoolDaysController < ApplicationController
     
     @active_school_day = @school_day
     load_prev_and_next_day
-
-    # authorize! :update, @school_day 
   end
 
   # POST /school_days
@@ -74,12 +72,8 @@ class SchoolDaysController < ApplicationController
     @school_day = SchoolDay.new(params[:school_day])
     respond_to do |format|
       if @school_day.save
-        # if @school_day.post_id.nil?
-        #   redirect_to 'potds/new'
-        # else
-          format.html { redirect_to @school_day, notice: 'School day was successfully created.' }
-          format.json { render json: @school_day, status: :created, location: @school_day }
-        # end
+        format.html { redirect_to @school_day, notice: 'School day was successfully created.' }
+        format.json { render json: @school_day, status: :created, location: @school_day }
       else
         format.html { render action: "new" }
         format.json { render json: @school_day.errors, status: :unprocessable_entity }
@@ -90,7 +84,6 @@ class SchoolDaysController < ApplicationController
   # PUT /school_days/1
   # PUT /school_days/1.json
   def update
-    # raise params.inspect
     @school_day = SchoolDay.find(params[:id])
 
     respond_to do |format|

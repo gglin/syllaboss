@@ -5,14 +5,10 @@ class HomeworksController < ApplicationController
   # GET /homeworks
   # GET /homeworks.json
   def index
-    # if params[:search].present?
-    #   @search = Homework.search do
-    #     fulltext params[:search]
-    #   end
-    #   @homeworks = @search.results
-    # else
-    #   @homeworks = Homework.all
-    # end
+    if request.referrer.split('/').last == "preview"
+      @deleted_from_preview = true
+    end
+
     @homeworks = Homework.all
 
     respond_to do |format|
@@ -92,7 +88,7 @@ class HomeworksController < ApplicationController
     @homework = Homework.new(params[:homework])
 
     respond_to do |format|
-      if @homework.save #need an if statement -- if params[:from] redirect_to 
+      if @homework.save
         if params[:last_page].nil?
           format.html { redirect_to @homework, notice: 'Homework was successfully created.' }
           format.json { render json: @homework, status: :created, location: @homework }
@@ -102,8 +98,14 @@ class HomeworksController < ApplicationController
           format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?homework_added=#{@homework.id}#homeworks", notice: 'Homework was successfully created.' }
         end
       else
-        format.html { render action: "new" }
-        format.json { render json: @homework.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @homework.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @homework.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -123,8 +125,14 @@ class HomeworksController < ApplicationController
           format.json { head :no_content }
         end
       else
-        format.html { render action: "edit" }
-        format.json { render json: @homework.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @homework.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @homework.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

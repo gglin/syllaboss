@@ -1,0 +1,21 @@
+<% action = f.object.persisted? ? "Replace with" : "Add New File" %>
+
+<fieldset>
+  <div class="control-group">
+    <%= f.label :filename, "Attachment:", class: "control-label" %>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <% if f.object.persisted? %>
+      <strong><%= link_to f.object.filename_short, f.object.filename.to_s %></strong>
+    <% else %>
+      <em>New File</em>
+    <% end %>
+
+    <div class="controls">
+      <%= f.label :filename, "#{action}:", class: "inline" %>
+      <%= f.file_field :filename %>
+
+      <%= f.hidden_field :_destroy %>
+      <a href="#" class="remove_fields">Remove</a>
+    </div>
+  </div>
+</fieldset>

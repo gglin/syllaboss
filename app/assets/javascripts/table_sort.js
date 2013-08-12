@@ -1,6 +1,6 @@
 $(function(){
 
-  //adds back a toggle event method to jquery
+  //adds back a toggle event method to jQuery
 
   $.fn.toggleClick = function(){
 
@@ -18,7 +18,7 @@ $(function(){
 
   $('table').stupidtable(); //css at school_day_index.css
 
-  var asc = '⬆'; //set ascii text character for up arrow
+  var asc  = '⬆'; //set ascii text character for up arrow
   var desc = '⬇'; //set ascii text character for down arrow
 
   //toggle asc desc arrows

@@ -5,14 +5,9 @@ class LabsController < ApplicationController
   # GET /labs
   # GET /labs.json
   def index
-    # if params[:search].present?
-    #   @search = Lab.search do
-    #     fulltext params[:search]
-    #   end
-    #   @labs = @search.results
-    # else
-    #   @labs = Lab.all
-    # end
+    if request.referrer.split('/').last == "preview"
+      @deleted_from_preview = true
+    end
 
     @labs = Lab.all
 
@@ -33,7 +28,6 @@ class LabsController < ApplicationController
     @comment = Comment.new
 
     @lab.mark_as_read! :for => current_user
-
     @lab.comments.each do |comment|
       comment.mark_as_read! :for => current_user
     end
@@ -104,8 +98,14 @@ class LabsController < ApplicationController
           format.html { redirect_to edit_school_day_path(SchoolDay.find(params[:last_page])) + "?lab_added=#{@lab.id}#labs", notice: 'Lab was successfully created.' }
         end
       else
-        format.html { render action: "new" }
-        format.json { render json: @lab.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @lab.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @lab.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -125,8 +125,14 @@ class LabsController < ApplicationController
           format.json { head :no_content }
         end
       else
-        format.html { render action: "edit" }
-        format.json { render json: @lab.errors, status: :unprocessable_entity }
+        if request.referrer.split('/').last == "preview"
+          @from_preview = true
+          format.html { render "form_preview", :layout => "preview" }
+          format.json { render json: @lab.errors, status: :unprocessable_entity }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @lab.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

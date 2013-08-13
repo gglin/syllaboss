@@ -13,17 +13,18 @@
 
   <%= form_tag sessions_path do %>
     <div class="field">
-      <%= label_tag :email %><br />
+      <%= label_tag :email %>
       <%= text_field_tag :email, params[:email] %>
     </div>
     
     <div class="field">
-      <%= label_tag :password %><br />
+      <%= label_tag :password %>
       <%= password_field_tag :password %>
     </div>
 
     <div class="actions">
-      <%= submit_tag "Log In" %></div>
+      <%= submit_tag "Log In", class: "landing-btn" %>
+    </div>
   <% end %>
 </div>
 
@@ -35,7 +36,7 @@
 
   <%= form_for @user, :html => {:multipart => true} do |f| %>
     <div class="field">
-      <%= f.label :full_name, "Full Name *" %><br />
+      <%= f.label :full_name, "Full Name *" %>
       <%= f.text_field :full_name %>
     </div>
    
@@ -45,34 +46,34 @@
     </div> -->
 
     <div class="field">
-      <%= f.label :email, "Email *" %><br />
+      <%= f.label :email, "Email *" %>
       <%= f.text_field :email %>
     </div>
 
     <div class="field">
-      <%= f.label :password, "Password *" %><br />
+      <%= f.label :password, "Password *" %>
       <%= f.password_field :password %>
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation, "Password Confirmation *" %><br />
+      <%= f.label :password_confirmation, "Password Confirmation *" %>
       <%= f.password_field :password_confirmation %>
     </div>
 
     <div class="actions">
-      <%= f.submit "#{@action} Submit" %>
+      <%= f.submit "#{@action} Submit", class: "landing-btn" %>
     </div>
-
-    <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-        <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
   <% end %>
 </div>
+
+ <% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

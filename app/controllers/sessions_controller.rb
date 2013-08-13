@@ -4,6 +4,8 @@ class SessionsController < ApplicationController
   skip_before_filter :load_unread_resources, :only => [:new, :create]
   skip_before_filter :load_all_unread,       :only => [:new, :create]
   skip_before_filter :load_unread_comments,  :only => [:new, :create]
+  skip_before_filter :load_announcements,    :only => [:new, :create]
+  # skip_after_filter  :mark_announcements_as_read
 
   def new
     @user = User.new

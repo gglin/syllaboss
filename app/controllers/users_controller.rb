@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   skip_before_filter :load_unread_resources, :only => [:create]
   skip_before_filter :load_all_unread,       :only => [:create]
   skip_before_filter :load_unread_comments,  :only => [:create]
-
+  skip_before_filter :load_announcements,    :only => [:create]
+  # skip_after_filter  :mark_announcements_as_read,    :only => [:new, :create]
 
   def index
     @users = User.order("role DESC, full_name")

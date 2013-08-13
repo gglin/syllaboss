@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
   before_filter :load_commentable, :except => [:index]
   
-  authorize_resource
+  load_and_authorize_resource
   
   def index
     @new_comment = Comment.new

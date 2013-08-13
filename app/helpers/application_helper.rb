@@ -136,9 +136,16 @@ private
     end.flatten.join()
   end
 
-  def pattern_between(text)
-    /<#{text}>(.+?)<\/#{text}>/m
+  def pattern_between(tag)
+    /<#{tag}>(.+?)<\/#{tag}>/m
   end
+
+  def patterns_between(tags)
+    strings = tags.map do |tag|    
+      "(<#{tag}>(.+?)<\/#{tag}>)"      
+    end      
+    Regexp.new(strings.join("|"), Regexp::MULTILINE)    
+  end  
 
   def split_paragraphs(text)
     return [] if text.blank?

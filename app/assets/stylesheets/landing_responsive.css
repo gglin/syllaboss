@@ -1,6 +1,11 @@
 @media (max-width: 930px) {
 	body {
 		min-width: 100%;
+		background-image:url('/assets/background-mobile.png');
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+		height: 100%;
 	}
 
 	.mute {
@@ -13,10 +18,6 @@
 		top: auto;
 		left: auto;
 		width: 100%;
-		background-image:url('../img/mobile-bg.jpg');
-		background-size: cover;
-		background-position: center center;
-		background-repeat: no-repeat;
 	}
 
 	.landing-title {
@@ -28,7 +29,7 @@
 	}
 
 	.landing-logo {
-		width: 100px;
+		width: 300px;
 		margin: 20px auto;
 	}
 
@@ -61,7 +62,6 @@
 		left: auto;
 		right: auto;
 		width: 100%;
-		background-image:url('../img/mobile-bg.jpg');
 		background-size: cover;
 		background-position: center center;
 		background-repeat: no-repeat;

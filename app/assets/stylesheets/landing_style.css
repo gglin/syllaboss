@@ -6,6 +6,8 @@ Responsive Web Design"
 
 */
 
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600');
+
 @media (min-width: 481px) {
 	body {
 		min-width: 960px;
@@ -14,11 +16,11 @@ Responsive Web Design"
 
 
 body > * {
-	font-family: "proxima-nova", Helvetica, Arial, sans-serif;
-	font-weight: 900 ;
+	font-family: "Open-Sans", Helvetica, Arial, sans-serif;
+	font-weight: 800 ;
 	/*text-transform: uppercase;*/
-	font-style: italic ;
-	font-size: 36px;
+	font-style: bold ;
+	font-size: 40px;
 	line-height: 1.4em;
 	text-shadow: 1px 1px 2px rgba(100, 100, 100, 1);
 }
@@ -46,34 +48,35 @@ html, body {
 }
 
 .emphasis, a, a:visited {
-	color: #FF5521;
+	color: #25a7e3;
 	text-decoration: none;
 }
 
 .landing-button {
 	display:block;
-	width: 280px;
+	width: 120px;
 	border-radius: 5px;
-	background-color: #FF5521;
-	border-top:1px solid #FF6F3B;
-	border-left:1px solid #FF6F3B;
-	border-right:3px solid #BD2C00;
-	border-bottom:3px solid #BD2C00;
-	text-shadow: 0px -1px 0px #374683;
+	background-color: #f88529;
+	border-top:2px solid #f88529;
+	border-left:2px solid #f88529;
+	border-right:4px solid #f88529;
+	border-bottom:4px solid #f88529;
+	text-shadow: 0px -1px 0px #f88529;
 	cursor: pointer;
 	color: white !important;
-	font-size: 30px;
+	font-size: 20px;
 	margin: 0 auto;
+	margin-top: -60px;
 	-webkit-user-select: none;  /* Chrome all / Safari all */
   	-moz-user-select: none;     /* Firefox all */
   	-ms-user-select: none; 
 }
 
 .landing-button:active {
-	border-right:1px solid #FF6F3B;
-	border-bottom:1px solid #FF6F3B;
-	border-left:3px solid #BD2C00;
-	border-top:3px solid #BD2C00;
+	border-right:1px solid #f88529;
+	border-bottom:1px solid #f88529;
+	border-left:3px solid #f88529;
+	border-top:3px solid #f88529;
 }
 
 
@@ -97,10 +100,6 @@ html, body {
 	padding:0 20px;
 	position:relative;
 }
-
-
-
-
 
 
 
@@ -180,14 +179,58 @@ html, body {
 
 	.landing-location a:hover {
 		cursor: pointer;
-		color: #FF5521;
+		color: #25a7e3;
 	}
 
 /*Form block*/
 
+
+	#error_explanation {
+		position: absolute;
+		margin-left: -343px;
+		bottom: 0;
+	  padding: 7px;
+	  padding-bottom: 12px;
+	  margin-bottom: 20px;
+	 	background: rgba(255, 255, 255, 0.5);
+	}
+
+	#error_explanation h2 {
+	  text-align: left;
+	  font-weight: bold;
+	  padding: 5px 5px 5px 15px;
+	  font-size: 12px;
+	  margin: -7px;
+	}
+
+	.landing-btn {
+		display: block;
+		width: 280px;
+		border-radius: 5px;
+		background-color: #52b9e9;
+		border-top: 2px solid #52b9e9;
+		border-left: 2px solid #52b9e9;
+		border-right: 4px solid #25a7e3;
+		border-bottom: 4px solid #25a7e3;
+		text-shadow: 0px -1px 0px #25a7e3;
+		cursor: pointer;
+		color: white !important;
+		font-size: 20px;
+		margin: 0 auto;
+		margin-top: -9px;
+	}
+
+	.field label {
+		display: block;
+	}
+
+	.field input {
+		margin-bottom: 15px;
+	}
+
 	.form-block {
 		width:400px;
-		height:500px;
+		height:400px;
 		background: rgb(255, 255, 255);
 	  background: rgba(255, 255, 255, 0.8);
 		position: absolute;
@@ -197,15 +240,19 @@ html, body {
 		border: 2px solid white;
 		
 		text-transform: none;
-		font-family: "proxima-nova", Helvetica, Arial, sans-serif;
+		font-family: "Open-Sans", Helvetica, Arial, sans-serif;
 		font-weight: 300 ;
 		/*text-transform: uppercase;*/
-		font-style: italic ;
+		font-style: bold ;
 		font-size: 16px;
 		line-height: 1.4em;
 		/*text-shadow: 1px 1px 2px rgba(100, 100, 100, 1);*/
 	}
 
+	.form-stable {
+		height:400px; 
+		padding-top: 20px;
+	}
 	.form-link {
 		/*position: absolute;
 		bottom: -40%;

@@ -1,0 +1,127 @@
+<!-- Notification box starts -->
+<div class="slide-box">
+
+    <!-- Notification box head -->
+    <div class="slide-box-head bred">
+      <!-- Title -->
+      <div class="pull-left">Announcements</div>          
+      <!-- Icon -->
+      <div class="slide-icons pull-right">
+        <a href="#" class="sminimize"><i class="icon-chevron-down"></i></a> 
+        <a href="#" class="sclose"><i class="icon-remove"></i></a>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <% display_setting = @show_latest ? "" : "display: none;" %>
+
+    <div class="slide-content" style='<%= display_setting %>'>
+
+      <!-- It is default bootstrap nav tabs. See official bootstrap doc for doubts -->
+      <ul class="nav nav-tabs">
+        <!-- Tab links -->
+        <% if can? :add, @announcement %>
+          <li><a href="#tab1" data-toggle="tab"><i class="icon-plus-sign-alt"></i> Add</a></li>
+        <% end %>
+        <li class="active"><a href="#tab2" data-toggle="tab"><i class="icon-bell-alt"></i> Latest</a></li>
+        <li><a href="#tab3" data-toggle="tab"><i class="icon-info-sign"></i> All</a></li>
+      </ul>
+      
+      <!-- Tab content -->
+      <div class="tab-content">
+        
+        <% if can? :add, @announcement %>
+        <div class="tab-pane" id="tab1">
+          <h5>Add Announcement</h5>
+
+          <%= render 'announcements/form' %>
+
+        </div>
+        <% end %>
+
+        <div class="tab-pane active" id="tab2">
+          <% if closest_day_before_today.announcements.empty? %>
+            No Announcements for today!
+          <% else %>
+            <h5>Latest Announcement</h5>
+            <%# closest_day_before_today.calendar_date.strftime("%A %B %d, %Y") %>
+            <!-- 
+            <br>
+            <br> -->
+            <div class="announcement hoverable">
+              <div class="announcement-meta">
+                <%  name = @latest_announcement.user.full_name %>
+                <%= link_to name, user_path(@latest_announcement.user) %>
+
+                <span class="inline pull-right">
+                  <%= time_ago_in_words(@latest_announcement.created_at) %> ago 
+                </span>
+                
+                <% if can? :edit, @latest_announcement %>
+                  <span class="admin pull-right">
+                    <%= link_to 'Edit' %>
+                  | <%= link_to 'Delete', @latest_announcement, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  &nbsp;&nbsp;
+                  </span>
+                <% end %>
+              </div>
+
+              <!-- Actual content -->
+              <div class="actual-content">
+                <%= auto_link(better_format(@latest_announcement.content), :all, :target => "_blank") %>
+              </div>
+              <!-- End content -->
+            </div>
+          <% end %>
+        </div>
+
+        <div class="tab-pane" id="tab3">
+          <% if closest_day_before_today.announcements.empty? %>
+            No Announcements for today!
+          <% else %>
+            <h5>All Announcements Today</h5>
+            <%= closest_day_before_today.calendar_date.strftime("%A %B %d, %Y") %>
+
+            <% closest_day_before_today.announcements.order("updated_at DESC").each do |announcement| %>
+              <div class="announcement hoverable">
+                <div class="announcement-meta">
+                  <%  name = announcement.user.full_name %>
+                  <%= link_to name, user_path(announcement.user) %>
+
+                  <span class="inline pull-right">
+                    <%= time_ago_in_words(announcement.created_at) %> ago 
+                  </span>
+                  
+                  <% if can? :edit, announcement %>
+                    <span class="admin pull-right">
+                      <%= link_to 'Edit' %>
+                    | <%= link_to 'Delete', announcement, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    &nbsp;&nbsp;
+                    </span>
+                  <% end %>
+                </div>
+
+                <!-- Actual content -->
+                <div class="actual-content">
+                  <%= auto_link(better_format(announcement.content), :all, :target => "_blank") %>
+                </div>
+                <!-- End content -->
+              </div>
+            <% end %>
+          <% end %>
+        </div>              
+
+      </div>
+      <!-- End Tab content -->
+      
+      <% if @any_unread %>
+        <div class="slide-box-footer pull-right">
+          <a class="mark-all-read btn btn-primary link-btn">Mark All As Read</a>
+        </div>
+      <% end %>
+
+    </div>
+  
+</div>
+
+<!-- Notification box ends -->   

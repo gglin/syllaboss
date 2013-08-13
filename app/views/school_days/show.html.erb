@@ -95,7 +95,7 @@
                   <% if index == 0 && row.values[0].empty? %>
                     <tr>
                       <td colspan="2" style="padding:10px 20px;">
-                        <%= auto_link(simple_format(row.values[1]), :all, :target => "_blank") %>
+                        <%= auto_link(better_format(row.values[1]), :all, :target => "_blank") %>
                       </td>
                     <tr>
                   <% else %>
@@ -104,7 +104,7 @@
                         <%= row.values[0] %>
                       </td>
                       <td>
-                        <%= auto_link(simple_format(row.values[1]), :all, :target => "_blank") %>
+                        <%= auto_link(better_format(row.values[1]), :all, :target => "_blank") %>
                       </td>
                     </tr>
                   <% end %>

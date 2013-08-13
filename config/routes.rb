@@ -25,6 +25,8 @@ Pizza::Application.routes.draw do
     resources :comments
   end
 
+  post 'announcements/markallread', to: 'announcements#markallread', as: 'mark_all_read'
+  resources :announcements
 
   resources :lectures do
     resources :comments

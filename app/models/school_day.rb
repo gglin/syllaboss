@@ -21,6 +21,8 @@ class SchoolDay < ActiveRecord::Base
 
   has_many :comments, as: :commentable
 
+  has_many :announcements
+
   searchable do
     text :schedule, :links, :potd_id
   end  

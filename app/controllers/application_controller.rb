@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   
   include SchoolDaysHelper
   include NotificationsHelper
+  include AnnouncementsHelper
   include CommentsHelper
 
   before_filter :authenticate 
@@ -13,6 +14,8 @@ class ApplicationController < ActionController::Base
   before_filter :load_unread_resources
   before_filter :load_all_unread
   before_filter :load_unread_comments
+
+  before_filter :load_announcements
   
   rescue_from CanCan::AccessDenied do |exception|
     flash.keep

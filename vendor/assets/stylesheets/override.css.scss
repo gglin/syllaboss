@@ -26,6 +26,35 @@ ul, ol, ul li, ol li, li {
   border: 3px solid #f88529;
 }
 
+.slide-box { 
+  // border-left: 1px solid #eee;
+  // border-right: 1px solid #eee;
+}
+
+.slide-box .slide-content {
+  overflow: auto;
+  max-height: 70vh;
+  padding-bottom: 20px;
+}
+
+.announcement {
+  background: #fff;
+  border: 1px solid #52b9e9;
+  padding: 5px;
+  margin: 0px 0px 10px 0px;
+}
+
+.announcement-meta {
+  font-size: 11px;
+}
+
+.slide-box .slide-box-footer {
+  background: #eee;
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+}
+
 .dropdown:hover > .dropdown-menu {
   -webkit-box-shadow: 3px 3px 2px rgba(0,0,0,0.2) !important;
   -moz-box-shadow:    3px 3px 2px rgba(0,0,0,0.2) !important;
@@ -44,8 +73,8 @@ ul, ol, ul li, ol li, li {
 }
 
 .scrollable-dropdown {
-  overflow:auto; 
-  max-height:390px;
+  overflow: auto; 
+  max-height: 390px;
 }
 
 .navbar .nav-icon, .navbar .nav-icon li {
@@ -69,6 +98,13 @@ ul, ol, ul li, ol li, li {
 
 .navbar .comment-content a {
   font-size: 12px !important;
+}
+
+.slide-box .actual-content {
+  font-size: 13px;
+}
+
+.navbar .comment-content a, .slide-box .actual-content a {
   color: rgb(17, 113, 163) !important;
 
   &:hover {
@@ -630,7 +666,7 @@ body {
 }
 
 .slide-box .slide-content {
-  background: #ddd;
+  background: #eee;
 }
 
 .slide-content .nav-tabs {
@@ -639,19 +675,19 @@ body {
 }
 
 .slide-content .nav-tabs > li.active > a {
-  color: #ccc !important;
+  color: #eee !important;
   background: #1c1c1c !important;
   margin-bottom: 1px !important;
 }
 
 .slide-content .nav-tabs > li > a {
   color: #000 !important;
-  background: #ddd !important;
+  background: #eee !important;
   margin-bottom: 1px !important;
 }
 
 .slide-content .nav-tabs > li > a {
-  border: 1px solid #ccc !important;
+  border: 1px solid #eee !important;
 }
 
 .slide-data {

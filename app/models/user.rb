@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   attr_accessible :comment_ids
 
   has_many :comments, as: :commentable
+  has_many :announcements
+  
   mount_uploader :image, ImageUploader
 
   validates :password, :presence => { :on => :create }

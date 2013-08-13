@@ -39,20 +39,15 @@
 // require ../../../vendor/assets/javascripts/bootstrap/bootstrap-typeahead
 // require ../../../vendor/assets/javascripts/bootstrap/bootstrap-affix
 //
-//
 // require ../../../vendor/assets/javascripts/bootstrap-multiselect
 // require ../../../vendor/assets/javascripts/prettify
 // require ../../../vendor/assets/javascripts/applymultiselect
 
 
 //= require jquery.ui.datepicker 
-
 //= require ../../../vendor/assets/javascripts/stupidtable.min
 
-//= require school_day_form
-
 //= require_tree .
-//
-//
+
 // require jquery.gritter.min
 

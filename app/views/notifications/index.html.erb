@@ -45,7 +45,8 @@
 
           <tbody>
           <% @all_unread.each do |material| %>
-            <tr>
+            <% row_today = most_recent_day_for_material(material)==closest_day_before_today ? "warning" : "" %>
+            <tr class="<%= row_today %>">
               <td>
                 <% material_type = material.class.to_s.underscore %>
 

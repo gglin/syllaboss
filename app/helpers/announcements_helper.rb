@@ -2,7 +2,6 @@ module AnnouncementsHelper
 
   def load_announcements
     @announcement  = Announcement.new
-    @day_announcements = Announcement.where("school_day_id = ?", closest_day_before_today.id)
 
     if closest_day_before_today.announcements.empty?
       @show_latest = false
@@ -10,7 +9,7 @@ module AnnouncementsHelper
     else
       @latest_announcement = closest_day_before_today.announcements.order("updated_at DESC").limit(1).first
 
-      # announcement box is always displayed for the first 15 minutes after an announcement is updated, or if it's unread
+      # announcement box is default displayed until all announcements for day are marked as read
       if @latest_announcement.unread?(current_user) # || (Time.now - @latest_announcement.updated_at < 900)
         @show_latest = true
       else

@@ -10,9 +10,8 @@
       <table class="table">
         <tr>
           <th>Content</th>
-          <th>Date of Announcement</th>
+          <th>Day of Semester</th>
           <th>Last Updated</th>
-          <th></th>
           <th></th>
           <th></th>
         </tr>
@@ -20,11 +19,10 @@
       <% @announcements.each do |announcement| %>
         <tr>
           <td><%= announcement.content %></td>
-          <td><%= announcement.school_day.calendar_date %></td>
+          <td><%= announcement.school_day.ordinal %></td>
           <td><%= announcement.updated_at %></td>
-          <td><%= link_to 'Show', announcement %></td>
           <td><%= link_to 'Edit', edit_announcement_path(announcement) %></td>
-          <td><%= link_to 'Destroy', announcement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Delete', announcement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
       </table>

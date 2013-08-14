@@ -104,6 +104,11 @@ ul, ol, ul li, ol li, li {
   font-size: 13px;
 }
 
+.slide-box .comment-widget .widget-head {
+  background-color: transparent !important;;
+  color: #000 !important;
+}
+
 .navbar .comment-content a, .slide-box .actual-content a {
   color: rgb(17, 113, 163) !important;
 
@@ -315,7 +320,7 @@ textarea {
 }
 
 .commentspan {
-  min-width: 100%;
+  min-width: 95%;
   max-width: 800px;
 }
 

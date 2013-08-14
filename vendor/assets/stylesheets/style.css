@@ -375,7 +375,7 @@ form label{
 	position: fixed;
 	bottom: 0px;
 	left: 0px;
-	z-index: 104400;
+	z-index: 12000;
 	background: #fa3031; 
 }
 
@@ -845,11 +845,11 @@ form label{
 }
 
 
-/* Notificationj Box*/
+/* Announcement Box*/
 
 .slide-box{
 	width: 270px;
-	z-index: 400;
+	z-index: 2000;
 	position: fixed;
 	bottom: 0px;
 	right: 5px;
@@ -1490,8 +1490,12 @@ border:1px solid #eee;
 		text-align: center;
 	}
 	.slide-box{
-		display: none;
+		/*display: none;*/
+    /*left: 5px;*/
 	}
+  .slide-content{
+    display:none;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px){

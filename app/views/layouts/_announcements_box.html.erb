@@ -34,7 +34,7 @@
         <div class="tab-pane" id="tab1">
           <h5>Add Announcement</h5>
 
-          <%= render 'announcements/form' %>
+          <%= render partial: 'announcements/form', locals: {announcement: @announcement} %>
 
         </div>
         <% end %>
@@ -54,14 +54,29 @@
                 <%= link_to name, user_path(@latest_announcement.user) %>
 
                 <span class="inline pull-right">
-                  <%= time_ago_in_words(@latest_announcement.created_at) %> ago 
+                  <%= time_ago_in_words(@latest_announcement.updated_at) %> ago 
                 </span>
                 
                 <% if can? :edit, @latest_announcement %>
-                  <span class="admin pull-right">
-                    <%= link_to 'Edit' %>
-                  | <%= link_to 'Delete', @latest_announcement, method: :delete, data: { confirm: 'Are you sure?' } %>
-                  &nbsp;&nbsp;
+                  <span class="admin inline pull-right">
+
+                    <span class="widget comment-widget">
+                      <span class="widget-head">
+                        <span class="response-button widget-icons">
+                          <a href="#" class="wminimize-edit">Edit</a>
+                          | <%= link_to 'Delete', @latest_announcement, method: :delete, data: { confirm: 'Are you sure?' } %>
+                          &nbsp; &nbsp;
+                        </span>
+                        <span class="clearfix"></span>
+                      </span>
+
+                      <span class="widget-content" style="display: none;">
+                        
+                        <%= render partial: 'announcements/form', locals: {announcement: @latest_announcement} %>
+
+                      </span>
+                    </span>
+                    
                   </span>
                 <% end %>
               </div>
@@ -89,14 +104,29 @@
                   <%= link_to name, user_path(announcement.user) %>
 
                   <span class="inline pull-right">
-                    <%= time_ago_in_words(announcement.created_at) %> ago 
+                    <%= time_ago_in_words(announcement.updated_at) %> ago 
                   </span>
                   
                   <% if can? :edit, announcement %>
-                    <span class="admin pull-right">
-                      <%= link_to 'Edit' %>
-                    | <%= link_to 'Delete', announcement, method: :delete, data: { confirm: 'Are you sure?' } %>
-                    &nbsp;&nbsp;
+                    <span class="admin inline pull-right">
+
+                      <span class="widget comment-widget">
+                        <span class="widget-head">
+                          <span class="response-button widget-icons">
+                            <a href="#" class="wminimize-edit">Edit</a>
+                            | <%= link_to 'Delete', announcement, method: :delete, data: { confirm: 'Are you sure?' } %>
+                            &nbsp; &nbsp;
+                          </span>
+                          <span class="clearfix"></span>
+                        </span>
+
+                        <span class="widget-content" style="display: none;">
+                          
+                          <%= render partial: 'announcements/form', locals: {announcement: announcement} %>
+
+                        </span>
+                      </span>
+                      
                     </span>
                   <% end %>
                 </div>

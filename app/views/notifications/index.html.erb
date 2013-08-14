@@ -33,30 +33,48 @@
 
     <div class="row-fluid fit-content">
       <div class="span9 maxspan minspan">
-        <hr />
-        <% @all_unread.each do |material| %>
-          <% material_type = material.class.to_s.underscore %>
+        <table class="table table-hover unread-index" id="linksTable">
+          <thead>
+            <tr>
+              <th data-sort="string">Unread Material</th>
+              <th data-sort="int">Day</th>
+              <th data-sort="date">Last Updated</th>
+              <th data-sort="date">Created</th>
+            </tr>
+          </thead>
 
-          <div class="chat-meta">
-            <span class="inline pull-right">
-              <%= time_ago_in_words(material.created_at) %> ago 
-            </span>
-          </div>
+          <tbody>
+          <% @all_unread.each do |material| %>
+            <tr>
+              <td>
+                <% material_type = material.class.to_s.underscore %>
 
-          <div class="row-fluid same-height-col-wrap">
-            <div class="span9 no-height same-height-col">
-              <%= link_to re_truncate(material.print_name, length:50, separator: ' '), self.send("#{material_type}_path", material) %>
-            </div>
-            <div class="span3 no-height same-height-col">
-              <span class="label <%= label_type(material_type.classify) %> pull-right inline valign" style="margin-right: 2px;">
-                <%= "#{material_capitalize(material_type)}" %>
-              </span>
-            </div>
-          </div>
+                <div class="chat-meta">
+                  <span class="inline pull-right">
+                    <%= time_ago_in_words(material.created_at) %> ago 
+                  </span>
+                </div>
 
-          <div class="clearfix"></div>
-          <hr />
-        <% end %>
+                <div class="row-fluid same-height-col-wrap">
+                  <div class="span9 no-height same-height-col">
+                    <%= link_to re_truncate(material.print_name, length:50, separator: ' '), self.send("#{material_type}_path", material) %>
+                  </div>
+                  <div class="span3 no-height same-height-col">
+                    <span class="label <%= label_type(material_type.classify) %> pull-right inline valign" style="margin-right: 2px;">
+                      <%= "#{material_capitalize(material_type)}" %>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="clearfix"></div>
+              </td>
+              <td><h5><%= most_recent_day_for_material(material).ordinal %></h5></td>
+              <td><%= material.updated_at.strftime("%b %d, %Y %l:%M%P") %></td>
+              <td><%= material.created_at.strftime("%b %d, %Y %l:%M%P") %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
     

@@ -8,6 +8,8 @@ Pizza::Application.routes.draw do
   get  'sessions', to: 'sessions#index', as: 'sessions'
   post 'sessions', to: 'sessions#create'
   # resources :sessions
+  
+  resources :users, except: [:new]
 
   get 'weeks',     to: 'weeks#index', as: 'weeks'
   get 'weeks/:id', to: 'weeks#show',  as: 'week'
@@ -16,17 +18,16 @@ Pizza::Application.routes.draw do
   delete 'unread', to: 'notifications#destroy', as: 'notifications'
 
   get 'search', to: 'searches#index'
-
   resources :searches
-  resources :users, except: [:new]
   
+  post 'announcements/markallread', to: 'announcements#markallread', as: 'mark_all_read'
+  resources :announcements, except: [:show, :new, :edit]
+
 
   resources :school_days do
     resources :comments
   end
 
-  post 'announcements/markallread', to: 'announcements#markallread', as: 'mark_all_read'
-  resources :announcements
 
   resources :lectures do
     resources :comments

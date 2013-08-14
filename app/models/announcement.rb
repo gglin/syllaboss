@@ -19,4 +19,5 @@ class Announcement < ActiveRecord::Base
   def print_search
     "#{User.find(user_id).full_name}: #{content}"
   end
+
 end

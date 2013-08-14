@@ -13,10 +13,10 @@ class Announcement < ActiveRecord::Base
   end
 
   def print_name
-    user_id
+    "Announcement for Day #{SchoolDay.find(school_day_id).ordinal}"
   end
 
   def print_search
-    [user_id, school_day_id, content]
+    "#{User.find(user_id).full_name}: #{content}"
   end
 end

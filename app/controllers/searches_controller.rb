@@ -2,7 +2,7 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
-    @search = Sunspot.search(SchoolDay, Lecture, Lab, Todo, Homework, Potd, Link, Comment) do
+    @search = Sunspot.search(SchoolDay, Lecture, Lab, Todo, Homework, Potd, Link, Comment, Announcement) do
       fulltext params[:search]
       #paginate :per_page => 10
     end

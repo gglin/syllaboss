@@ -17,6 +17,6 @@ class Comment < ActiveRecord::Base
   end
 
   def print_search
-    "#{self.user.username}: #{content}"
+    "#{self.user.full_name}: #{content}"
   end
 end

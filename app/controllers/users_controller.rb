@@ -40,6 +40,7 @@ class UsersController < ApplicationController
       redirect_to root_url, notice: "Thanks for signing up!"
     else
       @view_signup = true
+      @user.errors.delete(:password_digest)
       flash[:error] = "There were errors signing up."
       render "sessions/new", :layout => "landing"
     end

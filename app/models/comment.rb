@@ -13,10 +13,10 @@ class Comment < ActiveRecord::Base
   end
 
   def print_name
-    commentable_id
+    "Comment #{commentable_id}"
   end
 
   def print_search
-    [commentable_id, content]
+    "#{self.user.username}: #{content}"
   end
 end

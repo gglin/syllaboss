@@ -1,5 +1,5 @@
 <div class="page-head">
-  <h2>All results</h2>
+  <h2>All Results for "<%= @query %>"</h2>
 </div>
 
 <div class="matter">
@@ -7,19 +7,33 @@
     <div class="row-fluid">
       <ol>
         <%#  debugger %>
-        <% @searches.each do |object| %>
-          <li><%="#{object.class}:"%>
-          	
-          	<% if object.class == SchoolDay %>
-          		<a href=<%= "school_days/#{object.id}" %>><%= object.print_name %></a>
-              <%= object.try(:print_search) %>
-          	<% else %>
-            <%# debugger %>
-          		<a href=<%= "#{object.class.to_s.downcase}s/#{object.id}" %>><%= object.print_name %></a> 
-              <%= object.try(:print_search) %>
-          	<% end %>
-          </li>
-         <% end %>
+        <% if @searches.empty? %>
+          No Results Found
+        <% else %>
+          <h3> <%= pluralize(@searches.size,"Result")  %> </h3>
+          <% @searches.each do |object| %>
+            <li>
+            	<% if object.class == SchoolDay %>
+            		<a href=<%= "school_days/#{object.id}" %>><%="#{object.class}:"%> <%= object.print_name %></a>
+                  <%= better_format(re_truncate(object.try(:print_search),{length:100}, 2)) %> 
+            	<% else %>
+              <%# debugger %>
+                <% if object.class == Comment %>
+                  <% comment_parent = object.commentable_type.classify.constantize.find(object.commentable_id) %>
+                  <% comment_parent_type = object.commentable_type.underscore %>
+                  <a href='<%= self.send("#{comment_parent_type}_path", comment_parent)+"#comment-#{object.id}" %>'><%="Comment for #{material_capitalize(comment_parent_type)} #{comment_parent.print_name}"  %></a>
+                  <br> 
+                  <%= re_truncate(object.try(:print_search),length:100) %>
+                <% else %>
+                  <a href=<%= "#{object.class.to_s.downcase}s/#{object.id}" %>><%= object.print_name %></a>
+                  <br> 
+                  <%= re_truncate(object.try(:print_search),length:100) %>
+                <% end %>
+
+            	<% end %>
+            </li>
+           <% end %>
+        <% end %>
       </ol>
     </div>
   </div>

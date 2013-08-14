@@ -72,21 +72,9 @@ class SchoolDay < ActiveRecord::Base
     output2.delete_if.with_index {|row, index| index != 0 && row[:time].empty?}
   end
 
-  def read_schedule
-    schedulize.each do |item|
-      read_time(item[:time])
-      read_stuff(item[:stuff])
-    end
-  end
-
-  def read_time
-  end
-
-  def read_stuff
-  end
-
   def print_search
-    [ordinal, calendar_date, schedule]
+    #[ordinal, calendar_date, schedule]
+    schedule
   end
 
 

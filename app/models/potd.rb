@@ -27,7 +27,7 @@ class Potd < ActiveRecord::Base
   end
 
   def print_search
-    [name, wikipedia, presentation_url]
+    bio
   end
 
   def self.linkify(url)

@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   #validates_format_of :facebook, :twitter, :linkedin, :with =>/[www.\D+.com]/ ,  :message=>"Please enter begin with www., as in www.facebook.com/your_name"
   
   # validate :facebook_url_is_standardized
+  searchable do
+    text :full_name, :facebook, :linkedin, :twitter, :email
+  end
 
 
   USER_ROLES = {

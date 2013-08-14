@@ -7,6 +7,7 @@ class SearchesController < ApplicationController
       #paginate :per_page => 10
     end
     @searches = @search.results
+    @query = params[:search]
 
     respond_to do |format|
       format.html # index.html.erb

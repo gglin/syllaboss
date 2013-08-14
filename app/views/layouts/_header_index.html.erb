@@ -31,7 +31,7 @@
 
   <br />
   
-  <% if can? :edit, chosen_materials %>
+  <% if (can? :edit, chosen_materials) && (chosen_material_type != "announcement") %>
     <%= link_to "Create New #{chosen_material_title}", self.send("new_#{chosen_material_type}_path"), class: "btn btn-primary link-btn" %>
   <% end %>
 

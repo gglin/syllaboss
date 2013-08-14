@@ -10,41 +10,11 @@ class AnnouncementsController < ApplicationController
     end
   end
 
-  # GET /announcements/1
-  # GET /announcements/1.json
-  def show
-    @announcement = Announcement.find(params[:id])
-    @announcement.mark_as_read! :for => current_user
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @announcement }
-    end
-  end
-
   # Mark all announcements for the day as read
   def markallread
     closest_day_before_today.announcements.each do |announcement|
       announcement.mark_as_read! :for => current_user
     end
-  end
-
-  # GET /announcements/new
-  # GET /announcements/new.json
-  def new
-    @announcement = Announcement.new
-    @action = "Add"
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @announcement }
-    end
-  end
-
-  # GET /announcements/1/edit
-  def edit
-    @announcement = Announcement.find(params[:id])
-    @action = "Update"
   end
 
   # POST /announcements
@@ -69,6 +39,9 @@ class AnnouncementsController < ApplicationController
   # PUT /announcements/1.json
   def update
     @announcement = Announcement.find(params[:id])
+    # Figure out how to reset read marks for just this announcement, for all users
+    # Unread gem doesnt seem to have API to do this
+    # @announcement.reset_read_marks_for_all
 
     respond_to do |format|
       if @announcement.update_attributes(params[:announcement])

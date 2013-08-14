@@ -7,24 +7,30 @@
 
     <div class="row-fluid fit-content">
 
-      <table class="table">
-        <tr>
-          <th>Content</th>
-          <th>Day of Semester</th>
-          <th>Last Updated</th>
-          <th></th>
-          <th></th>
-        </tr>
+      <table class="table table-hover" id="linksTable">
+        <thead>
+          <tr>
+            <th data-sort="int">Day of Semester</th>
+            <th data-sort="string">Content</th>
+            <th data-sort="date">Last Updated</th>
+            <th data-sort="date">Created</th>
+            <!-- <th></th> -->
+            <th></th>
+          </tr>
+        </thead>
 
-      <% @announcements.each do |announcement| %>
-        <tr>
-          <td><%= announcement.content %></td>
-          <td><%= announcement.school_day.ordinal %></td>
-          <td><%= announcement.updated_at %></td>
-          <td><%= link_to 'Edit', edit_announcement_path(announcement) %></td>
-          <td><%= link_to 'Delete', announcement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
+        <tbody>
+        <% @announcements.each do |announcement| %>
+          <tr>
+            <td><h5><%= announcement.school_day.ordinal %></h5></td>
+            <td><%= better_format(announcement.content) %></td>
+            <td><%= announcement.updated_at.strftime("%b %d, %Y %l:%M%P") %></td>
+            <td><%= announcement.created_at.strftime("%b %d, %Y %l:%M%P") %></td>
+            <!-- <td><%# link_to 'Edit', edit_announcement_path(announcement) %></td> -->
+            <td><%= link_to 'Delete', announcement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+        </tbody>
       </table>
 
       <br />

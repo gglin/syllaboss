@@ -732,8 +732,13 @@ body {
 }
 
 .day-index td:nth-child(3),
-.day-index th:nth-child(3), {
+.day-index th:nth-child(3) {
   width: 100px;
+}
+
+.unread-index td:nth-child(1),
+.unread-index th:nth-child(1) {
+  width: 60%;
 }
 
 

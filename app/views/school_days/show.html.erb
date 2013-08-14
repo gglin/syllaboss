@@ -349,7 +349,6 @@
                 <%=  @active_school_day.potd.bio %>
               </p>
 
-              <a href="<%= @active_school_day.potd.http_link(@active_school_day.potd.wikipedia) %>" target="_blank">Wikipedia</a> 
               <div class="admin pull-right">
                 <%= link_to "Show", potd_path(@active_school_day.potd) %>
                 | <%= link_to "Show All", potds_path %>

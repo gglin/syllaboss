@@ -1,47 +1,15 @@
 == Welcome to Syllaboss
-Damn it Feels Good to Be a Gangsta
 ---------------------------------------------------------------------
-AUGUST 12th wut
-- PUSH TO DIGITAL OCEAN!!!
-- landing page
+Syllaboss is a custom online CMS where school day schedules are created, organized and curated by instructors. Has roubst workflows for students to view assignments and hold discussions with their fellow classmates and teachers.
 
+It's live at http://syllaboss.com/ 
 
-CLEAN
-- edit column names (i.e. gist_url) lecture should have space for content
-- search: make pretty + preview
-- seeding production environment / database
-- notification box working on page (wow features) (ANNOUNCEMENTS)
-- Email invites for both students and admins - whitelist (append query string to log in)
+Getting Started on your own:
 
-- infinite scroll for discussion stream
-
-- reading model -- aggregate reading/resources
-
-
-- Change index view for weeks to be calendar view
-** Discussion => George
-- hashtag functionality
-
-
-- Send email password reset
-- email notifications (activemailer)
-
-- ajax request to choose ordinal and week
-
-- filtering the discussion stream (drop down from discussion tab in nav bar)
-
-- friendlyid for urls
-
-- homework only shows up after 6pm that day
-- SEMESTER model
-
-
----------------------------------------------------------------------
-GENERAL BIZ
-
-- sidebar not fixed when expanded (jQuery)
-- javascript for coloring calendar -- only highlighting days that are in the system
-
-- look into totop bug (js rednering engine)
-- Edit / Cancel JS bug
-- request.referrer is no longer preview after failure to save
+git clone git@github.com:flatiron-school/syllaboss.git
+cd syllaboss
+bundle install to get the dependencies for the rails app
+rake db:migrate to setup your database
+rake db:seed to seed your database
+rails s to start the server
+visit http://localhost:3000

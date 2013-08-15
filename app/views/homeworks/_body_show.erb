@@ -19,7 +19,7 @@
           <h2><%= @homework.print_name %></h2>
         </p>
         <p>
-          <%= @homework.content %>
+          <%= auto_link(better_format(@homework.content), :all, :target => "_blank") %>
         </p>
       </div>
     </div>

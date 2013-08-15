@@ -22,8 +22,7 @@
         </p>
 
         <p>
-          <b>Gist:</b>
-          <%= link_to @todo.gist, @todo.http_link(@todo.gist), :target => "_blank" %>
+          <%= auto_link(better_format(@todo.gist), :all, :target => "_blank") %>
         </p>
 
       </div>

@@ -27,7 +27,7 @@
   <div class="control-group">
     <%= f.label :content, "Content #{mark_required(@homework, :content)}", class: "control-label" %>
     <div class="controls">
-      <%= f.text_field :content %>
+      <%= f.text_area :content, class: "textarea-content" %>
     </div>
   </div>
 

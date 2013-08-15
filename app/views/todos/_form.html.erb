@@ -25,9 +25,9 @@
   </div>
 
   <div class="control-group">
-    <%= f.label :gist, "URL #{mark_required(@todo, :gist)}", class: "control-label" %>
+    <%= f.label :gist, "Content/URL #{mark_required(@todo, :gist)}", class: "control-label" %>
     <div class="controls">
-      <%= f.text_field :gist %>
+      <%= f.text_area :gist, class: "textarea-content"  %>
     </div>
   </div>
 

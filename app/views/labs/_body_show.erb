@@ -19,7 +19,7 @@
           <h2><%= @lab.print_name %></h2>
         </p>
         <p>
-          <%= @lab.lab_url %>
+          <%= auto_link(better_format(@lab.lab_url), :all, :target => "_blank") %>
         </p>
       </div>
     </div>

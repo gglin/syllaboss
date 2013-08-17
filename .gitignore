@@ -32,3 +32,6 @@ solr/
 /app/assets/images/videos/flatiron.mp4
 /app/assets/images/videos/flatiron.oggtheora.ogv
 /app/assets/images/videos/flatiron.ogv
+
+# Ignore application configuration
+/config/application.yml

@@ -1,5 +1,7 @@
 class PasswordResetsController < ApplicationController
 
+  layout "landing"
+
   skip_before_filter :authenticate
   skip_before_filter :load_unread_resources 
   skip_before_filter :load_all_unread       
@@ -7,7 +9,6 @@ class PasswordResetsController < ApplicationController
   skip_before_filter :load_announcements    
 
   def new
-    render :layout => "landing"
   end
 
   def create
@@ -18,7 +19,6 @@ class PasswordResetsController < ApplicationController
 
   def edit
     @user = User.find_by_password_reset_token!(params[:id])
-    render :layout => "landing"
   end
 
   def update
@@ -28,6 +28,7 @@ class PasswordResetsController < ApplicationController
     elsif @user.update_attributes(params[:user])
       redirect_to login_url, :notice => "Password has been reset!"
     else
+      flash[:error] = "There were errors resetting the password."
       render :edit
     end
   end

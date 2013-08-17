@@ -58,4 +58,29 @@
 		background-position: center center;
 		background-repeat: no-repeat;
 	}
+
+	#error_explanation {
+		position: relative;
+		top: -500px;
+		text-align: center !important;
+	  padding: 7px;
+	  padding-bottom: 12px;
+	  margin-bottom: 20px;
+	 	background: rgba(255, 255, 255, 0.8);
+	}
+
+	.error_text {
+		display: block;
+		position: relative;
+		/*left: auto !important;*/
+		right: -170px !important;
+	}
+
+	#error_explanation h2 {
+	  text-align: center;
+	  font-weight: bold;
+	  padding: 5px 5px 5px 15px;
+	  font-size: 12px;
+	  margin: -7px;
+	}
 }

@@ -1,5 +1,7 @@
 Pizza::Application.routes.draw do
   
+  # get "password_resets/new"
+
   # get  'signup', to: 'users#new',        as: 'signup'
   
   get  'login',  to: 'sessions#new',     as: 'login'
@@ -10,6 +12,7 @@ Pizza::Application.routes.draw do
   # resources :sessions
   
   resources :users, except: [:new]
+  resources :password_resets
 
   get 'weeks',     to: 'weeks#index', as: 'weeks'
   get 'weeks/:id', to: 'weeks#show',  as: 'week'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813184301) do
+ActiveRecord::Schema.define(:version => 20130817154642) do
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -152,19 +152,18 @@ ActiveRecord::Schema.define(:version => 20130813184301) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.integer  "role"
     t.string   "full_name"
     t.string   "username"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.string   "image"
     t.string   "facebook"
     t.string   "linkedin"
     t.string   "twitter"
+    t.string   "auth_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
 end

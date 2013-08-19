@@ -51,9 +51,16 @@ role :app, "192.241.176.105"                          # This may be the same as 
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
- task :start do ; end
- task :stop do ; end
- task :restart, :roles => :app, :except => { :no_release => true } do
-   run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
- end
+  task :start do ; end
+  task :stop do ; end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+
+  task :symlink_config, :roles => :app do 
+    run "ln -nfs #{shared_path}/config/application.yml #{current_release}/config/application.yml"
+  end
 end
+
+# Load assets here and create symlinks.
+after 'deploy:update_code','deploy:symlink_config'

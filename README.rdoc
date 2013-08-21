@@ -9,6 +9,7 @@ Getting Started on your own:
 - fork and clone the repo
 - cd syllaboss
 - mv db/seed.sqlite3.rename_this db/development.sqlite3
+- ensure that imagemagick is installed, e.g. for OSX brew install imagemagick
 - bundle install
 - rake db:migrate
 - rm -rf solr/ (if this exists)

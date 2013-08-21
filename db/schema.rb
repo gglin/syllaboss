@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130808163531) do
+=======
+ActiveRecord::Schema.define(:version => 20130817154642) do
+>>>>>>> f94526cd6f73ec6da1960384bbfd05517fc03b9c
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -144,8 +148,13 @@ ActiveRecord::Schema.define(:version => 20130808163531) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
+<<<<<<< HEAD
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+=======
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+>>>>>>> f94526cd6f73ec6da1960384bbfd05517fc03b9c
     t.integer  "role"
     t.string   "full_name"
     t.string   "username"
@@ -153,6 +162,9 @@ ActiveRecord::Schema.define(:version => 20130808163531) do
     t.string   "facebook"
     t.string   "linkedin"
     t.string   "twitter"
+    t.string   "auth_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
 end

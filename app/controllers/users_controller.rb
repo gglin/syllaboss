@@ -36,7 +36,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @user.set_as_student
     if @user.save
-      session[:user_id]= @user.id
+      # session[:user_id] = @user.id
+      cookies[:auth_token] = @user.auth_token
       redirect_to root_url, notice: "Thanks for signing up!"
     else
       @view_signup = true
